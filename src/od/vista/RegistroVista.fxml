@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1002.0" styleClass="pane" stylesheets="@registrovista.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.RegistroVistaController">
+   <children>
+      <ImageView disable="true" fitHeight="636.0" fitWidth="547.0" layoutX="463.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/02.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="84.0" layoutY="51.0" styleClass="signup-title" text="¡Empecemos!" />
+      <Label layoutX="84.0" layoutY="114.0" prefHeight="43.0" prefWidth="441.0" styleClass="signup-subtitle" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus vitae sem a vulputate consectetur adipiscing ." wrapText="true" />
+      <Label layoutX="83.0" layoutY="195.0" styleClass="signup-labelform" text="NOMBRES" />
+      <TextField fx:id="campoNombre" layoutX="83.0" layoutY="215.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <Label layoutX="311.0" layoutY="195.0" styleClass="signup-labelform" text="APELLIDOS" />
+      <TextField layoutX="311.0" layoutY="215.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <Label layoutX="85.0" layoutY="263.0" styleClass="signup-labelform" text="TIPO DE DNI" />
+      <ComboBox fx:id="comboTipoDNI" layoutX="85.0" layoutY="283.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <Label layoutX="313.0" layoutY="263.0" styleClass="signup-labelform" text="NUMERO DE DNI" />
+      <TextField layoutX="313.0" layoutY="283.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <Label layoutX="85.0" layoutY="332.0" styleClass="signup-labelform" text="FECHA DE NACIMIENTO" />
+      <DatePicker layoutX="85.0" layoutY="352.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <Label layoutX="313.0" layoutY="332.0" styleClass="signup-labelform" text="TELEFONO/CELULAR" />
+      <TextField layoutX="313.0" layoutY="352.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <Label layoutX="85.0" layoutY="400.0" styleClass="signup-labelform" text="PAÍS" />
+      <TextField layoutX="85.0" layoutY="420.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <Label layoutX="313.0" layoutY="400.0" styleClass="signup-labelform" text="CIUDAD" />
+      <TextField layoutX="313.0" layoutY="420.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <Label layoutX="85.0" layoutY="467.0" styleClass="signup-labelform" text="DIRECCION" />
+      <TextField layoutX="85.0" layoutY="487.0" prefHeight="37.0" prefWidth="441.0" styleClass="signup-textfieldform" />
+      <Label layoutX="659.0" layoutY="113.0" prefHeight="43.0" prefWidth="251.0" styleClass="signup-subtitle-2" text="Lorem ipsum dolor sit amet, consect adipi elit. Donec rhoncus vitae." wrapText="true" />
+      <Label layoutX="659.0" layoutY="195.0" text="USUARIO">
+         <styleClass>
+            <String fx:value="signup-labelform" />
+            <String fx:value="w" />
+         </styleClass>
+      </Label>
+      <TextField layoutX="659.0" layoutY="215.0" prefHeight="37.0" prefWidth="251.0">
+         <styleClass>
+            <String fx:value="signup-textfieldform" />
+            <String fx:value="w" />
+         </styleClass>
+      </TextField>
+      <Label layoutX="659.0" layoutY="263.0" text="CONTRASEÑA">
+         <styleClass>
+            <String fx:value="signup-labelform" />
+            <String fx:value="w" />
+         </styleClass>
+      </Label>
+      <PasswordField layoutX="659.0" layoutY="283.0" prefHeight="37.0" prefWidth="251.0">
+         <styleClass>
+            <String fx:value="signup-textfieldform" />
+            <String fx:value="w" />
+         </styleClass>
+      </PasswordField>
+      <Label layoutX="659.0" layoutY="332.0" text="REPETIR CONTRASEÑA">
+         <styleClass>
+            <String fx:value="signup-labelform" />
+            <String fx:value="w" />
+         </styleClass>
+      </Label>
+      <PasswordField layoutX="659.0" layoutY="352.0" prefHeight="37.0" prefWidth="251.0">
+         <styleClass>
+            <String fx:value="signup-textfieldform" />
+            <String fx:value="w" />
+         </styleClass>
+      </PasswordField>
+      <Label layoutX="659.0" layoutY="400.0" text="CORREO ELECTRONICO">
+         <styleClass>
+            <String fx:value="signup-labelform" />
+            <String fx:value="w" />
+         </styleClass>
+      </Label>
+      <TextField layoutX="659.0" layoutY="420.0" prefHeight="37.0" prefWidth="251.0">
+         <styleClass>
+            <String fx:value="signup-textfieldform" />
+            <String fx:value="w" />
+         </styleClass>
+      </TextField>
+      <Button defaultButton="true" layoutX="659.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleRegistro" prefHeight="37.0" prefWidth="251.0" styleClass="signup-button" text="CREAR CUENTA" />
+      <Button layoutX="815.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleRegresar" styleClass="button-back" text="REGRESAR">
+         <graphic>
+            <ImageView fitHeight="10.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true" styleClass="btn-icon">
+               <image>
+                  <Image url="@images/icon03.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane fx:id="panelHecho" layoutX="20.0" layoutY="14.0" prefHeight="636.0" prefWidth="1002.0" styleClass="wrap" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Region layoutX="328.0" layoutY="229.0" prefHeight="180.0" prefWidth="346.0" styleClass="done-box" />
+            <Label layoutX="457.0" layoutY="257.0" prefHeight="29.0" prefWidth="88.0" styleClass="done-label" text="¡Hecho!" />
+            <Label layoutX="372.0" layoutY="294.0" prefHeight="43.0" prefWidth="259.0" styleClass="done-content" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc est felis." textAlignment="CENTER" wrapText="true" />
+            <Button layoutX="466.0" layoutY="351.0" mnemonicParsing="false" onAction="#alTablero" styleClass="done-button" text="Aceptar" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,69 @@
+
+.background{
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 25px;
+    -fx-border-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,.5), 10, 0, 0, 3px);
+}
+
+.login-title,
+.login-textfield{
+    -fx-text-fill: #262626;
+}
+
+.login-subtitle,
+.login-textfield,
+.login-button,
+.login-naccount,
+.login-signup{
+    -fx-font-size: 14px;
+}
+
+.login-subtitle,
+.login-textfield,
+.login-naccount{
+    -fx-font-family: 'Roboto Condensed Regular';
+}
+
+.login-title{    
+    -fx-font-size: 38px;
+    -fx-font-family: 'Roboto Condensed Light';
+}
+
+.login-subtitle,
+.login-label,
+.login-naccount{
+    -fx-text-fill: #8a8f9c;
+}
+
+.login-label,
+.login-button{
+    -fx-font-family: 'Ubuntu Medium';
+}
+
+.login-button,
+.login-signup{
+    -fx-cursor: hand;
+}
+
+.login-textfield{
+    -fx-background-color: #f5f6f7;
+    -fx-border-color: #a0a0a0;
+    -fx-border-radius: 5px; 
+}
+
+.login-textfield:focused{
+    -fx-border-color: #7c60ff;
+}
+
+.login-button{
+    -fx-background-color: #7c60ff;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-radius: 5px;
+}
+
+.login-signup{
+    -fx-font-family: 'Roboto Condensed Bold';
+    -fx-text-fill: #7c60ff;
+    -fx-outline: none;
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="950.0" styleClass="body" stylesheets="@loginvista.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.LoginVistaController">
+   <children>
+      <ImageView fx:id="fondo" fitHeight="636.0" fitWidth="950.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/01.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" disable="true" fill="WHITE" height="459.0" layoutX="233.0" layoutY="81.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="background" width="484.0" />
+      <Label layoutX="374.0" layoutY="137.0" styleClass="login-title" text="¡Bienvenido/a!">
+         <font>
+            <Font name="Roboto Condensed Light" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="299.0" layoutY="190.0" prefHeight="42.0" prefWidth="355.0" styleClass="login-subtitle" text="Inicia sesión para administrar tus reservaciones, servicios y habitaciones de manera fácil y rápida." textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="etiquetaError" alignment="CENTER_RIGHT" layoutX="443.0" layoutY="269.0" prefHeight="17.0" prefWidth="203.0" textAlignment="RIGHT" textFill="#dd1d1d" />
+      <Label layoutX="304.0" layoutY="271.0" styleClass="login-label" text="USUARIO">
+         <font>
+            <Font name="Ubuntu Medium" size="12.0" />
+         </font></Label>
+      <TextField fx:id="campoUsuario" layoutX="304.0" layoutY="293.0" onAction="#handleIngreso" prefHeight="37.0" prefWidth="342.0" styleClass="login-textfield" />
+      <Label layoutX="304.0" layoutY="348.0" styleClass="login-label" text="CONTRASEÑA" />
+      <PasswordField fx:id="campoClave" layoutX="304.0" layoutY="371.0" onAction="#handleIngreso" prefHeight="37.0" prefWidth="342.0" styleClass="login-textfield" />
+      <Button fx:id="botonLogin" layoutX="305.0" layoutY="428.0" mnemonicParsing="false" onAction="#handleIngreso" prefHeight="37.0" prefWidth="342.0" styleClass="login-button" text="INICIAR SESION" />
+      <HBox alignment="CENTER" layoutX="305.0" layoutY="470.0" prefHeight="20.0" prefWidth="342.0">
+         <children>
+            <Label layoutX="148.0" layoutY="376.0" styleClass="login-naccount" text="¿Necesitas una cuenta?" />
+            <Hyperlink fx:id="linkRegistro" graphicTextGap="0.0" onAction="#handleRegistro" styleClass="login-signup" text="¡Registrate!" />
+         </children>
+      </HBox>
+      <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="612.0" text="Photo por: Drew Coffman en Unsplash" textFill="WHITE" />
+   </children>
+</Pane>

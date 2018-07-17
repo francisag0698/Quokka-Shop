@@ -1,0 +1,106 @@
+.pane{
+    -fx-background-color: #f5f6f7;
+}
+
+.signup-title,
+.signup-subtitle,
+.signup-textfieldform{
+    -fx-font-family: 'Roboto Condensed Light';
+}
+
+.signup-textfieldform,
+.signup-button{
+    -fx-background-color: #fff;
+}
+
+.signup-subtitle,
+.signup-button,
+.signup-textfieldform{
+    -fx-font-size: 14px;
+}
+
+.signup-title{
+    -fx-text-fill: #262626;
+    -fx-font-size: 46px;
+}
+
+.signup-subtitle{    
+    -fx-text-fill: #59626a;
+}
+
+.signup-labelform{
+    -fx-font-family: 'Ubuntu Medium';
+    -fx-text-fill: #8a8f9c;
+}
+
+.signup-labelform.w{
+    -fx-text-fill: #fff;
+}
+
+.signup-textfieldform{
+    -fx-text-fill: #59626a;
+    -fx-border-color: #a0a0a0;
+    -fx-border-radius: 5px; 
+}
+
+.signup-textfieldform:focused{
+    -fx-border-color: #7c60ff;
+}
+
+.signup-textfieldform.w{
+    -fx-background-color: transparent;
+    -fx-border-color: #fff;
+    -fx-text-fill: #fff;
+}
+
+.signup-subtitle-2{
+    -fx-font-family: 'Roboto Condensed Regular';
+    -fx-font-size: 15px;
+    -fx-text-fill: #fff;
+}
+
+.signup-button{
+    -fx-font-family: 'Ubuntu Medium';
+    -fx-text-fill: #7c60ff;
+    -fx-cursor: hand;
+}
+
+.button-back{
+    -fx-background-color: transparent;
+    -fx-font-family: 'Ubuntu';
+    -fx-text-fill: #fff;
+    -fx-border-color: #fff;
+    -fx-border-radius: 5px; 
+    -fx-cursor: hand;
+    -fx-opacity: 0.8;
+}
+
+.button-back:hover{
+    -fx-opacity: 1;
+}
+
+.wrap{
+    -fx-background-color: rgba(89,98,106,0.5);
+    -fx-border-radius: 5px; 
+}
+
+.wrap .done-box{
+    -fx-background-color: #fff;
+}
+
+.wrap .done-content{
+    -fx-font-size: 14px;
+}
+
+.wrap .done-label{
+    -fx-font-family: 'Ubuntu Medium';
+    -fx-font-size: 24px;
+}
+
+.wrap .done-button{
+    -fx-font-family: 'Ubuntu Medium';
+    -fx-font-size: 14px;
+    -fx-background-color: #7c60ff;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+}
