@@ -5,13 +5,13 @@
 .this-user{
     -fx-font-family: 'Roboto Condensed';
     -fx-text-fill: #262626;
-    -fx-font-size: 22px;
+    -fx-font-size: 17px;
 }
 
 .this-role{
     -fx-font-family: 'Roboto Condensed';
     -fx-text-fill: #8a8f9c;
-    -fx-font-size: 15px;
+    -fx-font-size: 14px;
 }
 
 .menu-opt{
