@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1002.0" stylesheets="@raizvista.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1002.0" stylesheets="@raizvista.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.RaizVistaController">
    <content>
       <BorderPane prefHeight="638.0" prefWidth="999.0" styleClass="background">
          <left>
@@ -21,76 +21,90 @@
                         <Image url="@images/logo.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="62.0" layoutY="118.0" styleClass="this-user" text="John Doe" />
-                  <Label layoutX="62.0" layoutY="146.0" styleClass="this-role" text="Administrador" />
-                  <Button alignment="TOP_LEFT" layoutX="37.0" layoutY="223.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" text="Inicio">
-                     <styleClass>
-                        <String fx:value="menu-opt" />
-                        <String fx:value="active" />
-                     </styleClass>
-                     <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
-                           <image>
-                              <Image url="@images/icon04.png" />
-                           </image>
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="TOP_LEFT" layoutX="38.0" layoutY="264.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Reservaciones">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
-                           <image>
-                              <Image url="@images/icon05.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button alignment="TOP_LEFT" layoutX="38.0" layoutY="306.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Habitaciones">
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
-                           <image>
-                              <Image url="@images/icon06.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button alignment="TOP_LEFT" layoutX="36.0" layoutY="348.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Servicios">
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
-                           <image>
-                              <Image url="@images/icon07.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button alignment="TOP_LEFT" layoutX="36.0" layoutY="390.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Clientes">
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
-                           <image>
-                              <Image url="@images/icon08.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeff0" height="52.0" layoutX="43.0" layoutY="116.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="181.0" />
+                  <Label layoutX="61.0" layoutY="123.0" prefHeight="24.0" prefWidth="141.0" styleClass="this-user" text="PANCHO VARGAS" />
+                  <Label layoutX="62.0" layoutY="143.0" styleClass="this-role" text="ADMINISTRADOR" />
+                  <VBox layoutX="37.0" layoutY="217.0" spacing="5.0">
+                     <children>
+                        <Button fx:id="botonMenu1" alignment="TOP_LEFT" layoutX="37.0" layoutY="223.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" text="Inicio">
+                           <styleClass>
+                              <String fx:value="menu-opt" />
+                              <String fx:value="active" />
+                           </styleClass>
+                           <graphic>
+                              <ImageView fitHeight="17.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
+                                 <image>
+                                    <Image url="@images/icon04.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="botonMenu2" alignment="TOP_LEFT" layoutX="38.0" layoutY="264.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Reservaciones">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
+                                 <image>
+                                    <Image url="@images/icon05.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="TOP_LEFT" layoutX="38.0" layoutY="306.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Habitaciones">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
+                                 <image>
+                                    <Image url="@images/icon06.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="TOP_LEFT" layoutX="36.0" layoutY="348.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Servicios">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
+                                 <image>
+                                    <Image url="@images/icon07.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="TOP_LEFT" layoutX="36.0" layoutY="390.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Clientes">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
+                                 <image>
+                                    <Image url="@images/icon08.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
                   <Label layoutX="36.0" layoutY="482.0" styleClass="label-div" text="SOPORTE" />
-                  <Button alignment="TOP_LEFT" layoutX="36.0" layoutY="507.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Configuración">
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
-                           <image>
-                              <Image url="@images/icon09.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button alignment="TOP_LEFT" layoutX="38.0" layoutY="542.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Ayuda">
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-7.0">
-                           <image>
-                              <Image url="@images/icon10.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
+                  <VBox layoutX="37.0" layoutY="506.0" spacing="5.0">
+                     <children>
+                        <Button alignment="TOP_LEFT" layoutX="36.0" layoutY="507.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Configuración">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
+                                 <image>
+                                    <Image url="@images/icon09.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="TOP_LEFT" layoutX="38.0" layoutY="542.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Ayuda">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-7.0">
+                                 <image>
+                                    <Image url="@images/icon10.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
                   <Label layoutX="38.0" layoutY="194.0" styleClass="label-div" text="MENU" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7c60ff" height="52.0" layoutX="38.0" layoutY="116.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="10.0" />
+                  <Rectangle arcHeight="5.0" fill="#7c60ff" height="52.0" layoutX="38.0" layoutY="116.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="10.0" />
                </children>
             </Pane>
          </left>

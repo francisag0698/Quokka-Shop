@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1002.0" stylesheets="@raizvista.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1002.0" stylesheets="@raizvista.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.RaizVistaController">
    <content>
       <BorderPane prefHeight="638.0" prefWidth="999.0" styleClass="background">
          <left>
@@ -26,7 +26,7 @@
                   <Label layoutX="62.0" layoutY="143.0" styleClass="this-role" text="ADMINISTRADOR" />
                   <VBox layoutX="37.0" layoutY="217.0" spacing="5.0">
                      <children>
-                        <Button alignment="TOP_LEFT" layoutX="37.0" layoutY="223.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" text="Inicio">
+                        <Button fx:id="botonMenu1" alignment="TOP_LEFT" layoutX="37.0" layoutY="223.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" text="Inicio">
                            <styleClass>
                               <String fx:value="menu-opt" />
                               <String fx:value="active" />
@@ -42,7 +42,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button alignment="TOP_LEFT" layoutX="38.0" layoutY="264.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Reservaciones">
+                        <Button fx:id="botonMenu2" alignment="TOP_LEFT" layoutX="38.0" layoutY="264.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Reservaciones">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
                                  <image>

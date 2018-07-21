@@ -16,7 +16,7 @@
          </image>
       </ImageView>
       <Label layoutX="84.0" layoutY="51.0" styleClass="signup-title" text="¡Empecemos!" />
-      <Label layoutX="84.0" layoutY="114.0" prefHeight="43.0" prefWidth="441.0" styleClass="signup-subtitle" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus vitae sem a vulputate consectetur adipiscing ." wrapText="true" />
+      <Label layoutX="84.0" layoutY="117.0" lineSpacing="3.0" prefHeight="50.0" prefWidth="441.0" styleClass="signup-subtitle" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhon itae sem a vulputate consectetur adipiscing ." wrapText="true" />
       <Label layoutX="83.0" layoutY="195.0" styleClass="signup-labelform" text="NOMBRES" />
       <TextField fx:id="campoNombre" layoutX="83.0" layoutY="215.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="311.0" layoutY="195.0" styleClass="signup-labelform" text="APELLIDOS" />
@@ -35,7 +35,7 @@
       <TextField layoutX="313.0" layoutY="420.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="85.0" layoutY="467.0" styleClass="signup-labelform" text="DIRECCION" />
       <TextField layoutX="85.0" layoutY="487.0" prefHeight="37.0" prefWidth="441.0" styleClass="signup-textfieldform" />
-      <Label layoutX="659.0" layoutY="113.0" prefHeight="43.0" prefWidth="251.0" styleClass="signup-subtitle-2" text="Lorem ipsum dolor sit amet, consect adipi elit. Donec rhoncus vitae." wrapText="true" />
+      <Label layoutX="660.0" layoutY="121.0" lineSpacing="3.0" prefHeight="43.0" prefWidth="251.0" styleClass="signup-subtitle-2" text="Lorem ipsum dolor sit amet, consect adipi elit. Donec rhoncus vitae." wrapText="true" />
       <Label layoutX="659.0" layoutY="195.0" text="USUARIO">
          <styleClass>
             <String fx:value="signup-labelform" />

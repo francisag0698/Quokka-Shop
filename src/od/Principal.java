@@ -5,14 +5,15 @@
  */
 package od;
 
+import java.io.File;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import od.controlador.LoginVistaController;
 import od.controlador.RegistroVistaController;
@@ -26,7 +27,13 @@ public class Principal extends Application {
     private ScrollPane rootLayout;
     
     @Override
-    public void start(Stage primaryStage) {        
+    public void start(Stage primaryStage) {
+        Font.loadFont(getClass().getResourceAsStream("vista/fuentes/UB.ttf"), 12); //Ubuntu Bold
+        Font.loadFont(getClass().getResourceAsStream("vista/fuentes/UR.ttf"), 12); //Ubuntu Regular
+        Font.loadFont(getClass().getResourceAsStream("vista/fuentes/UM.ttf"), 12); //Ubuntu Medium
+        Font.loadFont(getClass().getResourceAsStream("vista/fuentes/RL.ttf"), 12); //Roboto Condensed Light
+        Font.loadFont(getClass().getResourceAsStream("vista/fuentes/RR.ttf"), 12); //Roboto Condensed Regular
+        
         mostrarLoginVista(primaryStage);
     }
     

@@ -11,7 +11,6 @@
     -fx-text-fill: #262626;
 }
 
-.login-subtitle,
 .login-textfield,
 .login-button,
 .login-naccount,
@@ -22,7 +21,8 @@
 .login-subtitle,
 .login-textfield,
 .login-naccount{
-    -fx-font-family: 'Roboto Condensed Regular';
+    -fx-font-family: 'Ubuntu';
+    -fx-font-weight: normal;
 }
 
 .login-title{    
@@ -38,12 +38,16 @@
 
 .login-label,
 .login-button{
-    -fx-font-family: 'Ubuntu Medium';
+    -fx-font-family: 'Ubuntu Bold';
 }
 
 .login-button,
 .login-signup{
     -fx-cursor: hand;
+}
+
+.login-subtitle{
+    -fx-font-size: 13px;
 }
 
 .login-textfield{

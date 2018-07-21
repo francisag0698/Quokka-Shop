@@ -3,7 +3,6 @@
 }
 
 .signup-title,
-.signup-subtitle,
 .signup-textfieldform{
     -fx-font-family: 'Roboto Condensed Light';
 }
@@ -24,12 +23,13 @@
     -fx-font-size: 46px;
 }
 
-.signup-subtitle{    
-    -fx-text-fill: #59626a;
+.signup-subtitle{
+    -fx-font-family: 'Ubuntu';  
+    -fx-text-fill: #8a8f9c;
 }
 
 .signup-labelform{
-    -fx-font-family: 'Ubuntu Medium';
+    -fx-font-family: 'Ubuntu Bold';
     -fx-text-fill: #8a8f9c;
 }
 
@@ -54,13 +54,13 @@
 }
 
 .signup-subtitle-2{
-    -fx-font-family: 'Roboto Condensed Regular';
-    -fx-font-size: 15px;
+    -fx-font-family: 'Ubuntu Medium';
+    -fx-font-size: 14px;
     -fx-text-fill: #fff;
 }
 
 .signup-button{
-    -fx-font-family: 'Ubuntu Medium';
+    -fx-font-family: 'Ubuntu Bold';
     -fx-text-fill: #7c60ff;
     -fx-cursor: hand;
 }

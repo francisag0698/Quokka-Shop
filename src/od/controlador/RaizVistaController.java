@@ -11,12 +11,11 @@ package od.controlador;
  * @author PotatoPower
  */
 public class RaizVistaController {
-
     /**
      * Initializes the controller class.
      */
     public void initialize() {
-        // TODO
-    }    
+        
+    }
     
 }
