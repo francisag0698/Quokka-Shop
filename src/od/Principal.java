@@ -5,17 +5,17 @@
  */
 package od;
 
-import java.io.File;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import od.controlador.LoginVistaController;
+import od.controlador.RaizVistaController;
 import od.controlador.RegistroVistaController;
 
 /**
@@ -24,7 +24,7 @@ import od.controlador.RegistroVistaController;
  */
 public class Principal extends Application {
     private Stage primaryStage;
-    private ScrollPane rootLayout;
+    private BorderPane rootLayout;
     
     @Override
     public void start(Stage primaryStage) {
@@ -41,12 +41,18 @@ public class Principal extends Application {
         try {
             FXMLLoader cargador = new FXMLLoader();
             cargador.setLocation(Principal.class.getResource("vista/RaizVista.fxml"));
-            rootLayout = (ScrollPane) cargador.load();
+            rootLayout = (BorderPane) cargador.load();
             
             primaryStage = new Stage();
             
             Scene escena = new Scene(rootLayout);
             primaryStage.setScene(escena);
+            
+            RaizVistaController controlador = cargador.getController();
+            
+            controlador.setStage(primaryStage);
+            controlador.setPrincipal(this);
+            fijarCentro("PanelInicio");
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,6 +106,21 @@ public class Principal extends Application {
             primaryStage.show();
         }catch (IOException e){
             System.out.println("Error en la vista 'Registro': " + e);
+        }
+    }
+    
+    public void fijarCentro(String fxml){
+        try {
+            FXMLLoader cargador = new FXMLLoader();
+            cargador.setLocation(Principal.class.getResource("vista/"+fxml+".fxml"));
+            Pane panel = (Pane) cargador.load();
+            
+            rootLayout.setCenter(panel);
+            
+            /*NoticiasVistaController controlador = cargador.getController();
+            controlador.setPrincipal(this);*/
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

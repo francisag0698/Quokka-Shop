@@ -3,33 +3,43 @@
 }
 
 .this-user{
-    -fx-font-family: 'Roboto Condensed';
-    -fx-text-fill: #262626;
-    -fx-font-size: 17px;
+    -fx-font-family: 'Ubuntu Bold';
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
 }
 
 .this-role{
     -fx-font-family: 'Roboto Condensed';
-    -fx-text-fill: #8a8f9c;
-    -fx-font-size: 14px;
+    -fx-text-fill: #fff;
+    -fx-font-size: 12px;
 }
 
 .menu-opt{
     -fx-font-family: 'Ubuntu';
-    -fx-text-fill: #8a8f9c;
+    -fx-text-fill: #757a85;
     -fx-background-color: transparent;
     -fx-font-size: 15px;
     -fx-padding: 10px 15px 10px 20px;
+    -fx-cursor: hand;
 }
 
 .menu-opt.active{
-    -fx-background-color: #7c60ff;
-    -fx-text-fill: #fff;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,.3), 10, 0, 0, 3px);
+    -fx-background-color: #e1e2e3;
+    /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,.3), 10, 0, 0, 3px);*/
 }
 
 .label-div{
     -fx-font-size: 11px;
     -fx-font-family: 'Roboto Condensed';
     -fx-text-fill: #8a8f9c;
+}
+
+.icono{
+    -fx-font-family: 'themify';
+}
+
+.title-pane{    
+    -fx-font-size: 24px;
+    -fx-text-fill: #262626;
+    -fx-font-family: 'Roboto Condensed Light';
 }
