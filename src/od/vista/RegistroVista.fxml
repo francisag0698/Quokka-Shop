@@ -20,21 +20,21 @@
       <Label layoutX="83.0" layoutY="195.0" styleClass="signup-labelform" text="NOMBRES" />
       <TextField fx:id="campoNombre" layoutX="83.0" layoutY="215.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="311.0" layoutY="195.0" styleClass="signup-labelform" text="APELLIDOS" />
-      <TextField layoutX="311.0" layoutY="215.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <TextField fx:id="campoApellido" layoutX="311.0" layoutY="215.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="85.0" layoutY="263.0" styleClass="signup-labelform" text="TIPO DE DNI" />
       <ComboBox fx:id="comboTipoDNI" layoutX="85.0" layoutY="283.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="313.0" layoutY="263.0" styleClass="signup-labelform" text="NUMERO DE DNI" />
-      <TextField layoutX="313.0" layoutY="283.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <TextField fx:id="campoDNI" layoutX="313.0" layoutY="283.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="85.0" layoutY="332.0" styleClass="signup-labelform" text="FECHA DE NACIMIENTO" />
-      <DatePicker layoutX="85.0" layoutY="352.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <DatePicker fx:id="campoFechaNacimiento" layoutX="85.0" layoutY="352.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="313.0" layoutY="332.0" styleClass="signup-labelform" text="TELEFONO/CELULAR" />
-      <TextField layoutX="313.0" layoutY="352.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <TextField fx:id="campoCelular" layoutX="313.0" layoutY="352.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="85.0" layoutY="400.0" styleClass="signup-labelform" text="PAÍS" />
-      <TextField layoutX="85.0" layoutY="420.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <TextField fx:id="campoPais" layoutX="85.0" layoutY="420.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="313.0" layoutY="400.0" styleClass="signup-labelform" text="CIUDAD" />
-      <TextField layoutX="313.0" layoutY="420.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <TextField fx:id="campoCiudad" layoutX="313.0" layoutY="420.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="85.0" layoutY="467.0" styleClass="signup-labelform" text="DIRECCION" />
-      <TextField layoutX="85.0" layoutY="487.0" prefHeight="37.0" prefWidth="441.0" styleClass="signup-textfieldform" />
+      <TextField fx:id="campoDireccion" layoutX="79.0" layoutY="499.0" prefHeight="37.0" prefWidth="441.0" styleClass="signup-textfieldform" />
       <Label layoutX="660.0" layoutY="121.0" lineSpacing="3.0" prefHeight="43.0" prefWidth="251.0" styleClass="signup-subtitle-2" text="Lorem ipsum dolor sit amet, consect adipi elit. Donec rhoncus vitae." wrapText="true" />
       <Label layoutX="659.0" layoutY="195.0" text="USUARIO">
          <styleClass>
@@ -42,7 +42,7 @@
             <String fx:value="w" />
          </styleClass>
       </Label>
-      <TextField layoutX="659.0" layoutY="215.0" prefHeight="37.0" prefWidth="251.0">
+      <TextField fx:id="campoNuevoUsuario" layoutX="659.0" layoutY="215.0" prefHeight="37.0" prefWidth="251.0">
          <styleClass>
             <String fx:value="signup-textfieldform" />
             <String fx:value="w" />
@@ -54,7 +54,7 @@
             <String fx:value="w" />
          </styleClass>
       </Label>
-      <PasswordField layoutX="659.0" layoutY="283.0" prefHeight="37.0" prefWidth="251.0">
+      <PasswordField fx:id="campoNuevaClave" layoutX="659.0" layoutY="283.0" prefHeight="37.0" prefWidth="251.0">
          <styleClass>
             <String fx:value="signup-textfieldform" />
             <String fx:value="w" />
@@ -66,7 +66,7 @@
             <String fx:value="w" />
          </styleClass>
       </Label>
-      <PasswordField layoutX="659.0" layoutY="352.0" prefHeight="37.0" prefWidth="251.0">
+      <PasswordField fx:id="campoRepetirClave" layoutX="659.0" layoutY="352.0" prefHeight="37.0" prefWidth="251.0">
          <styleClass>
             <String fx:value="signup-textfieldform" />
             <String fx:value="w" />
@@ -78,7 +78,7 @@
             <String fx:value="w" />
          </styleClass>
       </Label>
-      <TextField layoutX="659.0" layoutY="420.0" prefHeight="37.0" prefWidth="251.0">
+      <TextField fx:id="campoCorreo" layoutX="659.0" layoutY="420.0" prefHeight="37.0" prefWidth="251.0">
          <styleClass>
             <String fx:value="signup-textfieldform" />
             <String fx:value="w" />
@@ -94,6 +94,8 @@
             </ImageView>
          </graphic>
       </Button>
+      <Label fx:id="lblError" layoutX="85.0" layoutY="536.0" styleClass="label-error" text="Rellene los campos obligatorios." visible="false" />
+      <Label fx:id="lblIncorrecto" layoutX="571.0" layoutY="353.0" prefHeight="37.0" prefWidth="88.0" styleClass="label-incorrecto" text="No coincide" visible="false" />
       <Pane fx:id="panelHecho" layoutX="20.0" layoutY="14.0" prefHeight="636.0" prefWidth="1002.0" styleClass="wrap" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Region layoutX="328.0" layoutY="229.0" prefHeight="180.0" prefWidth="346.0" styleClass="done-box" />

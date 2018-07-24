@@ -7,10 +7,14 @@ package od.controlador;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import od.Principal;
+import od.utilidades.Validadores;
 
 
 /**
@@ -24,11 +28,37 @@ public class RegistroVistaController {
     private Principal principal;
     
     
+    
     @FXML
     private TextField campoNombre;
     @FXML
+    private TextField campoApellido;
+    @FXML
+    private TextField campoDNI;
+    @FXML
+    private DatePicker campoFechaNacimiento;
+    @FXML
+    private TextField campoCelular;
+    @FXML
+    private TextField campoPais;
+    @FXML
+    private TextField campoCiudad;
+    @FXML
+    private TextField campoDireccion;
+    @FXML
+    private TextField campoNuevoUsuario;
+    @FXML
+    private PasswordField campoNuevaClave;
+    @FXML
+    private PasswordField campoRepetirClave;
+    @FXML
+    private TextField campoCorreo;
+    @FXML
     private ComboBox comboTipoDNI;
-
+    @FXML
+    private Label lblError;
+    @FXML
+    private Label lblIncorrecto;
     /**
      * Initializes the controller class.
      */
@@ -67,10 +97,30 @@ public class RegistroVistaController {
     }
     
     private boolean validar(){
-        if (campoNombre.getText().length() == 0 || campoNombre.getText() == null) {
+        if(Validadores.validarTF(campoNombre) 
+                & Validadores.validarTF(campoApellido)
+                & Validadores.validarTF(campoDNI)
+                & Validadores.validarDP(campoFechaNacimiento)
+                & Validadores.validarTF(campoCelular)
+                & Validadores.validarTF(campoPais)
+                & Validadores.validarTF(campoCiudad)
+                & Validadores.validarTF(campoDireccion)
+                & Validadores.validarTF(campoNuevoUsuario)
+                & Validadores.validarP(campoNuevaClave)
+                & Validadores.validarP(campoRepetirClave)
+                & Validadores.validarTF(campoCorreo)){
+            if(Validadores.comprobarClave(campoNuevaClave, campoRepetirClave)){
+                lblIncorrecto.setVisible(false);
+               
+            }else{
+                lblIncorrecto.setVisible(true);
+            }
+            lblError.setVisible(false);
+            return true;        
+        }else{
+            lblError.setVisible(true);
             return false;
-        }else
-            return true;
+        }
     }
     
     public void setDialogStage(Stage dialogStage) {
@@ -79,5 +129,6 @@ public class RegistroVistaController {
 
     public void setPrincipal(Principal principal) {
         this.principal = principal;
-    }    
+    }
+  
 }

@@ -104,3 +104,13 @@
     -fx-text-fill: #fff;
     -fx-cursor: hand;
 }
+
+.label-error{
+    -fx-font-family: 'Ubuntu';
+    -fx-text-fill: #dd1d1d;
+
+}
+.label-incorrecto{
+    -fx-font-family: 'Ubuntu';
+    -fx-text-fill: #dd1d1d;
+}
