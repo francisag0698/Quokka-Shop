@@ -16,39 +16,49 @@ import javafx.scene.control.TextField;
 public class Validadores {
     public static boolean validarTF(TextField obj){
         if(obj.getText().isEmpty()){
-            obj.setStyle("-fx-border-color: #dd1d1d;");
+            if (!obj.getStyleClass().contains("error")) 
+                obj.getStyleClass().add("error");                        
             return false;  
         }else{
-            obj.setStyle("-fx-border-color: #a0a0a0;");
+            if (obj.getStyleClass().contains("error")) 
+                obj.getStyleClass().remove("error");
             return true; 
         }
     }
     public static boolean validarDP(DatePicker obj){
         if(obj.getValue() == null){
-            obj.setStyle("-fx-border-color: #dd1d1d;");
+            if (!obj.getStyleClass().contains("error")) 
+                obj.getStyleClass().add("error"); 
             return false;  
         }else{
-            obj.setStyle("-fx-border-color: #a0a0a0;");
+            if (obj.getStyleClass().contains("error")) 
+                obj.getStyleClass().remove("error");
             return true; 
         }
     }
     public static boolean validarP(PasswordField obj){
         if(obj.getText().isEmpty()){
-            obj.setStyle("-fx-border-color: #dd1d1d;");
+            if (!obj.getStyleClass().contains("error")) 
+                obj.getStyleClass().add("error");
             return false;  
         }else{
-            obj.setStyle("-fx-border-color: #a0a0a0;");
+            if (obj.getStyleClass().contains("error")) 
+                obj.getStyleClass().remove("error");
             return true; 
         }
     }
     public static boolean comprobarClave(PasswordField obj,PasswordField obj1){
         if(obj.getText().equals(obj1.getText())){
-           obj.setStyle("-fx-border-color: #40FF00;");
-           obj1.setStyle("-fx-border-color: #40FF00;");
+           if (obj.getStyleClass().contains("error")) 
+                obj.getStyleClass().remove("error");
+           if (obj1.getStyleClass().contains("error")) 
+                obj1.getStyleClass().remove("error");
            return true;
         }else{
-           obj.setStyle("-fx-border-color: #dd1d1d;");
-           obj1.setStyle("-fx-border-color: #dd1d1d;");
+           if (!obj.getStyleClass().contains("error")) 
+                obj.getStyleClass().add("error");
+           if (!obj1.getStyleClass().contains("error")) 
+                obj1.getStyleClass().add("error");
            return false;
         }
     }

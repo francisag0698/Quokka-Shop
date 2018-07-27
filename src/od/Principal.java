@@ -67,9 +67,9 @@ public class Principal extends Application {
             
             primaryStage.setTitle("Sistema de Reservación de Habitaciones | Login");
             primaryStage.setMaxWidth(950);
-            primaryStage.setMaxHeight(636);
+            primaryStage.setMaxHeight(660);
             primaryStage.setMinWidth(950);
-            primaryStage.setMinHeight(636);
+            primaryStage.setMinHeight(660);
             
             Scene escena = new Scene(pagina);
             primaryStage.setScene(escena);
@@ -92,9 +92,9 @@ public class Principal extends Application {
             
             primaryStage.setTitle("Sistema de Reservación de Habitaciones | Registro");
             primaryStage.setMaxWidth(1005);
-            primaryStage.setMaxHeight(636);
+            primaryStage.setMaxHeight(660);
             primaryStage.setMinWidth(1005);
-            primaryStage.setMinHeight(636);
+            primaryStage.setMinHeight(660);
             
             Scene escena = new Scene(pagina);            
             primaryStage.setScene(escena);

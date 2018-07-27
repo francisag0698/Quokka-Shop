@@ -94,8 +94,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label fx:id="lblError" layoutX="85.0" layoutY="536.0" styleClass="label-error" text="Rellene los campos obligatorios." visible="false" />
-      <Label fx:id="lblIncorrecto" layoutX="571.0" layoutY="353.0" prefHeight="37.0" prefWidth="88.0" styleClass="label-incorrecto" text="No coincide" visible="false" />
+      <Label fx:id="lblError" layoutX="79.0" layoutY="556.0" styleClass="label-error" text="Rellene todos los campos vacíos." visible="false" />
       <Pane fx:id="panelHecho" layoutX="20.0" layoutY="14.0" prefHeight="636.0" prefWidth="1002.0" styleClass="wrap" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Region layoutX="328.0" layoutY="229.0" prefHeight="180.0" prefWidth="346.0" styleClass="done-box" />

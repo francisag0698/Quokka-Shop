@@ -57,8 +57,7 @@ public class RegistroVistaController {
     private ComboBox comboTipoDNI;
     @FXML
     private Label lblError;
-    @FXML
-    private Label lblIncorrecto;
+    
     /**
      * Initializes the controller class.
      */
@@ -77,17 +76,9 @@ public class RegistroVistaController {
     }
     
     @FXML
-    private void test(){
-        System.out.println("asd");
-    }
-    
-    @FXML
     private void handleRegistro(){
         if (validar()) {
-            System.out.println("Valido");
             panelHecho.setVisible(true);
-        }else{
-            System.out.println("No valido");
         }
     }
     
@@ -109,15 +100,16 @@ public class RegistroVistaController {
                 & Validadores.validarP(campoNuevaClave)
                 & Validadores.validarP(campoRepetirClave)
                 & Validadores.validarTF(campoCorreo)){
-            if(Validadores.comprobarClave(campoNuevaClave, campoRepetirClave)){
-                lblIncorrecto.setVisible(false);
-               
+            if(Validadores.comprobarClave(campoNuevaClave, campoRepetirClave)){                
+                lblError.setVisible(false);  
+                return true;
             }else{
-                lblIncorrecto.setVisible(true);
-            }
-            lblError.setVisible(false);
-            return true;        
+                lblError.setText("Las contraseñas ingresadas no coinciden.");
+                lblError.setVisible(true);
+                return false;
+            } 
         }else{
+            lblError.setText("Rellene todos los campos vacíos.");
             lblError.setVisible(true);
             return false;
         }

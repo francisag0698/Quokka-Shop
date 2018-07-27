@@ -43,6 +43,10 @@
     -fx-border-radius: 5px; 
 }
 
+.signup-textfieldform.error{
+    -fx-border-color: #ff3636;
+}
+
 .signup-textfieldform:focused{
     -fx-border-color: #7c60ff;
 }
@@ -51,6 +55,10 @@
     -fx-background-color: transparent;
     -fx-border-color: #fff;
     -fx-text-fill: #fff;
+}
+
+.signup-textfieldform.w.error{
+    -fx-background-color: rgba(255,54,54,0.5);
 }
 
 .signup-subtitle-2{
@@ -107,10 +115,5 @@
 
 .label-error{
     -fx-font-family: 'Ubuntu';
-    -fx-text-fill: #dd1d1d;
-
-}
-.label-incorrecto{
-    -fx-font-family: 'Ubuntu';
-    -fx-text-fill: #dd1d1d;
+    -fx-text-fill: #ff3636;
 }

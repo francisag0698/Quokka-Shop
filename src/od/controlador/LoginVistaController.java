@@ -9,9 +9,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import od.Principal;
+import od.utilidades.Validadores;
 
 /**
  * FXML Controller class
@@ -24,7 +26,7 @@ public class LoginVistaController {
     @FXML
     private TextField campoUsuario;
     @FXML
-    private TextField campoClave;
+    private PasswordField campoClave;
     @FXML
     private Button botonLogin;
     @FXML 
@@ -39,10 +41,7 @@ public class LoginVistaController {
     @FXML
     private void handleIngreso(){
         if (validar()) {
-            etiquetaError.setText("");
-            campoUsuario.setStyle("-fx-border-color: #a0a0a0;");
-            campoClave.setStyle("-fx-border-color: #a0a0a0;");
-            
+            etiquetaError.setText("");            
             ventana.close();
             principal.iniciarRaiz();
         }
@@ -55,21 +54,13 @@ public class LoginVistaController {
     }
     
     private boolean validar(){
-        boolean band = true;
-        if (campoUsuario.getText() == null || campoUsuario.getText().length() == 0){
-            band = false;
-            campoUsuario.setStyle("-fx-border-color: #dd1d1d;");
+        if (Validadores.validarTF(campoUsuario) &
+                Validadores.validarP(campoClave)) {
+            return true;           
+        }else{
+            etiquetaError.setText("¡Campos vacíos!");
+            return false;
         }
-            
-        if (campoClave.getText() == null || campoClave.getText().length() == 0){
-            band = false;
-            campoClave.setStyle("-fx-border-color: #dd1d1d;");
-        }            
-        
-        if (!band)
-            etiquetaError.setText("¡Campos vacíos!");        
-            
-        return band;
     }
     
     public void setDialogStage(Stage dialogStage) {

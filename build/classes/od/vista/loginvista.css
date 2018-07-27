@@ -56,6 +56,10 @@
     -fx-border-radius: 5px; 
 }
 
+.login-textfield.error{
+    -fx-border-color: #ff3636;
+}
+
 .login-textfield:focused{
     -fx-border-color: #7c60ff;
 }
