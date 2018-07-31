@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="OldDeus.jar" size="1636837" download="eager" />
+    <jar href="OldDeus.jar" size="1640202" download="eager" />
     <jar href="lib\jettison-1.2.jar" size="72478" download="eager" />
     <jar href="lib\lombok.jar" size="1609927" download="eager" />
     <jar href="lib\xstream-1.4.9.jar" size="549133" download="eager" />

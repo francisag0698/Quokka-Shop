@@ -1,1 +1,1 @@
-{"list":[{"Cuenta":{"id":1,"usuario":"user","clave":"pass"}}]}
+{"list":[{"Cuenta":{"id":1,"usuario":"user","clave":"pass","persona":{"id":1}}}]}

@@ -47,5 +47,15 @@ public class PersonaDao extends AdaptadorDao<Persona> {
         }
         return band;
     }
+    
+   /*{
+        Persona persona=null;
+        for(Persona aux:listar()){
+            if (aux.getId().equals(id)) {
+                persona = aux;
+            }    
+        }
+        return persona;
+    } */
 
 }

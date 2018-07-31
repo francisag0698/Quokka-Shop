@@ -10,7 +10,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane prefHeight="638.0" prefWidth="999.0" styleClass="background" stylesheets="@raizvista.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.RaizVistaController">
    <left>
       <Pane prefHeight="553.0" prefWidth="261.0" BorderPane.alignment="CENTER">
@@ -21,8 +20,8 @@
                </image>
             </ImageView>
             <Rectangle arcHeight="10.0" arcWidth="5.0" fill="#7c60ff" height="52.0" layoutX="36.0" layoutY="116.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="188.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="53.0" layoutY="123.0" prefHeight="25.0" prefWidth="153.0" styleClass="this-user" text="PANCHO VARGAS" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="53.0" layoutY="143.0" prefHeight="19.0" prefWidth="153.0" styleClass="this-role" text="ADMINISTRADOR" />
+            <Label fx:id="lblAdmin" alignment="CENTER" contentDisplay="CENTER" layoutX="53.0" layoutY="123.0" prefHeight="25.0" prefWidth="153.0" styleClass="this-user" text="PANCHO VARGAS" />
+            <Label fx:id="lblRol" alignment="CENTER" contentDisplay="CENTER" layoutX="53.0" layoutY="143.0" prefHeight="19.0" prefWidth="153.0" styleClass="this-role" text="ADMINISTRADOR" />
             <VBox layoutX="37.0" layoutY="217.0" spacing="5.0">
                <children>
                   <Button fx:id="btnInicio" alignment="TOP_LEFT" layoutX="37.0" layoutY="223.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" text="Inicio">
