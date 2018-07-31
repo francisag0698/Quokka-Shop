@@ -20,5 +20,4 @@ public class Cuenta {
     private Long id;
     private Persona persona;
     private String usuario;
-    /*ljhgvluhvbytvjhhbhbhbhvj*/
 }
