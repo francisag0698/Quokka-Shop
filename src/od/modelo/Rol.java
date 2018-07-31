@@ -5,6 +5,7 @@
  */
 package od.modelo;
 
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class Rol {
+public class Rol implements Serializable {
     private Long id;
     private String tipo;
 }
