@@ -17,7 +17,7 @@ public class CuentaDao extends AdaptadorDao<Cuenta> {
     private Cuenta cuenta;
 
     public CuentaDao() {
-        super(new Conexion (),Cuenta.class );
+        super(new Conexion (), Cuenta.class);
     }
     
     public Cuenta getCuenta() {

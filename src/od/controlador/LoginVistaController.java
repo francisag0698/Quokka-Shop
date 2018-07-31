@@ -13,6 +13,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import od.Principal;
+import od.controlador.servicio.ServicioCuenta;
+import od.utilidades.Sesiones;
 import od.utilidades.Validadores;
 
 /**
@@ -33,6 +35,8 @@ public class LoginVistaController {
     private Hyperlink linkRegistro;
     @FXML
     private Label etiquetaError;
+    
+    ServicioCuenta sc = new ServicioCuenta();
     /**
      * Initializes the controller class.
      */
@@ -41,9 +45,14 @@ public class LoginVistaController {
     @FXML
     private void handleIngreso(){
         if (validar()) {
-            etiquetaError.setText("");            
-            ventana.close();
-            principal.iniciarRaiz();
+            etiquetaError.setText("");  
+            Sesiones.setSesion(sc.inicioSesion(campoUsuario.getText(), campoClave.getText()));
+            if (Sesiones.getSesion() != null) {
+                ventana.close();
+                principal.iniciarRaiz();
+            }else{
+                etiquetaError.setText("Usuario y/o contraseña incorrectos.");
+            }            
         }
     }
     
