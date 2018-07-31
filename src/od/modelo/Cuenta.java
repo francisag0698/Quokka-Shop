@@ -16,8 +16,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Cuenta {
-    private String clave;
     private Long id;
-    private Persona persona;
     private String usuario;
+    private String clave;
+    
+    private Persona persona;
 }

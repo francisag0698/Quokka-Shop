@@ -24,11 +24,12 @@ public class Persona {
     private Date fechaNacimiento;
     private String numeroIdentificacion;
     private String pais;
-    private Rol rol;
-    private Cuenta cuenta;
     private Historial historial;
     private Reservacion reservacion;
     private String sexo;
     private String telefono;
     private String tipoIdentificador;
+    
+    private Rol rol;
+    private Cuenta cuenta;
 }
