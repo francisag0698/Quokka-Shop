@@ -1,0 +1,1 @@
+{"list":[{"Persona":{"id":1,"nombres":"Daniela","apellidos":"Jaramillo","correo":"example@email.com","direccion":"La direccion","fechaNacimiento":"2018-07-31 16:23:48.586 UTC","numeroIdentificacion":1100231648,"pais":"Ecuador","ciudad":"Loja","sexo":"Femenino","telefono":1968465165,"tipoIdentificador":"Cedula de Identidad","rol":{"id":1,"personas":[""]},"cuenta":{"id":1}}}]}

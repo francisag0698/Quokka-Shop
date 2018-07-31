@@ -24,6 +24,7 @@ public class Persona {
     private Date fechaNacimiento;
     private String numeroIdentificacion;
     private String pais;
+    private String ciudad;
     private Historial historial;
     private Reservacion reservacion;
     private String sexo;

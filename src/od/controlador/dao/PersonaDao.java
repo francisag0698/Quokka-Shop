@@ -1,7 +1,7 @@
 
+package od.controlador.dao;
 import java.io.IOException;
 import od.controlador.Conexion;
-import od.controlador.dao.AdaptadorDao;
 import od.modelo.Persona;
 
 /*

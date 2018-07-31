@@ -6,6 +6,8 @@
 package od.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,4 +20,6 @@ import lombok.Setter;
 public class Rol implements Serializable {
     private Long id;
     private String tipo;
+    
+    private List<Persona> personas = new ArrayList<>();
 }
