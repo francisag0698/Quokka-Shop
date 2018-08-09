@@ -35,10 +35,10 @@ public class PersonaDao extends AdaptadorDao<Persona> {
     public boolean guardar() {
         boolean band = false;
         try {
-            if (persona.getId() != null) {
+            if (persona.getId_persona() != null) {
                 
             } else {
-                this.persona.setId(generarID());
+                this.persona.setId_persona(generarID());
                 this.guardar(persona);
             }
             band = true;

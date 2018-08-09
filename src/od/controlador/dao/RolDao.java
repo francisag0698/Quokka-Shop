@@ -35,10 +35,10 @@ public class RolDao extends AdaptadorDao<Rol> {
     public boolean guardar() {
         boolean band = false;
         try {
-            if (rol.getId() != null) {
+            if (rol.getId_rol()!= null) {
                 //modificar
             } else {
-                this.rol.setId(generarID());
+                this.rol.setId_rol(generarID());
                 this.guardar(rol);
             }
             band = true;

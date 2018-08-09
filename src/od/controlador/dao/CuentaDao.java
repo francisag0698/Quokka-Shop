@@ -33,10 +33,10 @@ public class CuentaDao extends AdaptadorDao<Cuenta> {
     public boolean guardar(){
         boolean band = false;
         try {
-            if (cuenta.getId() != null) {
+            if (cuenta.getId_cuenta()!= null) {
                 
             }else{
-                this.cuenta.setId(generarID());
+                this.cuenta.setId_cuenta(generarID());
                 this.guardar(cuenta);
             }
             band = true;
