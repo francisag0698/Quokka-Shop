@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="OldDeusPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>od.modelo.Cuenta</class>
+    <class>od.modelo.Detalle</class>
+    <class>od.modelo.Habitacion</class>
+    <class>od.modelo.Historial</class>
+    <class>od.modelo.Persona</class>
+    <class>od.modelo.Reservacion</class>
+    <class>od.modelo.Rol</class>
+    <class>od.modelo.Servicio</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:C:\olddeus\olddeus.db"/>
+      <property name="javax.persistence.jdbc.user" value=""/>
+      <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.dialect" value="dbdialect.SQLiteDialect"/>
+    </properties>
+  </persistence-unit>
+</persistence>

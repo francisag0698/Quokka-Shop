@@ -4,16 +4,11 @@
  * and open the template in the editor.
  */
 package od.controlador;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import od.Principal;
-import od.controlador.servicio.ServicioCuenta;
-import od.controlador.servicio.ServicioPersona;
-import od.utilidades.Sesiones;
 
 /**
  * FXML Controller class
@@ -43,17 +38,11 @@ public class RaizVistaController {
     private Button aux;
     private Stage ventana;
     private Principal principal;
-    
-    private ServicioCuenta sc= new ServicioCuenta();
-    private ServicioPersona sp = new ServicioPersona();
     /**
      * Initializes the controller class.
      */
     public void initialize() {
         listeners();
-       
-       // lblAdmin.setText(sp.obtenerPersona(Sesiones.getSesion().getPersona().getId()).getApellidos());
-        System.out.println(sp.obtenerPersona(new Long(1))+"");
     }
     
     private void listeners(){

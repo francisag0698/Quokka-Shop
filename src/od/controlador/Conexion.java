@@ -4,38 +4,31 @@
  * and open the template in the editor.
  */
 package od.controlador;
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 
-import java.io.File;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
  * @author Francis
  */
 public class Conexion {
-     private XStream conexion;
+    private static EntityManager manager;
+    private static final String NAME_EMPU = "OldDeusPU";
     
-    private void abrirConexion(){
-        if(conexion == null)
-            this.conexion = new XStream(new JettisonMappedXmlDriver());
+    
+    public static EntityManagerFactory sesion(){
+        return Persistence.createEntityManagerFactory(NAME_EMPU);
     }
     
-    public XStream getConexion(){
-        abrirConexion();
-        return conexion;
+    public static EntityManager getManager(){
+        if (manager == null) 
+            manager = sesion().createEntityManager();
+        return manager;
     }
     
-    private void crearDirectorio(String path){
-        File manejador = new File(path);
-        if (!manejador.exists()) {
-            manejador.mkdir();
-        }
-    }
-    
-    public String obtenerPath(){
-        String path = System.getProperty("user.dir")+File.separatorChar+"data";
-        this.crearDirectorio(path);
-        return path;
-    }
+    /*public static void main(String[] args) {
+        Conexion.sesion();
+    }*/
 }
