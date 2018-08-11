@@ -43,6 +43,7 @@ public class Habitacion implements Serializable {
     private Boolean estado;
     private String condiciones;
     private String descripcion;
+    
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_detalle",nullable = false,referencedColumnName = "id_detalle")
     private Detalle detalle;

@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,18 +37,25 @@ public class Detalle implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_detalle;
     
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha_inicio;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha_fin;
     @Column(length = 2)
     private Integer adultos;
     @Column(length = 2)
     private Integer menores;
     private String observaciones;
+    @Column(length = 6)
+    private Double pago_total;
+    
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_reservacion",nullable = false,referencedColumnName = "id_reservacion")
     private Reservacion reservacion;
+    
     @OneToMany(mappedBy = "detalle",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Servicio> listaServicio=new ArrayList<Servicio>();
+    
     @OneToMany(mappedBy = "detalle",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Habitacion> listaHabitacion=new ArrayList<Habitacion>();
 

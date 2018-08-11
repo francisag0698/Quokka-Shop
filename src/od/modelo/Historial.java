@@ -10,11 +10,13 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,10 +34,12 @@ public class Historial implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_historial;
     private String accion;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
     @Column(length = 50)
     private String identificador;
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_persona",nullable = false,referencedColumnName = "id_persona")
     private Persona persona;
 

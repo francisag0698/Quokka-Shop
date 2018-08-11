@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,11 +36,17 @@ public class Reservacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_reservacion;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
+    @Column(length = 40)
     private String estado;
+    @Column(length = 6)
+    private Double pago_total;
+    
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_persona",nullable = false,referencedColumnName = "id_persona")
     private Persona persona;
+    
     @OneToMany(mappedBy = "reservacion",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Detalle> listaDetalle= new ArrayList<Detalle>();
     

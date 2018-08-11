@@ -35,9 +35,10 @@ public class Cuenta implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_cuenta;
     
-    @Column(length = 60)
+    @Column(length = 60, unique = true)
     private String usuario;
     private String clave;
+    @Column(length = 100, unique = true)
     private String correo;
     private Boolean estado;
     @Temporal(TemporalType.TIMESTAMP)
@@ -45,8 +46,9 @@ public class Cuenta implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date update_at;
     private String external_id;
-    @OneToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_persona",nullable = false,referencedColumnName = "id_persona")
+    
+    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_persona", nullable = false, referencedColumnName = "id_persona")
     private Persona persona;
 
     @Override
