@@ -13,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import od.Principal;
+import od.controlador.servicio.ServicioCuenta;
 import od.utilidades.Sesiones;
 import od.utilidades.Validadores;
 
@@ -43,8 +44,8 @@ public class LoginVistaController {
     private void handleIngreso(){
         if (validar()) {
             etiquetaError.setText("");  
-            
-            if (true) {
+            Sesiones.setCuenta(new ServicioCuenta().inicioSesion(campoUsuario.getText(), campoClave.getText()));
+            if (Sesiones.getCuenta() != null) {
                 ventana.close();
                 principal.iniciarRaiz();
             }else{

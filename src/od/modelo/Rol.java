@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,9 +24,10 @@ import lombok.Setter;
  *
  * @author Francis
  */
-@Entity
 @Getter
 @Setter
+@Entity
+@Table(name = "rol")
 public class Rol implements Serializable {
 
     private static final long serialVersionUID = 1L;

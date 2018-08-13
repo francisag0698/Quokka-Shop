@@ -14,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import od.controlador.Conexion;
 import od.controlador.LoginVistaController;
 import od.controlador.RaizVistaController;
 import od.controlador.RegistroVistaController;
@@ -33,7 +34,7 @@ public class Principal extends Application {
         Font.loadFont(getClass().getResourceAsStream("vista/fuentes/UM.ttf"), 12); //Ubuntu Medium
         Font.loadFont(getClass().getResourceAsStream("vista/fuentes/RL.ttf"), 12); //Roboto Condensed Light
         Font.loadFont(getClass().getResourceAsStream("vista/fuentes/RR.ttf"), 12); //Roboto Condensed Regular
-        
+        Conexion.sesion();
         mostrarLoginVista(primaryStage);
     }
     

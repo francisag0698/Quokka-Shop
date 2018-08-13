@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador.daos;
+package od.controlador.dao;
 
 import od.controlador.Conexion;
 import java.util.ArrayList;
@@ -38,8 +38,7 @@ public class AdaptadorDao <T> implements InterfazDao<T>{
     public List<T> listar() {
         List<T> lista = new ArrayList<>();
         try{
-            Query query = getManager().createNamedQuery("SELECT a FROM "
-                    + clazz.getSimpleName()+ " a");
+            Query query = getManager().createQuery("SELECT a FROM "+clazz.getSimpleName() + " a");
             lista = query.getResultList();
         }catch(Exception e){
             System.out.println(" Error al listar datos " + e);

@@ -3,38 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador.daos;
-import od.modelo.Rol;
+package od.controlador.dao;
+import od.modelo.Reservacion;
 
 /**
  *
  * @author Dennis
  */
-public class RolDao extends AdaptadorDao<Rol>{
-    private Rol rol;
+public class ReservacionDao extends AdaptadorDao<Reservacion>{
     
-    public RolDao() {
-        super(Rol.class);
+     private Reservacion reservacion;
+     public ReservacionDao() {
+        super(Reservacion.class);
     }
 
-    public Rol getRol() {
-        if(rol==null)
-           rol= new Rol();
-        return rol;
+    public Reservacion getReservacion() {
+        if(reservacion==null)
+           reservacion= new Reservacion();
+        return reservacion;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setReservacion(Reservacion reservacion) {
+        this.reservacion = reservacion;
     }
     
     public boolean guardar (){
         boolean verificar = false;
         try{
             getManager().getTransaction().begin();
-            if(rol.getId_rol()!=null){
-                modificar(rol);
+            if(reservacion.getId_reservacion()!=null){
+                modificar(reservacion);
             }else{
-                guardar(rol);
+                guardar(reservacion);
             }
             getManager().getTransaction().commit();
             verificar = true;

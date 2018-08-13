@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador.daos;
+package od.controlador.dao;
 
 import javax.persistence.Query;
 import od.modelo.Cuenta;
@@ -43,6 +43,7 @@ public class CuentaDao extends AdaptadorDao<Cuenta> {
             verificar = true;
         }catch(Exception e){
             System.out.println("No se ha podido guardar o modificar " + e);
+            e.printStackTrace();
         }
         return verificar;
     }

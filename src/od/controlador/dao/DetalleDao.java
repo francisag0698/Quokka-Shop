@@ -3,38 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador.daos;
-import od.modelo.Reservacion;
+package od.controlador.dao;
+import od.modelo.Detalle;
 
 /**
  *
  * @author Dennis
  */
-public class ReservacionDao extends AdaptadorDao<Reservacion>{
-    
-     private Reservacion reservacion;
-     public ReservacionDao() {
-        super(Reservacion.class);
-    }
+public class DetalleDao extends AdaptadorDao<Detalle>{
+    private Detalle detalle;
 
-    public Reservacion getReservacion() {
-        if(reservacion==null)
-           reservacion= new Reservacion();
-        return reservacion;
+    public DetalleDao() {
+        super(Detalle.class);
     }
-
-    public void setReservacion(Reservacion reservacion) {
-        this.reservacion = reservacion;
+    public Detalle getDetalle() {
+        if(detalle==null)
+           detalle= new Detalle();
+        return detalle;
+    }
+   public void setDetalle(Detalle detalle) {
+        this.detalle = detalle;
+    }
+    public void Detalle(Detalle detalle) {
+        this.detalle = detalle;
     }
     
     public boolean guardar (){
         boolean verificar = false;
         try{
             getManager().getTransaction().begin();
-            if(reservacion.getId_reservacion()!=null){
-                modificar(reservacion);
+            if(detalle.getId_detalle()!=null){
+                modificar(detalle);
             }else{
-                guardar(reservacion);
+                guardar(detalle);
             }
             getManager().getTransaction().commit();
             verificar = true;

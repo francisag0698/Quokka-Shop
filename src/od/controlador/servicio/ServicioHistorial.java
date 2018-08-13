@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador.servicios;
+package od.controlador.servicio;
 
 import java.util.List;
-import od.controlador.daos.HistorialDao;
+import od.controlador.dao.HistorialDao;
 import od.modelo.Historial;
 
 /**

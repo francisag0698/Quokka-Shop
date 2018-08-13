@@ -8,6 +8,8 @@ package od.controlador;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import od.controlador.servicio.ServicioCuenta;
+import od.controlador.servicio.ServicioRol;
 
 /**
  *
@@ -28,7 +30,8 @@ public class Conexion {
         return manager;
     }
     
-    /*public static void main(String[] args) {
-        Conexion.sesion();
-    }*/
+    public static void main(String[] args) {
+        new ServicioRol().crearRoles();
+        new ServicioCuenta().crearCuentaAdmin();
+    }
 }

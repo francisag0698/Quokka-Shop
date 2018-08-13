@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador.servicios;
+package od.controlador.servicio;
 
 import java.util.List;
-import od.controlador.daos.RolDao;
+import od.controlador.dao.RolDao;
 import od.modelo.Rol;
 
 /**
  *
  * @author Dennis
  */
-public class ServicoRol {
+public class ServicioRol {
     private RolDao obj = new RolDao();
     
     public Rol getRol(){
@@ -31,7 +31,28 @@ public class ServicoRol {
     public Rol obtener(Long id){
         return obj.obtener(id);
     }
+    
     public void fijarRol(Rol rol){
         obj.setRol(rol);
+    }
+    
+    public Rol buscarRolNombre(String nombre){
+        return obj.buscarRolNombre(nombre);
+    }
+    
+    public void crearRoles(){
+        if (obj.listar().isEmpty()) {
+            getRol().setNombre("Administrador");
+            guardar();
+            fijarRol(null);
+            
+            getRol().setNombre("Recepcionista");
+            guardar();
+            fijarRol(null);
+            
+            getRol().setNombre("Cliente");
+            guardar();
+            fijarRol(null);
+        }
     }
 }

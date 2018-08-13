@@ -3,39 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador.daos;
-import od.modelo.Detalle;
+package od.controlador.dao;
+
+import od.modelo.Servicio;
 
 /**
  *
  * @author Dennis
  */
-public class DetalleDao extends AdaptadorDao<Detalle>{
-    private Detalle detalle;
+public class ServicioDao extends  AdaptadorDao<Servicio>{
+    private Servicio servicio;
+    
+    public ServicioDao() {
+        super(Servicio.class);
+    }
 
-    public DetalleDao() {
-        super(Detalle.class);
+    public Servicio getServicio() {
+        if(servicio==null)
+           servicio= new Servicio();
+        return servicio;
     }
-    public Detalle getDetalle() {
-        if(detalle==null)
-           detalle= new Detalle();
-        return detalle;
-    }
-   public void setDetalle(Detalle detalle) {
-        this.detalle = detalle;
-    }
-    public void Detalle(Detalle detalle) {
-        this.detalle = detalle;
+
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
     }
     
     public boolean guardar (){
         boolean verificar = false;
         try{
             getManager().getTransaction().begin();
-            if(detalle.getId_detalle()!=null){
-                modificar(detalle);
+            if(servicio.getId_servicio()!=null){
+                modificar(servicio);
             }else{
-                guardar(detalle);
+                guardar(servicio);
             }
             getManager().getTransaction().commit();
             verificar = true;

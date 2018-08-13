@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador.servicios;
+package od.controlador.servicio;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import od.modelo.Cuenta;
-import od.controlador.daos.CuentaDao;
+import od.controlador.dao.CuentaDao;
 
 /**
  *
@@ -34,28 +36,35 @@ public class ServicioCuenta {
     public void fijarCuenta(Cuenta cuenta){
         obj.setCuenta(cuenta);
     }
-    /*
+    
     public void crearCuentaAdmin(){
         if(todos().isEmpty()){
-            ServicioCuenta servicio = new ServicioCuenta();
-            servicio.getCuenta().setUsuario("Dennis");
-            servicio.getCuenta().setCedula("22222222");
-            servicio.getCuenta().setDireccion("Loja");
-            servicio.getCuenta().setExternal_Id(UUID.randomUUID().toString());
-            servicio.getCuenta().setTelefono("S/T");
-            servicio.getCuenta().setRol(new ServicioRol().buscarRolNombre("Administrador"));
+            ServicioPersona sp = new ServicioPersona();
+            sp.getPersona().setApellidos("admin");
+            sp.getPersona().setCiudad("Loja");
+            sp.getPersona().setDireccion("Av. Siempre viva");
+            sp.getPersona().setDni("1111111111");
+            sp.getPersona().setFecha_nacimiento(new Date());
+            sp.getPersona().setNombres("admin");
+            sp.getPersona().setPais("Ecuador");
+            sp.getPersona().setSexo("Masculino");
+            sp.getPersona().setTelefono("123456789");
+            sp.getPersona().setTipo_dni("Cedula de Identidad");
+            sp.getPersona().setRol(new ServicioRol().buscarRolNombre("Administrador"));
+            
+            
             Cuenta c= new Cuenta();
             c.setClave("admin");
-            c.setUsuario("admin");
+            c.setUsuario("pass");
             c.setExternal_id(UUID.randomUUID().toString());
             c.setCreated_at(new Date());
             c.setUpdate_at(new Date());
-            c.setUsuario(servicio.getCuenta(c));
-            servicio.getPersona().setCuenta(c);
-            servicio.guardar();
+            c.setPersona(sp.getPersona());
+            sp.getPersona().setCuenta(c);
+            sp.guardar();
         }
     }
-*/
+
     public Cuenta inicioSesion(String usuario,String clave){
         return obj.inicioSesion(usuario, clave);
     }

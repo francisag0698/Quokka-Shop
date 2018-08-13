@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,9 +28,10 @@ import lombok.Setter;
  *
  * @author Francis
  */
-@Entity
 @Getter
 @Setter
+@Entity
+@Table(name = "reservacion")
 public class Reservacion implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -5,10 +5,20 @@
  */
 package od.utilidades;
 
+import od.modelo.Cuenta;
+
 /**
  *
  * @author Francis
  */
 public class Sesiones {
-    
+    private static Cuenta cuenta;
+
+    public static Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public static void setCuenta(Cuenta cuenta) {
+        Sesiones.cuenta = cuenta;
+    }
 }
