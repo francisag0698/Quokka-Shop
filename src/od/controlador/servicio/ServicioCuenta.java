@@ -54,8 +54,8 @@ public class ServicioCuenta {
             
             
             Cuenta c= new Cuenta();
-            c.setClave("admin");
-            c.setUsuario("pass");
+            c.setClave("pass");
+            c.setUsuario("admin");
             c.setExternal_id(UUID.randomUUID().toString());
             c.setCreated_at(new Date());
             c.setUpdate_at(new Date());

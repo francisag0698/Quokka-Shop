@@ -30,7 +30,7 @@ public class Conexion {
         return manager;
     }
     
-    public static void main(String[] args) {
+    public static void initManager(){
         new ServicioRol().crearRoles();
         new ServicioCuenta().crearCuentaAdmin();
     }

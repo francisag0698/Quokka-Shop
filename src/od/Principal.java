@@ -7,6 +7,8 @@ package od;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -14,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import od.controlador.Conexion;
 import od.controlador.LoginVistaController;
 import od.controlador.RaizVistaController;
@@ -34,8 +37,18 @@ public class Principal extends Application {
         Font.loadFont(getClass().getResourceAsStream("vista/fuentes/UM.ttf"), 12); //Ubuntu Medium
         Font.loadFont(getClass().getResourceAsStream("vista/fuentes/RL.ttf"), 12); //Roboto Condensed Light
         Font.loadFont(getClass().getResourceAsStream("vista/fuentes/RR.ttf"), 12); //Roboto Condensed Regular
-        Conexion.sesion();
+        Conexion.initManager();
+        closeRequest(primaryStage);
         mostrarLoginVista(primaryStage);
+    }
+    
+    public void closeRequest(Stage primaryStage){
+        primaryStage.setOnCloseRequest((WindowEvent event) -> {
+            Platform.runLater(() -> {
+                System.out.println("Cerrando aplicación...");
+                System.exit(0);
+            });
+        });
     }
     
     public void iniciarRaiz(){
@@ -54,6 +67,7 @@ public class Principal extends Application {
             controlador.setStage(primaryStage);
             controlador.setPrincipal(this);
             fijarCentro("PanelInicio");
+            closeRequest(primaryStage);
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,7 +127,7 @@ public class Principal extends Application {
     public void fijarCentro(String fxml){
         try {
             FXMLLoader cargador = new FXMLLoader();
-            cargador.setLocation(Principal.class.getResource("vista/"+fxml+".fxml"));
+            cargador.setLocation(Principal.class.getResource("vista/" + fxml + ".fxml"));
             Pane panel = (Pane) cargador.load();
             
             rootLayout.setCenter(panel);
