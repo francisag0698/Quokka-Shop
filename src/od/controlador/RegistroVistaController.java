@@ -5,6 +5,8 @@
  */
 package od.controlador;
 
+import java.util.Date;
+import java.util.UUID;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -14,6 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import od.Principal;
+import od.controlador.servicio.ServicioCuenta;
+import od.controlador.servicio.ServicioPersona;
+import od.controlador.servicio.ServicioRol;
 import od.utilidades.Validadores;
 
 
@@ -23,12 +28,9 @@ import od.utilidades.Validadores;
  * @author PotatoPower
  */
 public class RegistroVistaController {
-    @FXML Pane panelHecho;
-    private Stage ventana;
-    private Principal principal;
-    
-    
-    
+
+    @FXML
+    Pane panelHecho;
     @FXML
     private TextField campoNombre;
     @FXML
@@ -58,6 +60,11 @@ public class RegistroVistaController {
     @FXML
     private Label lblError;
     
+    
+    private Stage ventana;
+    private Principal principal;
+    private ServicioPersona sp = new ServicioPersona(); // >:v fuen pancho
+
     /**
      * Initializes the controller class.
      */
@@ -70,25 +77,27 @@ public class RegistroVistaController {
     }
     
     @FXML
-    private void handleRegresar(){
+    private void handleRegresar() {
         ventana.close();
         principal.mostrarLoginVista(ventana);
     }
     
     @FXML
-    private void handleRegistro(){
+    private void handleRegistro() {
         if (validar()) {
             panelHecho.setVisible(true);
+            guardar();
         }
+        
     }
     
     @FXML
-    private void alTablero(){
+    private void alTablero() {
         panelHecho.setVisible(false);
     }
     
-    private boolean validar(){
-        if(Validadores.validarTF(campoNombre) 
+    private boolean validar() {
+        if (Validadores.validarTF(campoNombre)
                 & Validadores.validarTF(campoApellido)
                 & Validadores.validarTF(campoDNI)
                 & Validadores.validarDP(campoFechaNacimiento)
@@ -99,16 +108,16 @@ public class RegistroVistaController {
                 & Validadores.validarTF(campoNuevoUsuario)
                 & Validadores.validarP(campoNuevaClave)
                 & Validadores.validarP(campoRepetirClave)
-                & Validadores.validarTF(campoCorreo)){
-            if(Validadores.comprobarClave(campoNuevaClave, campoRepetirClave)){                
-                lblError.setVisible(false);  
+                & Validadores.validarTF(campoCorreo)) {
+            if (Validadores.comprobarClave(campoNuevaClave, campoRepetirClave)) {                
+                lblError.setVisible(false);                
                 return true;
-            }else{
+            } else {
                 lblError.setText("Las contraseñas ingresadas no coinciden.");
                 lblError.setVisible(true);
                 return false;
-            } 
-        }else{
+            }            
+        } else {
             lblError.setText("Rellene todos los campos vacíos.");
             lblError.setVisible(true);
             return false;
@@ -117,10 +126,49 @@ public class RegistroVistaController {
     
     public void setDialogStage(Stage dialogStage) {
         this.ventana = dialogStage;
-    } 
-
+    }    
+    
     public void setPrincipal(Principal principal) {
         this.principal = principal;
     }
-  
+
+    private void cargarObjeto() {
+        sp.getPersona().setNombres(campoNombre.getText());
+        sp.getPersona().setApellidos(campoApellido.getText());
+        sp.getPersona().setDni(campoDNI.getText());
+        sp.getPersona().setFecha_nacimiento(new Date());
+        sp.getPersona().setTelefono(campoCelular.getText());
+        sp.getPersona().setPais(campoPais.getText());
+        sp.getPersona().setCiudad(campoCiudad.getText());
+        sp.getPersona().setDireccion(campoDireccion.getText());
+        sp.getPersona().setRol(new ServicioRol().buscarRolNombre("Cliente")); // >:v
+        
+        ServicioCuenta c = new ServicioCuenta();
+        c.getCuenta().setUsuario(campoNuevoUsuario.getText());
+        c.getCuenta().setClave(campoNuevaClave.getText());
+        c.getCuenta().setExternal_id(UUID.randomUUID().toString());
+        c.getCuenta().setCreated_at(new Date());
+        c.getCuenta().setUpdate_at(new Date());
+        c.getCuenta().setEstado(true);
+        c.getCuenta().setPersona(sp.getPersona());
+        sp.getPersona().setCuenta(c.getCuenta());
+        sp.guardar();
+        
+    }
+
+    public void guardar() {
+        
+        cargarObjeto();
+        if (sp.getPersona().getId_persona() != null) {
+            //modificalo perra
+        } else {
+            //valida cedula perra
+            if (sp.guardar()) {
+                System.out.println("Ok guardado perra");
+            } else {
+                System.out.println("Haslo bien perra");
+            }
+            
+        }
+    }
 }
