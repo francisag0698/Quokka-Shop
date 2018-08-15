@@ -20,7 +20,7 @@ import od.controlador.servicio.ServicioCuenta;
 import od.controlador.servicio.ServicioPersona;
 import od.controlador.servicio.ServicioRol;
 import od.utilidades.Validadores;
-
+import od.vista.utilidades.UtilidadesComponentes;
 
 /**
  * FXML Controller class
@@ -59,11 +59,11 @@ public class RegistroVistaController {
     private ComboBox comboTipoDNI;
     @FXML
     private Label lblError;
-    
-    
+
     private Stage ventana;
     private Principal principal;
     private ServicioPersona sp = new ServicioPersona(); // >:v fuen pancho
+    private UtilidadesComponentes uc = new UtilidadesComponentes();
 
     /**
      * Initializes the controller class.
@@ -75,27 +75,27 @@ public class RegistroVistaController {
         );
         comboTipoDNI.setValue("Cedula de Identidad");
     }
-    
+
     @FXML
     private void handleRegresar() {
         ventana.close();
         principal.mostrarLoginVista(ventana);
     }
-    
+
     @FXML
     private void handleRegistro() {
         if (validar()) {
             panelHecho.setVisible(true);
             guardar();
         }
-        
+
     }
-    
+
     @FXML
     private void alTablero() {
         panelHecho.setVisible(false);
     }
-    
+
     private boolean validar() {
         if (Validadores.validarTF(campoNombre)
                 & Validadores.validarTF(campoApellido)
@@ -109,25 +109,25 @@ public class RegistroVistaController {
                 & Validadores.validarP(campoNuevaClave)
                 & Validadores.validarP(campoRepetirClave)
                 & Validadores.validarTF(campoCorreo)) {
-            if (Validadores.comprobarClave(campoNuevaClave, campoRepetirClave)) {                
-                lblError.setVisible(false);                
+            if (Validadores.comprobarClave(campoNuevaClave, campoRepetirClave)) {
+                lblError.setVisible(false);
                 return true;
             } else {
                 lblError.setText("Las contraseñas ingresadas no coinciden.");
                 lblError.setVisible(true);
                 return false;
-            }            
+            }
         } else {
             lblError.setText("Rellene todos los campos vacíos.");
             lblError.setVisible(true);
             return false;
         }
     }
-    
+
     public void setDialogStage(Stage dialogStage) {
         this.ventana = dialogStage;
-    }    
-    
+    }
+
     public void setPrincipal(Principal principal) {
         this.principal = principal;
     }
@@ -142,7 +142,7 @@ public class RegistroVistaController {
         sp.getPersona().setCiudad(campoCiudad.getText());
         sp.getPersona().setDireccion(campoDireccion.getText());
         sp.getPersona().setRol(new ServicioRol().buscarRolNombre("Cliente")); // >:v
-        
+
         ServicioCuenta c = new ServicioCuenta();
         c.getCuenta().setUsuario(campoNuevoUsuario.getText());
         c.getCuenta().setClave(campoNuevaClave.getText());
@@ -153,22 +153,47 @@ public class RegistroVistaController {
         c.getCuenta().setPersona(sp.getPersona());
         sp.getPersona().setCuenta(c.getCuenta());
         sp.guardar();
-        
-    }
 
-    public void guardar() {
+    }
+    private void limpiar(){
+        campoApellido.setText("");
+        campoCelular.setText("");
+        campoCiudad.setText("");
+        campoCorreo.setText("");
+        campoDNI.setText("");
+        campoDireccion.setText("");
+        campoNombre.setText("");
+        campoNuevaClave.setText("");
+        campoNuevoUsuario.setText("");
+        campoPais.setText("");
+        campoRepetirClave.setText("");
         
+       }
+    public void guardar() {
+
         cargarObjeto();
         if (sp.getPersona().getId_persona() != null) {
             //modificalo perra
         } else {
             //valida cedula perra
-            if (sp.guardar()) {
-                System.out.println("Ok guardado perra");
+
+            if (UtilidadesComponentes.validadorDeCedula(campoDNI.getText())) {
+                if (sp.ObtenerPersonaCedula(campoDNI.getText()) != null) {
+                        System.out.println("La cedula ya existe perra");
+                } else {
+                    if (sp.guardar()) {
+                         
+                        System.out.println("Ok guardado perra");
+                        limpiar();
+                    } else {
+
+                        System.out.println("Haslo bien perra");
+                    }
+                }
             } else {
-                System.out.println("Haslo bien perra");
+                System.out.println(" No vale la cedula perra");
             }
-            
+
         }
     }
 }

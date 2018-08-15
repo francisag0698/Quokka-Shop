@@ -30,6 +30,9 @@ public class ServicioPersona {
     public void fijarPersona(Persona persona){
         obj.setPersona(persona);
     }
-            
-            
+    public Persona ObtenerPersonaCedula(String cedula){
+        return obj.ObtenerPersonaCedula(cedula);
+        
+    }       
+     
 }

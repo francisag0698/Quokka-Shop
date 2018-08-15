@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package od.controlador.dao;
+import javax.persistence.Query;
 import od.modelo.Persona;
 
 /**
@@ -42,5 +43,17 @@ public class PersonaDao extends AdaptadorDao<Persona>{
             System.out.println("No se ha podido guardar o modificar " + e);
         }
         return verificar;
+    }
+    //metodo que permite buscar un persona por cedula
+    public Persona ObtenerPersonaCedula(String cedula){
+        Persona p = null;
+        //el try es para que no se caiga el programa
+        try {
+            Query q = getManager().createQuery("SELECT p FROM Persona p Where p.cedula = :cedula");//es creatyQuery es una consulta a nivel de objetos
+            q.setParameter("cedula", cedula);
+            p = (Persona)q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return p;
     }
 }
