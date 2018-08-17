@@ -44,12 +44,12 @@ public class PersonaDao extends AdaptadorDao<Persona>{
         }
         return verificar;
     }
-    //metodo que permite buscar un persona por cedula
+    
+    
     public Persona ObtenerPersonaCedula(String cedula){
         Persona p = null;
-        //el try es para que no se caiga el programa
         try {
-            Query q = getManager().createQuery("SELECT p FROM Persona p Where p.cedula = :cedula");//es creatyQuery es una consulta a nivel de objetos
+            Query q = getManager().createQuery("SELECT p FROM Persona p WHERE p.dni = :cedula");
             q.setParameter("cedula", cedula);
             p = (Persona)q.getSingleResult();
         } catch (Exception e) {

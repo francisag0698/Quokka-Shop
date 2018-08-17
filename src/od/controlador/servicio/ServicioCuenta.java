@@ -59,6 +59,7 @@ public class ServicioCuenta {
             c.setExternal_id(UUID.randomUUID().toString());
             c.setCreated_at(new Date());
             c.setUpdate_at(new Date());
+            c.setEstado(true);
             c.setPersona(sp.getPersona());
             sp.getPersona().setCuenta(c);
             sp.guardar();

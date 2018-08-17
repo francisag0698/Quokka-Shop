@@ -58,44 +58,44 @@ public class RegistroVistaController {
     @FXML
     private ComboBox comboTipoDNI;
     @FXML
+    private ComboBox comboGenero;
+    @FXML
     private Label lblError;
 
     private Stage ventana;
     private Principal principal;
-    private ServicioPersona sp = new ServicioPersona(); // >:v fuen pancho
+    private ServicioPersona sp = new ServicioPersona();
+    private ServicioCuenta sc = new ServicioCuenta();
     private UtilidadesComponentes uc = new UtilidadesComponentes();
 
     /**
      * Initializes the controller class.
      */
     public void initialize() {
+        //Tipo de DNI
         comboTipoDNI.getItems().addAll(
                 "Cedula de Identidad",
                 "Pasaporte"
         );
         comboTipoDNI.setValue("Cedula de Identidad");
+        
+        //Genero
+        comboGenero.getItems().addAll(
+                "Masculino",
+                "Femenino",
+                "Otros"
+        );
+        comboGenero.setValue("Masculino");
     }
 
-    @FXML
-    private void handleRegresar() {
-        ventana.close();
-        principal.mostrarLoginVista(ventana);
+    public void setDialogStage(Stage dialogStage) {
+        this.ventana = dialogStage;
     }
 
-    @FXML
-    private void handleRegistro() {
-        if (validar()) {
-            panelHecho.setVisible(true);
-            guardar();
-        }
-
+    public void setPrincipal(Principal principal) {
+        this.principal = principal;
     }
-
-    @FXML
-    private void alTablero() {
-        panelHecho.setVisible(false);
-    }
-
+    
     private boolean validar() {
         if (Validadores.validarTF(campoNombre)
                 & Validadores.validarTF(campoApellido)
@@ -118,43 +118,35 @@ public class RegistroVistaController {
                 return false;
             }
         } else {
-            lblError.setText("Rellene todos los campos vacíos.");
+            lblError.setText("Rellene los campos obligatorios.");
             lblError.setVisible(true);
             return false;
         }
     }
 
-    public void setDialogStage(Stage dialogStage) {
-        this.ventana = dialogStage;
-    }
-
-    public void setPrincipal(Principal principal) {
-        this.principal = principal;
-    }
-
     private void cargarObjeto() {
         sp.getPersona().setNombres(campoNombre.getText());
         sp.getPersona().setApellidos(campoApellido.getText());
+        sp.getPersona().setTipo_dni(comboTipoDNI.getValue().toString());
         sp.getPersona().setDni(campoDNI.getText());
         sp.getPersona().setFecha_nacimiento(new Date());
         sp.getPersona().setTelefono(campoCelular.getText());
+        sp.getPersona().setSexo(comboGenero.getValue().toString());
         sp.getPersona().setPais(campoPais.getText());
         sp.getPersona().setCiudad(campoCiudad.getText());
         sp.getPersona().setDireccion(campoDireccion.getText());
         sp.getPersona().setRol(new ServicioRol().buscarRolNombre("Cliente")); // >:v
-
-        ServicioCuenta c = new ServicioCuenta();
-        c.getCuenta().setUsuario(campoNuevoUsuario.getText());
-        c.getCuenta().setClave(campoNuevaClave.getText());
-        c.getCuenta().setExternal_id(UUID.randomUUID().toString());
-        c.getCuenta().setCreated_at(new Date());
-        c.getCuenta().setUpdate_at(new Date());
-        c.getCuenta().setEstado(true);
-        c.getCuenta().setPersona(sp.getPersona());
-        sp.getPersona().setCuenta(c.getCuenta());
-        sp.guardar();
-
+        sc.getCuenta().setUsuario(campoNuevoUsuario.getText());
+        sc.getCuenta().setClave(campoNuevaClave.getText());
+        sc.getCuenta().setCorreo(campoCorreo.getText());
+        sc.getCuenta().setExternal_id(UUID.randomUUID().toString());
+        sc.getCuenta().setCreated_at(new Date());
+        sc.getCuenta().setUpdate_at(new Date());
+        sc.getCuenta().setEstado(true);
+        sc.getCuenta().setPersona(sp.getPersona());
+        sp.getPersona().setCuenta(sc.getCuenta());
     }
+    
     private void limpiar(){
         campoApellido.setText("");
         campoCelular.setText("");
@@ -168,32 +160,42 @@ public class RegistroVistaController {
         campoPais.setText("");
         campoRepetirClave.setText("");
         
-       }
+    }
+    
     public void guardar() {
-
         cargarObjeto();
-        if (sp.getPersona().getId_persona() != null) {
-            //modificalo perra
-        } else {
-            //valida cedula perra
-
-            if (UtilidadesComponentes.validadorDeCedula(campoDNI.getText())) {
-                if (sp.ObtenerPersonaCedula(campoDNI.getText()) != null) {
-                        System.out.println("La cedula ya existe perra");
-                } else {
-                    if (sp.guardar()) {
-                         
-                        System.out.println("Ok guardado perra");
-                        limpiar();
-                    } else {
-
-                        System.out.println("Haslo bien perra");
-                    }
-                }
+        if (UtilidadesComponentes.validadorDeCedula(campoDNI.getText())) {
+            if (sp.ObtenerPersonaCedula(campoDNI.getText()) != null) {
+                lblError.setText("La cédula ingresada ya existe.");
+                lblError.setVisible(true);
             } else {
-                System.out.println(" No vale la cedula perra");
+                System.out.println("Guardado");
+                if (sp.guardar()) {                         
+                    limpiar();
+                    lblError.setVisible(false);
+                    panelHecho.setVisible(true);
+                } else {
+                    lblError.setText("Ah ocurrido un error al intentar guardar.");
+                    lblError.setVisible(true);
+                }
             }
+        } else {
+            lblError.setText("El número de cédula incorrecto.");
+            lblError.setVisible(true);            
+        }        
+    }
 
+    @FXML
+    private void handleRegresar() {
+        ventana.close();
+        principal.mostrarLoginVista(ventana);
+    }
+
+    @FXML
+    private void handleRegistro() {
+        if (validar()) {            
+            guardar();
         }
+
     }
 }

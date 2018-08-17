@@ -5,22 +5,19 @@
  */
 package od.vista.utilidades;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author USUARIO
  */
 public class UtilidadesComponentes {
-    public static boolean validadorDeCedula(String cedula) {//requiere un string de ceduala
-        boolean cedulaCorrecta = false;
-
+    public static boolean validadorDeCedula(String cedula) {
         try {
-
-            if (cedula.length() == 10) // ConstantesApp.LongitudCedula
+            if (cedula.length() == 10)
             {
                 int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
                 if (tercerDigito < 6) {
-                  // Coeficientes de validación cédula
-                  // El decimo digito se lo considera dígito verificador
                     int[] coefValCedula = {2, 1, 2, 1, 2, 1, 2, 1, 2};
                     int verificador = Integer.parseInt(cedula.substring(9, 10));
                     int suma = 0;
@@ -31,28 +28,22 @@ public class UtilidadesComponentes {
                     }
 
                     if ((suma % 10 == 0) && (suma % 10 == verificador)) {
-                        cedulaCorrecta = true;
+                        
+                        return true;
                     } else if ((10 - (suma % 10)) == verificador) {
-                        cedulaCorrecta = true;
-                    } else {
-                        cedulaCorrecta = false;
+                        
+                        return true;
+                    } else {                        
+                        return false;
                     }
-                } else {
-                    cedulaCorrecta = false;
+                } else {                    
+                    return false;
                 }
             } else {
-                cedulaCorrecta = false;
+                return false;
             }
-        } catch (NumberFormatException nfe) {
-            cedulaCorrecta = false;
-        } catch (Exception err) {
-            System.out.println("Una excepcion ocurrio en el proceso de validadcion");
-            cedulaCorrecta = false;
+        } catch (Exception e) {
+            return false;
         }
-
-        if (!cedulaCorrecta) {
-            System.out.println("La Cédula ingresada es Incorrecta");
-        }
-        return cedulaCorrecta;
     }
 }
