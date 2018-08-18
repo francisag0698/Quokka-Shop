@@ -61,4 +61,26 @@ public class CuentaDao extends AdaptadorDao<Cuenta> {
         }
         return c;
     }
+    public Cuenta ObtenerCuentaCorreo(String correo){
+        Cuenta c = null;
+        try {
+            Query q = getManager().createQuery("SELECT c FROM Cuenta c WHERE c.correo = :correo");
+            q.setParameter("correo", correo);
+            c = (Cuenta)q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return c;
+    }
+    public Cuenta ObtenerCuentaUsuario(String usuario){
+        Cuenta c = null;
+        try {
+            Query q = getManager().createQuery("SELECT c FROM Cuenta c WHERE c.usuario = :usuario");
+            q.setParameter("usuario", usuario);
+            c = (Cuenta)q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return c;
+    }
+     
+    
 }

@@ -69,4 +69,11 @@ public class ServicioCuenta {
     public Cuenta inicioSesion(String usuario,String clave){
         return obj.inicioSesion(usuario, clave);
     }
+    public Cuenta ObtenerCuentaCorreo(String correo){
+        return obj.ObtenerCuentaCorreo(correo);
+    }
+    public Cuenta ObtenerCuentaUsuario(String usuario){
+        return obj.ObtenerCuentaUsuario(usuario);
+    }
+    
 }

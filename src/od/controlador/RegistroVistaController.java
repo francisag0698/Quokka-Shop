@@ -166,9 +166,15 @@ public class RegistroVistaController {
         cargarObjeto();
         if (UtilidadesComponentes.validadorDeCedula(campoDNI.getText())) {
             if (sp.ObtenerPersonaCedula(campoDNI.getText()) != null) {
-                lblError.setText("La cédula ingresada ya existe.");
+                lblError.setText("La cedula ingresada ya existe.");               
                 lblError.setVisible(true);
-            } else {
+            }else if(sc.ObtenerCuentaCorreo(campoCorreo.getText()) != null){
+                lblError.setText("El correo ingresado ya existe.");               
+                lblError.setVisible(true);
+            }else if(sc.ObtenerCuentaUsuario(campoNuevoUsuario.getText()) != null){
+                lblError.setText("El usuario ingresado ya existe.");               
+                lblError.setVisible(true);
+            }else {
                 System.out.println("Guardado");
                 if (sp.guardar()) {                         
                     limpiar();

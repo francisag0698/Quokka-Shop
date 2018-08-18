@@ -33,6 +33,6 @@ public class ServicioPersona {
     public Persona ObtenerPersonaCedula(String cedula){
         return obj.ObtenerPersonaCedula(cedula);
         
-    }       
-     
+    }        
+    
 }
