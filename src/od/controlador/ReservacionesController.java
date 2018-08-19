@@ -7,6 +7,7 @@ package od.controlador;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -41,15 +42,27 @@ public class ReservacionesController {
      * Initializes the controller class.
      */
     public void initialize(){
-        
+        cargarTabla();
     }
     
     public void cargarTabla(){
-        reservasTabla.setItems((ObservableList)sr.todos());
+        reservasTabla.setItems(FXCollections.observableList(sr.todos()));
         
         nombresColumna.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getNombres() + " " 
                         + cellData.getValue().getPersona().getApellidos())
+        );        
+        desdeColumna.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getDetalle().getFecha_inicio().toString())
+        );        
+        hastaColumna.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getDetalle().getFecha_fin().toString())
+        );        
+        telefonoColumna.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getTelefono())
+        );
+        estadoColumna.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getEstado())
         );
     }
 }

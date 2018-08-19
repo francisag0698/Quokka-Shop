@@ -20,6 +20,7 @@ import od.controlador.Conexion;
 import od.controlador.LoginVistaController;
 import od.controlador.RaizVistaController;
 import od.controlador.RegistroVistaController;
+import od.controlador.ReservacionesController;
 
 /**
  *
@@ -132,9 +133,6 @@ public class Principal extends Application {
             Pane panel = (Pane) cargador.load();
             
             rootLayout.setCenter(panel);
-            
-            /*NoticiasVistaController controlador = cargador.getController();
-            controlador.setPrincipal(this);*/
         } catch (IOException e) {
             e.printStackTrace();
         }

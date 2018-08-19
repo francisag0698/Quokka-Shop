@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import lombok.Getter;
@@ -51,15 +52,15 @@ public class Detalle implements Serializable {
     @Column(length = 6)
     private Double pago_total;
     
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_reservacion",nullable = false,referencedColumnName = "id_reservacion")
     private Reservacion reservacion;
     
-    @OneToMany(mappedBy = "detalle",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Servicio> listaServicio=new ArrayList<Servicio>();
+//    @OneToMany(mappedBy = "detalle",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+//    private List<Servicio> listaServicio=new ArrayList<Servicio>();
     
     @OneToMany(mappedBy = "detalle",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Habitacion> listaHabitacion=new ArrayList<Habitacion>();
+    private List<Habitacion> listaHabitacion = new ArrayList<Habitacion>();
 
     @Override
     public int hashCode() {

@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import lombok.Getter;
@@ -49,8 +50,8 @@ public class Reservacion implements Serializable {
     @JoinColumn(name = "id_persona",nullable = false,referencedColumnName = "id_persona")
     private Persona persona;
     
-    @OneToMany(mappedBy = "reservacion",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Detalle> listaDetalle= new ArrayList<Detalle>();
+    @OneToOne(mappedBy = "reservacion",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Detalle detalle;
     
     
 

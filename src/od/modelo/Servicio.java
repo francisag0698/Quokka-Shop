@@ -35,8 +35,8 @@ public class Servicio implements Serializable {
     private String nombre_servicio;
     
     @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "id_detalle",nullable = false,referencedColumnName = "id_detalle")
-    private Detalle detalle;
+    @JoinColumn(name = "id_habitacion",nullable = false,referencedColumnName = "id_habitacion")
+    private Habitacion habitacion;
     
     
 

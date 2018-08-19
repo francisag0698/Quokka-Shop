@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import od.controlador.servicio.ServicioCuenta;
+import od.controlador.servicio.ServicioReservacion;
 import od.controlador.servicio.ServicioRol;
 
 /**
@@ -33,5 +34,7 @@ public class Conexion {
     public static void initManager(){
         new ServicioRol().crearRoles();
         new ServicioCuenta().crearCuentaAdmin();
+        
+        //new ServicioReservacion().crearReserva();
     }
 }
