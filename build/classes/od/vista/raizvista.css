@@ -2,30 +2,73 @@
     -fx-background-color: #f5f6f7;
 }
 
+.fa-icon{
+    -fx-font-family: 'Font Awesome 5 Free Solid';
+    -fx-font-size: 14px;
+}
+
 .this-user{
     -fx-font-family: 'Ubuntu Bold';
-    -fx-text-fill: #fff;
+    -fx-text-fill: #262626;
     -fx-font-size: 16px;
 }
 
 .this-role{
     -fx-font-family: 'Roboto Condensed';
+    -fx-text-fill: #8a8f9c;
+    -fx-font-size: 12px;
+}
+
+.btn-primary{
+    -fx-font-family: 'Ubuntu Bold';
+    -fx-background-color: #7c60ff;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+}
+.btn-primary .fa-icon{
     -fx-text-fill: #fff;
     -fx-font-size: 12px;
 }
 
+.btn-secondary{
+    -fx-font-family: 'Ubuntu Bold';
+    -fx-border-color: #7c60ff;
+    -fx-border-radius: 5px; 
+    -fx-background-color: transparent;
+    -fx-text-fill: #7c60ff;
+    -fx-cursor: hand;
+}
+.btn-secondary .fa-icon{
+    -fx-text-fill: #7c60ff;
+    -fx-font-size: 12px;
+}
+
+.btn-default{
+    -fx-font-family: 'Ubuntu Bold';
+    -fx-border-color: #8a8f9c;
+    -fx-border-radius: 5px; 
+    -fx-background-color: transparent;
+    -fx-text-fill: #8a8f9c;
+    -fx-cursor: hand;
+}
+
 .menu-opt{
     -fx-font-family: 'Ubuntu';
-    -fx-text-fill: #757a85;
+    -fx-text-fill: #5e5e5e;
     -fx-background-color: transparent;
     -fx-font-size: 15px;
     -fx-padding: 10px 15px 10px 20px;
     -fx-cursor: hand;
 }
 
-.menu-opt.active{
-    -fx-background-color: #e1e2e3;
-    /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,.3), 10, 0, 0, 3px);*/
+.menu-opt .fa-icon{
+    -fx-text-fill: #5e5e5e;
+    -fx-font-size: 15px;
+}
+
+.menu-opt.active,
+.menu-opt.active .fa-icon{    
+    -fx-text-fill: #7c60ff;
 }
 
 .label-div{
@@ -42,4 +85,33 @@
     -fx-font-size: 30px;
     -fx-text-fill: #262626;
     -fx-font-family: 'Roboto Condensed Light';
+}
+
+.subtitle-pane{
+    -fx-font-family: 'Ubuntu';
+    -fx-font-size: 13px;
+    -fx-text-fill: #8a8f9c;
+}
+
+.searchform-item{
+    -fx-font-family: 'Ubuntu';
+    -fx-text-fill: #8a8f9c;
+    -fx-border-color: #8a8f9c;
+    -fx-border-radius: 3px;
+    -fx-background-color: transparent;
+}
+
+.table-view{    
+    -fx-background-color: transparent;
+}
+.table-view .column-header {
+    -fx-background-color: #f5f6f7;
+}
+
+.table-view .column-header .label{
+    -fx-font-family: 'Ubuntu';
+    -fx-font-size: 10px;
+    -fx-text-fill: #8a8f9c;
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 0 0 0 10px;
 }

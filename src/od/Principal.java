@@ -8,7 +8,6 @@ package od;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -37,6 +36,8 @@ public class Principal extends Application {
         Font.loadFont(getClass().getResourceAsStream("vista/fuentes/UM.ttf"), 12); //Ubuntu Medium
         Font.loadFont(getClass().getResourceAsStream("vista/fuentes/RL.ttf"), 12); //Roboto Condensed Light
         Font.loadFont(getClass().getResourceAsStream("vista/fuentes/RR.ttf"), 12); //Roboto Condensed Regular
+        Font.loadFont(getClass().getResourceAsStream("vista/fuentes/Font Awesome 5 Free-Solid-900.otf"), 12); //Font Awesome
+        Font.loadFont(getClass().getResourceAsStream("vista/fuentes/Font Awesome 5 Free-Regular-400.otf"), 12); //Font Awesome
         Conexion.initManager();
         closeRequest(primaryStage);
         mostrarLoginVista(primaryStage);

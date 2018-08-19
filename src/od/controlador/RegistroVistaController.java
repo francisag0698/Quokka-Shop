@@ -5,6 +5,9 @@
  */
 package od.controlador;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.UUID;
 import javafx.fxml.FXML;
@@ -86,6 +89,8 @@ public class RegistroVistaController {
                 "Otros"
         );
         comboGenero.setValue("Masculino");
+        
+        
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -124,18 +129,22 @@ public class RegistroVistaController {
         }
     }
 
-    private void cargarObjeto() {
+    private void cargarObjeto(){
         sp.getPersona().setNombres(campoNombre.getText());
         sp.getPersona().setApellidos(campoApellido.getText());
         sp.getPersona().setTipo_dni(comboTipoDNI.getValue().toString());
         sp.getPersona().setDni(campoDNI.getText());
-        sp.getPersona().setFecha_nacimiento(new Date());
+        try {
+            sp.getPersona().setFecha_nacimiento(new SimpleDateFormat("dd/MM/yyyy").parse(campoFechaNacimiento.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));            
+        } catch (ParseException e) {
+            sp.getPersona().setFecha_nacimiento(new Date());
+        }
         sp.getPersona().setTelefono(campoCelular.getText());
         sp.getPersona().setSexo(comboGenero.getValue().toString());
         sp.getPersona().setPais(campoPais.getText());
         sp.getPersona().setCiudad(campoCiudad.getText());
         sp.getPersona().setDireccion(campoDireccion.getText());
-        sp.getPersona().setRol(new ServicioRol().buscarRolNombre("Cliente")); // >:v
+        sp.getPersona().setRol(new ServicioRol().buscarRolNombre("Cliente"));
         sc.getCuenta().setUsuario(campoNuevoUsuario.getText());
         sc.getCuenta().setClave(campoNuevaClave.getText());
         sc.getCuenta().setCorreo(campoCorreo.getText());
@@ -162,24 +171,24 @@ public class RegistroVistaController {
         
     }
     
-    public void guardar() {
-        cargarObjeto();
+    public void guardar() {         
         if (UtilidadesComponentes.validadorDeCedula(campoDNI.getText())) {
             if (sp.ObtenerPersonaCedula(campoDNI.getText()) != null) {
                 lblError.setText("La cedula ingresada ya existe.");               
                 lblError.setVisible(true);
-            }else if(sc.ObtenerCuentaCorreo(campoCorreo.getText()) != null){
-                lblError.setText("El correo ingresado ya existe.");               
-                lblError.setVisible(true);
             }else if(sc.ObtenerCuentaUsuario(campoNuevoUsuario.getText()) != null){
                 lblError.setText("El usuario ingresado ya existe.");               
                 lblError.setVisible(true);
+            }else if(sc.ObtenerCuentaCorreo(campoCorreo.getText()) != null){
+                lblError.setText("El correo ingresado ya existe.");               
+                lblError.setVisible(true);
             }else {
-                System.out.println("Guardado");
+                cargarObjeto();                
                 if (sp.guardar()) {                         
                     limpiar();
                     lblError.setVisible(false);
                     panelHecho.setVisible(true);
+                    System.out.println("Guardado");
                 } else {
                     lblError.setText("Ah ocurrido un error al intentar guardar.");
                     lblError.setVisible(true);
@@ -198,10 +207,9 @@ public class RegistroVistaController {
     }
 
     @FXML
-    private void handleRegistro() {
+    private void handleRegistro() {        
         if (validar()) {            
             guardar();
         }
-
     }
 }
