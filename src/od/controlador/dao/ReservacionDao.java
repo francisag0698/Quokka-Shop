@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package od.controlador.dao;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Query;
 import od.modelo.Reservacion;
 
 /**
@@ -43,4 +46,39 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
         }
         return verificar;
     }
+    public List<Reservacion> listarBusqueda(String texto){
+        List<Reservacion> listado= new ArrayList<>();
+        for(Reservacion reservacion : listar()){
+            if( reservacion.getPersona().getApellidos().toLowerCase().contains(texto.toLowerCase())){
+                listado.add(reservacion);
+            }else if( reservacion.getPersona().getNombres().toLowerCase().contains(texto.toLowerCase())){
+                listado.add(reservacion);
+            }else{
+            }
+        }
+        return listado;
+    }
+    public List<Reservacion> listarBusquedaTipo(String tipo,String texto){
+        List<Reservacion> listado= new ArrayList<>();
+        try {
+            Query q = getManager().createQuery("SELECT r FROM Reservacion r where ((LOWER(r.persona.apellidos)LIKE CONCAT(:texto, '%')) OR (LOWER(r.persona.nombres)LIKE CONCAT(:texto, '%'))) and r.estado = :tipo");
+            q.setParameter("tipo", tipo);
+            q.setParameter("texto", texto);
+            listado = q.getResultList();
+        } catch (Exception e) {
+        }
+        
+        return listado;
+    }
+     public List<Reservacion> ordenAscendente(String orden){
+        orden = (orden.equals("Fecha")) ? "r.fecha" : "r.persona.nombres";
+        List<Reservacion> listado= new ArrayList<>();
+        try {
+            Query q = getManager().createQuery("SELECT r FROM Reservacion r ORDER BY "+ orden +"  ASC");
+            listado = q.getResultList();
+        } catch (Exception e) {
+        }
+        return listado;
+    }
+    
 }

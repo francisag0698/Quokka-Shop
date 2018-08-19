@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -8,7 +11,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="638.0" prefWidth="738.0" styleClass="background" stylesheets="@raizvista.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.ReservacionesController">
+<AnchorPane id="AnchorPane" prefHeight="638.0" prefWidth="738.0" styleClass="background" stylesheets="@raizvista.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.ReservacionesController">
    <children>
       <Label layoutX="43.0" layoutY="34.0" styleClass="title-pane" text="Reservaciones" />
       <Label layoutX="43.0" layoutY="76.0" styleClass="subtitle-pane" text="Curabitur sit amet sagittis urna. Fusce venenatis turpis et tellus." />
@@ -17,9 +20,9 @@
             <Label prefHeight="25.0" prefWidth="17.0" styleClass="fa-icon" text="" textAlignment="CENTER" />
          </graphic>
       </Button>
-      <TextField layoutX="43.0" layoutY="119.0" prefHeight="30.0" prefWidth="320.0" promptText="BUSCAR" styleClass="searchform-item" />
-      <ComboBox layoutX="373.0" layoutY="119.0" prefHeight="30.0" prefWidth="150.0" styleClass="searchform-item" />
-      <ComboBox layoutX="531.0" layoutY="119.0" prefHeight="30.0" prefWidth="150.0" styleClass="searchform-item" />
+      <TextField fx:id="campoBuscar" layoutX="43.0" layoutY="119.0" onKeyPressed="#buscarTexto" prefHeight="30.0" prefWidth="320.0" promptText="BUSCAR" styleClass="searchform-item" />
+      <ComboBox fx:id="comboEstado" layoutX="373.0" layoutY="119.0" prefHeight="30.0" prefWidth="150.0" styleClass="searchform-item" />
+      <ComboBox fx:id="comboOrdenar" layoutX="531.0" layoutY="119.0" onAction="#ordenarAscendente" prefHeight="30.0" prefWidth="150.0" styleClass="searchform-item" />
       <TableView fx:id="reservasTabla" layoutX="43.0" layoutY="169.0" prefHeight="388.0" prefWidth="640.0">
         <columns>
           <TableColumn fx:id="nombresColumna" prefWidth="234.0" text="NOMBRES Y APELLIDOS" />
