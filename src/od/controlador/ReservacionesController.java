@@ -24,7 +24,7 @@ import od.modelo.Reservacion;
  * @author PotatoPower
  */
 public class ReservacionesController {
-  
+
     @FXML
     private TableView<Reservacion> reservasTabla;
     @FXML
@@ -43,14 +43,13 @@ public class ReservacionesController {
     private ComboBox comboEstado;
     @FXML
     private ComboBox comboOrdenar;
-    
-    
-    
+
     ServicioReservacion sr = new ServicioReservacion();
+
     /**
      * Initializes the controller class.
      */
-    public void initialize(){
+    public void initialize() {
         cargarTabla();
         // tipo de estado
         comboEstado.getItems().addAll(
@@ -64,25 +63,25 @@ public class ReservacionesController {
         comboOrdenar.getItems().addAll(
                 "Ordenar por:",
                 "Fecha",
-                "Apellidos"  
+                "Apellidos"
         );
         comboOrdenar.setValue("Ordenar por:");
-       
+        
     }
     
-    public void cargarTabla(){
+    public void cargarTabla() {
         reservasTabla.setItems(FXCollections.observableList(sr.todos()));
-        
+
         nombresColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getNombres() + " " 
+                cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getNombres() + " "
                         + cellData.getValue().getPersona().getApellidos())
-        );        
+        );
         desdeColumna.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getDetalle().getFecha_inicio().toString())
-        );        
+        );
         hastaColumna.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getDetalle().getFecha_fin().toString())
-        );        
+        );
         telefonoColumna.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getTelefono())
         );
@@ -91,32 +90,54 @@ public class ReservacionesController {
         );
     }
     @FXML
-    private void buscarTexto(){
+    public void limpiar(){
+        campoBuscar.setText(" ");//no se donde ponerlo para se limpie cada vez q se filtre por estado :,V
         
-        if(campoBuscar.getText().trim().length()>=3){
-            if(comboEstado.getValue().toString().equals("Filtrar por:")){
-                reservasTabla.setItems(FXCollections.observableList(sr.listarBusqueda(campoBuscar.getText())));
-                reservasTabla.refresh();
-            }else{
-                String tipo= comboEstado.getValue().toString();
-                reservasTabla.setItems(FXCollections.observableList(sr.listarBusquedaTipo(tipo,campoBuscar.getText())));
-                reservasTabla.refresh();
-            } 
-        }else{
-            reservasTabla.setItems(FXCollections.observableList(sr.todos()));
+    }
+
+    @FXML
+    private void filtrarTipo() {
+        if (comboEstado.getValue().toString().equals("Filtrar por:")) {
+            cargarTabla();
+        } else{
+            String tipo = comboEstado.getValue().toString();
+            
+            reservasTabla.setItems(FXCollections.observableList(sr.listarTipo(tipo)));
             reservasTabla.refresh();
+            
+        }
+
+    }
+
+    @FXML
+    private void buscarTexto() {
+        
+        if (campoBuscar.getText().trim().length() >= 3) {
+            if (comboEstado.getValue().toString().equals("Filtrar por:")) {
+                reservasTabla.setItems(FXCollections.observableList(sr.listarBusqueda(campoBuscar.getText())));
+
+            } else {
+                String tipo = comboEstado.getValue().toString();
+                reservasTabla.setItems(FXCollections.observableList(sr.listarBusquedaTipo(tipo, campoBuscar.getText())));
+
+            }
+
+            reservasTabla.refresh();
+        } else {
+            filtrarTipo();
         }
     }
+
     @FXML
-    private void ordenarAscendente(){
-        if(comboOrdenar.getValue().toString().equals("Ordenar por:")){ 
+    private void ordenarAscendente() {
+        if (comboOrdenar.getValue().toString().equals("Ordenar por:")) {
             reservasTabla.setItems(FXCollections.observableList(sr.todos()));
             reservasTabla.refresh();
-        }else{
+        } else {
             String orden = comboOrdenar.getValue().toString();
             reservasTabla.setItems(FXCollections.observableList(sr.ordenAscendente(orden)));
             reservasTabla.refresh();
         }
     }
-    
+
 }
