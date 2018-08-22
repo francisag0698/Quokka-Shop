@@ -21,7 +21,7 @@
          </graphic>
       </Button>
       <TextField fx:id="campoBuscar" layoutX="43.0" layoutY="119.0" onKeyPressed="#buscarTexto" prefHeight="30.0" prefWidth="320.0" promptText="BUSCAR" styleClass="searchform-item" />
-      <ComboBox fx:id="comboEstado" layoutX="373.0" layoutY="119.0" prefHeight="30.0" prefWidth="150.0" styleClass="searchform-item" />
+      <ComboBox fx:id="comboEstado" layoutX="373.0" layoutY="119.0" onAction="#filtrarTipo" prefHeight="30.0" prefWidth="150.0" styleClass="searchform-item" />
       <ComboBox fx:id="comboOrdenar" layoutX="531.0" layoutY="119.0" onAction="#ordenarAscendente" prefHeight="30.0" prefWidth="150.0" styleClass="searchform-item" />
       <TableView fx:id="reservasTabla" layoutX="43.0" layoutY="169.0" prefHeight="388.0" prefWidth="640.0">
         <columns>

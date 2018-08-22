@@ -105,6 +105,9 @@ public class ServicioReservacion {
     public List<Reservacion> listarBusqueda(String texto){
         return obj.listarBusqueda(texto);
     }
+    public List<Reservacion> listarTipo(String tipo){
+        return obj.listarTipo(tipo);
+    }
     public List<Reservacion> listarBusquedaTipo(String tipo,String texto){
         return obj.listarBusquedaTipo(tipo, texto);
     }
