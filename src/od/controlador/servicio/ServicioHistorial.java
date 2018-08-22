@@ -31,6 +31,7 @@ public class ServicioHistorial {
      public void fijarHistorial(Historial historial){
          obj.setHistorial(historial);
      }
-     
-            
+     public List<Historial> listarLikeHistorial(String texto) {
+        return obj.listarLikeHistorial(texto);
+    }
 }

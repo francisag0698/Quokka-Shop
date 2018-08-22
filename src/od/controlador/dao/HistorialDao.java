@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package od.controlador.dao;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Query;
 import od.modelo.Historial;
 /**
  *
@@ -42,5 +45,19 @@ public class HistorialDao extends AdaptadorDao<Historial>{
             System.out.println("No se ha podido guardar o modificar " + e);
         }
         return verificar;
+    }
+    public List<Historial> listarLikeHistorial(String texto) {
+        List<Historial> lista = new ArrayList<>();
+        try {
+            Query q = getManager().createQuery("SELECT p FROM Historial p where "                    
+                    + "(lower(p.persona.apellidos) LIKE CONCAT('%', :texto, '%'))"
+                    + " or (lower(p.codigo) LIKE CONCAT('%', :texto1, '%'))");
+            q.setParameter("texto", texto);            
+            q.setParameter("texto1", texto);
+            lista = q.getResultList();
+        } catch (Exception e) {
+            System.out.println("error "+e);
+        }
+        return lista;
     }
 }

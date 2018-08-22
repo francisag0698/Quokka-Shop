@@ -22,6 +22,7 @@ import od.Principal;
 import od.controlador.servicio.ServicioCuenta;
 import od.controlador.servicio.ServicioPersona;
 import od.controlador.servicio.ServicioRol;
+import od.utilidades.Utilidades;
 import od.utilidades.Validadores;
 import od.vista.utilidades.UtilidadesComponentes;
 
@@ -188,6 +189,7 @@ public class RegistroVistaController {
                     limpiar();
                     lblError.setVisible(false);
                     panelHecho.setVisible(true);
+                    Utilidades.guardarHistorial("Nuevo Registro", "Nuevo Usuario Registrado", sp);
                     System.out.println("Guardado");
                 } else {
                     lblError.setText("Ah ocurrido un error al intentar guardar.");

@@ -31,7 +31,7 @@ public class AdaptadorDao <T> implements InterfazDao<T>{
 
     @Override
     public void modificar(T obj) throws Exception {
-    getManager().merge(obj);
+        getManager().merge(obj);
     }
 
     @Override

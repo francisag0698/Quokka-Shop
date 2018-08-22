@@ -5,8 +5,6 @@
  */
 package od.vista.utilidades;
 
-import javax.swing.JTextField;
-
 /**
  *
  * @author USUARIO
