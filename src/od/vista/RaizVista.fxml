@@ -82,7 +82,7 @@
             </VBox>
             <Label layoutX="47.0" layoutY="286.0" styleClass="label-div" text="MENU" />
             <Label layoutX="107.0" layoutY="79.0" styleClass="icono" />
-            <Button layoutX="62.0" layoutY="216.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" styleClass="btn-primary" text="NUEVA RESERVA">
+            <Button fx:id="btnNuevaReserva" layoutX="62.0" layoutY="216.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" styleClass="btn-primary" text="NUEVA RESERVA">
                <graphic>
                   <Label prefHeight="25.0" prefWidth="17.0" styleClass="fa-icon" text="" textAlignment="CENTER" />
                </graphic>

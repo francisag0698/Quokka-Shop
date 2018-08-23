@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -11,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="638.0" prefWidth="738.0" styleClass="background" stylesheets="@raizvista.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.ReservacionesController">
+<AnchorPane id="AnchorPane" prefHeight="638.0" prefWidth="738.0" styleClass="background" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.ReservacionesController">
    <children>
       <Label layoutX="43.0" layoutY="34.0" styleClass="title-pane" text="Reservaciones" />
       <Label layoutX="43.0" layoutY="76.0" styleClass="subtitle-pane" text="Curabitur sit amet sagittis urna. Fusce venenatis turpis et tellus." />
@@ -35,4 +33,8 @@
       <Button layoutX="595.0" layoutY="578.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" styleClass="btn-default" text="ELIMINAR" />
       <Button layoutX="487.0" layoutY="578.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="98.0" styleClass="btn-default" text="MODIFICAR" />
    </children>
+   <stylesheets>
+      <URL value="@raizvista.css" />
+      <URL value="@panelreservaciones.css" />
+   </stylesheets>
 </AnchorPane>

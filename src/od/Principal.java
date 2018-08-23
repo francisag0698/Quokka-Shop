@@ -10,6 +10,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -20,7 +21,6 @@ import od.controlador.Conexion;
 import od.controlador.LoginVistaController;
 import od.controlador.RaizVistaController;
 import od.controlador.RegistroVistaController;
-import od.controlador.ReservacionesController;
 
 /**
  *
@@ -63,12 +63,14 @@ public class Principal extends Application {
             
             Scene escena = new Scene(rootLayout);
             primaryStage.setScene(escena);
+            primaryStage.setMinWidth(1030);
+            primaryStage.setMaxWidth(1030);
             
             RaizVistaController controlador = cargador.getController();
             
             controlador.setStage(primaryStage);
             controlador.setPrincipal(this);
-            fijarCentro("PanelInicio");
+            fijarCentroPane("PanelInicio");
             closeRequest(primaryStage);
             primaryStage.show();
         } catch (Exception e) {
@@ -126,13 +128,25 @@ public class Principal extends Application {
         }
     }
     
-    public void fijarCentro(String fxml){
+    public void fijarCentroPane(String fxml){
         try {
             FXMLLoader cargador = new FXMLLoader();
             cargador.setLocation(Principal.class.getResource("vista/" + fxml + ".fxml"));
             Pane panel = (Pane) cargador.load();
             
             rootLayout.setCenter(panel);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void fijarCentroScroll(String fxml){
+        try {
+            FXMLLoader cargador = new FXMLLoader();
+            cargador.setLocation(Principal.class.getResource("vista/" + fxml + ".fxml"));
+            ScrollPane spanel = (ScrollPane) cargador.load();
+            
+            rootLayout.setCenter(spanel);
         } catch (IOException e) {
             e.printStackTrace();
         }

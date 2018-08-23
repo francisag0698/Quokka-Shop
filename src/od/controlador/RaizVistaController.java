@@ -17,6 +17,8 @@ import od.Principal;
  */
 public class RaizVistaController {
     @FXML
+    private Button btnNuevaReserva;
+    @FXML
     private Button btnInicio;
     @FXML
     private Button btnReservacion;
@@ -48,20 +50,27 @@ public class RaizVistaController {
     private void listeners(){
         aux = btnInicio;
         
+        btnNuevaReserva.setOnAction((event)->{            
+            if (claseCSS(btnNuevaReserva)) 
+                principal.fijarCentroScroll("PanelNuevaReservacion");             
+            event.consume();
+        });
+        
         btnInicio.setOnAction((event)->{            
             if (claseCSS(btnInicio)) 
-                principal.fijarCentro("PanelInicio");             
+                principal.fijarCentroPane("PanelInicio");             
             event.consume();
         });
         
         btnReservacion.setOnAction((event)->{
             if(claseCSS(btnReservacion))
-                principal.fijarCentro("PanelReservaciones");
+                principal.fijarCentroPane("PanelReservaciones");
             event.consume();
         });
         
         btnHabitacion.setOnAction((event)->{
-            claseCSS(btnHabitacion);
+            if(claseCSS(btnHabitacion))
+                principal.fijarCentroPane("PanelHabitaciones");
             event.consume();
         });
         

@@ -1,0 +1,160 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 21/08/2018, 15:24:50
+    Author     : PotatoPower
+*/
+
+.background{
+    -fx-background-color: #f5f6f7;
+}
+
+.title-pane{    
+    -fx-font-size: 30px;
+    -fx-text-fill: #262626;
+    -fx-font-family: 'Roboto Condensed Light';
+}
+
+.subtitle-pane{
+    -fx-font-family: 'Ubuntu';
+    -fx-font-size: 13px;
+    -fx-text-fill: #8a8f9c;
+}
+
+.btn-primary{
+    -fx-font-family: 'Ubuntu Bold';
+    -fx-background-color: #7c60ff;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+}
+
+.btn-primary .fa-icon{
+    -fx-text-fill: #fff;
+    -fx-font-size: 12px;
+}
+
+.btn-secondary{
+    -fx-font-family: 'Ubuntu Bold';
+    -fx-border-color: #7c60ff;
+    -fx-border-radius: 5px; 
+    -fx-background-color: transparent;
+    -fx-text-fill: #7c60ff;
+    -fx-cursor: hand;
+}
+
+.btn-secondary .fa-icon{
+    -fx-text-fill: #7c60ff;
+    -fx-font-size: 12px;
+}
+
+.btn-default{
+    -fx-font-family: 'Ubuntu Bold';
+    -fx-border-color: #8a8f9c;
+    -fx-border-radius: 5px; 
+    -fx-background-color: transparent;
+    -fx-text-fill: #8a8f9c;
+    -fx-cursor: hand;
+}
+
+.label-div{
+    -fx-font-size: 11px;
+    -fx-font-family: 'Roboto Condensed';
+    -fx-text-fill: #8a8f9c;
+}
+
+.d-form-item{
+    -fx-font-family: 'Ubuntu';
+    -fx-text-fill: #8a8f9c;
+    -fx-border-color: #8a8f9c;
+    -fx-border-radius: 3px;
+    -fx-background-color: #fff;
+}
+
+.d-form-item:focused{
+    -fx-border-color: #7c60ff;
+}
+
+.wrap-item{
+    -fx-border-color: #8a8f9c;
+}
+
+.d-label{
+    -fx-font-family: 'Ubuntu';
+    -fx-font-size: 14px;
+    -fx-text-fill: #8a8f9c;
+}
+
+.divider-label{
+    -fx-font-family: 'Ubuntu';
+    -fx-font-size: 10px;
+    -fx-text-fill: #8a8f9c;
+}
+
+.desc-label{
+   -fx-font-family: 'Ubuntu';
+    -fx-font-size: 14px;
+    -fx-text-fill: #262626; 
+}
+
+.desc-label-sub{
+    -fx-font-family: 'Roboto Condensed';
+    -fx-font-size: 14px;
+    -fx-text-fill: #59626a;
+}
+
+.price-label{
+    -fx-font-family: 'Ubuntu Bold';
+    -fx-font-size: 28px;
+    -fx-text-fill: #7c60ff;
+}
+
+.table-view{    
+    -fx-background-color: transparent;
+    -fx-cell-size: 30;
+}
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: #f5f6f7;
+}
+
+.table-view .column-header .label{
+    -fx-font-family: 'Ubuntu';
+    -fx-font-size: 10px;
+    -fx-text-fill: #8a8f9c;
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 0 0 10px 5px;
+}
+
+.table-view > .virtual-flow > .scroll-bar:vertical,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background, 
+.table-view > .virtual-flow > .scroll-bar:horizontal,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view > .virtual-flow > .scroll-bar > .increment-button, 
+.table-view > .virtual-flow > .scroll-bar > .decrement-button {
+    -fx-opacity: 0;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-button,
+.table-view *.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-arrow, 
+.table-view *.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}

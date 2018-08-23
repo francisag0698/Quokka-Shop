@@ -45,14 +45,14 @@ public class Habitacion implements Serializable {
     private Integer nro_camas;
     @Column(length = 6)
     private Double precio;
-    private String extrenal_id_sevicio;
+    //private String extrenal_id_sevicio;
     private String tipo;
     private Boolean estado;
     private String condiciones;
     private String descripcion;
     
     @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "id_detalle",nullable = false,referencedColumnName = "id_detalle")
+    @JoinColumn(name = "id_detalle", referencedColumnName = "id_detalle")
     private Detalle detalle;
     
     @OneToMany(mappedBy = "habitacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

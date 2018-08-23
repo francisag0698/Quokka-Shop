@@ -46,8 +46,13 @@ public class LoginVistaController {
             etiquetaError.setText("");  
             Sesiones.setCuenta(new ServicioCuenta().inicioSesion(campoUsuario.getText(), campoClave.getText()));
             if (Sesiones.getCuenta() != null) {
-                ventana.close();
-                principal.iniciarRaiz();
+                if (Sesiones.getCuenta().getEstado()) {
+                    ventana.close();
+                    principal.iniciarRaiz();
+                }else{
+                    etiquetaError.setText("Cuenta deshabilitada.");
+                    Sesiones.setCuenta(null);
+                }                
             }else{
                 etiquetaError.setText("Usuario y/o contraseña incorrectos.");
             }            
