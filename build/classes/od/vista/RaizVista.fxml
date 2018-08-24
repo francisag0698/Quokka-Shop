@@ -29,8 +29,8 @@
                   <Image url="@images/avatar.png" />
                </image>
             </ImageView>
-            <Label fx:id="lblAdmin" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="137.0" prefHeight="25.0" prefWidth="153.0" styleClass="this-user" text="Pancho Vargas" />
-            <Label fx:id="lblRol" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="160.0" prefHeight="19.0" prefWidth="153.0" styleClass="this-role" text="ADMINISTRADOR" />
+            <Label fx:id="lblAdmin" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="137.0" maxWidth="153.0" prefHeight="25.0" prefWidth="153.0" styleClass="this-user" text="Nombre de Usuario" />
+            <Label fx:id="lblRol" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="160.0" maxWidth="153.0" prefHeight="19.0" prefWidth="153.0" styleClass="this-role" text="ADMINISTRADOR" />
             <Rectangle fill="#7c60ff" height="4.0" layoutX="122.0" layoutY="187.0" stroke="TRANSPARENT" strokeMiterLimit="0.0" strokeType="INSIDE" width="31.0" />
             <VBox layoutX="43.0" layoutY="304.0">
                <children>
@@ -48,6 +48,11 @@
                         <Label prefHeight="17.0" prefWidth="23.0" styleClass="fa-icon" text="" translateX="-5.0" />
                      </graphic>
                   </Button>
+                  <Button fx:id="btnCliente" alignment="TOP_LEFT" layoutX="36.0" layoutY="390.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Clientes">
+                     <graphic>
+                        <Label prefHeight="17.0" prefWidth="23.0" styleClass="fa-icon" text="" translateX="-5.0" />
+                     </graphic>
+                  </Button>
                   <Button fx:id="btnHabitacion" alignment="TOP_LEFT" layoutX="38.0" layoutY="306.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Habitaciones">
                      <graphic>
                         <Label prefHeight="17.0" prefWidth="23.0" styleClass="fa-icon" text="" translateX="-5.0" />
@@ -56,11 +61,6 @@
                   <Button fx:id="btnServicio" alignment="TOP_LEFT" layoutX="36.0" layoutY="348.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Servicios">
                      <graphic>
                         <Label prefHeight="17.0" prefWidth="23.0" styleClass="fa-icon" text="" translateX="-5.0" />
-                     </graphic>
-                  </Button>
-                  <Button fx:id="btnCliente" alignment="TOP_LEFT" layoutX="36.0" layoutY="390.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Clientes">
-                     <graphic>
-                        <Label prefHeight="17.0" prefWidth="23.0" styleClass="fa-icon" text="" translateX="-5.0" />
                      </graphic>
                   </Button>
                </children>
@@ -73,7 +73,7 @@
                         <Label prefHeight="17.0" prefWidth="23.0" styleClass="fa-icon" text="" translateX="-5.0" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnAyuda" alignment="TOP_LEFT" layoutX="38.0" layoutY="542.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Cerrar Sesión">
+                  <Button fx:id="btnCerrarSesion" alignment="TOP_LEFT" layoutX="38.0" layoutY="542.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="25.0" prefWidth="188.0" styleClass="menu-opt" text="Cerrar Sesión">
                      <graphic>
                         <Label prefHeight="17.0" prefWidth="23.0" styleClass="fa-icon" text="" translateX="-5.0" />
                      </graphic>
