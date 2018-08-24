@@ -6,6 +6,7 @@
 package od.modelo;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +31,8 @@ public class Servicio implements Serializable {
     private Long id_servicio;
     
     private String nombre_servicio;
+    @Column(length = 8)
+    private Double precio;
     
 
     @Override

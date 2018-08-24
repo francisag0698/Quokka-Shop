@@ -17,29 +17,30 @@
    <children>
       <Label layoutX="44.0" layoutY="34.0" styleClass="title-pane" text="Servicios" />
       <Label layoutX="44.0" layoutY="76.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="394.0" styleClass="subtitle-pane" text="Curabitur sit amet sagittis urna. Fusce venenatis turpis et tellus." wrapText="true" />
-      <TextField layoutX="438.0" layoutY="119.0" prefHeight="25.0" prefWidth="255.0" />
-      <TableView layoutX="369.0" layoutY="159.0" prefHeight="363.0" prefWidth="325.0">
+      <TextField fx:id="campoBusqueda" layoutX="438.0" layoutY="119.0" onKeyReleased="#buscar" prefHeight="25.0" prefWidth="255.0" />
+      <TableView fx:id="tablaServicios" layoutX="369.0" layoutY="159.0" prefHeight="363.0" prefWidth="325.0">
          <columns>
-            <TableColumn prefWidth="225.0" text="Descripción" />
-            <TableColumn prefWidth="99.0" text="Costo" />
+            <TableColumn fx:id="columnaDescripcion" prefWidth="225.0" text="Descripción" />
+            <TableColumn fx:id="columnaCosto" prefWidth="99.0" text="Costo" />
          </columns>
       </TableView>
       <ButtonBar layoutX="493.0" layoutY="527.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-            <Button mnemonicParsing="false" text="Modificar" />
-            <Button mnemonicParsing="false" text="Eliminar" />
+            <Button mnemonicParsing="false" onAction="#handleModificar" text="Modificar" />
+            <Button mnemonicParsing="false" onAction="#handleEliminar" text="Eliminar" />
         </buttons>
       </ButtonBar>
       <Label layoutX="369.0" layoutY="123.0" text="Búsqueda:" />
-      <TextArea layoutX="44.0" layoutY="143.0" prefHeight="128.0" prefWidth="294.0" promptText="Ej: Televisón por Cable" />
+      <TextArea fx:id="areaDesServicio" layoutX="44.0" layoutY="143.0" prefHeight="128.0" prefWidth="294.0" promptText="Ej: Televisón por Cable" />
       <Label layoutX="44.0" layoutY="119.0" text="Descripción del Servicio" />
       <Label layoutX="98.0" layoutY="289.0" text="Costo del Servicio:" />
-      <TextField layoutX="211.0" layoutY="285.0" prefHeight="25.0" prefWidth="126.0" />
+      <TextField fx:id="campoCostoS" layoutX="211.0" layoutY="285.0" prefHeight="25.0" prefWidth="126.0" />
       <ButtonBar layoutX="137.0" layoutY="319.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-            <Button mnemonicParsing="false" text="Guardar" />
-          <Button mnemonicParsing="false" text="Cancelar" />
+            <Button mnemonicParsing="false" onAction="#handleGuardar" text="Guardar" />
+          <Button mnemonicParsing="false" onAction="#handleCancelar" text="Cancelar" />
         </buttons>
       </ButtonBar>
+      <Label fx:id="lblError" layoutX="180.0" layoutY="359.0" prefHeight="17.0" prefWidth="75.0" textFill="#da0101" />
    </children>
 </AnchorPane>

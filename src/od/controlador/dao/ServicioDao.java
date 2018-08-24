@@ -5,6 +5,10 @@
  */
 package od.controlador.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Query;
+import od.modelo.Reservacion;
 import od.modelo.Servicio;
 
 /**
@@ -43,5 +47,16 @@ public class ServicioDao extends  AdaptadorDao<Servicio>{
             System.out.println("No se ha podido guardar o modificar " + e);
         }
         return verificar;
+    }
+    public List<Reservacion>listarBusqueda(String texto){
+        List<Reservacion> lista= new ArrayList<>();
+        try {
+            Query q = getManager()
+                    .createQuery("SELECT s FROM Servicio s WHERE (LOWER(s.nombre_servicio) LIKE CONCAT('%', :texto, '%'))");//lower es minusculas
+            q.setParameter("texto", texto);
+            lista = q.getResultList();
+        } catch (Exception e) {
+        }
+        return lista;
     }
 }
