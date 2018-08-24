@@ -6,13 +6,10 @@
 package od.modelo;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,13 +31,6 @@ public class Servicio implements Serializable {
     
     private String nombre_servicio;
     
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "id_habitacion", referencedColumnName = "id_habitacion")
-    private Habitacion habitacion;
-    
-    
-
-   
 
     @Override
     public int hashCode() {

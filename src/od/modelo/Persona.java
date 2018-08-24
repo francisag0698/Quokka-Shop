@@ -94,7 +94,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "od.modelo.Persona[ id=" + id_persona + " ]";
+        return nombres + " " + apellidos;
     }
     
 }

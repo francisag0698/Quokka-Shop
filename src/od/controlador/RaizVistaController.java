@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import od.Principal;
+import od.utilidades.Sesiones;
 
 /**
  * FXML Controller class
@@ -31,7 +32,7 @@ public class RaizVistaController {
     @FXML
     private Button btnConfiguracion;
     @FXML
-    private Button btnAyuda;
+    private Button btnCerrarSesion;
     @FXML
     private Label lblAdmin;
     @FXML
@@ -44,7 +45,21 @@ public class RaizVistaController {
      * Initializes the controller class.
      */
     public void initialize() {
-        listeners();
+        listeners(); 
+        lblAdmin.setText(Sesiones.getCuenta().getPersona().toString());
+        menuPorRol();
+    }
+    
+    public void menuPorRol(){
+        if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) {
+            lblRol.setText(Sesiones.getCuenta().getPersona().getCiudad().toUpperCase() + ", "
+                + Sesiones.getCuenta().getPersona().getPais().toUpperCase());
+            btnHabitacion.setVisible(false);
+            btnServicio.setVisible(false);
+            btnCliente.setVisible(false);
+        }else{            
+            lblRol.setText(Sesiones.getCuenta().getPersona().getRol().getNombre().toUpperCase());
+        }
     }
     
     private void listeners(){
@@ -75,22 +90,19 @@ public class RaizVistaController {
         });
         
         btnServicio.setOnAction((event)->{
-            claseCSS(btnServicio);
+            if(claseCSS(btnServicio))
+                principal.fijarCentroPane("PanelServicios");
             event.consume();
         });
         
         btnCliente.setOnAction((event)->{
-            claseCSS(btnCliente);
+            if(claseCSS(btnCliente))
+                principal.fijarCentroPane("PanelClientes");
             event.consume();
         });
         
         btnConfiguracion.setOnAction((event)->{
             claseCSS(btnConfiguracion);
-            event.consume();
-        });
-        
-        btnAyuda.setOnAction((event)->{
-            claseCSS(btnAyuda);
             event.consume();
         });
     }
@@ -117,4 +129,10 @@ public class RaizVistaController {
         this.ventana = ventana;
     }   
     
+    
+    @FXML
+    private void cerrarSesion(){
+        ventana.close();
+        principal.mostrarLoginVista(ventana);
+    }
 }
