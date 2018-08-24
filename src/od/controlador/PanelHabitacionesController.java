@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import od.controlador.servicio.ServicioHabitacion;
 import od.utilidades.Validadores;
 /**
@@ -20,8 +19,7 @@ import od.utilidades.Validadores;
  */
 public class PanelHabitacionesController {
 
-    @FXML
-    Pane panelHecho;
+    
     @FXML
     private TextField campoBusqueda;
     @FXML
