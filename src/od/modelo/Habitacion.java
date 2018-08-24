@@ -55,7 +55,7 @@ public class Habitacion implements Serializable {
     @JoinColumn(name = "id_detalle", referencedColumnName = "id_detalle")
     private Detalle detalle;
     
-    @OneToMany(mappedBy = "habitacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Servicio> listaServicio = new ArrayList<>();
     
 
