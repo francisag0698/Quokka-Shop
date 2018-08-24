@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -13,28 +18,29 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 
-<ScrollPane prefHeight="638.0" prefWidth="740.0" styleClass="background" stylesheets="@nuevareserva.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.PanelNuevaReservacionController">
+<ScrollPane prefHeight="638.0" prefWidth="740.0" styleClass="background" stylesheets="@nuevareserva.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.PanelNuevaReservacionController">
    <content>
       <AnchorPane id="AnchorPane" maxHeight="836.0" maxWidth="738.0" minHeight="738.0" minWidth="725.0" prefHeight="836.0" prefWidth="600.0" styleClass="background">
          <children>
             <Label layoutX="43.0" layoutY="34.0" styleClass="title-pane" text="Registrar Reserva" />
             <Label layoutX="43.0" layoutY="76.0" styleClass="subtitle-pane" text="Curabitur sit amet sagittis urna. Fusce venenatis turpis et tellus." />
-            <TextField layoutX="224.0" layoutY="116.0" prefHeight="30.0" prefWidth="264.0" promptText="DNI Cliente" styleClass="d-form-item" />
+            <TextField fx:id="campoDNI" layoutX="224.0" layoutY="116.0" onAction="#validarID" prefHeight="30.0" prefWidth="264.0" promptText="DNI Cliente" styleClass="d-form-item" />
+            <Label fx:id="lblError" layoutX="45.0" layoutY="566.0" prefHeight="21.0" prefWidth="396.0" styleClass="label-error" visible="false" />
             <Label layoutX="43.0" layoutY="168.0" styleClass="divider-label" text="DATOS DE RESERVA" />
             <Line endX="444.0" layoutX="246.0" layoutY="175.0" startX="-96.0" stroke="#8a8f9c" strokeType="OUTSIDE" strokeWidth="0.3" />
-            <Pane disable="true" layoutX="43.0" layoutY="198.0">
+            <Pane fx:id="panelReserva" disable="true" layoutX="43.0" layoutY="198.0">
                <children>
-                  <DatePicker prefHeight="30.0" prefWidth="318.0" promptText="Fecha de Entrada" styleClass="d-form-item" />
-                  <DatePicker layoutX="330.0" prefHeight="30.0" prefWidth="318.0" promptText="Fecha de Salida" styleClass="d-form-item" />
+                  <DatePicker fx:id="campoFechaEntrada" prefHeight="30.0" prefWidth="318.0" promptText="Fecha de Entrada" styleClass="d-form-item" />
+                  <DatePicker fx:id="campoFechaSalida" layoutX="330.0" prefHeight="30.0" prefWidth="318.0" promptText="Fecha de Salida" styleClass="d-form-item" />
                   <Label layoutY="53.0" styleClass="d-label" text="Cantidad de Personas:" />
-                  <TextField layoutX="152.0" layoutY="45.0" prefHeight="30.0" prefWidth="192.0" promptText="Nro. Adultos" styleClass="d-form-item" />
-                  <TextField layoutX="355.0" layoutY="45.0" prefHeight="30.0" prefWidth="192.0" promptText="Nro. Niños" styleClass="d-form-item" />
-                  <Button layoutX="558.0" layoutY="45.0" mnemonicParsing="false" prefHeight="30.0" styleClass="btn-secondary" text="COMPROBAR" />
+                  <TextField fx:id="campoNroAdultos" layoutX="152.0" layoutY="45.0" prefHeight="30.0" prefWidth="192.0" promptText="Nro. Adultos" styleClass="d-form-item" />
+                  <TextField fx:id="campoNroNinios" layoutX="355.0" layoutY="45.0" prefHeight="30.0" prefWidth="192.0" promptText="Nro. Niños" styleClass="d-form-item" />
+                  <Button layoutX="558.0" layoutY="45.0" mnemonicParsing="false" onAction="#validarPanel1" prefHeight="30.0" styleClass="btn-secondary" text="COMPROBAR" />
                </children>
             </Pane>
             <Label layoutX="45.0" layoutY="296.0" styleClass="divider-label" text="DATOS DE HABITACIONES" />
             <Line endX="444.0" layoutX="248.0" layoutY="303.0" startX="-72.0" stroke="#8a8f9c" strokeType="OUTSIDE" strokeWidth="0.3" />
-            <Pane disable="true" layoutX="45.0" layoutY="325.0">
+            <Pane fx:id="panelHabitaciones" disable="true" layoutX="45.0" layoutY="325.0">
                <children>
                   <ComboBox prefHeight="30.0" prefWidth="279.0" promptText="Seleccione el tipo de habitación" styleClass="d-form-item" />
                   <Pane layoutX="1.0" layoutY="44.0" prefHeight="187.0" prefWidth="279.0" styleClass="wrap-item">
@@ -52,9 +58,9 @@
                   </Pane>
                   <Label layoutX="294.0" layoutY="19.0" styleClass="d-label" text="Lista de Servicios:" />
                   <ListView layoutX="294.0" layoutY="44.0" prefHeight="187.0" prefWidth="174.0" styleClass="d-form-item" />
-                  <TextField layoutX="481.0" layoutY="44.0" prefHeight="30.0" prefWidth="165.0" promptText="# Habitaciones" styleClass="d-form-item" />
-                  <TextField layoutX="481.0" layoutY="86.0" prefHeight="30.0" prefWidth="165.0" promptText="# Huespedes" styleClass="d-form-item" />
-                  <Button layoutX="481.0" layoutY="200.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="165.0" styleClass="btn-secondary" text="AÑADIR" />
+                  <TextField fx:id="campoNroHabitaciones" layoutX="481.0" layoutY="44.0" prefHeight="30.0" prefWidth="165.0" promptText="# Habitaciones" styleClass="d-form-item" />
+                  <TextField fx:id="campoNroHuespedes" layoutX="481.0" layoutY="86.0" prefHeight="30.0" prefWidth="165.0" promptText="# Huespedes" styleClass="d-form-item" />
+                  <Button layoutX="481.0" layoutY="200.0" mnemonicParsing="false" onAction="#validarPanel2" prefHeight="30.0" prefWidth="165.0" styleClass="btn-secondary" text="AÑADIR" />
                   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="533.0" layoutY="147.0" maxWidth="111.0" prefHeight="40.0" prefWidth="111.0" styleClass="price-label" text="\$000.00" textAlignment="RIGHT" />
                   <Label layoutX="484.0" layoutY="164.0" styleClass="d-label" text="Precio:" />
                </children>
