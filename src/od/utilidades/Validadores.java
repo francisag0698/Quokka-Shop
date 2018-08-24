@@ -7,6 +7,7 @@ package od.utilidades;
 
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 /**
@@ -15,6 +16,17 @@ import javafx.scene.control.TextField;
  */
 public class Validadores {
     public static boolean validarTF(TextField obj){
+        if(obj.getText().isEmpty()){
+            if (!obj.getStyleClass().contains("error")) 
+                obj.getStyleClass().add("error");                        
+            return false;  
+        }else{
+            if (obj.getStyleClass().contains("error")) 
+                obj.getStyleClass().remove("error");
+            return true; 
+        }
+    }
+    public static boolean validarTA(TextArea obj){
         if(obj.getText().isEmpty()){
             if (!obj.getStyleClass().contains("error")) 
                 obj.getStyleClass().add("error");                        

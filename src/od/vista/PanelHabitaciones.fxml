@@ -26,10 +26,10 @@
                <content>
                   <AnchorPane prefHeight="485.0" prefWidth="642.0">
                      <children>
-                        <TextField layoutY="18.0" prefHeight="25.0" prefWidth="334.0" promptText="Busqueda" />
-                        <ComboBox layoutX="342.0" layoutY="18.0" prefHeight="25.0" prefWidth="141.0" promptText="Filtrar por:" />
-                        <ComboBox disable="true" layoutX="492.0" layoutY="18.0" prefWidth="150.0" promptText="Sin selección" />
-                        <TableView layoutY="55.0" prefHeight="368.0" prefWidth="642.0">
+                        <TextField fx:id="campoBuscar" layoutY="18.0" prefHeight="25.0" prefWidth="334.0" />
+                        <ComboBox fx:id="comboFiltro" layoutX="342.0" layoutY="18.0" prefHeight="25.0" prefWidth="141.0" promptText="Filtrar por:" />
+                        <ComboBox fx:id="comboSelecion" disable="true" layoutX="492.0" layoutY="18.0" prefWidth="150.0" promptText="Sin selección" />
+                        <TableView fx:id="tablaHabitacion" layoutY="55.0" prefHeight="368.0" prefWidth="642.0">
                           <columns>
                             <TableColumn prefWidth="218.0" text="Nombre" />
                             <TableColumn prefWidth="121.0" text="Tipo" />
@@ -53,22 +53,21 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutY="19.0" prefHeight="25.0" prefWidth="262.0" promptText="Código" />
-                        <TextField layoutY="70.0" prefHeight="25.0" prefWidth="419.0" promptText="Nombre" />
-                        <ComboBox layoutX="428.0" layoutY="70.0" prefHeight="25.0" prefWidth="214.0" promptText="Tipo de Habitación" />
-                        <TextArea layoutY="145.0" prefHeight="97.0" prefWidth="319.0" promptText="Descripción de la Habitación" />
-                        <TextField layoutY="107.0" promptText="Capacidad" />
-                        <TextField layoutX="161.0" layoutY="107.0" promptText="Nro. de Camas" />
-                        <TextField layoutX="322.0" layoutY="107.0" promptText="Precio" />
-                        <TextArea layoutX="331.0" layoutY="145.0" prefHeight="97.0" prefWidth="311.0" promptText="Condiciones" />
-                        <Label layoutY="257.0" text="Estado:" />
-                        <ComboBox layoutX="51.0" layoutY="253.0" prefHeight="25.0" prefWidth="235.0" />
+                        <TextField fx:id="campoCodigo" layoutY="19.0" prefHeight="25.0" prefWidth="262.0" promptText="Código" />
+                        <TextField fx:id="campoNombre" layoutY="70.0" prefHeight="25.0" prefWidth="419.0" promptText="Nombre" />
+                        <ComboBox fx:id="comboTipo" layoutX="428.0" layoutY="70.0" prefHeight="25.0" prefWidth="214.0" promptText="Tipo de Habitación" />
+                        <TextArea fx:id="areaHabitacion" layoutY="145.0" prefHeight="97.0" prefWidth="319.0" promptText="Descripción de la Habitación" />
+                        <TextField fx:id="campoCapacidad" layoutY="107.0" promptText="Capacidad" />
+                        <TextField fx:id="campoCamas" layoutX="161.0" layoutY="107.0" promptText="Nro. de Camas" />
+                        <TextField fx:id="campoPrecio" layoutX="322.0" layoutY="107.0" promptText="Precio" />
+                        <TextArea fx:id="areaCondiciones" layoutX="331.0" layoutY="145.0" prefHeight="97.0" prefWidth="311.0" promptText="Condiciones" />
                         <ButtonBar layoutX="340.0" layoutY="303.0" prefHeight="40.0" prefWidth="302.0">
                           <buttons>
-                            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Guardar Habitación" />
-                              <Button mnemonicParsing="false" prefHeight="25.0" text="Borrar Campos" />
+                            <Button mnemonicParsing="false" onAction="#handleGuardar" prefHeight="25.0" prefWidth="145.0" text="Guardar Habitación" />
+                              <Button mnemonicParsing="false" onAction="#handleBorrar" prefHeight="25.0" text="Borrar Campos" />
                           </buttons>
                         </ButtonBar>
+                        <Label fx:id="lblError" alignment="CENTER_RIGHT" layoutX="339.0" layoutY="23.0" prefHeight="17.0" prefWidth="246.0" text="Rellene los campos vacios" textFill="#dd1d1d" visible="false" />
                      </children></AnchorPane>
                </content>
             </Tab>
