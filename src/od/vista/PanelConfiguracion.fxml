@@ -26,7 +26,7 @@
       <TextField layoutX="255.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
       <TextField layoutX="62.0" layoutY="386.0" prefHeight="25.0" prefWidth="375.0" />
       <Button layoutX="329.0" layoutY="428.0" mnemonicParsing="false" text="Guardar Cambios" />
-      <TextField layoutX="491.0" layoutY="178.0" prefHeight="25.0" prefWidth="183.0" />
+      <TextField editable="false" layoutX="491.0" layoutY="178.0" prefHeight="25.0" prefWidth="183.0" />
       <TextField layoutX="491.0" layoutY="231.0" prefHeight="25.0" prefWidth="183.0" />
       <TextField layoutX="491.0" layoutY="283.0" prefHeight="25.0" prefWidth="183.0" />
       <TextField layoutX="491.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
