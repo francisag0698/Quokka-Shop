@@ -35,7 +35,7 @@ public class ServicioServicio {
     public void fijarServicio(Servicio servicio){
         obj.setServicio(servicio);
     }
-    public List<Reservacion>listarBusqueda(String texto){
+    public List<Servicio>listarBusqueda(String texto){
         return obj.listarBusqueda(texto);
     }
 }

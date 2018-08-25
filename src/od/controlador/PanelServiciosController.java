@@ -8,11 +8,13 @@ package od.controlador;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import od.controlador.servicio.ServicioServicio;
 import od.modelo.Servicio;
 import od.utilidades.Validadores;
@@ -31,9 +33,9 @@ public class PanelServiciosController {
     @FXML
     private TextField campoBusqueda;
     @FXML
-    private TableView tablaServicios;
+    private TableView<Servicio> tablaServicios;
     @FXML
-    private Label lblError;
+    private Pane panelFormServicio;
     @FXML
     private TableColumn<Servicio, String> columnaDescripcion;
     @FXML
@@ -51,10 +53,13 @@ public class PanelServiciosController {
     private boolean validar (){
         if(Validadores.validarTA(areaDesServicio)
                 & Validadores.validarTF(campoCostoS)){
-            lblError.setText("Guardado ");
             return true;
         }else{
-            lblError.setText("No guardado");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Campos vacíos");
+            alert.setHeaderText("");
+            alert.setContentText("Rellene todos los campos del formulario.");
+            alert.showAndWait();
             return false;
         }
     }
@@ -69,45 +74,79 @@ public class PanelServiciosController {
         columnaDescripcion.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getNombre_servicio()));
         columnaCosto.setCellValueFactory(cellData ->  new SimpleStringProperty(cellData.getValue().getPrecio().toString()));
-        
+        tablaServicios.refresh();
     }
     private void limpiar(){
         areaDesServicio.setText("");
-         campoCostoS.setText("");
-         ss.fijarServicio(null);
+        campoCostoS.setText("");
+        ss.fijarServicio(null);
     }
-    public void guardar(){
+    
+    private void guardar(){
         cargarObjeto();
         if(ss.guardar()){
             limpiar();
-            lblError.setText("Guardado");
+            panelFormServicio.setDisable(true);
+            cargarTabla();
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Guardado");
+            alert.setHeaderText("");
+            alert.setContentText("Se ha guardado el registro correctamente.");
+            alert.showAndWait();
         }else{
-            lblError.setText("No Guardado");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("");
+            alert.setContentText("Ha ocurrido un error al guardar.");
+            alert.showAndWait();
         }
     }
+    
     @FXML
-    private void buscar(){
-        
+    private void buscar(){        
         if(campoBusqueda.getText().trim().length() >= 3){
             tablaServicios.setItems(FXCollections.observableList(ss.listarBusqueda(campoBusqueda.getText())));
+            tablaServicios.refresh();
+        }else if(campoBusqueda.getText().trim().length() == 0){
+            cargarTabla();
         }
-        tablaServicios.refresh();
+        
     }
+    
+    @FXML
+    private void handleNuevo(){
+        panelFormServicio.setDisable(false);
+        limpiar();
+    }
+    
     @FXML
     private void handleGuardar(){
         if(validar()){
             guardar();
-            cargarTabla();
             System.out.println("guardado");
         }
     }
     @FXML
     private void handleCancelar(){
+        panelFormServicio.setDisable(true);
         limpiar();
     }
     @FXML
     private void handleModificar(){
-        
+        if (tablaServicios.getSelectionModel().getSelectedItem() != null) {
+            //System.out.println(tablaServicios.getSelectionModel().getSelectedItem());
+            ss.fijarServicio(tablaServicios.getSelectionModel().getSelectedItem());
+            areaDesServicio.setText(ss.getServicio().getNombre_servicio());
+            campoCostoS.setText(ss.getServicio().getPrecio().toString());
+            panelFormServicio.setDisable(false);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Sin selección");
+            alert.setHeaderText("");
+            alert.setContentText("Por favor, seleccione un elemento de la tabla.");
+            alert.showAndWait();
+        }            
     }
     @FXML
     private void handleEliminar(){

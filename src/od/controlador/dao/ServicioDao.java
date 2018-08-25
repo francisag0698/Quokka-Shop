@@ -48,11 +48,12 @@ public class ServicioDao extends  AdaptadorDao<Servicio>{
         }
         return verificar;
     }
-    public List<Reservacion>listarBusqueda(String texto){
-        List<Reservacion> lista= new ArrayList<>();
+    
+    public List<Servicio>listarBusqueda(String texto){
+        List<Servicio> lista= new ArrayList<>();
         try {
             Query q = getManager()
-                    .createQuery("SELECT s FROM Servicio s WHERE (LOWER(s.nombre_servicio) LIKE CONCAT('%', :texto, '%'))");//lower es minusculas
+                    .createQuery("SELECT s FROM Servicio s WHERE (LOWER(s.nombre_servicio) LIKE CONCAT('%', :texto, '%'))");
             q.setParameter("texto", texto);
             lista = q.getResultList();
         } catch (Exception e) {

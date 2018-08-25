@@ -7,13 +7,16 @@ package od.controlador;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -43,8 +46,6 @@ public class PanelClientesController {
     private TableColumn<Persona, String> colProcedencia;
     
     @FXML
-    private ComboBox cbxTipoDNI;
-    @FXML
     private TextField txtNroDNI;
     @FXML
     private TextField txtNombres;
@@ -71,7 +72,11 @@ public class PanelClientesController {
     private ComboBox cbxComboSeleccion;
     
     @FXML
-    private Label lblMensaje;
+    private TabPane tbpClientes;
+    @FXML
+    private Tab tabListado;
+    @FXML
+    private Tab tabFormulario;
     
     private ServicioPersona sp = new ServicioPersona();
     
@@ -117,6 +122,7 @@ public class PanelClientesController {
         colProcedencia.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getCiudad())
         );
+        tblCliente.refresh();
     }
     
     private boolean validar(){
@@ -129,19 +135,30 @@ public class PanelClientesController {
                 & Validadores.validarTF(txtCiudad)
                 & Validadores.validarTF(txtDireccion)){
             if (UtilidadesComponentes.validadorDeCedula(txtNroDNI.getText())) {
-                if (sp.ObtenerPersonaCedula(txtNroDNI.getText()) == null) {
-                    lblMensaje.setText("");
+                if (sp.ObtenerPersonaCedula(txtNroDNI.getText()) == null || sp.getPersona().getId_persona() != null) {
                     return true;
                 }else{
-                    lblMensaje.setText("Nro de Identificacion existente.");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Registo Duplicado");
+                    alert.setHeaderText("");
+                    alert.setContentText("La cédula ingresada ya existe.");
+                    alert.showAndWait();
                     return false;
                 }
             }else{
-                lblMensaje.setText("El numero de identificacion es incorrecto.");
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Dato Incorrecto");
+                alert.setHeaderText("");
+                alert.setContentText("La cédula ingresada es incorrecta.");
+                alert.showAndWait();
                 return false; 
             }
         }else{
-            lblMensaje.setText("Rellene los campos vacíos.");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Campos Vacíos");
+            alert.setHeaderText("");
+            alert.setContentText("Rellene todos los campos vacíos.");
+            alert.showAndWait();
             return false;
         }
     }
@@ -165,6 +182,7 @@ public class PanelClientesController {
     
     private void limpiar(){
         txtNroDNI.setText("");
+        txtNroDNI.setDisable(false);
         txtNombres.setText("");
         txtApellidos.setText("");
         dpFecha.setValue(null);
@@ -204,11 +222,48 @@ public class PanelClientesController {
         if (validar()) {
             cargarObjeto();
             if (sp.guardar()) {
-                System.out.println("Guardado");
                 limpiar();
                 cargarTabla();
-            }            
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Guardado");
+                alert.setHeaderText("");
+                alert.setContentText("Se ha guardado el registro correctamente.");
+                alert.showAndWait();
+                tbpClientes.getSelectionModel().select(tabListado);
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("");
+                alert.setContentText("Ha ocurrido un error al guardar.");
+                alert.showAndWait();
+            }          
         }
+    }
+    
+    @FXML
+    private void handleModificar(){
+        if (tblCliente.getSelectionModel().getSelectedItem() != null){
+            sp.fijarPersona(tblCliente.getSelectionModel().getSelectedItem());
+            txtNroDNI.setText(sp.getPersona().getDni());
+            txtNroDNI.setDisable(true);
+            txtNombres.setText(sp.getPersona().getNombres());
+            txtApellidos.setText((sp.getPersona().getApellidos()));
+            dpFecha.setValue(LocalDate.parse(sp.getPersona().getFecha_nacimiento().toString()));
+            cbxGenero.setValue(sp.getPersona().getSexo());
+            txtTelefono.setText(sp.getPersona().getTelefono());
+            txtPais.setText(sp.getPersona().getPais());
+            txtCiudad.setText(sp.getPersona().getCiudad());
+            txtDireccion.setText(sp.getPersona().getDireccion());
+            
+            tbpClientes.getSelectionModel().select(tabFormulario);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Sin selección");
+            alert.setHeaderText("");
+            alert.setContentText("Por favor, seleccione un elemento de la tabla.");
+            alert.showAndWait();
+        }        
     }
     
     @FXML

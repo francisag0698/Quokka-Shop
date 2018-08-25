@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane id="AnchorPane" prefHeight="638.0" prefWidth="738.0" styleClass="background" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.PanelServiciosController">
     <stylesheets>
@@ -27,20 +28,24 @@
       <ButtonBar layoutX="493.0" layoutY="527.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
             <Button mnemonicParsing="false" onAction="#handleModificar" text="Modificar" />
-            <Button mnemonicParsing="false" onAction="#handleEliminar" text="Eliminar" />
+            <Button mnemonicParsing="false" onAction="#handleEliminar" text="Detalles" />
         </buttons>
       </ButtonBar>
       <Label layoutX="369.0" layoutY="123.0" text="Búsqueda:" />
-      <TextArea fx:id="areaDesServicio" layoutX="44.0" layoutY="143.0" prefHeight="128.0" prefWidth="294.0" promptText="Ej: Televisón por Cable" />
-      <Label layoutX="44.0" layoutY="119.0" text="Descripción del Servicio" />
-      <Label layoutX="98.0" layoutY="289.0" text="Costo del Servicio:" />
-      <TextField fx:id="campoCostoS" layoutX="211.0" layoutY="285.0" prefHeight="25.0" prefWidth="126.0" />
-      <ButtonBar layoutX="137.0" layoutY="319.0" prefHeight="40.0" prefWidth="200.0">
-        <buttons>
-            <Button mnemonicParsing="false" onAction="#handleGuardar" text="Guardar" />
-          <Button mnemonicParsing="false" onAction="#handleCancelar" text="Cancelar" />
-        </buttons>
-      </ButtonBar>
-      <Label fx:id="lblError" layoutX="180.0" layoutY="359.0" prefHeight="17.0" prefWidth="75.0" textFill="#da0101" />
+      <Pane fx:id="panelFormServicio" disable="true" layoutX="44.0" layoutY="159.0">
+         <children>
+            <TextArea fx:id="areaDesServicio" layoutY="24.0" prefHeight="128.0" prefWidth="294.0" promptText="Ej: Televisón por Cable" />
+            <Label text="Descripción del Servicio" />
+            <Label layoutX="54.0" layoutY="170.0" text="Costo del Servicio:" />
+            <TextField fx:id="campoCostoS" layoutX="167.0" layoutY="166.0" prefHeight="25.0" prefWidth="126.0" />
+            <ButtonBar layoutX="93.0" layoutY="200.0" prefHeight="40.0" prefWidth="200.0">
+              <buttons>
+                  <Button mnemonicParsing="false" onAction="#handleGuardar" text="Guardar" />
+                <Button mnemonicParsing="false" onAction="#handleCancelar" text="Cancelar" />
+              </buttons>
+            </ButtonBar>
+         </children>
+      </Pane>
+      <Button layoutX="44.0" layoutY="119.0" mnemonicParsing="false" onAction="#handleNuevo" text="Nuevo Servicio" />
    </children>
 </AnchorPane>
