@@ -15,11 +15,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import od.controlador.servicio.ServicioPersona;
 import od.controlador.servicio.ServicioRol;
 import od.modelo.Persona;
@@ -77,6 +79,27 @@ public class PanelClientesController {
     private Tab tabListado;
     @FXML
     private Tab tabFormulario;
+    
+    @FXML
+    private Pane panelDescr;
+    @FXML
+    private Label lblDNI;
+    @FXML
+    private Label lblNombres;
+    @FXML
+    private Label lblApellidos;
+    @FXML
+    private Label lblNacimiento;
+    @FXML
+    private Label lblGenero;
+    @FXML
+    private Label lblTelefono;
+    @FXML
+    private Label lblPais;
+    @FXML
+    private Label lblCiudad;
+    @FXML
+    private Label lblDireccion;    
     
     private ServicioPersona sp = new ServicioPersona();
     
@@ -281,5 +304,41 @@ public class PanelClientesController {
             cbxComboSeleccion.setDisable(true);
             buscarTexto();
         }        
+    }
+    
+    @FXML
+    private void handleDetalles(){
+        if (tblCliente.getSelectionModel().getSelectedItem() != null){
+            lblDNI.setText(tblCliente.getSelectionModel().getSelectedItem().getDni());
+            lblNombres.setText(tblCliente.getSelectionModel().getSelectedItem().getNombres());
+            lblApellidos.setText(tblCliente.getSelectionModel().getSelectedItem().getApellidos());
+            lblNacimiento.setText(tblCliente.getSelectionModel().getSelectedItem().getFecha_nacimiento().toString());
+            lblGenero.setText(tblCliente.getSelectionModel().getSelectedItem().getSexo());
+            lblTelefono.setText(tblCliente.getSelectionModel().getSelectedItem().getTelefono());
+            lblPais.setText(tblCliente.getSelectionModel().getSelectedItem().getPais());
+            lblCiudad.setText(tblCliente.getSelectionModel().getSelectedItem().getCiudad());
+            lblDireccion.setText(tblCliente.getSelectionModel().getSelectedItem().getDireccion());
+            panelDescr.setVisible(true);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Sin selección");
+            alert.setHeaderText("");
+            alert.setContentText("Por favor, seleccione un elemento de la tabla.");
+            alert.showAndWait();
+        }
+    }
+    
+    @FXML
+    private void handleRegresar(){
+        panelDescr.setVisible(false);
+        lblDNI.setText("");
+        lblNombres.setText("");
+        lblApellidos.setText("");
+        lblNacimiento.setText("");
+        lblGenero.setText("");
+        lblTelefono.setText("");
+        lblPais.setText("");
+        lblCiudad.setText("");
+        lblDireccion.setText("");
     }
 }

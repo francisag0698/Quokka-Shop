@@ -8,12 +8,16 @@ package od.controlador;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import od.controlador.servicio.ServicioHabitacion;
 import od.modelo.Habitacion;
 import od.utilidades.Validadores;
@@ -32,8 +36,6 @@ public class PanelHabitacionesController {
     @FXML
     private ComboBox comboSelecion;
     @FXML
-    private TableView<Habitacion> tablaHabitacion;
-    @FXML
     private TextField campoCodigo;
     @FXML
     private TextField campoNombre;
@@ -48,9 +50,12 @@ public class PanelHabitacionesController {
     @FXML
     private TextArea areaCondiciones;
     @FXML
-    private Label lblError;
-    @FXML
     private TextField campoPrecio;
+    @FXML
+    private TextField campoCantidad;
+    
+    @FXML
+    private TableView<Habitacion> tablaHabitacion;
     @FXML
     private TableColumn<Habitacion, String> nombresColumna;
     @FXML
@@ -63,6 +68,34 @@ public class PanelHabitacionesController {
     private TableColumn<Habitacion, String> precioColumna;
     @FXML
     private TableColumn<Habitacion, String> estadoColumna;
+    
+    @FXML
+    private TabPane tbpHabitaciones;
+    @FXML
+    private Tab tabListado;
+    @FXML
+    private Tab tabFormulario;
+    
+    @FXML
+    private Pane panelDescr;
+    @FXML
+    private Label lblCodigo;
+    @FXML
+    private Label lblNombre;
+    @FXML
+    private Label lblTipo;
+    @FXML
+    private Label lblCamas;
+    @FXML
+    private Label lblCapacidad;
+    @FXML
+    private Label lblCantidad;
+    @FXML
+    private Label lblPrecio;
+    @FXML
+    private Label lblDescripcion;
+    @FXML
+    private Label lblCondiciones;
 
     private ServicioHabitacion sh = new ServicioHabitacion();
 
@@ -95,13 +128,30 @@ public class PanelHabitacionesController {
                 & Validadores.validarTF(campoNombre)
                 & Validadores.validarTF(campoCapacidad)
                 & Validadores.validarTF(campoCamas)
+                & Validadores.validarTF(campoPrecio)
+                & Validadores.validarTF(campoCantidad)
                 & Validadores.validarTA(areaCondiciones)
-                & Validadores.validarTA(areaHabitacion)) {
-            lblError.setVisible(false);
-            return true;
+                & Validadores.validarTA(areaHabitacion)
+                & comboTipo.getValue() != null) {
+            if (Validadores.validarValor(campoCapacidad, 'i')
+                & Validadores.validarValor(campoCamas, 'i')
+                & Validadores.validarValor(campoPrecio, 'd')
+                & Validadores.validarValor(campoCantidad, 'i')) {
+                return true;
+            }else{
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Error en los datos");
+                alert.setHeaderText("");
+                alert.setContentText("Los datos ingresados no son válidos.");
+                alert.showAndWait();
+                return false; 
+            }            
         } else {
-            lblError.setText("Rellene los campos obligatorios.");
-            lblError.setVisible(true);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Campos Vacíos");
+            alert.setHeaderText("");
+            alert.setContentText("Rellene todos los campos vacíos.");
+            alert.showAndWait();
             return false;
         }
     }
@@ -112,6 +162,7 @@ public class PanelHabitacionesController {
         sh.getHabitacion().setCondiciones(areaCondiciones.getText());
         sh.getHabitacion().setPrecio(Double.parseDouble(campoPrecio.getText()));
         sh.getHabitacion().setNro_camas(Integer.parseInt(campoCamas.getText()));
+        sh.getHabitacion().setCantidad(Integer.parseInt(campoCantidad.getText()));
         sh.getHabitacion().setDescripcion(areaHabitacion.getText());
         sh.getHabitacion().setEstado(true);
         sh.getHabitacion().setTipo(comboTipo.getValue().toString());
@@ -122,24 +173,34 @@ public class PanelHabitacionesController {
         campoCamas.setText("");
         campoCapacidad.setText("");
         campoCodigo.setText("");
+        campoCodigo.setDisable(false);
         campoNombre.setText("");
         campoPrecio.setText("");
         areaCondiciones.setText("");
         areaHabitacion.setText("");
-
+        campoCantidad.setText("");
+        comboTipo.setValue(null);
+        
+        sh.fijarHabitacion(null);
     }
 
     public void guardar() {
         cargarObjeto();
-        if (sh.guardar()) {
-            limpiar();
-            lblError.setVisible(false);
-//            panelHecho.setVisible(true);
-            System.out.println("Guardado");
+        if (sh.guardar()) {            
             cargarTabla();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Guardado");
+            alert.setHeaderText("");
+            alert.setContentText("Se ha guardado el registro correctamente.");
+            alert.showAndWait();
+            tbpHabitaciones.getSelectionModel().select(tabListado);
+            limpiar();
         } else {
-            lblError.setText("Ah ocurrido un error al intentar guardar.");
-            lblError.setVisible(true);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("");
+            alert.setContentText("Ha ocurrido un error al guardar.");
+            alert.showAndWait();
         }
 
     }
@@ -147,8 +208,33 @@ public class PanelHabitacionesController {
     @FXML
     private void handleGuardar() {
         if (validar()) {
-            guardar();
+            guardar();            
             System.out.println("Guardado");
+        }
+    }
+    
+    @FXML
+    private void handleModificar(){
+        if (tablaHabitacion.getSelectionModel().getSelectedItem() != null) {
+            sh.fijarHabitacion(tablaHabitacion.getSelectionModel().getSelectedItem());
+            campoCodigo.setText(sh.getHabitacion().getCodigo());
+            campoCodigo.setDisable(true);
+            campoNombre.setText(sh.getHabitacion().getNombre());
+            comboTipo.setValue(sh.getHabitacion().getTipo());
+            campoCapacidad.setText(sh.getHabitacion().getCapacidad().toString());
+            campoCamas.setText(sh.getHabitacion().getNro_camas().toString());
+            campoPrecio.setText(sh.getHabitacion().getPrecio().toString());
+            campoCantidad.setText(sh.getHabitacion().getCantidad().toString());
+            areaHabitacion.setText(sh.getHabitacion().getDescripcion());
+            areaCondiciones.setText(sh.getHabitacion().getCondiciones());
+            
+            tbpHabitaciones.getSelectionModel().select(tabFormulario);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Sin selección");
+            alert.setHeaderText("");
+            alert.setContentText("Por favor, seleccione un elemento de la tabla.");
+            alert.showAndWait();
         }
     }
 
@@ -178,11 +264,11 @@ public class PanelHabitacionesController {
         estadoColumna.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getEstado().toString())
         );
+        tablaHabitacion.refresh();
     }
 
     @FXML
     private void filtrarSeleccion() {
-
         if (comboFiltro.getValue().toString().equals("Filtrar por:")) {
             cargarTabla();
             comboSelecion.setDisable(true);
@@ -242,5 +328,41 @@ public class PanelHabitacionesController {
         } else {
             filtrarSeleccion();
         }
+    }
+    
+    @FXML
+    private void handleDetalles(){
+        if (tablaHabitacion.getSelectionModel().getSelectedItem() != null){
+            lblCodigo.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getCodigo());
+            lblNombre.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getNombre());
+            lblTipo.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getTipo());
+            lblCamas.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getNro_camas().toString());
+            lblCapacidad.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getCapacidad().toString());
+            lblCantidad.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getCantidad().toString());
+            lblPrecio.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getPrecio().toString());
+            lblDescripcion.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getDescripcion());
+            lblCondiciones.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getCondiciones());
+            panelDescr.setVisible(true);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Sin selección");
+            alert.setHeaderText("");
+            alert.setContentText("Por favor, seleccione un elemento de la tabla.");
+            alert.showAndWait();
+        }
+    }
+    
+    @FXML
+    private void handleRegresar(){
+        panelDescr.setVisible(false);
+        lblCodigo.setText("");
+        lblNombre.setText("");
+        lblTipo.setText("");
+        lblCamas.setText("");
+        lblCapacidad.setText("");
+        lblCantidad.setText("");
+        lblPrecio.setText("");
+        lblDescripcion.setText("");
+        lblCondiciones.setText("");     
     }
 }

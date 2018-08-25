@@ -41,6 +41,13 @@ public class PanelServiciosController {
     @FXML
     private TableColumn<Servicio, String> columnaCosto;
     
+    @FXML
+    private Pane panelDescr;
+    @FXML
+    private Label etiquetaCosto;
+    @FXML
+    private Label etiquetaDescripcion;
+    
     private ServicioServicio ss = new ServicioServicio();
     
     /**
@@ -148,8 +155,26 @@ public class PanelServiciosController {
             alert.showAndWait();
         }            
     }
+    
     @FXML
-    private void handleEliminar(){
-        
+    private void handleDetalles(){
+        if (tablaServicios.getSelectionModel().getSelectedItem() != null){
+            etiquetaCosto.setText(tablaServicios.getSelectionModel().getSelectedItem().getPrecio().toString());
+            etiquetaDescripcion.setText(tablaServicios.getSelectionModel().getSelectedItem().getNombre_servicio());
+            panelDescr.setVisible(true);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Sin selección");
+            alert.setHeaderText("");
+            alert.setContentText("Por favor, seleccione un elemento de la tabla.");
+            alert.showAndWait();
+        }
+    }
+    
+    @FXML
+    private void handleRegresar(){
+        panelDescr.setVisible(false);
+        etiquetaCosto.setText("");
+        etiquetaDescripcion.setText("");        
     }
 }

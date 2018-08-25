@@ -12,6 +12,8 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
 
 <AnchorPane id="AnchorPane" prefHeight="638.0" prefWidth="738.0" styleClass="background" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.PanelHabitacionesController">
     <stylesheets>
@@ -20,9 +22,9 @@
    <children>
       <Label layoutX="43.0" layoutY="34.0" styleClass="title-pane" text="Habitaciones" />
       <Label layoutX="43.0" layoutY="76.0" styleClass="subtitle-pane" text="Curabitur sit amet sagittis urna. Fusce venenatis turpis et tellus." />
-      <TabPane layoutX="43.0" layoutY="108.0" prefHeight="492.0" prefWidth="642.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tbpHabitaciones" layoutX="43.0" layoutY="108.0" prefHeight="492.0" prefWidth="642.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Listado de Habitaciones">
+          <Tab fx:id="tabListado" text="Listado de Habitaciones">
                <content>
                   <AnchorPane prefHeight="485.0" prefWidth="642.0">
                      <children>
@@ -39,29 +41,29 @@
                               <TableColumn fx:id="estadoColumna" prefWidth="88.0" text="Estado" />
                           </columns>
                         </TableView>
-                        <ButtonBar layoutX="377.0" layoutY="430.0" prefHeight="40.0" prefWidth="200.0">
+                        <ButtonBar layoutX="442.0" layoutY="427.0" prefHeight="40.0" prefWidth="200.0">
                           <buttons>
-                            <Button mnemonicParsing="false" text="Detalles" />
-                              <Button mnemonicParsing="false" text="Modificar" />
-                              <Button mnemonicParsing="false" text="Eliminar" />
+                            <Button mnemonicParsing="false" onAction="#handleDetalles" text="Detalles" />
+                              <Button mnemonicParsing="false" onAction="#handleModificar" text="Modificar" />
                           </buttons>
                         </ButtonBar>
                      </children></AnchorPane>
                </content>
             </Tab>
-          <Tab text="Nueva Habitación">
+          <Tab fx:id="tabFormulario" text="Nueva Habitación">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <TextField fx:id="campoCodigo" layoutY="19.0" prefHeight="25.0" prefWidth="262.0" promptText="Código" />
                         <TextField fx:id="campoNombre" layoutY="70.0" prefHeight="25.0" prefWidth="419.0" promptText="Nombre" />
                         <ComboBox fx:id="comboTipo" layoutX="428.0" layoutY="70.0" prefHeight="25.0" prefWidth="214.0" promptText="Tipo de Habitación" />
+                        <TextField fx:id="campoCapacidad" layoutY="107.0" prefHeight="25.0" prefWidth="163.0" promptText="Capacidad" />
+                        <TextField fx:id="campoCamas" layoutX="172.0" layoutY="107.0" prefHeight="25.0" prefWidth="148.0" promptText="Nro. de Camas" />
+                        <TextField fx:id="campoPrecio" layoutX="332.0" layoutY="107.0" prefHeight="25.0" prefWidth="172.0" promptText="Precio" />
+                        <TextField fx:id="campoCantidad" layoutX="515.0" layoutY="107.0" prefHeight="25.0" prefWidth="127.0" promptText="Cantidad" />
                         <TextArea fx:id="areaHabitacion" layoutY="145.0" prefHeight="97.0" prefWidth="319.0" promptText="Descripción de la Habitación" />
-                        <TextField fx:id="campoCapacidad" layoutY="107.0" promptText="Capacidad" />
-                        <TextField fx:id="campoCamas" layoutX="161.0" layoutY="107.0" promptText="Nro. de Camas" />
-                        <TextField fx:id="campoPrecio" layoutX="322.0" layoutY="107.0" promptText="Precio" />
                         <TextArea fx:id="areaCondiciones" layoutX="331.0" layoutY="145.0" prefHeight="97.0" prefWidth="311.0" promptText="Condiciones" />
-                        <ButtonBar layoutX="340.0" layoutY="303.0" prefHeight="40.0" prefWidth="302.0">
+                        <ButtonBar layoutX="340.0" layoutY="262.0" prefHeight="40.0" prefWidth="302.0">
                           <buttons>
                             <Button mnemonicParsing="false" onAction="#handleGuardar" prefHeight="25.0" prefWidth="145.0" text="Guardar Habitación" />
                               <Button mnemonicParsing="false" onAction="#handleBorrar" prefHeight="25.0" text="Borrar Campos" />
@@ -73,5 +75,30 @@
             </Tab>
         </tabs>
       </TabPane>
+      <Pane fx:id="panelDescr" layoutX="11.0" layoutY="22.0" prefHeight="670.0" prefWidth="1014.0" styleClass="wrap" stylesheets="@general.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Region layoutX="186.0" layoutY="110.0" prefHeight="419.0" prefWidth="366.0" styleClass="done-box" />
+            <Label layoutX="230.0" layoutY="146.0" prefHeight="29.0" prefWidth="272.0" styleClass="done-label" text="Detalles de Habitación" />
+            <Button layoutX="449.0" layoutY="467.0" mnemonicParsing="false" onAction="#handleRegresar" styleClass="done-button" text="Cerrar" />
+            <Label layoutX="230.0" layoutY="195.0" text="Código:" />
+            <Label layoutX="230.0" layoutY="223.0" text="Nombre:" />
+            <Label layoutX="230.0" layoutY="253.0" text="Tipo:" />
+            <Label layoutX="230.0" layoutY="286.0" text="Capacidad:" />
+            <Label layoutX="393.0" layoutY="253.0" text="Nro de Camas:" />
+            <Label layoutX="435.0" layoutY="286.0" text="Precio:" />
+            <Label layoutX="334.0" layoutY="286.0" text="Cantidad:" />
+            <Label layoutX="230.0" layoutY="321.0" text="Descripción:" />
+            <Label layoutX="230.0" layoutY="388.0" text="Condiciones:" />
+            <Label fx:id="lblCodigo" layoutX="297.0" layoutY="195.0" text="LOREMDES001" />
+            <Label fx:id="lblNombre" layoutX="297.0" layoutY="223.0" text="Nombre" />
+            <Label fx:id="lblTipo" layoutX="297.0" layoutY="253.0" text="Tipo" />
+            <Label fx:id="lblCamas" layoutX="480.0" layoutY="253.0" text="00" />
+            <Label fx:id="lblPrecio" layoutX="480.0" layoutY="286.0" text="00" />
+            <Label fx:id="lblCapacidad" layoutX="298.0" layoutY="286.0" text="00" />
+            <Label fx:id="lblCantidad" layoutX="393.0" layoutY="286.0" text="00" />
+            <Label fx:id="lblDescripcion" alignment="TOP_LEFT" layoutX="230.0" layoutY="341.0" maxWidth="280.0" prefHeight="42.0" prefWidth="280.0" text="Descripción" wrapText="true" />
+            <Label fx:id="lblCondiciones" alignment="TOP_LEFT" layoutX="230.0" layoutY="409.0" maxWidth="280.0" prefHeight="42.0" prefWidth="280.0" text="Condiciones" wrapText="true" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

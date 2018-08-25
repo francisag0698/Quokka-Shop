@@ -31,7 +31,7 @@ public class ServicioHabitacion {
         return obj.obtener(id);
     }
     
-    public void fijarCuenta(Habitacion habitacion){
+    public void fijarHabitacion(Habitacion habitacion){
         obj.setHabitacion(habitacion);
     }
     public List<Habitacion> listarTipo(String tipo){

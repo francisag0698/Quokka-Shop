@@ -74,5 +74,32 @@ public class Validadores {
            return false;
         }
     }
-   
+    
+    public static boolean validarValor(TextField obj, char opcion){
+        switch(opcion){
+            case 'i':
+                try {
+                    Integer.parseInt(obj.getText());
+                    if (obj.getStyleClass().contains("error")) 
+                        obj.getStyleClass().remove("error");
+                    return true;
+                } catch (NumberFormatException e) {
+                    obj.getStyleClass().add("error"); 
+                    obj.setText("");
+                    return false;
+                }
+            case 'd':
+                try {
+                    Double.parseDouble(obj.getText());
+                    if (obj.getStyleClass().contains("error")) 
+                        obj.getStyleClass().remove("error");
+                    return true;
+                } catch (NumberFormatException e) {
+                    obj.getStyleClass().add("error"); 
+                    obj.setText("");
+                    return false;
+                }
+            default: return false;
+        }
+    }
 }

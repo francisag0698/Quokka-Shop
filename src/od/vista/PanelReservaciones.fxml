@@ -13,11 +13,6 @@
    <children>
       <Label layoutX="43.0" layoutY="34.0" styleClass="title-pane" text="Reservaciones" />
       <Label layoutX="43.0" layoutY="76.0" styleClass="subtitle-pane" text="Curabitur sit amet sagittis urna. Fusce venenatis turpis et tellus." />
-      <Button layoutX="595.0" layoutY="52.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" styleClass="btn-secondary" text="NUEVO">
-         <graphic>
-            <Label prefHeight="25.0" prefWidth="17.0" styleClass="fa-icon" text="" textAlignment="CENTER" />
-         </graphic>
-      </Button>
       <TextField fx:id="campoBuscar" layoutX="43.0" layoutY="119.0" onKeyPressed="#buscarTexto" prefHeight="30.0" prefWidth="320.0" promptText="BUSCAR" styleClass="searchform-item" />
       <ComboBox fx:id="comboEstado" layoutX="373.0" layoutY="119.0" onAction="#filtrarTipo" prefHeight="30.0" prefWidth="150.0" styleClass="searchform-item" />
       <ComboBox fx:id="comboOrdenar" layoutX="531.0" layoutY="119.0" onAction="#ordenarAscendente" prefHeight="30.0" prefWidth="150.0" styleClass="searchform-item" />
