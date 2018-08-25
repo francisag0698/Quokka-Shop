@@ -9,3 +9,7 @@ dist/OldDeus.jar
 dist/OldDeus.jnlp
 nbproject/private/private.properties
 nbproject/private/private.xml
+build/classes/od/controlador/RaizVistaController.class
+build/classes/od/vista/RaizVista.fxml
+dist/web-files/dtjava.js
+nbproject/private/private.properties

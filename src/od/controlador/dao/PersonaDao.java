@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package od.controlador.dao;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Query;
 import od.modelo.Persona;
 
@@ -46,7 +48,7 @@ public class PersonaDao extends AdaptadorDao<Persona>{
     }
     
     
-    public Persona ObtenerPersonaCedula(String cedula){
+    public Persona obtenerPersonaCedula(String cedula){
         Persona p = null;
         try {
             Query q = getManager().createQuery("SELECT p FROM Persona p WHERE p.dni = :cedula");
@@ -55,5 +57,71 @@ public class PersonaDao extends AdaptadorDao<Persona>{
         } catch (Exception e) {
         }
         return p;
+    }
+    
+    public List<Persona> listarSinAdministrador(){
+        List<Persona> lista = new ArrayList<>();
+        try{
+            Query q = getManager()
+                    .createQuery("SELECT p FROM Persona p WHERE p.rol.nombre != :admin AND p.rol.nombre != :res");
+            q.setParameter("admin", "Administrador");
+            q.setParameter("res", "Recepcionista");
+            lista = q.getResultList();
+        }catch(Exception e){
+            System.out.println("Meth: listarSinAdministrador()");
+        }
+        return lista;
+    }
+    
+    public List<Persona> listarSinAdministradorBusqueda(String texto){
+        List<Persona> lista = new ArrayList<>();
+        try{
+            Query q = getManager()
+                    .createQuery("SELECT p FROM Persona p WHERE p.rol.nombre != :admin AND p.rol.nombre != :res "
+                            + "AND (LOWER(p.nombres) LIKE CONCAT('%', :texto, '%') "
+                            + "OR LOWER(p.apellidos) LIKE CONCAT('%', :texto, '%'))");
+            q.setParameter("admin", "Administrador");
+            q.setParameter("res", "Recepcionista");
+            q.setParameter("texto", texto);
+            lista = q.getResultList();
+        }catch(Exception e){
+            System.out.println("Meth: listarSinAdministrador()");
+        }
+        return lista;
+    }
+    
+    public List<Persona> listarSinAdministradorDNIBusqueda(String texto){
+        List<Persona> lista = new ArrayList<>();
+        try{
+            Query q = getManager()
+                    .createQuery("SELECT p FROM Persona p WHERE p.rol.nombre != :admin AND p.rol.nombre != :res "
+                            + "AND  p.dni LIKE CONCAT('%', :texto, '%')");
+            q.setParameter("admin", "Administrador");
+            q.setParameter("res", "Recepcionista");
+            q.setParameter("texto", texto);
+            lista = q.getResultList();
+        }catch(Exception e){
+            System.out.println("Meth: listarSinAdministrador()");
+        }
+        return lista;
+    }
+    
+    public List<Persona> listarSinAdministradorGeneroBusqueda(String texto, String genero){
+        List<Persona> lista = new ArrayList<>();
+        try{
+            Query q = getManager()
+                    .createQuery("SELECT p FROM Persona p WHERE p.rol.nombre != :admin AND p.rol.nombre != :res "
+                            + "AND  p.sexo = :genero "
+                            + "AND (LOWER(p.nombres) LIKE CONCAT('%', :texto, '%') "
+                            + "OR LOWER(p.apellidos) LIKE CONCAT('%', :texto, '%'))");
+            q.setParameter("admin", "Administrador");
+            q.setParameter("res", "Recepcionista");
+            q.setParameter("texto", texto);
+            q.setParameter("genero", genero);
+            lista = q.getResultList();
+        }catch(Exception e){
+            System.out.println("Meth: listarSinAdministrador()");
+        }
+        return lista;
     }
 }
