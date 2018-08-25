@@ -34,4 +34,19 @@ public class ServicioHabitacion {
     public void fijarCuenta(Habitacion habitacion){
         obj.setHabitacion(habitacion);
     }
+    public List<Habitacion> listarTipo(String tipo){
+        return obj.listarTipo(tipo);
+    }
+    public List<Habitacion> listarEstado(Boolean estado){
+        return obj.listarEstado(estado);
+    }
+    public List<Habitacion>listarBusqueda(String texto){
+        return obj.listarBusqueda(texto);
+    }
+    public List<Habitacion> listarBusquedaTipo(String tipo,String texto){
+        return obj.listarBusquedaTipo(tipo, texto);
+    }
+    public List<Habitacion> listarBusquedaEstado(Boolean estado,String texto){
+        return obj.listarBusquedaEstado(estado, texto);
+    }
 }

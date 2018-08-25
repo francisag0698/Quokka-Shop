@@ -37,7 +37,7 @@ public class Habitacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_habitacion;
-    
+    private String codigo;
     private String nombre;
     @Column(length = 2)
     private Integer capacidad;
