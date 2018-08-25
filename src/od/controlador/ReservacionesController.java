@@ -75,16 +75,16 @@ public class ReservacionesController {
                         + cellData.getValue().getPersona().getApellidos())
         );
         desdeColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getDetalle().getFecha_inicio().toString())
+                cellData -> new SimpleStringProperty(cellData.getValue().getFecha_inicio().toString())
         );
         hastaColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getDetalle().getFecha_fin().toString())
+                cellData -> new SimpleStringProperty(cellData.getValue().getFecha_fin().toString())
         );
         telefonoColumna.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getTelefono())
         );
         estadoColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getEstado())
+                cellData -> new SimpleStringProperty(cellData.getValue().getEstado().toString())
         );
     }
     @FXML

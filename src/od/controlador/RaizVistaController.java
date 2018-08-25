@@ -54,6 +54,7 @@ public class RaizVistaController {
         if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) {
             lblRol.setText(Sesiones.getCuenta().getPersona().getCiudad().toUpperCase() + ", "
                 + Sesiones.getCuenta().getPersona().getPais().toUpperCase());
+            btnReservacion.setText("Mis reservaciones");
             btnHabitacion.setVisible(false);
             btnServicio.setVisible(false);
             btnCliente.setVisible(false);
@@ -102,7 +103,8 @@ public class RaizVistaController {
         });
         
         btnConfiguracion.setOnAction((event)->{
-            claseCSS(btnConfiguracion);
+            if(claseCSS(btnConfiguracion))
+                principal.fijarCentroPane("PanelConfiguracion");
             event.consume();
         });
     }

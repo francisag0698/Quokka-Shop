@@ -49,7 +49,6 @@ public class ServicioCuenta {
             sp.getPersona().setPais("Ecuador");
             sp.getPersona().setSexo("Masculino");
             sp.getPersona().setTelefono("123456789");
-            sp.getPersona().setTipo_dni("Cedula de Identidad");
             sp.getPersona().setRol(new ServicioRol().buscarRolNombre("Administrador"));
             
             

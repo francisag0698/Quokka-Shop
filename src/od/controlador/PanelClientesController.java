@@ -186,8 +186,13 @@ public class PanelClientesController {
                 tblCliente.setItems(FXCollections.observableList(sp.listarSinAdministradorDNIBusqueda(txtBuscar.getText())));
                 tblCliente.refresh();
             }else{
-                tblCliente.setItems(FXCollections.observableList(sp.listarSinAdministradorGeneroBusqueda(txtBuscar.getText(), cbxComboSeleccion.getValue().toString())));
-                tblCliente.refresh();
+                if (cbxComboSeleccion.getValue() != null) {
+                    tblCliente.setItems(FXCollections.observableList(sp.listarSinAdministradorGeneroBusqueda(txtBuscar.getText(), cbxComboSeleccion.getValue().toString())));
+                    tblCliente.refresh();
+                }else{
+                    tblCliente.setItems(FXCollections.observableList(sp.listarSinAdministradorBusqueda(txtBuscar.getText())));
+                    tblCliente.refresh();
+                }
             }
         }else if(txtBuscar.getText().trim().length() == 0){
             cargarTabla();

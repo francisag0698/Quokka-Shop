@@ -13,3 +13,10 @@ build/classes/od/controlador/RaizVistaController.class
 build/classes/od/vista/RaizVista.fxml
 dist/web-files/dtjava.js
 nbproject/private/private.properties
+build/classes/od/controlador/RaizVistaController.class
+build/classes/od/controlador/RegistroVistaController.class
+build/classes/od/vista/RaizVista.fxml
+build/classes/od/vista/RegistroVista.fxml
+dist/web-files/dtjava.js
+nbproject/private/private.properties
+nbproject/private/private.xml

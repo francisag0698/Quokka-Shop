@@ -41,8 +41,6 @@ public class Persona implements Serializable {
     private Long id_persona;
     @Column(length = 15,unique = true)
     private String dni;
-    @Column(length = 20)
-    private String tipo_dni;
     @Column(length = 60)
     private String nombres;
     @Column(length = 60)
@@ -58,18 +56,18 @@ public class Persona implements Serializable {
     private String sexo;
     private String telefono;
     
-    @OneToOne(mappedBy = "persona",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Cuenta cuenta;
     
     @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "id_rol",nullable = false,referencedColumnName = "id_rol")
+    @JoinColumn(name = "id_rol", nullable = false, referencedColumnName = "id_rol")
     private Rol rol;
     
-    @OneToMany(mappedBy = "persona",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Historial> listaHistorial= new ArrayList<Historial>();
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Historial> listaHistorial = new ArrayList<>();
     
-    @OneToMany(mappedBy = "persona",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Reservacion> listaReservacion= new ArrayList<Reservacion>();
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Reservacion> listaReservacion = new ArrayList<>();
     
 
     @Override

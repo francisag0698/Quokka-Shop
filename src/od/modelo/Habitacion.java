@@ -45,19 +45,15 @@ public class Habitacion implements Serializable {
     private Integer nro_camas;
     @Column(length = 6)
     private Double precio;
-    //private String extrenal_id_sevicio;
     private String tipo;
     private Boolean estado;
     private String condiciones;
     private String descripcion;
+    @Column(length = 3)
+    private Integer cantidad;
     
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "id_detalle", referencedColumnName = "id_detalle")
-    private Detalle detalle;
-    
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Servicio> listaServicio = new ArrayList<>();
-    
+    @OneToMany(mappedBy = "habitacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Reservacion> listaReservacion = new ArrayList<>(); 
 
     @Override
     public int hashCode() {

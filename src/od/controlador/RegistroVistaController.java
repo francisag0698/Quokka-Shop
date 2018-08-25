@@ -60,8 +60,6 @@ public class RegistroVistaController {
     @FXML
     private TextField campoCorreo;
     @FXML
-    private ComboBox comboTipoDNI;
-    @FXML
     private ComboBox comboGenero;
     @FXML
     private Label lblError;
@@ -75,14 +73,7 @@ public class RegistroVistaController {
     /**
      * Initializes the controller class.
      */
-    public void initialize() {
-        //Tipo de DNI
-        comboTipoDNI.getItems().addAll(
-                "Cedula de Identidad",
-                "Pasaporte"
-        );
-        comboTipoDNI.setValue("Cedula de Identidad");
-        
+    public void initialize() {        
         //Genero
         comboGenero.getItems().addAll(
                 "Masculino",
@@ -133,7 +124,6 @@ public class RegistroVistaController {
     private void cargarObjeto(){
         sp.getPersona().setNombres(campoNombre.getText());
         sp.getPersona().setApellidos(campoApellido.getText());
-        sp.getPersona().setTipo_dni(comboTipoDNI.getValue().toString());
         sp.getPersona().setDni(campoDNI.getText());
         try {
             sp.getPersona().setFecha_nacimiento(new SimpleDateFormat("dd/MM/yyyy").parse(campoFechaNacimiento.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));            

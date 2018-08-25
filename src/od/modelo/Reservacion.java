@@ -6,9 +6,7 @@
 package od.modelo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -41,16 +38,23 @@ public class Reservacion implements Serializable {
     private Long id_reservacion;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
-    @Column(length = 40)
-    private String estado;
-    @Column(length = 6)
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fecha_inicio;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fecha_fin;
+    private Boolean estado;
+    @Column(length = 10)
     private Double pago_total;
     
     @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "id_persona",nullable = false,referencedColumnName = "id_persona")
+    @JoinColumn(name = "id_persona", nullable = false, referencedColumnName = "id_persona")
     private Persona persona;
     
-    @OneToOne(mappedBy = "reservacion",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "id_habitacion", nullable = false, referencedColumnName = "id_habitacion")
+    private Habitacion habitacion;
+    
+    @OneToOne(mappedBy = "reservacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Detalle detalle;
     
     
