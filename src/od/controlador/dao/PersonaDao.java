@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package od.controlador.dao;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,26 +6,45 @@ import javax.persistence.Query;
 import od.modelo.Persona;
 
 /**
- *
- * @author Dennis
+ * Clase que permite utilizar los metodos del adaptador
+ * @author Agreda Francisco
+ * @author Macas Dennis
+ * @author Ortega César
+ * @version JDK 1.8
  */
 public class PersonaDao extends AdaptadorDao<Persona>{
+    //inicializacion de una variable privada
     private Persona persona;
-
+    
+    /**
+     * Constructor para obtener las variables de modelo Persona
+     */
     public PersonaDao() {
         super(Persona.class);
-    }
-
+    }//Cierre del constructor
+    
+    /**
+     * Permite obtener una nueva persona
+     * @return devueve una persona
+     */
     public Persona getPersona() {
         if(persona==null)
            persona= new Persona();
         return persona;
-    }
-
+    }//Cierre de getPersona
+    
+    /**
+     * Permite modificar una persona
+     * @param persona acepta un dato persona de tipo Persona
+     */
     public void setPersona(Persona persona) {
         this.persona = persona;
-    }
+    }//Cierre de setPersona
     
+    /**
+     * Metodo que permite guardar y modificar persona
+     * @return devuelve un valor de tipo booleano
+     */
     public boolean guardar (){
         boolean verificar = false;
         try{
@@ -45,9 +60,13 @@ public class PersonaDao extends AdaptadorDao<Persona>{
             System.out.println("No se ha podido guardar o modificar " + e);
         }
         return verificar;
-    }
+    }//Cierre del metodo guardar
     
-    
+    /**
+     * Metodo que permite obtener la cedula de un persona dentro de la base de datos
+     * @param cedula acepta un dato cedula de tipo String
+     * @return devuelve la cedula de la persona de la base de datos 
+     */
     public Persona obtenerPersonaCedula(String cedula){
         Persona p = null;
         try {
@@ -57,8 +76,12 @@ public class PersonaDao extends AdaptadorDao<Persona>{
         } catch (Exception e) {
         }
         return p;
-    }
+    }//Cierre del metodo obtenerPersonaCedula
     
+    /**
+     * Metodo que permite listar personas sin administrador
+     * @return devuelve una lista con las personas que se encuentra dentro de la base de datos 
+     */
     public List<Persona> listarSinAdministrador(){
         List<Persona> lista = new ArrayList<>();
         try{
@@ -71,8 +94,13 @@ public class PersonaDao extends AdaptadorDao<Persona>{
             System.out.println("Meth: listarSinAdministrador()");
         }
         return lista;
-    }
+    }//Cierre del metodo listarSinAdministrador
     
+    /**
+     * Metodo para listar personas sin administrador mediante una busqueda 
+     * @param texto acepta una dato texto de tipo String
+     * @return devuelve una lista de personas buscadas por el texto de la base de datos
+     */
     public List<Persona> listarSinAdministradorBusqueda(String texto){
         List<Persona> lista = new ArrayList<>();
         try{
@@ -88,8 +116,11 @@ public class PersonaDao extends AdaptadorDao<Persona>{
             System.out.println("Meth: listarSinAdministrador()");
         }
         return lista;
-    }
+    }//Cierre del metodo listarSinAdministradorBusqueda
     
+    /**
+     * Metodo que permite buscar personas mediante el DNI
+     */
     public List<Persona> listarSinAdministradorDNIBusqueda(String texto){
         List<Persona> lista = new ArrayList<>();
         try{
