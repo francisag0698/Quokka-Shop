@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -16,21 +17,19 @@
       <Label layoutX="62.0" layoutY="131.0" text="Datos de Usuario" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="307.0" layoutX="473.0" layoutY="120.0" stroke="#a8a8a8" strokeType="INSIDE" strokeWidth="0.75" width="219.0" />
       <Label layoutX="488.0" layoutY="131.0" text="Datos de Cuenta" />
-      <TextField editable="false" layoutX="61.0" layoutY="178.0" prefHeight="25.0" prefWidth="183.0" />
-      <TextField layoutX="255.0" layoutY="178.0" prefHeight="25.0" prefWidth="183.0" />
-      <TextField layoutX="255.0" layoutY="231.0" prefHeight="25.0" prefWidth="183.0" />
-      <DatePicker layoutX="61.0" layoutY="231.0" prefHeight="25.0" prefWidth="183.0" />
-      <ComboBox layoutX="61.0" layoutY="283.0" prefHeight="25.0" prefWidth="183.0" />
-      <TextField layoutX="255.0" layoutY="283.0" prefHeight="25.0" prefWidth="183.0" />
-      <TextField layoutX="61.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
-      <TextField layoutX="255.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
-      <TextField layoutX="62.0" layoutY="386.0" prefHeight="25.0" prefWidth="375.0" />
-      <Button layoutX="329.0" layoutY="428.0" mnemonicParsing="false" text="Guardar Cambios" />
-      <TextField editable="false" layoutX="491.0" layoutY="178.0" prefHeight="25.0" prefWidth="183.0" />
-      <TextField layoutX="491.0" layoutY="231.0" prefHeight="25.0" prefWidth="183.0" />
-      <TextField layoutX="491.0" layoutY="283.0" prefHeight="25.0" prefWidth="183.0" />
-      <TextField layoutX="491.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
-      <Button layoutX="566.0" layoutY="377.0" mnemonicParsing="false" text="Guardar Cambios" />
+      <TextField fx:id="campoDNI" editable="false" layoutX="61.0" layoutY="178.0" prefHeight="25.0" prefWidth="183.0" />
+      <TextField fx:id="campoNombres" layoutX="255.0" layoutY="178.0" prefHeight="25.0" prefWidth="183.0" />
+      <TextField fx:id="campoApellidos" layoutX="255.0" layoutY="231.0" prefHeight="25.0" prefWidth="183.0" />
+      <DatePicker fx:id="campoFechaNacimiento" layoutX="61.0" layoutY="231.0" prefHeight="25.0" prefWidth="183.0" />
+      <ComboBox fx:id="comboGenero" layoutX="61.0" layoutY="283.0" prefHeight="25.0" prefWidth="183.0" />
+      <TextField fx:id="campoTelefono" layoutX="255.0" layoutY="283.0" prefHeight="25.0" prefWidth="183.0" />
+      <TextField fx:id="campoPais" layoutX="61.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
+      <TextField fx:id="campoCiudad" layoutX="255.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
+      <TextField fx:id="campoDireccion" layoutX="62.0" layoutY="386.0" prefHeight="25.0" prefWidth="375.0" />
+      <Button layoutX="329.0" layoutY="428.0" mnemonicParsing="false" onAction="#guardarModificarPersona" text="Guardar Cambios" />
+      <TextField fx:id="campoUsuario" editable="false" layoutX="491.0" layoutY="178.0" prefHeight="25.0" prefWidth="183.0" />
+      <TextField fx:id="campoCorreo" layoutX="491.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
+      <Button layoutX="566.0" layoutY="377.0" mnemonicParsing="false" onAction="#guardarModificarCuenta" text="Guardar Cambios" />
       <Label layoutX="61.0" layoutY="158.0" text="Nro de DNI:" />
       <Label layoutX="255.0" layoutY="158.0" text="Nombres:" />
       <Label layoutX="61.0" layoutY="211.0" text="Fecha de Nacimiento:" />
@@ -44,5 +43,7 @@
       <Label layoutX="492.0" layoutY="211.0" text="Contraseña:" />
       <Label layoutX="492.0" layoutY="263.0" text="Repetir Contraseña:" />
       <Label layoutX="492.0" layoutY="315.0" text="Correo:" />
+      <PasswordField fx:id="campoClave" layoutX="491.0" layoutY="231.0" prefHeight="26.0" prefWidth="183.0" />
+      <PasswordField fx:id="campoRepetirClave" layoutX="491.0" layoutY="283.0" prefHeight="26.0" prefWidth="183.0" />
    </children>
 </AnchorPane>
