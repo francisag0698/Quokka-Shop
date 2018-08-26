@@ -57,7 +57,7 @@ public class Servicio implements Serializable {
 
     @Override
     public String toString() {
-        return "od.modelo.Servicio[ id=" + id_servicio + " ]";
+        return nombre_servicio + " - $" + precio;
     }
     
 }

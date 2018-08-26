@@ -143,7 +143,7 @@ public class PanelHabitacionesController {
                 alert.setTitle("Error en los datos");
                 alert.setHeaderText("");
                 alert.setContentText("Los datos ingresados no son válidos.");
-                alert.showAndWait();
+                alert.showAndWait();                
                 return false; 
             }            
         } else {
@@ -193,6 +193,7 @@ public class PanelHabitacionesController {
             alert.setHeaderText("");
             alert.setContentText("Se ha guardado el registro correctamente.");
             alert.showAndWait();
+            System.out.println(alert.getResult().getText());
             tbpHabitaciones.getSelectionModel().select(tabListado);
             limpiar();
         } else {

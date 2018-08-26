@@ -77,7 +77,7 @@ public class Habitacion implements Serializable {
 
     @Override
     public String toString() {
-        return "od.modelo.Habitacion[ id=" + id_habitacion + " ]";
+        return nombre;
     }
     
 }

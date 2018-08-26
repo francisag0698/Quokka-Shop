@@ -18,11 +18,11 @@
       <ComboBox fx:id="comboOrdenar" layoutX="531.0" layoutY="119.0" onAction="#ordenarAscendente" prefHeight="30.0" prefWidth="150.0" styleClass="searchform-item" />
       <TableView fx:id="reservasTabla" layoutX="43.0" layoutY="169.0" prefHeight="388.0" prefWidth="640.0">
         <columns>
-          <TableColumn fx:id="nombresColumna" prefWidth="234.0" text="NOMBRES Y APELLIDOS" />
-          <TableColumn fx:id="desdeColumna" prefWidth="91.0" text="DESDE" />
-            <TableColumn fx:id="hastaColumna" prefWidth="96.0" text="HASTA" />
-            <TableColumn fx:id="telefonoColumna" prefWidth="111.0" text="TELEFONO" />
-            <TableColumn fx:id="estadoColumna" prefWidth="107.0" text="ESTADO" />
+          <TableColumn fx:id="nombresColumna" prefWidth="234.0" text="Cliente" />
+          <TableColumn fx:id="desdeColumna" prefWidth="102.0" text="Desde" />
+            <TableColumn fx:id="hastaColumna" prefWidth="106.0" text="Hasta" />
+            <TableColumn fx:id="telefonoColumna" prefWidth="108.0" text="Telefono" />
+            <TableColumn fx:id="estadoColumna" prefWidth="89.0" text="Estado" />
         </columns>
       </TableView>
       <Button layoutX="595.0" layoutY="578.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" styleClass="btn-default" text="ELIMINAR" />
