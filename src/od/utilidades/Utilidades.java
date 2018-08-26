@@ -5,6 +5,10 @@
  */
 package od.utilidades;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import od.controlador.servicio.ServicioHistorial;
 import od.controlador.servicio.ServicioPersona;
@@ -21,5 +25,13 @@ public class Utilidades {
         hs.getHistorial().setFecha(new Date());
         hs.getHistorial().setPersona(sp.getPersona());
         hs.guardar();
+    }
+    
+    public static Date extraerFecha(LocalDate a){
+        try {
+            return new SimpleDateFormat("dd/MM/yyyy").parse(a.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        } catch (ParseException e) {
+            return new Date();
+        }
     }
 }

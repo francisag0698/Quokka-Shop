@@ -7,6 +7,7 @@ package od.controlador;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import od.Principal;
 import od.utilidades.Sesiones;
@@ -41,6 +42,7 @@ public class RaizVistaController {
     private Button aux;
     private Stage ventana;
     private Principal principal;
+    private BorderPane rootLayout;
     /**
      * Initializes the controller class.
      */
@@ -67,8 +69,8 @@ public class RaizVistaController {
         aux = btnInicio;
         
         btnNuevaReserva.setOnAction((event)->{            
-            if (claseCSS(btnNuevaReserva)) 
-                principal.fijarCentroScroll("PanelNuevaReservacion");             
+            if (!rootLayout.getCenter().getId().equals("RegistrarReserva")) 
+                principal.fijarCentroNuevaReserva();
             event.consume();
         });
         
@@ -129,7 +131,11 @@ public class RaizVistaController {
 
     public void setStage(Stage ventana) {
         this.ventana = ventana;
-    }   
+    }
+
+    public void setRootLayout(BorderPane rootLayout) {
+        this.rootLayout = rootLayout;
+    }
     
     
     @FXML

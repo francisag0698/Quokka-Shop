@@ -5,6 +5,7 @@
  */
 package od.controlador.dao;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Query;
 import od.modelo.Reservacion;
@@ -92,5 +93,4 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
         }
         return listado;
     }
-    
 }

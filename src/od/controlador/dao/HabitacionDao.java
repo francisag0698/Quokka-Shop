@@ -5,6 +5,7 @@
  */
 package od.controlador.dao;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Query;
 import od.modelo.Habitacion;
@@ -73,7 +74,7 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
         List<Habitacion> lista= new ArrayList<>();
         try {
             Query q = getManager()
-                    .createQuery("SELECT h FROM Habitacion h where (LOWER(h.nombre)LIKE CONCAT('%':texto, '%'))");//lower es minusculas
+                    .createQuery("SELECT h FROM Habitacion h where (LOWER(h.nombre)LIKE CONCAT('%', :texto, '%'))");//lower es minusculas
             q.setParameter("texto", texto);
             lista = q.getResultList();
         } catch (Exception e) {
@@ -84,7 +85,7 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
        List<Habitacion> lista= new ArrayList<>();
         try {
             Query q = getManager()
-                    .createQuery("SELECT h FROM Habitacion h where (LOWER(h.nombre)LIKE CONCAT('%':texto, '%')) and h.tipo = :tipo");//lower es minusculas
+                    .createQuery("SELECT h FROM Habitacion h where (LOWER(h.nombre)LIKE CONCAT('%', :texto, '%')) and h.tipo = :tipo");
             q.setParameter("texto", texto);
             q.setParameter("tipo", tipo);
             lista = q.getResultList();
@@ -96,12 +97,45 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
         List<Habitacion> lista= new ArrayList<>();
         try {
             Query q = getManager()
-                    .createQuery("SELECT h FROM Habitacion h where (LOWER(h.nombre)LIKE CONCAT('%':texto, '%')) and h.estado = :estado");//lower es minusculas
+                    .createQuery("SELECT h FROM Habitacion h WHERE (LOWER(h.nombre) LIKE CONCAT('%', :texto, '%')) AND h.estado = :estado");
             q.setParameter("texto", texto);
             q.setParameter("estado", estado);
             lista = q.getResultList();
         } catch (Exception e) {
         }
         return lista;
+    }
+    
+    public List<Habitacion> listarDisponibles(Date inicio, Date fin){
+       List<Habitacion> lista= new ArrayList<>();
+       try {
+            Query q = getManager()
+                    .createQuery("SELECT h FROM Habitacion h "
+                            + "WHERE h.cantidad > (SELECT COUNT(r) as INT FROM Reservacion r "
+                            + "WHERE r.habitacion.id_habitacion = h.id_habitacion "
+                            + "AND r.fecha_inicio >= :inicio AND r.fecha_fin <= :fin)");
+            q.setParameter("inicio", inicio);
+            q.setParameter("fin", fin);
+            lista = q.getResultList();
+        } catch (Exception e) {
+        }
+       return lista;
+    }
+    
+    public Long cantidadDisponibles(Date inicio, Date fin, String codigo){
+        Long cantidad = new Long(0);
+        try {
+            Query q = getManager()
+                    .createQuery("SELECT h.cantidad - (SELECT COUNT(r) as INT FROM Reservacion r "
+                            + "WHERE r.habitacion.codigo = :codigo "
+                            + "AND r.fecha_inicio >= :inicio AND r.fecha_fin <= :fin) AS INT "
+                            + "FROM Habitacion h WHERE h.codigo = :codigo");
+            q.setParameter("inicio", inicio);
+            q.setParameter("fin", fin);
+            q.setParameter("codigo", codigo);
+            cantidad = (Long) q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return cantidad;
     }
 }

@@ -107,7 +107,7 @@ and open the template in the editor.
 
 .price-label{
     -fx-font-family: 'Ubuntu Bold';
-    -fx-font-size: 28px;
+    -fx-font-size: 32px;
     -fx-text-fill: #7c60ff;
 }
 

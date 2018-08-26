@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import od.controlador.Conexion;
 import od.controlador.LoginVistaController;
+import od.controlador.PanelNuevaReservacionController;
 import od.controlador.RaizVistaController;
 import od.controlador.RegistroVistaController;
 
@@ -70,6 +71,7 @@ public class Principal extends Application {
             
             controlador.setStage(primaryStage);
             controlador.setPrincipal(this);
+            controlador.setRootLayout(rootLayout);
             fijarCentroPane("PanelInicio");
             closeRequest(primaryStage);
             primaryStage.show();
@@ -146,6 +148,20 @@ public class Principal extends Application {
             cargador.setLocation(Principal.class.getResource("vista/" + fxml + ".fxml"));
             ScrollPane spanel = (ScrollPane) cargador.load();
             
+            rootLayout.setCenter(spanel);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void fijarCentroNuevaReserva(){
+        try {
+            FXMLLoader cargador = new FXMLLoader();
+            cargador.setLocation(Principal.class.getResource("vista/PanelNuevaReservacion.fxml"));
+            ScrollPane spanel = (ScrollPane) cargador.load();
+            
+            PanelNuevaReservacionController controlador = cargador.getController();
+            controlador.setPrincipal(this);
             rootLayout.setCenter(spanel);
         } catch (IOException e) {
             e.printStackTrace();

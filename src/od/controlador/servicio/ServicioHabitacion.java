@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package od.controlador.servicio;
+import java.util.Date;
 import java.util.List;
 import od.controlador.dao.HabitacionDao;
 import od.modelo.Habitacion;
@@ -48,5 +49,11 @@ public class ServicioHabitacion {
     }
     public List<Habitacion> listarBusquedaEstado(Boolean estado,String texto){
         return obj.listarBusquedaEstado(estado, texto);
+    }
+    public List<Habitacion> listarDisponibles(Date inicio, Date fin){
+        return obj.listarDisponibles(inicio, fin);
+    }
+    public Long cantidadDisponibles(Date inicio, Date fin, String codigo){
+        return obj.cantidadDisponibles(inicio, fin, codigo);
     }
 }

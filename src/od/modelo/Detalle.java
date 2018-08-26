@@ -17,6 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -53,8 +55,12 @@ public class Detalle implements Serializable {
     @JoinColumn(name = "id_reservacion",nullable = false,referencedColumnName = "id_reservacion")
     private Reservacion reservacion;
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Servicio> listaServicio=new ArrayList<Servicio>();
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "detalle_servicio",
+        joinColumns = @JoinColumn(name = "id_detalle"),
+        inverseJoinColumns = @JoinColumn(name = "id_servicio")
+    )
+    private List<Servicio> servicios = new ArrayList<Servicio>();
 
     @Override
     public int hashCode() {

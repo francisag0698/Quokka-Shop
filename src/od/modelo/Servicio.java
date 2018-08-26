@@ -6,11 +6,14 @@
 package od.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,6 +37,8 @@ public class Servicio implements Serializable {
     @Column(length = 8)
     private Double precio;
     
+    @ManyToMany(mappedBy = "servicios")
+    private List<Detalle> detalles = new ArrayList<>();
 
     @Override
     public int hashCode() {

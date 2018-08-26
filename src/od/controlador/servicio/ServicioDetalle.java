@@ -31,7 +31,7 @@ public class ServicioDetalle {
         return obj.obtener(id);
     }
     
-    public void fijarCuenta(Detalle detalle){
+    public void fijarDetalle(Detalle detalle){
         obj.setDetalle(detalle);
     }
 }
