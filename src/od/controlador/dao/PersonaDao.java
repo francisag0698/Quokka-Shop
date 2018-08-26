@@ -120,6 +120,8 @@ public class PersonaDao extends AdaptadorDao<Persona>{
     
     /**
      * Metodo que permite buscar personas mediante el DNI
+     * @param texto acepta un dato texto de tipo String
+     * @return devuelve una lista de personas de la base de datos 
      */
     public List<Persona> listarSinAdministradorDNIBusqueda(String texto){
         List<Persona> lista = new ArrayList<>();
@@ -135,8 +137,14 @@ public class PersonaDao extends AdaptadorDao<Persona>{
             System.out.println("Meth: listarSinAdministrador()");
         }
         return lista;
-    }
+    }//Cierre del metodo listarSinAdministradorDNIBusqueda 
     
+    /**
+     * Metodo que permite listar personas dependiendo de su genero mediante una busqueda
+     * @param texto acepta un dato texto de tipo String 
+     * @param genero acpta una dato genero de tipo String
+     * @return devuelve una lista de las personas con el genero seleccionado en el parametro de la base de datos
+     */
     public List<Persona> listarSinAdministradorGeneroBusqueda(String texto, String genero){
         List<Persona> lista = new ArrayList<>();
         try{
@@ -154,5 +162,5 @@ public class PersonaDao extends AdaptadorDao<Persona>{
             System.out.println("Meth: listarSinAdministrador()");
         }
         return lista;
-    }
-}
+    }//Cierre del metodo listarSinAdministradorGeneroBusqueda
+}//Cierre de la clase PersonaDao

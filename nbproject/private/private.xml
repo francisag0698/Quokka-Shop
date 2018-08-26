@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PotatoPower/Documents/GitHub/Libius/OldDeus/src/od/Principal.java</file>
-            <file>file:/C:/Users/PotatoPower/Documents/GitHub/Libius/OldDeus/src/od/modelo/Detalle.java</file>
-            <file>file:/C:/Users/PotatoPower/Documents/GitHub/Libius/OldDeus/src/od/controlador/RegistroVistaController.java</file>
-            <file>file:/C:/Users/PotatoPower/Documents/GitHub/Libius/OldDeus/src/od/controlador/PanelNuevaReservacionController.java</file>
-            <file>file:/C:/Users/PotatoPower/Documents/GitHub/Libius/OldDeus/src/od/controlador/RaizVistaController.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/GitHub/OldDeus/src/od/controlador/Conexion.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/GitHub/OldDeus/src/od/controlador/dao/PersonaDao.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/GitHub/OldDeus/src/od/controlador/dao/AdaptadorDao.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/GitHub/OldDeus/src/od/controlador/dao/RolDao.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/GitHub/OldDeus/src/od/controlador/dao/CuentaDao.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/GitHub/OldDeus/src/od/controlador/dao/InterfazDao.java</file>
         </group>
     </open-files>
 </project-private>
