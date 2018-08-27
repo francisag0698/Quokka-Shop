@@ -7,27 +7,52 @@ package od.controlador.dao;
 import od.modelo.Detalle;
 
 /**
- *
- * @author Dennis
+ *Clase que permite utilizar los metodos del adaptador
+ * @author Agreda Francisco
+ * @author Macas Dennis
+ * @author Ortega César
+ * @version JDK 1.8
  */
 public class DetalleDao extends AdaptadorDao<Detalle>{
+    //inicializacion de una variable privada
     private Detalle detalle;
-
+    /**
+     * Constructor para obtener las variables de modelo detalle
+     */
     public DetalleDao() {
         super(Detalle.class);
-    }
+    }//Cierre del constructor
+    
+    /**
+     * Permite obtener un nuevo detalle
+     * @return devueve un detalle
+     */
     public Detalle getDetalle() {
         if(detalle==null)
            detalle= new Detalle();
         return detalle;
-    }
+    }// cierre de getDetalle
+    
+    /**
+     * Permite modificar un detalle
+     * @param detalle acepta un dato detalle de tipo Detalle
+     */
    public void setDetalle(Detalle detalle) {
         this.detalle = detalle;
-    }
+    }//Cierre del setDetalle
+   
+   /**
+     * Constructor para la variable detalle
+     * @param detalle acepta un dato detalle de tipo Detalle 
+     */
     public void Detalle(Detalle detalle) {
         this.detalle = detalle;
-    }
+    }//Cierre del constructor detalle
     
+    /**
+     * Metodo que permite guardar y modificar el detalle
+     * @return devuelve un valor de tipo booleano
+     */
     public boolean guardar (){
         boolean verificar = false;
         try{
@@ -43,5 +68,5 @@ public class DetalleDao extends AdaptadorDao<Detalle>{
             System.out.println("No se ha podido guardar o modificar " + e);
         }
         return verificar;
-    }
-}
+    }//cierre del metodo guardar
+}//Cierre de la clase DetalleDao

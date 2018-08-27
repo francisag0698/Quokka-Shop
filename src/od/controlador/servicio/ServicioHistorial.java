@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package od.controlador.servicio;
 
 import java.util.List;
@@ -10,30 +6,29 @@ import od.controlador.dao.HistorialDao;
 import od.modelo.Historial;
 
 /**
- *
- * @author Dennis
+* Clase que permite utilizar los metodos del ServicioDao
+ * @author Agreda Francisco
+ * @author Macas Dennis
+ * @author Ortega César
+ * @version JDK 1.8
  */
 public class ServicioHistorial {
-
+    //inicializacion de una variable privada
     private HistorialDao obj = new HistorialDao();
-
-    public Historial getHistorial() {
+    
+    /**
+     * Permite extraer un metodo del getHistorial
+     * @return devuelve un objeto de Historial
+     */
+    public Historial getHistorial(){
         return obj.getHistorial();
-    }
-
-    public boolean guardar() {
+    }//cierre del metodo get historial
+    
+    /**
+     * Metodo que llamar el metodo guardar
+     * @return devuelve un objeto tipo booelan
+     */
+    public boolean guardar(){
         return obj.guardar();
-    }
-
-    public List<Historial> todos() {
-        return obj.listar();
-    }
-
-    public Historial obtener(Long id) {
-        return obj.obtener(id);
-    }
-
-    public void fijarHistorial(Historial historial) {
-        obj.setHistorial(historial);
-    }
-}
+    }//Cierre del metodo guardar
+}//cierre de la clase ServicioHistorial

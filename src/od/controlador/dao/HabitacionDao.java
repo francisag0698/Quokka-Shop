@@ -11,27 +11,53 @@ import javax.persistence.Query;
 import od.modelo.Habitacion;
 
 /**
- *
- * @author Dennis
+ * Clase que permite utilizar los metodos del adaptador
+ * @author Agreda Francisco
+ * @author Macas Dennis
+ * @author Ortega César
+ * @version JDK 1.8
  */
 public class HabitacionDao extends AdaptadorDao<Habitacion>{
+    //inicializacion de una variable privada
     private Habitacion habitacion;
 
+    /**
+     * Constructor para obtener las variables de modelo Detalle
+     */
     public HabitacionDao() {
         super(Habitacion.class);
-    }
+    }//cierre del constructor habitacion
+    
+     /**
+     * Permite obtener una nueva habitacion
+     * @return devueve una habitacion
+     */
     public Habitacion getHabitacion() {
         if(habitacion==null)
            habitacion= new Habitacion();
         return habitacion;
-    }
+    }//Cierre del getDetalle
+    
+    /**
+     * Permite modificar una habitacion
+     * @param habitacion acepta un dato habitacion de tipo Habitacion
+     */
    public void setHabitacion(Habitacion habitacion) {
         this.habitacion = habitacion;
-    }
+    }//Cierre del setHabitacion
+   
+   /**
+     * Constructor para la variable habitacion
+     * @param habitacion acepta un dato habitacion de tipo Habitacion 
+     */
     public void Habitacion(Habitacion habitacion) {
         this.habitacion = habitacion;
-    }
+    }//Cierre del constructor habitacion
     
+    /**
+     * Metodo que permite guardar y modificar las habitaciones
+     * @return devuelve un valor de tipo booleano
+     */
     public boolean guardar (){
         boolean verificar = false;
         try{
@@ -47,7 +73,13 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
             System.out.println("No se ha podido guardar o modificar " + e);
         }
         return verificar;
-    }
+    }//cierre del metodo guardar
+    /**
+     * Metodo para listar las habitaciones por tipo
+     * @param tipo acepta un dato tipo String
+     * @return devuelve una lista
+     
+     */
     public List<Habitacion> listarTipo(String tipo){
         List<Habitacion> lista= new ArrayList<>();
         try {
@@ -58,7 +90,13 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
             System.out.println("error"+e);
         }
         return lista;
-    }
+    }//cierre del metodo listarTipo
+    
+    /**
+     * Metodo para listar las habitaciones por estado
+     * @param estado acepta un dato tipo booelan
+     * @return devuelve una lista
+     */
     public List<Habitacion> listarEstado(Boolean estado){
        List<Habitacion> lista= new ArrayList<>();
         try {
@@ -69,7 +107,13 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
             System.out.println("error"+e);
         }
         return lista;
-    }
+    }//cierre del metodo listarEstado
+    
+    /**
+     * Metodo para listar las habitaciones por busqueda
+     * @param texto acepta un dato tipo String
+     * @return devuelve una lista
+     */
     public List<Habitacion>listarBusqueda(String texto){
         List<Habitacion> lista= new ArrayList<>();
         try {
@@ -80,7 +124,14 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
         } catch (Exception e) {
         }
         return lista;
-    }
+    }//cierre del metodo listarBusqueda
+    
+    /**
+     * Metodo para listar las habitaciones por buscadas por tipo
+     * @param tipo acepta un dato tipo String
+     * @param texto acepta un dato tipo String
+     * @return devuelve una lista
+     */
     public List<Habitacion> listarBusquedaTipo(String tipo,String texto){
        List<Habitacion> lista= new ArrayList<>();
         try {
@@ -92,7 +143,14 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
         } catch (Exception e) {
         }
         return lista;
-    }
+    }//cierre del metodo listarBusquedaTipo
+    
+    /**
+     * Metodo para listar las habitaciones por buscadas por estado
+     * @param estado acepta un dato tipo boolean
+     * @param texto acepta un dato tipo String
+     * @return devuelve una lista
+     */
     public List<Habitacion> listarBusquedaEstado(Boolean estado,String texto){
         List<Habitacion> lista= new ArrayList<>();
         try {
@@ -104,8 +162,14 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
         } catch (Exception e) {
         }
         return lista;
-    }
+    }//cierre del metodo listarBusquedaEstado
     
+    /**
+     * Metodo para listar las habitaciones disponibles
+     * @param inicio acepta un dato tipo Date
+     * @param fin acepta un dato tipo Date
+     * @return devuelve una lista
+     */
     public List<Habitacion> listarDisponibles(Date inicio, Date fin){
        List<Habitacion> lista= new ArrayList<>();
        try {
@@ -120,8 +184,15 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
         } catch (Exception e) {
         }
        return lista;
-    }
+    }//cierre del metodo listarDisponibles
     
+    /**
+     * Metodo para listar las habitaciones disponibles
+     * @param inicio acepta un dato tipo Date
+     * @param fin acepta un dato tipo Date
+     * @param codigo acepta un dato tipo String
+     * @return devuelve una lista
+     */
     public Long cantidadDisponibles(Date inicio, Date fin, String codigo){
         Long cantidad = new Long(0);
         try {
@@ -137,5 +208,5 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
         } catch (Exception e) {
         }
         return cantidad;
-    }
-}
+    }//cierre del metodo cantidadDisponibles
+}//cierre del la clase HabitacionDao

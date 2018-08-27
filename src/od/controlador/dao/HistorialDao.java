@@ -9,27 +9,53 @@ import java.util.List;
 import javax.persistence.Query;
 import od.modelo.Historial;
 /**
- *
- * @author Dennis
+ * Clase que permite utilizar los metodos del adaptador
+ * @author Agreda Francisco
+ * @author Macas Dennis
+ * @author Ortega César
+ * @version JDK 1.8
  */
 public class HistorialDao extends AdaptadorDao<Historial>{
+    //inicializacion de una variable privada
     private Historial historial;
 
+    /**
+     * Constructor para obtener las variables de modelo Historial
+     */
     public HistorialDao() {
         super(Historial.class);
-    }
+    }//Cierre del constructor
+    
+    /**
+     * Permite obtener un nuevo historial
+     * @return devueve un historial
+     */
     public Historial getHistorial() {
         if(historial==null)
            historial= new Historial();
         return historial;
-    }
+    }//Cierre del getHistorial
+    
+     /**
+     * Permite modificar un historial
+     * @param historial acepta un dato historial de tipo Historial
+     */
    public void setHistorial(Historial historial) {
         this.historial = historial;
-    }
+    }//Cierre del setHistorial
+   
+   /**
+     * Constructor para la variable cuenta
+     * @param historial acepta un dato historial de tipo Historial 
+     */
     public void Historial(Historial historial) {
         this.historial = historial;
-    }
+    }//Cierre del constructor historial
     
+    /**
+     * Metodo que permite guardar y modificar la hiztorial
+     * @return devuelve un valor de tipo booleano
+     */
     public boolean guardar (){
         boolean verificar = false;
         try{
@@ -45,19 +71,5 @@ public class HistorialDao extends AdaptadorDao<Historial>{
             System.out.println("No se ha podido guardar o modificar " + e);
         }
         return verificar;
-    }
-    public List<Historial> listarLikeHistorial(String texto) {
-        List<Historial> lista = new ArrayList<>();
-        try {
-            Query q = getManager().createQuery("SELECT p FROM Historial p where "                    
-                    + "(lower(p.persona.apellidos) LIKE CONCAT('%', :texto, '%'))"
-                    + " or (lower(p.codigo) LIKE CONCAT('%', :texto1, '%'))");
-            q.setParameter("texto", texto);            
-            q.setParameter("texto1", texto);
-            lista = q.getResultList();
-        } catch (Exception e) {
-            System.out.println("error "+e);
-        }
-        return lista;
-    }
-}
+    }//cierre del metodo guardar
+}//cierre de la clase HistorialDao
