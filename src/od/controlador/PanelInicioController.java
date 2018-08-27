@@ -5,6 +5,19 @@
  */
 package od.controlador;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import od.controlador.servicio.ServicioHistorial;
+import od.controlador.servicio.ServicioReservacion;
+import od.modelo.Historial;
+import od.modelo.Reservacion;
+
 
 /**
  * FXML Controller class
@@ -12,12 +25,55 @@ package od.controlador;
  * @author Gemelos
  */
 public class PanelInicioController {
-
+    
+    @FXML
+    private VBox vbNotificaciones;
+    @FXML
+    private TableView<Reservacion> tablaReservas;
+    @FXML
+    private TableColumn<Reservacion, String> nyap;
+    @FXML
+    private TableColumn<Reservacion, String> habitacion;
+    
+    private ServicioReservacion sr = new ServicioReservacion();
+    private ServicioHistorial sh = new ServicioHistorial();
+    
     /**
      * Initializes the controller class.
      */
     public void initialize() {
-        // TODO
-    }    
+        cargarHistorial();
+        cargarTabla();
+    }
+    
+    private void cargarHistorial(){
+        sh.todos().stream().map((obj) -> {
+            VBox p = new VBox();
+            p.getStyleClass().add("v-box");
+//            Label a = new Label(obj.getIdentificador());
+//            a.getStyleClass().add("identificador");
+            Label b = new Label(obj.getAccion());
+            b.getStyleClass().add("accion");
+            Label c = new Label(obj.getPersona().getNombres().toUpperCase() + " " + obj.getFecha().toString());
+            c.getStyleClass().add("usuario");
+//            p.getChildren().add(a);
+            p.getChildren().add(b);
+            p.getChildren().add(c);
+            return p;
+        }).forEachOrdered((p) -> {
+            vbNotificaciones.getChildren().add(p);
+        });
+    }
+    
+    private void cargarTabla(){
+        tablaReservas.setItems(FXCollections.observableList(sr.todos()));
+        nyap.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getNombres() + " " + cellData.getValue().getPersona().getApellidos())
+        );
+        habitacion.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getHabitacion().getNombre())
+        );
+        tablaReservas.refresh();
+    }
     
 }

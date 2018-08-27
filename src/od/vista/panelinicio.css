@@ -1,0 +1,36 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26/08/2018, 17:53:55
+    Author     : PotatoPower
+*/
+.s-pane{
+    -fx-background-color: #f5f6f7;
+    -fx-border-width: 0;
+}
+.v-box{
+    -fx-background-color: #f5f6f7;
+}
+.accion{
+    -fx-font-family: 'Ubuntu';
+    -fx-text-fill: #7c60ff;
+    -fx-padding: 5px 0 0 5px;
+}
+.usuario{
+    -fx-font-family: 'Ubuntu';
+    -fx-text-fill: #8a8f9c;
+    -fx-font-size: 10px;
+    -fx-padding: 0 0 10px 5px;
+}
+.title-section{
+    -fx-font-family: 'Ubuntu Bold';
+    -fx-font-size: 11px;;
+    -fx-text-fill: #8a8f9c;
+}
+.card-pane{
+    -fx-background-color: #fff;
+}
+

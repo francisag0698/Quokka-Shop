@@ -14,24 +14,26 @@ import od.modelo.Historial;
  * @author Dennis
  */
 public class ServicioHistorial {
+
     private HistorialDao obj = new HistorialDao();
-    public Historial getHistorial(){
+
+    public Historial getHistorial() {
         return obj.getHistorial();
     }
-    public boolean guardar(){
+
+    public boolean guardar() {
         return obj.guardar();
     }
-    
-    public List<Historial>todos(){
+
+    public List<Historial> todos() {
         return obj.listar();
     }
-     public Historial obtener(Long id){
+
+    public Historial obtener(Long id) {
         return obj.obtener(id);
     }
-     public void fijarHistorial(Historial historial){
-         obj.setHistorial(historial);
-     }
-     public List<Historial> listarLikeHistorial(String texto) {
-        return obj.listarLikeHistorial(texto);
+
+    public void fijarHistorial(Historial historial) {
+        obj.setHistorial(historial);
     }
 }
