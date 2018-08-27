@@ -28,6 +28,7 @@ import od.controlador.servicio.ServicioReservacion;
 import od.controlador.servicio.ServicioServicio;
 import od.modelo.Habitacion;
 import od.modelo.Servicio;
+import od.utilidades.Sesiones;
 import od.utilidades.Utilidades;
 import od.utilidades.Validadores;
 import od.vista.utilidades.UtilidadesComponentes;
@@ -265,6 +266,7 @@ public class PanelNuevaReservacionController {
                 alert.setTitle("Guardado");
                 alert.setHeaderText("");
                 alert.setContentText("Se ha guardado el registro correctamente.");
+                Utilidades.guardarHistorial("Nueva Reservación", "Una nueva reserva se ha registrado", Sesiones.getCuenta().getPersona());
                 alert.showAndWait();
                 limpiar();
                 principal.fijarCentroPane("PanelReservaciones");

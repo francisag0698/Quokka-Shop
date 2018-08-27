@@ -17,6 +17,7 @@ import od.controlador.servicio.ServicioHistorial;
 import od.controlador.servicio.ServicioReservacion;
 import od.modelo.Historial;
 import od.modelo.Reservacion;
+import od.utilidades.Utilidades;
 
 
 /**
@@ -54,7 +55,7 @@ public class PanelInicioController {
 //            a.getStyleClass().add("identificador");
             Label b = new Label(obj.getAccion());
             b.getStyleClass().add("accion");
-            Label c = new Label(obj.getPersona().getNombres().toUpperCase() + " " + obj.getFecha().toString());
+            Label c = new Label(obj.getPersona().getNombres().toUpperCase() + " • " + Utilidades.formatearFechaDos(obj.getFecha()));
             c.getStyleClass().add("usuario");
 //            p.getChildren().add(a);
             p.getChildren().add(b);

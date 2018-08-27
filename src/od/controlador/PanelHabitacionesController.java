@@ -20,6 +20,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import od.controlador.servicio.ServicioHabitacion;
 import od.modelo.Habitacion;
+import od.utilidades.Sesiones;
+import od.utilidades.Utilidades;
 import od.utilidades.Validadores;
 
 /**
@@ -186,6 +188,10 @@ public class PanelHabitacionesController {
 
     public void guardar() {
         cargarObjeto();
+        boolean band = true; // True si Guarda, False si Modifica
+        if (sh.getHabitacion().getId_habitacion() != null) {
+            band = false;
+        }
         if (sh.guardar()) {            
             cargarTabla();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -195,6 +201,11 @@ public class PanelHabitacionesController {
             alert.showAndWait();
             System.out.println(alert.getResult().getText());
             tbpHabitaciones.getSelectionModel().select(tabListado);
+            if (band) {
+                Utilidades.guardarHistorial("Nuevo Registro", "Nueva Habitación añadida", Sesiones.getCuenta().getPersona());
+            }else{
+                Utilidades.guardarHistorial("Registro Modificado", "Se ha modificado una Habitación", Sesiones.getCuenta().getPersona());
+            }
             limpiar();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

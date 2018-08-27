@@ -179,7 +179,7 @@ public class RegistroVistaController {
                     limpiar();
                     lblError.setVisible(false);
                     panelHecho.setVisible(true);
-                    Utilidades.guardarHistorial("Nuevo Registro", "Nuevo Usuario Registrado", sp);
+                    Utilidades.guardarHistorial("Nuevo Registro", "Nuevo Usuario Registrado", sp.getPersona());
                     System.out.println("Guardado");
                 } else {
                     lblError.setText("Ah ocurrido un error al intentar guardar.");

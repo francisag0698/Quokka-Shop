@@ -167,6 +167,7 @@ public class PanelConfiguracionController {
             cargarObjetoPersona();
             if (sp.guardar()) {
                 sp.fijarPersona(null);
+                Utilidades.guardarHistorial("Modificación de Cuenta", "Datos personales modificados", Sesiones.getCuenta().getPersona());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Guardado");
                 alert.setHeaderText("");
@@ -189,6 +190,7 @@ public class PanelConfiguracionController {
             cargarObjetoCuenta();
             if (sp.guardar()) {
                 sc.fijarCuenta(null);
+                Utilidades.guardarHistorial("Modificación de Cuenta", "Datos de cuenta modificados", Sesiones.getCuenta().getPersona());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Guardado");
                 alert.setHeaderText("");

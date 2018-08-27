@@ -17,6 +17,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import od.controlador.servicio.ServicioServicio;
 import od.modelo.Servicio;
+import od.utilidades.Sesiones;
+import od.utilidades.Utilidades;
 import od.utilidades.Validadores;
 
 /**
@@ -89,9 +91,18 @@ public class PanelServiciosController {
         ss.fijarServicio(null);
     }
     
-    private void guardar(){
+    private void guardar(){        
         cargarObjeto();
+        boolean band = true;
+        if(ss.getServicio().getId_servicio() != null){
+            band = false;
+        }
         if(ss.guardar()){
+            if (band) {
+                Utilidades.guardarHistorial("Nuevo Registro", "Nuevo Servicio añadido", Sesiones.getCuenta().getPersona());
+            }else{
+                Utilidades.guardarHistorial("Registro Modificado", "Se ha modificado un Servicio", Sesiones.getCuenta().getPersona());
+            }
             limpiar();
             panelFormServicio.setDisable(true);
             cargarTabla();

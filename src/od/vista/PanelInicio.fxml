@@ -20,9 +20,9 @@
         </columns>
       </TableView>
       <Label layoutX="53.0" layoutY="88.0" styleClass="subtitle-pane" text="Curabitur sit amet sagittis urna. Fusce venenatis turpis et tellus." />
-      <ScrollPane layoutX="521.0" layoutY="148.0" maxHeight="259.0" prefWidth="182.0" styleClass="s-pane">
+      <ScrollPane layoutX="521.0" layoutY="148.0" maxHeight="259.0" prefWidth="187.0" styleClass="s-pane">
          <content>
-            <VBox fx:id="vbNotificaciones" maxWidth="180.0" prefWidth="180.0" stylesheets="@panelinicio.css" />
+            <VBox fx:id="vbNotificaciones" maxWidth="170.0" prefWidth="170.0" stylesheets="@panelinicio.css" />
          </content>
       </ScrollPane>
       <Label layoutX="526.0" layoutY="130.0" styleClass="title-section" text="HISTORIAL DE ACCIONES" />

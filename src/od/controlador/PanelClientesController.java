@@ -25,6 +25,8 @@ import javafx.scene.layout.Pane;
 import od.controlador.servicio.ServicioPersona;
 import od.controlador.servicio.ServicioRol;
 import od.modelo.Persona;
+import od.utilidades.Sesiones;
+import od.utilidades.Utilidades;
 import od.utilidades.Validadores;
 import od.vista.utilidades.UtilidadesComponentes;
 
@@ -243,8 +245,17 @@ public class PanelClientesController {
     @FXML
     private void guardar(){
         if (validar()) {
+            boolean band = true;
+            if (sp.getPersona().getId_persona() != null) {
+                band = false;
+            }
             cargarObjeto();
             if (sp.guardar()) {
+                if (band) {
+                    Utilidades.guardarHistorial("Nuevo Registro", "Nuevo Usuario Registrado", Sesiones.getCuenta().getPersona());
+                }else{
+                    Utilidades.guardarHistorial("Registro Modificado", "Se ha modificado un Usuario.", Sesiones.getCuenta().getPersona());
+                }
                 limpiar();
                 cargarTabla();
                 
