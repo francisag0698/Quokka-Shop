@@ -1,15 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package od.vista.utilidades;
 
 /**
- *
- * @author USUARIO
+ * Clase que permite rutilizar metodos dentro de la vista
+ * @author Agreda Francisco
+ * @author Macas Dennis
+ * @author Ortega César
+ * @version JDK 1.8
  */
 public class UtilidadesComponentes {
+    /**
+     * Metodo que permite validar un cedula 
+     * @param cedula acepta un dato cedula de tipo String
+     * @return devuelve un boolean
+     */
     public static boolean validadorDeCedula(String cedula) {
         try {
             if (cedula.length() == 10)
@@ -43,5 +47,5 @@ public class UtilidadesComponentes {
         } catch (Exception e) {
             return false;
         }
-    }
-}
+    }//Cierre del metodo validarCedula
+}//Cierre de la clase UtilidadesComponente
