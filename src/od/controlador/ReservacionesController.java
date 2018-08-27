@@ -81,9 +81,8 @@ public class ReservacionesController {
         // tipo de estado
         comboEstado.getItems().addAll(
                 "Filtrar por:",
-                "Pagado",
-                "Pendiente",
-                "Cancelado"
+                "Activo",
+                "Inactivo"
         );
         comboEstado.setValue("Filtrar por:");
         //ordenar
@@ -118,7 +117,7 @@ public class ReservacionesController {
     }
     @FXML
     public void limpiar(){
-        campoBuscar.setText(" ");//no se donde ponerlo para se limpie cada vez q se filtre por estado :,V
+        campoBuscar.setText(" ");
         
     }
 
@@ -127,8 +126,7 @@ public class ReservacionesController {
         if (comboEstado.getValue().toString().equals("Filtrar por:")) {
             cargarTabla();
         } else{
-            String tipo = comboEstado.getValue().toString();
-            
+            Boolean tipo = comboEstado.getValue().equals("Activo");          
             reservasTabla.setItems(FXCollections.observableList(sr.listarTipo(tipo)));
             reservasTabla.refresh();
             
@@ -144,7 +142,7 @@ public class ReservacionesController {
                 reservasTabla.setItems(FXCollections.observableList(sr.listarBusqueda(campoBuscar.getText())));
 
             } else {
-                String tipo = comboEstado.getValue().toString();
+                Boolean tipo = comboEstado.getValue().equals("Activo");
                 reservasTabla.setItems(FXCollections.observableList(sr.listarBusquedaTipo(tipo, campoBuscar.getText())));
 
             }

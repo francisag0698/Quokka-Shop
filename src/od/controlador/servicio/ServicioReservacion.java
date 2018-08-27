@@ -75,7 +75,7 @@ public class ServicioReservacion {
      * @param tipo que acepta un dato tipo String
      * @return devuelve un objeto tipo lista
      */
-    public List<Reservacion> listarTipo(String tipo){
+    public List<Reservacion> listarTipo(Boolean tipo){
         return obj.listarTipo(tipo);
     }//cierre del metodo listarTipo
     
@@ -85,7 +85,7 @@ public class ServicioReservacion {
      * @param texto que acepta un dato tipo String
      * @return devuelve un objeto tipo lista
      */    
-    public List<Reservacion> listarBusquedaTipo(String tipo,String texto){
+    public List<Reservacion> listarBusquedaTipo(Boolean tipo,String texto){
         return obj.listarBusquedaTipo(tipo, texto);
     }//cierro del metodo listarBusquedaTipo
     

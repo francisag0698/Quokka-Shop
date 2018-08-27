@@ -72,7 +72,7 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
      * @param tipo acepta un dato reservacion de tipo String
      * @return devuelve una lista con las reservaciones
      */
-      public List<Reservacion>listarTipo(String tipo){
+      public List<Reservacion>listarTipo(Boolean tipo){
         List<Reservacion> lista= new ArrayList<>();
         try {
             Query q = getManager().createQuery("SELECT p FROM Reservacion p where p.estado = :tipo");  
@@ -107,7 +107,7 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
      * @param texto acepta un dato texto de tipo String
      * @return devuelve una lista con las reservaciones que coinciden con la busqueda
      */
-    public List<Reservacion> listarBusquedaTipo(String tipo,String texto){
+    public List<Reservacion> listarBusquedaTipo(Boolean tipo,String texto){
         List<Reservacion> listado= new ArrayList<>();
         try {
             Query q = getManager().createQuery("SELECT r FROM Reservacion r where ((LOWER(r.persona.apellidos)LIKE CONCAT(:texto, '%')) OR (LOWER(r.persona.nombres)LIKE CONCAT(:texto, '%'))) and r.estado = :tipo");
