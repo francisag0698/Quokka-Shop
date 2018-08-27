@@ -39,7 +39,7 @@ public class ServicioHabitacion {
      * Metodo que permite llamar el metodo listar de AdaptadorDao
      * @return devuelve un objeto tipo lista
      */
-    public List<Habitacion>todos(){
+    public List<Habitacion> todos(){
         return obj.listar();
     }//Cierre del metodo todos
     

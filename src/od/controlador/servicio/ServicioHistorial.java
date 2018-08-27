@@ -25,6 +25,14 @@ public class ServicioHistorial {
     }//cierre del metodo get historial
     
     /**
+     * Permite extraer una lista de objetos tipo Historial
+     * @return devuelve una lista de Historial
+     */
+    public List<Historial> todos(){
+        return obj.listar();
+    }//cierre del metodo todos
+    
+    /**
      * Metodo que llamar el metodo guardar
      * @return devuelve un objeto tipo booelan
      */
