@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import od.controlador.servicio.ServicioCuenta;
 import od.controlador.servicio.ServicioPersona;
 import od.utilidades.Sesiones;
+import od.utilidades.Utilidades;
 import od.utilidades.Validadores;
 
 /**
@@ -80,7 +81,7 @@ public class PanelConfiguracionController {
         campoDNI.setText(sp.getPersona().getDni());
         campoNombres.setText(sp.getPersona().getNombres());
         campoApellidos.setText(sp.getPersona().getApellidos());
-        campoFechaNacimiento.setValue(LocalDate.parse(sp.getPersona().getFecha_nacimiento().toString()));
+        campoFechaNacimiento.setValue(LocalDate.parse(Utilidades.formatearFecha(sp.getPersona().getFecha_nacimiento())));
         comboGenero.setValue(sp.getPersona().getSexo());
         campoTelefono.setText(sp.getPersona().getTelefono());
         campoPais.setText(sp.getPersona().getPais());

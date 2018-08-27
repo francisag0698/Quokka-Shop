@@ -8,12 +8,16 @@ package od.controlador;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import od.controlador.servicio.ServicioReservacion;
 import od.modelo.Reservacion;
+import od.utilidades.Utilidades;
 
 
 /**
@@ -41,6 +45,31 @@ public class ReservacionesController {
     private ComboBox comboEstado;
     @FXML
     private ComboBox comboOrdenar;
+    
+    @FXML
+    private Pane panelDescr;
+    @FXML
+    private Label lblNombres;
+    @FXML
+    private Label lblFecha;
+    @FXML
+    private Label lblFechaEntrada;
+    @FXML
+    private Label lblFechaSalida;
+    @FXML
+    private Label lblHabitacion;
+    @FXML
+    private Label lblAdultos;
+    @FXML
+    private Label lblMenores;
+    @FXML
+    private Label lblNroHabitaciones;
+    @FXML
+    private Label lblServicios;
+    @FXML
+    private Label lblSubtotal;
+    @FXML
+    private Label lblTotal;
 
     ServicioReservacion sr = new ServicioReservacion();
 
@@ -136,6 +165,54 @@ public class ReservacionesController {
             reservasTabla.setItems(FXCollections.observableList(sr.ordenAscendente(orden)));
             reservasTabla.refresh();
         }
+    }
+    
+    @FXML
+    private void handleDetalles(){
+        if (reservasTabla.getSelectionModel().getSelectedItem() != null){
+            lblNombres.setText(reservasTabla.getSelectionModel().getSelectedItem().getPersona().getNombres() + " " +reservasTabla.getSelectionModel().getSelectedItem().getPersona().getApellidos());
+            lblFecha.setText(Utilidades.formatearFechaDos(reservasTabla.getSelectionModel().getSelectedItem().getFecha()));
+            lblFechaEntrada.setText(Utilidades.formatearFechaDos(reservasTabla.getSelectionModel().getSelectedItem().getFecha_inicio()));
+            lblFechaSalida.setText(Utilidades.formatearFechaDos(reservasTabla.getSelectionModel().getSelectedItem().getFecha_fin()));
+            lblHabitacion.setText(reservasTabla.getSelectionModel().getSelectedItem().getHabitacion().getNombre());
+            lblAdultos.setText(reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getAdultos().toString());
+            lblMenores.setText(reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getMenores().toString());
+            lblNroHabitaciones.setText(reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getCant_habitaciones().toString());
+            String servicios = "";
+            for (int i = 0; i < reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getServicios().size(); i++) {
+                if (i != reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getServicios().size() - 1) {
+                   servicios += reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getServicios().get(i).getNombre_servicio() + ", "; 
+                }else{
+                   servicios += reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getServicios().get(i).getNombre_servicio(); 
+                }
+            }
+            lblServicios.setText(servicios);
+            lblSubtotal.setText("$" + reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getPago_subtotal().toString());
+            lblTotal.setText("$" + reservasTabla.getSelectionModel().getSelectedItem().getPago_total().toString());
+            panelDescr.setVisible(true);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Sin selección");
+            alert.setHeaderText("");
+            alert.setContentText("Por favor, seleccione un elemento de la tabla.");
+            alert.showAndWait();
+        }
+    }
+    
+    @FXML
+    private void handleRegresar(){
+        panelDescr.setVisible(false);
+        lblNombres.setText("");
+        lblFecha.setText("");
+        lblFechaEntrada.setText("");
+        lblFechaSalida.setText("");
+        lblHabitacion.setText("");
+        lblAdultos.setText("");
+        lblMenores.setText("");
+        lblNroHabitaciones.setText("");
+        lblServicios.setText("");
+        lblSubtotal.setText("");
+        lblTotal.setText("");
     }
 
 }

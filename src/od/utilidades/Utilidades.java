@@ -34,4 +34,26 @@ public class Utilidades {
             return new Date();
         }
     }
+    
+    public static String formatearFecha(Date fecha){
+        String fechaSalida = "";
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            fechaSalida = formato.format(fecha);
+        } catch (Exception e) {
+            System.out.println("No se pudo formatear la fecha...");
+        }
+        return fechaSalida;
+    }
+    
+    public static String formatearFechaDos(Date fecha){
+        String fechaSalida = "";
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            fechaSalida = formato.format(fecha);
+        } catch (Exception e) {
+            System.out.println("No se pudo formatear la fecha...");
+        }
+        return fechaSalida;
+    }
 }

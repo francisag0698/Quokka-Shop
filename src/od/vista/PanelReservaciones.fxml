@@ -8,6 +8,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="638.0" prefWidth="738.0" styleClass="background" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.ReservacionesController">
    <children>
@@ -25,11 +28,48 @@
             <TableColumn fx:id="estadoColumna" prefWidth="89.0" text="Estado" />
         </columns>
       </TableView>
-      <Button layoutX="595.0" layoutY="578.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" styleClass="btn-default" text="ELIMINAR" />
-      <Button layoutX="487.0" layoutY="578.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="98.0" styleClass="btn-default" text="MODIFICAR" />
+      <Button layoutX="585.0" layoutY="570.0" mnemonicParsing="false" onAction="#handleDetalles" prefHeight="30.0" prefWidth="98.0" styleClass="btn-default" text="DETALLES" />
+      <Pane fx:id="panelDescr" layoutX="31.0" layoutY="42.0" prefHeight="744.0" prefWidth="1066.0" styleClass="wrap" stylesheets="@general.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Region layoutX="170.0" layoutY="61.0" prefHeight="517.0" prefWidth="398.0" styleClass="done-box" />
+            <Label layoutX="215.0" layoutY="99.0" prefHeight="29.0" prefWidth="272.0" styleClass="done-label" text="Detalles de Reservacion" />
+            <Button layoutX="474.0" layoutY="523.0" mnemonicParsing="false" onAction="#handleRegresar" styleClass="done-button" text="Cerrar" />
+            <Label layoutX="215.0" layoutY="151.0" text="Nombres y Apellidos:" />
+            <Label layoutX="215.0" layoutY="173.0" text="Fecha de Registro:" />
+            <Label layoutX="215.0" layoutY="214.0" text="Fecha de Entrada:" />
+            <Label layoutX="215.0" layoutY="236.0" text="Fecha de Salida:" />
+            <Label layoutX="215.0" layoutY="278.0" text="Nombre de Habitación:" />
+            <Label layoutX="215.0" layoutY="299.0" text="Adultos:" />
+            <Label layoutX="351.0" layoutY="299.0" text="Niños:" />
+            <Label layoutX="215.0" layoutY="322.0" text="Cantidad de Habitaciones Solicitadas:" />
+            <Label layoutX="215.0" layoutY="361.0" text="Servicios:" />
+            <Label fx:id="lblServicios" alignment="TOP_LEFT" layoutX="215.0" layoutY="379.0" prefHeight="54.0" prefWidth="320.0" text="Lista de Servicios..." wrapText="true" />
+            <Label layoutX="215.0" layoutY="442.0" text="Pago por servicios:" />
+            <Label layoutX="215.0" layoutY="476.0" text="Total: ">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTotal" alignment="CENTER_RIGHT" layoutX="412.0" layoutY="476.0" prefHeight="26.0" prefWidth="123.0" text="000.00">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblNombres" layoutX="347.0" layoutY="151.0" text="Nombres" />
+            <Label fx:id="lblFecha" layoutX="347.0" layoutY="173.0" text="Apellidos" />
+            <Label fx:id="lblFechaEntrada" layoutX="343.0" layoutY="214.0" text="00/00/0000" />
+            <Label fx:id="lblFechaSalida" layoutX="343.0" layoutY="236.0" text="00/00/0000" />
+            <Label fx:id="lblHabitacion" layoutX="353.0" layoutY="278.0" prefHeight="17.0" prefWidth="177.0" text="Nombre de la Habitacion" />
+            <Label fx:id="lblAdultos" layoutX="279.0" layoutY="299.0" prefHeight="17.0" prefWidth="43.0" text="00" />
+            <Label fx:id="lblMenores" layoutX="401.0" layoutY="299.0" prefHeight="17.0" prefWidth="43.0" text="00" />
+            <Label fx:id="lblNroHabitaciones" layoutX="425.0" layoutY="322.0" prefHeight="17.0" prefWidth="43.0" text="00" />
+            <Label fx:id="lblSubtotal" layoutX="330.0" layoutY="442.0" prefHeight="17.0" prefWidth="71.0" text="0000.00" />
+         </children>
+      </Pane>
    </children>
    <stylesheets>
       <URL value="@raizvista.css" />
       <URL value="@panelreservaciones.css" />
+      <URL value="@general.css" />
    </stylesheets>
 </AnchorPane>
