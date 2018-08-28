@@ -28,17 +28,17 @@
                <content>
                   <AnchorPane prefHeight="485.0" prefWidth="642.0">
                      <children>
-                        <TextField fx:id="campoBuscar" layoutY="18.0" onKeyPressed="#buscarTextoSeleccion" prefHeight="25.0" prefWidth="334.0" />
-                        <ComboBox fx:id="comboFiltro" layoutX="342.0" layoutY="18.0" onAction="#filtrarSeleccion" prefHeight="25.0" prefWidth="141.0" promptText="Filtrar por:" />
-                        <ComboBox fx:id="comboSelecion" disable="true" layoutX="492.0" layoutY="18.0" onAction="#seleccionar" prefWidth="150.0" promptText="Sin seleccion" />
+                        <TextField fx:id="campoBuscar" layoutY="18.0" onKeyPressed="#buscarTextoSeleccion" prefHeight="25.0" prefWidth="305.0" />
+                        <ComboBox fx:id="comboFiltro" layoutX="310.0" layoutY="18.0" onAction="#filtrarSeleccion" prefHeight="25.0" prefWidth="141.0" promptText="Filtrar por:" />
+                        <ComboBox fx:id="comboSelecion" disable="true" layoutX="458.0" layoutY="18.0" onAction="#seleccionar" prefHeight="25.0" prefWidth="148.0" promptText="Sin seleccion" />
                         <TableView fx:id="tablaHabitacion" layoutY="55.0" prefHeight="368.0" prefWidth="642.0">
                           <columns>
+                              <TableColumn fx:id="estadoColumna" prefWidth="88.0" text="Código" />
                             <TableColumn fx:id="nombresColumna" prefWidth="218.0" text="Nombre" />
                             <TableColumn fx:id="tipoColumna" prefWidth="121.0" text="Tipo" />
                               <TableColumn fx:id="capacidadColumna" prefWidth="75.0" text="Capacidad" />
                               <TableColumn fx:id="camasColumna" prefWidth="57.0" text="Camas" />
                               <TableColumn fx:id="precioColumna" prefWidth="82.0" text="Precio" />
-                              <TableColumn fx:id="estadoColumna" prefWidth="88.0" text="Estado" />
                           </columns>
                         </TableView>
                         <ButtonBar layoutX="442.0" layoutY="427.0" prefHeight="40.0" prefWidth="200.0">
@@ -47,6 +47,11 @@
                               <Button mnemonicParsing="false" onAction="#handleModificar" text="Modificar" />
                           </buttons>
                         </ButtonBar>
+                        <Button fx:id="btnLimpiarFiltro" layoutX="612.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0">
+                           <graphic>
+                              <Label styleClass="fa-icon" text="" />
+                           </graphic>
+                        </Button>
                      </children></AnchorPane>
                </content>
             </Tab>

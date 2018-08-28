@@ -221,7 +221,7 @@ public class PanelClientesController {
     
     @FXML
     private void buscarTexto(){
-        if (txtBuscar.getText().trim().length() >= 3 || cbxFiltrarPor.getValue().equals("Genero")) {
+        if (txtBuscar.getText().trim().length() >= 3 || (cbxFiltrarPor.getValue() != null && cbxFiltrarPor.getValue().equals("Genero"))) {
             if (cbxFiltrarPor.getValue() == null) {
                 tblCliente.setItems(FXCollections.observableList(sp.listarSinAdministradorBusqueda(txtBuscar.getText())));
                 tblCliente.refresh();

@@ -217,15 +217,15 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
         Long cantidad = new Long(0);
         try {
             Query q = getManager()
-                    .createQuery("SELECT h.cantidad - (SELECT COUNT(r) as INT FROM Reservacion r "
-                            + "WHERE (r.fecha_inicio >= :inicio AND r.fecha_fin <= :fin) "
-                            + "OR (r.fecha_inicio <= :inicio AND r.fecha_fin >= :fin)) AS INT "
+                    .createQuery("SELECT SUM(h.cantidad - (SELECT COUNT(r) as INT FROM Reservacion r "
+                            + "WHERE ((r.fecha_inicio >= :inicio AND r.fecha_fin <= :fin) "
+                            + "OR (r.fecha_inicio <= :inicio AND r.fecha_fin >= :fin)) AND h.id_habitacion = r.habitacion.id_habitacion)) "
                             + "FROM Habitacion h");
             q.setParameter("inicio", inicio);
             q.setParameter("fin", fin);
             cantidad = (Long) q.getSingleResult();
         } catch (Exception e) {
-            System.out.println("HabitacionDao | Met: cantidadDisponibles - " + e);
+            System.out.println("HabitacionDao | Met: cantidadDisponibles2 - " + e);
         }
         return cantidad;
     }

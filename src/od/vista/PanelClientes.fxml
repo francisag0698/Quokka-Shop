@@ -29,9 +29,9 @@
                <content>
                   <AnchorPane prefHeight="485.0" prefWidth="642.0">
                      <children>
-                        <TextField fx:id="txtBuscar" layoutY="18.0" onKeyReleased="#buscarTexto" prefHeight="25.0" prefWidth="334.0" promptText="Busqueda" />
-                        <ComboBox fx:id="cbxFiltrarPor" layoutX="342.0" layoutY="18.0" onAction="#controlCombo" prefHeight="25.0" prefWidth="141.0" promptText="Filtrar por:" />
-                        <ComboBox fx:id="cbxComboSeleccion" disable="true" layoutX="492.0" layoutY="18.0" onAction="#buscarTexto" prefWidth="150.0" promptText="Sin selección" />
+                        <TextField fx:id="txtBuscar" layoutY="18.0" onKeyReleased="#buscarTexto" prefHeight="25.0" prefWidth="302.0" promptText="Busqueda" />
+                        <ComboBox fx:id="cbxFiltrarPor" layoutX="308.0" layoutY="18.0" onAction="#controlCombo" prefHeight="25.0" prefWidth="141.0" promptText="Filtrar por:" />
+                        <ComboBox fx:id="cbxComboSeleccion" disable="true" layoutX="456.0" layoutY="18.0" onAction="#buscarTexto" prefWidth="150.0" promptText="Sin selección" />
                         <TableView fx:id="tblCliente" layoutY="55.0" prefHeight="368.0" prefWidth="642.0">
                            <columns>
                               <TableColumn fx:id="colNyAp" prefWidth="221.0" text="Nombres y Apellidos" />
@@ -47,6 +47,11 @@
                               <Button mnemonicParsing="false" onAction="#handleModificar" text="Modificar" />
                           </buttons>
                         </ButtonBar>
+                        <Button fx:id="btnLimpiarFiltro" layoutX="612.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0">
+                           <graphic>
+                              <Label styleClass="fa-icon" text="" />
+                           </graphic>
+                        </Button>
                      </children></AnchorPane>
                </content>
             </Tab>

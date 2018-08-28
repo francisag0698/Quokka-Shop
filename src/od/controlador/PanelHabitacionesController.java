@@ -274,7 +274,7 @@ public class PanelHabitacionesController {
                 cellData -> new SimpleStringProperty(cellData.getValue().getPrecio().toString())
         );
         estadoColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty((cellData.getValue().getEstado()) ? "En uso":"Libre")
+                cellData -> new SimpleStringProperty(cellData.getValue().getCodigo())
         );
         tablaHabitacion.refresh();
     }
