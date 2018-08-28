@@ -307,7 +307,7 @@ public class PanelClientesController {
     
     @FXML
     private void controlCombo(){
-        if (cbxFiltrarPor.getValue().equals("Genero")) {
+        if (cbxFiltrarPor.getValue() != null && cbxFiltrarPor.getValue().equals("Genero")) {
             txtBuscar.setText("");
             cbxComboSeleccion.setDisable(false);
         }else{
@@ -351,5 +351,14 @@ public class PanelClientesController {
         lblPais.setText("");
         lblCiudad.setText("");
         lblDireccion.setText("");
+    }
+    
+    @FXML
+    private void handleBarrer(){
+        txtBuscar.setText("");
+        cbxFiltrarPor.setValue(null);
+        cbxComboSeleccion.setValue(null);
+        cbxComboSeleccion.setDisable(true);
+        cargarTabla();
     }
 }

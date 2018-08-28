@@ -33,11 +33,11 @@
                         <ComboBox fx:id="comboSelecion" disable="true" layoutX="458.0" layoutY="18.0" onAction="#buscarTexto" prefHeight="25.0" prefWidth="148.0" promptText="Sin seleccion" />
                         <TableView fx:id="tablaHabitacion" layoutY="55.0" prefHeight="368.0" prefWidth="642.0">
                           <columns>
-                              <TableColumn fx:id="estadoColumna" prefWidth="88.0" text="Código" />
-                            <TableColumn fx:id="nombresColumna" prefWidth="218.0" text="Nombre" />
-                            <TableColumn fx:id="tipoColumna" prefWidth="121.0" text="Tipo" />
-                              <TableColumn fx:id="capacidadColumna" prefWidth="75.0" text="Capacidad" />
-                              <TableColumn fx:id="camasColumna" prefWidth="57.0" text="Camas" />
+                              <TableColumn fx:id="estadoColumna" prefWidth="82.0" text="Código" />
+                            <TableColumn fx:id="nombresColumna" prefWidth="224.0" text="Nombre" />
+                            <TableColumn fx:id="tipoColumna" prefWidth="108.0" text="Tipo" />
+                              <TableColumn fx:id="capacidadColumna" prefWidth="73.0" text="Capacidad" />
+                              <TableColumn fx:id="camasColumna" prefWidth="72.0" text="Cantidad" />
                               <TableColumn fx:id="precioColumna" prefWidth="82.0" text="Precio" />
                           </columns>
                         </TableView>

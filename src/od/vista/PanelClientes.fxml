@@ -47,7 +47,7 @@
                               <Button mnemonicParsing="false" onAction="#handleModificar" text="Modificar" />
                           </buttons>
                         </ButtonBar>
-                        <Button fx:id="btnLimpiarFiltro" layoutX="612.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0">
+                        <Button fx:id="btnLimpiarFiltro" layoutX="612.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleBarrer" prefHeight="25.0" prefWidth="30.0">
                            <graphic>
                               <Label styleClass="fa-icon" text="" />
                            </graphic>

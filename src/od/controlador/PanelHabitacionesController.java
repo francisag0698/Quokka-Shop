@@ -129,6 +129,32 @@ public class PanelHabitacionesController {
                 "Suite Empresarial"
         );
     }
+    
+    
+
+    public void cargarTabla() {
+        tablaHabitacion.setItems(FXCollections.observableList(sh.todos()));
+
+        nombresColumna.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getNombre())
+        );
+        tipoColumna.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getTipo())
+        );
+        capacidadColumna.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getCapacidad().toString())
+        );
+        camasColumna.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getCantidad().toString())
+        );
+        precioColumna.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getPrecio().toString())
+        );
+        estadoColumna.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getCodigo())
+        );
+        tablaHabitacion.refresh();
+    }
 
     private boolean validar() {
         if (Validadores.validarTF(campoCodigo)
@@ -260,30 +286,6 @@ public class PanelHabitacionesController {
         limpiar();
     }
 
-    public void cargarTabla() {
-        tablaHabitacion.setItems(FXCollections.observableList(sh.todos()));
-
-        nombresColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getNombre())
-        );
-        tipoColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getTipo())
-        );
-        capacidadColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getCapacidad().toString())
-        );
-        camasColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getNro_camas().toString())
-        );
-        precioColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getPrecio().toString())
-        );
-        estadoColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getCodigo())
-        );
-        tablaHabitacion.refresh();
-    }
-
     @FXML
     private void buscarTexto() {
         if (campoBuscar.getText().trim().length() >= 3 || (comboFiltro.getValue() != null && comboFiltro.getValue().equals("Tipo"))) {
@@ -360,5 +362,6 @@ public class PanelHabitacionesController {
         comboSelecion.setDisable(true);
         comboFiltro.setValue(null);
         campoBuscar.setText("");
+        cargarTabla();
     }
 }
