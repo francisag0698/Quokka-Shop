@@ -55,7 +55,7 @@ public class PanelHabitacionesController {
     private TextField campoPrecio;
     @FXML
     private TextField campoCantidad;
-    
+
     @FXML
     private TableView<Habitacion> tablaHabitacion;
     @FXML
@@ -70,14 +70,14 @@ public class PanelHabitacionesController {
     private TableColumn<Habitacion, String> precioColumna;
     @FXML
     private TableColumn<Habitacion, String> estadoColumna;
-    
+
     @FXML
     private TabPane tbpHabitaciones;
     @FXML
     private Tab tabListado;
     @FXML
     private Tab tabFormulario;
-    
+
     @FXML
     private Pane panelDescr;
     @FXML
@@ -117,12 +117,17 @@ public class PanelHabitacionesController {
         );
         //tipo de filtro
         comboFiltro.getItems().addAll(
-                "Filtrar por:",
-                "Tipo",
-                "Estado"
+                "Codigo",
+                "Tipo"
         );
-        comboFiltro.setValue("Filtrar por:");
-
+        comboSelecion.getItems().addAll(
+                "Individual",
+                "Normal",
+                "Doble",
+                "Familiar",
+                "Suite Normal",
+                "Suite Empresarial"
+        );
     }
 
     private boolean validar() {
@@ -136,18 +141,18 @@ public class PanelHabitacionesController {
                 & Validadores.validarTA(areaHabitacion)
                 & comboTipo.getValue() != null) {
             if (Validadores.validarValor(campoCapacidad, 'i')
-                & Validadores.validarValor(campoCamas, 'i')
-                & Validadores.validarValor(campoPrecio, 'd')
-                & Validadores.validarValor(campoCantidad, 'i')) {
+                    & Validadores.validarValor(campoCamas, 'i')
+                    & Validadores.validarValor(campoPrecio, 'd')
+                    & Validadores.validarValor(campoCantidad, 'i')) {
                 return true;
-            }else{
+            } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Error en los datos");
                 alert.setHeaderText("");
                 alert.setContentText("Los datos ingresados no son válidos.");
-                alert.showAndWait();                
-                return false; 
-            }            
+                alert.showAndWait();
+                return false;
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Campos Vacíos");
@@ -182,7 +187,7 @@ public class PanelHabitacionesController {
         areaHabitacion.setText("");
         campoCantidad.setText("");
         comboTipo.setValue(null);
-        
+
         sh.fijarHabitacion(null);
     }
 
@@ -192,7 +197,7 @@ public class PanelHabitacionesController {
         if (sh.getHabitacion().getId_habitacion() != null) {
             band = false;
         }
-        if (sh.guardar()) {            
+        if (sh.guardar()) {
             cargarTabla();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Guardado");
@@ -203,7 +208,7 @@ public class PanelHabitacionesController {
             tbpHabitaciones.getSelectionModel().select(tabListado);
             if (band) {
                 Utilidades.guardarHistorial("Nuevo Registro", "Nueva Habitación añadida", Sesiones.getCuenta().getPersona());
-            }else{
+            } else {
                 Utilidades.guardarHistorial("Registro Modificado", "Se ha modificado una Habitación", Sesiones.getCuenta().getPersona());
             }
             limpiar();
@@ -220,13 +225,13 @@ public class PanelHabitacionesController {
     @FXML
     private void handleGuardar() {
         if (validar()) {
-            guardar();            
+            guardar();
             System.out.println("Guardado");
         }
     }
-    
+
     @FXML
-    private void handleModificar(){
+    private void handleModificar() {
         if (tablaHabitacion.getSelectionModel().getSelectedItem() != null) {
             sh.fijarHabitacion(tablaHabitacion.getSelectionModel().getSelectedItem());
             campoCodigo.setText(sh.getHabitacion().getCodigo());
@@ -239,9 +244,9 @@ public class PanelHabitacionesController {
             campoCantidad.setText(sh.getHabitacion().getCantidad().toString());
             areaHabitacion.setText(sh.getHabitacion().getDescripcion());
             areaCondiciones.setText(sh.getHabitacion().getCondiciones());
-            
+
             tbpHabitaciones.getSelectionModel().select(tabFormulario);
-        }else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Sin selección");
             alert.setHeaderText("");
@@ -280,71 +285,30 @@ public class PanelHabitacionesController {
     }
 
     @FXML
-    private void filtrarSeleccion() {
-        if (comboFiltro.getValue().toString().equals("Filtrar por:")) {
-            cargarTabla();
-            comboSelecion.setDisable(true);
-            comboSelecion.getItems().removeAll("Individual", "Normal", "Doble", "Familiar", "Suite Normal", "Suite Empresarial","Ocupado","Libre");
-        } else if (comboFiltro.getValue().toString().equals("Tipo")) {
-            comboSelecion.getItems().removeAll("Ocupado", "libre");
-            comboSelecion.setDisable(false);
-            comboSelecion.getItems().addAll(
-                    "Individual",
-                    "Normal",
-                    "Doble",
-                    "Familiar",
-                    "Suite Normal",
-                    "Suite Empresarial"
-            );
-            seleccionar();
-        } else if (comboFiltro.getValue().toString().equals("Estado")) {
-            comboSelecion.getItems().removeAll("Individual", "Normal", "Doble", "Familiar", "Suite Normal", "Suite Empresarial");
-            comboSelecion.setDisable(false);
-            comboSelecion.getItems().addAll(
-                    "Ocupado",
-                    "libre"
-            );
-            seleccionar();
-        }
-    }
-
-    @FXML
-    private void seleccionar() {
-        if (comboSelecion.getValue() !=null) {
-            if (comboFiltro.getValue().toString().equals("Tipo")) {
-                String tipo = comboSelecion.getValue().toString();
-                tablaHabitacion.setItems(FXCollections.observableList(sh.listarTipo(tipo)));
-                tablaHabitacion.refresh();
-            } else if (comboFiltro.getValue().toString().equals("Estado")) {
-                Boolean estado = comboSelecion.getValue().equals("libre");
-                tablaHabitacion.setItems(FXCollections.observableList(sh.listarEstado(estado)));
-                tablaHabitacion.refresh();
-            }
-        }
-    }
-
-    @FXML
-    private void buscarTextoSeleccion() {
-        if (campoBuscar.getText().trim().length() >= 3) {
-            if (comboFiltro.getValue().toString().equals("Filtrar por:")) {
+    private void buscarTexto() {
+        if (campoBuscar.getText().trim().length() >= 3 || (comboFiltro.getValue() != null && comboFiltro.getValue().equals("Tipo"))) {
+            if (comboFiltro.getValue() == null) {
                 tablaHabitacion.setItems(FXCollections.observableList(sh.listarBusqueda(campoBuscar.getText())));
-            } else if (comboFiltro.getValue().toString().equals("Tipo")) {
-                String tipo = comboSelecion.getValue().toString();
-                tablaHabitacion.setItems(FXCollections.observableList(sh.listarBusquedaTipo(tipo, campoBuscar.getText())));
-                
-            } else if (comboFiltro.getValue().toString().equals("Estado")) {
-                Boolean estado = comboSelecion.getValue().equals("libre");
-                tablaHabitacion.setItems(FXCollections.observableList(sh.listarBusquedaEstado(estado, campoBuscar.getText())));               
+                tablaHabitacion.refresh();
+            } else if (comboFiltro.getValue().equals("Codigo")) {
+                tablaHabitacion.setItems(FXCollections.observableList(sh.listarBusquedaCodigo(campoBuscar.getText())));
+                tablaHabitacion.refresh();
+            } else {
+                if (comboSelecion.getValue() != null) {
+                    tablaHabitacion.setItems(FXCollections.observableList(sh.listarBusquedaTipo(comboSelecion.getValue().toString(), campoBuscar.getText())));
+                    tablaHabitacion.refresh();
+                } else {
+                    tablaHabitacion.setItems(FXCollections.observableList(sh.listarBusqueda(campoBuscar.getText())));
+                }
             }
-            tablaHabitacion.refresh();
-        } else {
-            filtrarSeleccion();
+        } else if (campoBuscar.getText().trim().length() == 0) {
+            cargarTabla();
         }
     }
-    
+
     @FXML
-    private void handleDetalles(){
-        if (tablaHabitacion.getSelectionModel().getSelectedItem() != null){
+    private void handleDetalles() {
+        if (tablaHabitacion.getSelectionModel().getSelectedItem() != null) {
             lblCodigo.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getCodigo());
             lblNombre.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getNombre());
             lblTipo.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getTipo());
@@ -355,7 +319,7 @@ public class PanelHabitacionesController {
             lblDescripcion.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getDescripcion());
             lblCondiciones.setText(tablaHabitacion.getSelectionModel().getSelectedItem().getCondiciones());
             panelDescr.setVisible(true);
-        }else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Sin selección");
             alert.setHeaderText("");
@@ -363,9 +327,9 @@ public class PanelHabitacionesController {
             alert.showAndWait();
         }
     }
-    
+
     @FXML
-    private void handleRegresar(){
+    private void handleRegresar() {
         panelDescr.setVisible(false);
         lblCodigo.setText("");
         lblNombre.setText("");
@@ -375,6 +339,26 @@ public class PanelHabitacionesController {
         lblCantidad.setText("");
         lblPrecio.setText("");
         lblDescripcion.setText("");
-        lblCondiciones.setText("");     
+        lblCondiciones.setText("");
+    }
+    
+    @FXML
+    private void controlCombo(){
+        if(comboFiltro.getValue() != null && comboFiltro.getValue().equals("Tipo") ){
+            campoBuscar.setText("");
+            comboSelecion.setDisable(false);
+        }else{
+            campoBuscar.setText("");
+            comboSelecion.setValue(null);
+            comboSelecion.setDisable(true);
+            buscarTexto();
+        }
+    }
+    @FXML
+    private void barrer(){
+        comboSelecion.setValue(null);
+        comboSelecion.setDisable(true);
+        comboFiltro.setValue(null);
+        campoBuscar.setText("");
     }
 }

@@ -102,8 +102,8 @@ public class ServicioHabitacion {
      * @param estado acepta un dato tipo Boolean
      * @return devuelve un objeto lista
      */
-    public List<Habitacion> listarBusquedaEstado(Boolean estado,String texto){
-        return obj.listarBusquedaEstado(estado, texto);
+    public List<Habitacion> listarBusquedaCodigo(String texto){
+        return obj.listarBusquedaCodigo(texto);
     }//cierre del metodo listarBusquedaEstado
     
     /**

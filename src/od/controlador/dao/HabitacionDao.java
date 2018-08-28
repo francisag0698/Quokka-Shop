@@ -147,17 +147,16 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
     
     /**
      * Metodo para listar las habitaciones por buscadas por estado
-     * @param estado acepta un dato tipo boolean
+     * 
      * @param texto acepta un dato tipo String
      * @return devuelve una lista
      */
-    public List<Habitacion> listarBusquedaEstado(Boolean estado,String texto){
+    public List<Habitacion> listarBusquedaCodigo(String texto){
         List<Habitacion> lista= new ArrayList<>();
         try {
             Query q = getManager()
-                    .createQuery("SELECT h FROM Habitacion h WHERE (LOWER(h.nombre) LIKE CONCAT('%', :texto, '%')) AND h.estado = :estado");
+                    .createQuery("SELECT h FROM Habitacion h WHERE (LOWER(h.codigo) LIKE CONCAT('%', :texto, '%'))");
             q.setParameter("texto", texto);
-            q.setParameter("estado", estado);
             lista = q.getResultList();
         } catch (Exception e) {
         }
