@@ -125,4 +125,8 @@ public class ServicioHabitacion {
     public Long cantidadDisponibles(Date inicio, Date fin, String codigo){
         return obj.cantidadDisponibles(inicio, fin, codigo);
     }//cierre del metodo cantidadDisponibles
+    
+    public Long cantidadDisponibles(Date inicio, Date fin){
+        return obj.cantidadDisponibles(inicio, fin);
+    }
 }//cierre de la clase ServicioHabitacion

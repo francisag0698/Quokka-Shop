@@ -177,7 +177,8 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
                     .createQuery("SELECT h FROM Habitacion h "
                             + "WHERE h.cantidad > (SELECT COUNT(r) as INT FROM Reservacion r "
                             + "WHERE r.habitacion.id_habitacion = h.id_habitacion "
-                            + "AND r.fecha_inicio >= :inicio AND r.fecha_fin <= :fin)");
+                            + "AND ((r.fecha_inicio >= :inicio AND r.fecha_fin <= :fin) "
+                            + "OR (r.fecha_inicio <= :inicio AND r.fecha_fin >= :fin)))");
             q.setParameter("inicio", inicio);
             q.setParameter("fin", fin);
             lista = q.getResultList();
@@ -199,14 +200,33 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
             Query q = getManager()
                     .createQuery("SELECT h.cantidad - (SELECT COUNT(r) as INT FROM Reservacion r "
                             + "WHERE r.habitacion.codigo = :codigo "
-                            + "AND r.fecha_inicio >= :inicio AND r.fecha_fin <= :fin) AS INT "
+                            + "AND ((r.fecha_inicio >= :inicio AND r.fecha_fin <= :fin) "
+                            + "OR (r.fecha_inicio <= :inicio AND r.fecha_fin >= :fin))) AS INT "
                             + "FROM Habitacion h WHERE h.codigo = :codigo");
             q.setParameter("inicio", inicio);
             q.setParameter("fin", fin);
             q.setParameter("codigo", codigo);
             cantidad = (Long) q.getSingleResult();
         } catch (Exception e) {
+            System.out.println("HabitacionDao | Met: cantidadDisponibles - " + e);
         }
         return cantidad;
     }//cierre del metodo cantidadDisponibles
+    
+    public Long cantidadDisponibles(Date inicio, Date fin){
+        Long cantidad = new Long(0);
+        try {
+            Query q = getManager()
+                    .createQuery("SELECT h.cantidad - (SELECT COUNT(r) as INT FROM Reservacion r "
+                            + "WHERE (r.fecha_inicio >= :inicio AND r.fecha_fin <= :fin) "
+                            + "OR (r.fecha_inicio <= :inicio AND r.fecha_fin >= :fin)) AS INT "
+                            + "FROM Habitacion h");
+            q.setParameter("inicio", inicio);
+            q.setParameter("fin", fin);
+            cantidad = (Long) q.getSingleResult();
+        } catch (Exception e) {
+            System.out.println("HabitacionDao | Met: cantidadDisponibles - " + e);
+        }
+        return cantidad;
+    }
 }//cierre del la clase HabitacionDao

@@ -60,6 +60,10 @@ public class ServicioReservacion {
     public void fijarReservacion(Reservacion reservacion) {
         obj.setReservacion(reservacion);
     }//cierre del metodo fijarReservacion
+    
+    public List<Reservacion> listarPorPersona(Long id){
+        return obj.listarPorPersona(id);
+    }
 
     /**
      * Metodo que permite llamar el metodo listar del ServicioReservacion
@@ -97,4 +101,8 @@ public class ServicioReservacion {
     public List<Reservacion> ordenAscendente(String orden){
         return obj.ordenAscendente(orden);
     }//cierre del metodo ordenAscendente
+    
+    public Long nroReservasActivas(){
+        return obj.nroReservasActivas();
+    }
 }//cierre la clase ServicioReservacion

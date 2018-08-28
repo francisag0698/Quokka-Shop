@@ -39,4 +39,8 @@ public class ServicioHistorial {
     public boolean guardar(){
         return obj.guardar();
     }//Cierre del metodo guardar
+    
+    public List<Historial> listarPorPersona(Long id){
+        return obj.listarPorPersona(id);
+    }
 }//cierre de la clase ServicioHistorial

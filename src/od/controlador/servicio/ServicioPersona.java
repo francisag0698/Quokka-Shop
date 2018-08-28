@@ -100,4 +100,8 @@ public class ServicioPersona {
     public List<Persona> listarSinAdministradorGeneroBusqueda(String texto, String genero){
         return obj.listarSinAdministradorGeneroBusqueda(texto, genero);
     }//Cierre del metodo listarSinAdministradorGeneroBusqueda
+    
+    public Long nroUsuarios(){
+        return obj.nroUsuarios();
+    }
 }//Cierre de la clase ServicioPersona

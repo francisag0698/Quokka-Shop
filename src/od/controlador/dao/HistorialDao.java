@@ -72,4 +72,16 @@ public class HistorialDao extends AdaptadorDao<Historial>{
         }
         return verificar;
     }//cierre del metodo guardar
+    
+    public List<Historial> listarPorPersona(Long id){
+        List<Historial> lista = new ArrayList<>();
+        try {
+            Query q = getManager().createQuery("SELECT h FROM Historial h WHERE h.persona.id_persona = :id");
+            q.setParameter("id", id);
+            lista = q.getResultList();
+        } catch (Exception e) {
+            System.out.println("Historial Dao | Met: listarPorPersona: " + e);
+        }
+        return lista;
+    }
 }//cierre de la clase HistorialDao

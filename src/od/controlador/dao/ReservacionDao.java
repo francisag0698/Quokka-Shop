@@ -61,11 +61,21 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
             getManager().getTransaction().commit();
             verificar = true;
         }catch(Exception e){
-            System.out.println("No se ha podido guardar o modificar " + e);
+            System.out.println("ReservacionDao | Guardar: " + e);
         }
         return verificar;
     }//Cierre del metodo guardar
     
+    public List<Reservacion> listarPorPersona(Long id){
+        List<Reservacion> lista = new ArrayList<>();
+        try {
+            Query q = getManager().createQuery("SELECT r FROM Reservacion r WHERE r.persona.id_persona = :id");
+            q.setParameter("id", id);
+            lista = q.getResultList();
+        } catch (Exception e) {
+        }
+        return lista;
+    }
 
     /**
      * Metodo que permite listar Reservaciones por tipo
@@ -79,7 +89,7 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
             q.setParameter("tipo", tipo);
             lista = q.getResultList();
         } catch (Exception e) {
-            System.out.println("error"+e);
+            System.out.println("ReservacionDao | Listar por Tipo: " + e);
         }
         return lista;
     }//cierre del metodo listarTipo
@@ -97,6 +107,7 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
             q.setParameter("texto", texto);
             lista = q.getResultList();
         } catch (Exception e) {
+            System.out.println("ReservacionDao | Listar Busqueda: " + e);
         }
         return lista;
     }//Cierre del metodo listarBusqueda
@@ -115,6 +126,7 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
             q.setParameter("texto", texto);
             listado = q.getResultList();
         } catch (Exception e) {
+            System.out.println("ReservacionDao | Listar Busqueda por Tipo: " + e);
         }
         
         return listado;
@@ -132,7 +144,20 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
             Query q = getManager().createQuery("SELECT r FROM Reservacion r ORDER BY "+ orden +"  ASC");
             listado = q.getResultList();
         } catch (Exception e) {
+            System.out.println("ReservacionDao | Orden Ascendente: " + e);
         }
         return listado;
     }//cierre del metodo ordenAscendente
+     
+    public Long nroReservasActivas(){
+        Long cantidad = new Long(0);
+        try {
+            Query q = getManager().createQuery("SELECT COUNT(r) FROM Reservacion r WHERE r.estado = :estado");
+            q.setParameter("estado", true);
+            cantidad = (Long) q.getSingleResult();
+        } catch (Exception e) {
+            System.out.println("ReservacionDao | Nro de Reservas Activas: " + e);
+        }
+        return cantidad;
+    }
 }//cierre de la clase ReservacionDao

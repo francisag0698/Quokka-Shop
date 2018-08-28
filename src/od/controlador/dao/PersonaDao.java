@@ -163,4 +163,16 @@ public class PersonaDao extends AdaptadorDao<Persona>{
         }
         return lista;
     }//Cierre del metodo listarSinAdministradorGeneroBusqueda
+    
+    public Long nroUsuarios(){
+        Long cantidad = new Long(0);
+        try {
+            Query q = getManager().createQuery("SELECT COUNT(p) FROM Persona p WHERE p.rol.nombre = :rol");
+            q.setParameter("rol", "Cliente");
+            cantidad = (Long) q.getSingleResult();
+        } catch (Exception e) {
+            System.out.println("PersonaDao | Numero de Usuarios: " + e);
+        }
+        return cantidad;
+    }
 }//Cierre de la clase PersonaDao

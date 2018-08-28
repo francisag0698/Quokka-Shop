@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import od.controlador.servicio.ServicioReservacion;
 import od.modelo.Reservacion;
+import od.utilidades.Sesiones;
 import od.utilidades.Utilidades;
 
 
@@ -96,23 +97,28 @@ public class ReservacionesController {
     }
     
     public void cargarTabla() {
-        reservasTabla.setItems(FXCollections.observableList(sr.todos()));
+        
+        if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) {
+            reservasTabla.setItems(FXCollections.observableList(sr.listarPorPersona(Sesiones.getCuenta().getPersona().getId_persona())));
+        }else{
+            reservasTabla.setItems(FXCollections.observableList(sr.todos()));
+        }        
 
         nombresColumna.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getNombres() + " "
                         + cellData.getValue().getPersona().getApellidos())
         );
         desdeColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getFecha_inicio().toString())
+                cellData -> new SimpleStringProperty(Utilidades.formatearFechaDos(cellData.getValue().getFecha_inicio()))
         );
         hastaColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getFecha_fin().toString())
+                cellData -> new SimpleStringProperty(Utilidades.formatearFechaDos(cellData.getValue().getFecha_fin()))
         );
         telefonoColumna.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getTelefono())
         );
         estadoColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getEstado().toString())
+                cellData -> new SimpleStringProperty((cellData.getValue().getEstado()) ? "Activo":"Inactivo")
         );
     }
     @FXML
