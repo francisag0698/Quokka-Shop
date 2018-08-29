@@ -59,9 +59,9 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="campoCodigo" layoutY="19.0" prefHeight="25.0" prefWidth="262.0" promptText="Código" />
-                        <TextField fx:id="campoNombre" layoutY="70.0" prefHeight="25.0" prefWidth="419.0" promptText="Nombre" />
-                        <ComboBox fx:id="comboTipo" layoutX="428.0" layoutY="70.0" prefHeight="25.0" prefWidth="214.0" promptText="Tipo de Habitación" />
+                        <TextField fx:id="campoCodigo" disable="true" editable="false" layoutY="21.0" prefHeight="25.0" prefWidth="262.0" promptText="Código" />
+                        <ComboBox fx:id="comboTipo" layoutY="69.0" onAction="#generarCodigo" prefHeight="25.0" prefWidth="214.0" promptText="Tipo de Habitación" />
+                        <TextField fx:id="campoNombre" layoutX="223.0" layoutY="69.0" prefHeight="25.0" prefWidth="419.0" promptText="Nombre" />
                         <TextField fx:id="campoCapacidad" layoutY="107.0" prefHeight="25.0" prefWidth="163.0" promptText="Capacidad" />
                         <TextField fx:id="campoCamas" layoutX="172.0" layoutY="107.0" prefHeight="25.0" prefWidth="148.0" promptText="Nro. de Camas" />
                         <TextField fx:id="campoPrecio" layoutX="332.0" layoutY="107.0" prefHeight="25.0" prefWidth="172.0" promptText="Precio" />

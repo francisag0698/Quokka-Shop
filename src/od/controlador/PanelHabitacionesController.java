@@ -206,13 +206,13 @@ public class PanelHabitacionesController {
         campoCamas.setText("");
         campoCapacidad.setText("");
         campoCodigo.setText("");
-        campoCodigo.setDisable(false);
         campoNombre.setText("");
         campoPrecio.setText("");
         areaCondiciones.setText("");
         areaHabitacion.setText("");
         campoCantidad.setText("");
         comboTipo.setValue(null);
+        comboTipo.setDisable(false);
 
         sh.fijarHabitacion(null);
     }
@@ -261,9 +261,9 @@ public class PanelHabitacionesController {
         if (tablaHabitacion.getSelectionModel().getSelectedItem() != null) {
             sh.fijarHabitacion(tablaHabitacion.getSelectionModel().getSelectedItem());
             campoCodigo.setText(sh.getHabitacion().getCodigo());
-            campoCodigo.setDisable(true);
             campoNombre.setText(sh.getHabitacion().getNombre());
             comboTipo.setValue(sh.getHabitacion().getTipo());
+            comboTipo.setDisable(true);
             campoCapacidad.setText(sh.getHabitacion().getCapacidad().toString());
             campoCamas.setText(sh.getHabitacion().getNro_camas().toString());
             campoPrecio.setText(sh.getHabitacion().getPrecio().toString());
@@ -363,5 +363,14 @@ public class PanelHabitacionesController {
         comboFiltro.setValue(null);
         campoBuscar.setText("");
         cargarTabla();
+    }
+    
+    @FXML
+    private void generarCodigo(){
+        if (comboTipo.getValue() != null && sh.getHabitacion().getId_habitacion() == null) {
+            String codigo = "HAB" + comboTipo.getValue().toString().trim().toUpperCase().replace(" ", "").substring(0, 3);
+            codigo += "0" + (sh.listarTipo(comboTipo.getValue().toString()).size() + 1);
+            campoCodigo.setText(codigo);
+        }        
     }
 }
