@@ -106,7 +106,7 @@ public class RaizVistaController {
         
         btnConfiguracion.setOnAction((event)->{
             if(claseCSS(btnConfiguracion))
-                principal.fijarCentroPane("PanelConfiguracion");
+                principal.fijarCentroScroll("PanelConfiguracion");
             event.consume();
         });
     }
