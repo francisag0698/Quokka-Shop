@@ -82,7 +82,7 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
      * @param tipo acepta un dato reservacion de tipo String
      * @return devuelve una lista con las reservaciones
      */
-      public List<Reservacion>listarTipo(Boolean tipo){
+    public List<Reservacion>listarTipo(Boolean tipo){
         List<Reservacion> lista= new ArrayList<>();
         try {
             Query q = getManager().createQuery("SELECT p FROM Reservacion p where p.estado = :tipo");  
@@ -93,6 +93,19 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
         }
         return lista;
     }//cierre del metodo listarTipo
+      
+    public List<Reservacion>listarTipo(Boolean tipo, Long id){
+        List<Reservacion> lista= new ArrayList<>();
+        try {
+            Query q = getManager().createQuery("SELECT p FROM Reservacion p WHERE p.estado = :tipo AND p.persona.id_persona = :id");  
+            q.setParameter("tipo", tipo);
+            q.setParameter("id", id);
+            lista = q.getResultList();
+        } catch (Exception e) {
+            System.out.println("ReservacionDao | Listar por Tipo (Rol): " + e);
+        }
+        return lista;
+    }
 
       /**
      * Metodo que permite listar Reservaciones por busqueda
@@ -103,7 +116,7 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
         List<Reservacion> lista= new ArrayList<>();
         try {
             Query q = getManager()
-                    .createQuery("SELECT r FROM Reservacion r where ((LOWER(r.persona.apellidos)LIKE CONCAT(:texto, '%')) OR (LOWER(r.persona.nombres)LIKE CONCAT(:texto, '%')))");//lower es minusculas
+                    .createQuery("SELECT r FROM Reservacion r WHERE ((LOWER(r.persona.apellidos)LIKE CONCAT(:texto, '%')) OR (LOWER(r.persona.nombres)LIKE CONCAT(:texto, '%')))");//lower es minusculas
             q.setParameter("texto", texto);
             lista = q.getResultList();
         } catch (Exception e) {
@@ -111,6 +124,20 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
         }
         return lista;
     }//Cierre del metodo listarBusqueda
+    
+    public List<Reservacion>listarBusqueda(String texto, Long id){
+        List<Reservacion> lista= new ArrayList<>();
+        try {
+            Query q = getManager()
+                    .createQuery("SELECT r FROM Reservacion r WHERE ((LOWER(r.persona.apellidos)LIKE CONCAT(:texto, '%')) OR (LOWER(r.persona.nombres)LIKE CONCAT(:texto, '%'))) AND r.persona.id_persona = :id");
+            q.setParameter("texto", texto);
+            q.setParameter("id", id);
+            lista = q.getResultList();
+        } catch (Exception e) {
+            System.out.println("ReservacionDao | Listar Busqueda: " + e);
+        }
+        return lista;
+    }
     
      /**
      * Metodo que permite listar Reservaciones por busqueda y tipo
@@ -131,6 +158,21 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
         
         return listado;
     }//cierre del metodo listarBusquedaTipo
+    
+    public List<Reservacion> listarBusquedaTipo(Boolean tipo,String texto, Long id){
+        List<Reservacion> listado= new ArrayList<>();
+        try {
+            Query q = getManager().createQuery("SELECT r FROM Reservacion r WHERE ((LOWER(r.persona.apellidos)LIKE CONCAT(:texto, '%')) OR (LOWER(r.persona.nombres)LIKE CONCAT(:texto, '%'))) AND r.estado = :tipo AND r.persona.id_persona = :id");
+            q.setParameter("tipo", tipo);
+            q.setParameter("texto", texto);
+            q.setParameter("id", id);
+            listado = q.getResultList();
+        } catch (Exception e) {
+            System.out.println("ReservacionDao | Listar Busqueda por Tipo: " + e);
+        }
+        
+        return listado;
+    }
     
     /**
      * Metodo que permite listar las Reservaciones en orden ascendente

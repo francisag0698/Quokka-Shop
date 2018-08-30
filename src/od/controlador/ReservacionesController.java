@@ -81,18 +81,14 @@ public class ReservacionesController {
         cargarTabla();
         // tipo de estado
         comboEstado.getItems().addAll(
-                "Filtrar por:",
                 "Activo",
                 "Inactivo"
         );
-        comboEstado.setValue("Filtrar por:");
         //ordenar
         comboOrdenar.getItems().addAll(
-                "Ordenar por:",
                 "Fecha",
                 "Apellidos"
         );
-        comboOrdenar.setValue("Ordenar por:");
         
     }
     
@@ -120,37 +116,46 @@ public class ReservacionesController {
         estadoColumna.setCellValueFactory(
                 cellData -> new SimpleStringProperty((cellData.getValue().getEstado()) ? "Activo":"Inactivo")
         );
+        
+        reservasTabla.refresh();
     }
+    
     @FXML
     public void limpiar(){
-        campoBuscar.setText(" ");
-        
+        campoBuscar.setText("");
+        comboEstado.setValue(null);
+        comboOrdenar.setValue(null);
     }
 
     @FXML
     private void filtrarTipo() {
-        if (comboEstado.getValue().toString().equals("Filtrar por:")) {
+        if (comboEstado.getValue() == null && campoBuscar.getText().trim().length() == 0) {
             cargarTabla();
-        } else{
-            Boolean tipo = comboEstado.getValue().equals("Activo");          
-            reservasTabla.setItems(FXCollections.observableList(sr.listarTipo(tipo)));
-            reservasTabla.refresh();
-            
+        } else if(comboEstado.getValue() != null){
+            Boolean tipo = comboEstado.getValue().equals("Activo");    
+            if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) 
+                reservasTabla.setItems(FXCollections.observableList(sr.listarTipo(tipo, Sesiones.getCuenta().getPersona().getId_persona())));                
+            else
+                reservasTabla.setItems(FXCollections.observableList(sr.listarTipo(tipo)));                        
+            reservasTabla.refresh();           
         }
-
     }
 
     @FXML
     private void buscarTexto() {
         
         if (campoBuscar.getText().trim().length() >= 3) {
-            if (comboEstado.getValue().toString().equals("Filtrar por:")) {
-                reservasTabla.setItems(FXCollections.observableList(sr.listarBusqueda(campoBuscar.getText())));
-
+            if (comboEstado.getValue() == null) {
+                if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente"))
+                    reservasTabla.setItems(FXCollections.observableList(sr.listarBusqueda(campoBuscar.getText(), Sesiones.getCuenta().getPersona().getId_persona())));
+                else                    
+                    reservasTabla.setItems(FXCollections.observableList(sr.listarBusqueda(campoBuscar.getText())));
             } else {
                 Boolean tipo = comboEstado.getValue().equals("Activo");
-                reservasTabla.setItems(FXCollections.observableList(sr.listarBusquedaTipo(tipo, campoBuscar.getText())));
-
+                if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente"))
+                    reservasTabla.setItems(FXCollections.observableList(sr.listarBusquedaTipo(tipo, campoBuscar.getText(), Sesiones.getCuenta().getPersona().getId_persona())));
+                else
+                    reservasTabla.setItems(FXCollections.observableList(sr.listarBusquedaTipo(tipo, campoBuscar.getText())));
             }
 
             reservasTabla.refresh();
@@ -161,7 +166,7 @@ public class ReservacionesController {
 
     @FXML
     private void ordenarAscendente() {
-        if (comboOrdenar.getValue().toString().equals("Ordenar por:")) {
+        if (comboOrdenar.getValue() != null && comboOrdenar.getValue().toString().equals("Ordenar por:")) {
             reservasTabla.setItems(FXCollections.observableList(sr.todos()));
             reservasTabla.refresh();
         } else {
@@ -174,7 +179,7 @@ public class ReservacionesController {
     @FXML
     private void handleDetalles(){
         if (reservasTabla.getSelectionModel().getSelectedItem() != null){
-            lblNombres.setText(reservasTabla.getSelectionModel().getSelectedItem().getPersona().getNombres() + " " +reservasTabla.getSelectionModel().getSelectedItem().getPersona().getApellidos());
+            lblNombres.setText(reservasTabla.getSelectionModel().getSelectedItem().getPersona().getNombres() + " " + reservasTabla.getSelectionModel().getSelectedItem().getPersona().getApellidos());
             lblFecha.setText(Utilidades.formatearFechaDos(reservasTabla.getSelectionModel().getSelectedItem().getFecha()));
             lblFechaEntrada.setText(Utilidades.formatearFechaDos(reservasTabla.getSelectionModel().getSelectedItem().getFecha_inicio()));
             lblFechaSalida.setText(Utilidades.formatearFechaDos(reservasTabla.getSelectionModel().getSelectedItem().getFecha_fin()));

@@ -74,6 +74,10 @@ public class ServicioReservacion {
         return obj.listarBusqueda(texto);
     }//cierre del metodo listarBusqueda
     
+    public List<Reservacion>listarBusqueda(String texto, Long id){
+        return obj.listarBusqueda(texto, id);
+    }
+    
     /**
      * Metodo que permite llamar el metodo listar por tipo de ServicioReservacion
      * @param tipo que acepta un dato tipo String
@@ -82,6 +86,10 @@ public class ServicioReservacion {
     public List<Reservacion> listarTipo(Boolean tipo){
         return obj.listarTipo(tipo);
     }//cierre del metodo listarTipo
+    
+    public List<Reservacion>listarTipo(Boolean tipo, Long id){
+        return obj.listarTipo(tipo, id);
+    }
     
     /**
      * Metodo que permite llamar el metodo listar por busqueda por tipo del ServicioReservacion
@@ -92,6 +100,10 @@ public class ServicioReservacion {
     public List<Reservacion> listarBusquedaTipo(Boolean tipo,String texto){
         return obj.listarBusquedaTipo(tipo, texto);
     }//cierro del metodo listarBusquedaTipo
+    
+    public List<Reservacion> listarBusquedaTipo(Boolean tipo,String texto, Long id){
+        return obj.listarBusquedaTipo(tipo, texto, id);
+    }
     
     /**
      * Metodo que permite llamar el metodo listar por orden ascendente del ServicioReservacion
