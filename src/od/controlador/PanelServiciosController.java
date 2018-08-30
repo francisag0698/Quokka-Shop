@@ -91,33 +91,41 @@ public class PanelServiciosController {
         ss.fijarServicio(null);
     }
     
-    private void guardar(){        
-        cargarObjeto();
-        boolean band = true;
-        if(ss.getServicio().getId_servicio() != null){
-            band = false;
-        }
-        if(ss.guardar()){
-            if (band) {
-                Utilidades.guardarHistorial("Nuevo Registro", "Nuevo Servicio añadido", Sesiones.getCuenta().getPersona());
-            }else{
-                Utilidades.guardarHistorial("Registro Modificado", "Se ha modificado un Servicio", Sesiones.getCuenta().getPersona());
+    private void guardar(){ 
+        Alert conf = new Alert(Alert.AlertType.CONFIRMATION);        
+        conf.setTitle("Confirmación");
+        conf.setHeaderText("¿Está seguro/a de realizar esta acción?");
+        conf.setContentText("Presione Aceptar para confirmarlo.");
+        conf.showAndWait();
+        
+        if (conf.getResult().getText().equals("Aceptar")) {
+           cargarObjeto();
+            boolean band = true;
+            if(ss.getServicio().getId_servicio() != null){
+                band = false;
             }
-            limpiar();
-            panelFormServicio.setDisable(true);
-            cargarTabla();
-            
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Guardado");
-            alert.setHeaderText("");
-            alert.setContentText("Se ha guardado el registro correctamente.");
-            alert.showAndWait();
-        }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("");
-            alert.setContentText("Ha ocurrido un error al guardar.");
-            alert.showAndWait();
+            if(ss.guardar()){
+                if (band) {
+                    Utilidades.guardarHistorial("Nuevo Registro", "Nuevo Servicio añadido", Sesiones.getCuenta().getPersona());
+                }else{
+                    Utilidades.guardarHistorial("Registro Modificado", "Se ha modificado un Servicio", Sesiones.getCuenta().getPersona());
+                }
+                limpiar();
+                panelFormServicio.setDisable(true);
+                cargarTabla();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Guardado");
+                alert.setHeaderText("");
+                alert.setContentText("Se ha guardado el registro correctamente.");
+                alert.showAndWait();
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("");
+                alert.setContentText("Ha ocurrido un error al guardar.");
+                alert.showAndWait();
+            } 
         }
     }
     

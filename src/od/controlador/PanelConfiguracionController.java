@@ -164,46 +164,60 @@ public class PanelConfiguracionController {
     @FXML
     private void guardarModificarPersona() {
         if (validarPersona()) {
-            cargarObjetoPersona();
-            if (sp.guardar()) {
-                sp.fijarPersona(null);
-                Utilidades.guardarHistorial("Modificación de Cuenta", "Datos personales modificados", Sesiones.getCuenta().getPersona());
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Guardado");
-                alert.setHeaderText("");
-                alert.setContentText("Se ha guardado el registro correctamente.");
-                alert.showAndWait();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("");
-                alert.setContentText("Ha ocurrido un error al guardar.");
-                alert.showAndWait();
+            Alert conf = new Alert(Alert.AlertType.CONFIRMATION);        
+            conf.setTitle("Confirmación");
+            conf.setHeaderText("¿Está seguro/a de realizar esta acción?");
+            conf.setContentText("Presione Aceptar para confirmarlo.");
+            conf.showAndWait();
+            
+            if (conf.getResult().getText().equals("Aceptar")) {
+                cargarObjetoPersona();
+                if (sp.guardar()) {
+                    sp.fijarPersona(null);
+                    Utilidades.guardarHistorial("Modificación de Cuenta", "Datos personales modificados", Sesiones.getCuenta().getPersona());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Guardado");
+                    alert.setHeaderText("");
+                    alert.setContentText("Se ha guardado el registro correctamente.");
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("");
+                    alert.setContentText("Ha ocurrido un error al guardar.");
+                    alert.showAndWait();
+                }
             }
-        } else {
         }
     }
 
     @FXML
     private void guardarModificarCuenta() {
         if (validarCuenta()) {
-            cargarObjetoCuenta();
-            if (sp.guardar()) {
-                sc.fijarCuenta(null);
-                Utilidades.guardarHistorial("Modificación de Cuenta", "Datos de cuenta modificados", Sesiones.getCuenta().getPersona());
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Guardado");
-                alert.setHeaderText("");
-                alert.setContentText("Se ha guardado el registro correctamente.");
-                alert.showAndWait();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("");
-                alert.setContentText("Ha ocurrido un error al guardar.");
-                alert.showAndWait();
+            Alert conf = new Alert(Alert.AlertType.CONFIRMATION);        
+            conf.setTitle("Confirmación");
+            conf.setHeaderText("¿Está seguro/a de realizar esta acción?");
+            conf.setContentText("Presione Aceptar para confirmarlo.");
+            conf.showAndWait();
+            
+            if (conf.getResult().getText().equals("Aceptar")) {
+                cargarObjetoCuenta();
+                if (sp.guardar()) {
+                    sc.fijarCuenta(null);
+                    Utilidades.guardarHistorial("Modificación de Cuenta", "Datos de cuenta modificados", Sesiones.getCuenta().getPersona());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Guardado");
+                    alert.setHeaderText("");
+                    alert.setContentText("Se ha guardado el registro correctamente.");
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("");
+                    alert.setContentText("Ha ocurrido un error al guardar.");
+                    alert.showAndWait();
+                }
             }
-        } else {
         }
     }
 }

@@ -245,33 +245,42 @@ public class PanelClientesController {
     @FXML
     private void guardar(){
         if (validar()) {
-            boolean band = true;
-            if (sp.getPersona().getId_persona() != null) {
-                band = false;
-            }
-            cargarObjeto();
-            if (sp.guardar()) {
-                if (band) {
-                    Utilidades.guardarHistorial("Nuevo Registro", "Nuevo Usuario Registrado", Sesiones.getCuenta().getPersona());
-                }else{
-                    Utilidades.guardarHistorial("Registro Modificado", "Se ha modificado un Usuario.", Sesiones.getCuenta().getPersona());
+            Alert conf = new Alert(Alert.AlertType.CONFIRMATION);        
+            conf.setTitle("Confirmación");
+            conf.setHeaderText("¿Está seguro/a de realizar esta acción?");
+            conf.setContentText("Presione Aceptar para confirmarlo.");
+            conf.showAndWait();
+            
+            if (conf.getResult().getText().equals("Aceptar")) {
+                boolean band = true;
+                if (sp.getPersona().getId_persona() != null) {
+                    band = false;
                 }
-                limpiar();
-                cargarTabla();
-                
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Guardado");
-                alert.setHeaderText("");
-                alert.setContentText("Se ha guardado el registro correctamente.");
-                alert.showAndWait();
-                tbpClientes.getSelectionModel().select(tabListado);
-            }else{
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("");
-                alert.setContentText("Ha ocurrido un error al guardar.");
-                alert.showAndWait();
-            }          
+                cargarObjeto();
+                if (sp.guardar()) {
+                    if (band) {
+                        Utilidades.guardarHistorial("Nuevo Registro", "Nuevo Usuario Registrado", Sesiones.getCuenta().getPersona());
+                    }else{
+                        Utilidades.guardarHistorial("Registro Modificado", "Se ha modificado un Usuario.", Sesiones.getCuenta().getPersona());
+                    }
+                    limpiar();
+                    cargarTabla();
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Guardado");
+                    alert.setHeaderText("");
+                    alert.setContentText("Se ha guardado el registro correctamente.");
+                    alert.showAndWait();
+                    tbpClientes.getSelectionModel().select(tabListado);
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("");
+                    alert.setContentText("Ha ocurrido un error al guardar.");
+                    alert.showAndWait();
+                } 
+            }
+         
         }
     }
     
@@ -283,7 +292,7 @@ public class PanelClientesController {
             txtNroDNI.setDisable(true);
             txtNombres.setText(sp.getPersona().getNombres());
             txtApellidos.setText((sp.getPersona().getApellidos()));
-            dpFecha.setValue(LocalDate.parse(sp.getPersona().getFecha_nacimiento().toString()));
+            dpFecha.setValue(LocalDate.parse(Utilidades.formatearFechaDos(sp.getPersona().getFecha_nacimiento())));
             cbxGenero.setValue(sp.getPersona().getSexo());
             txtTelefono.setText(sp.getPersona().getTelefono());
             txtPais.setText(sp.getPersona().getPais());

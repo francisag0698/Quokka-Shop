@@ -218,41 +218,47 @@ public class PanelHabitacionesController {
     }
 
     public void guardar() {
-        cargarObjeto();
-        boolean band = true; // True si Guarda, False si Modifica
-        if (sh.getHabitacion().getId_habitacion() != null) {
-            band = false;
-        }
-        if (sh.guardar()) {
-            cargarTabla();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Guardado");
-            alert.setHeaderText("");
-            alert.setContentText("Se ha guardado el registro correctamente.");
-            alert.showAndWait();
-            System.out.println(alert.getResult().getText());
-            tbpHabitaciones.getSelectionModel().select(tabListado);
-            if (band) {
-                Utilidades.guardarHistorial("Nuevo Registro", "Nueva Habitación añadida", Sesiones.getCuenta().getPersona());
-            } else {
-                Utilidades.guardarHistorial("Registro Modificado", "Se ha modificado una Habitación", Sesiones.getCuenta().getPersona());
+        Alert conf = new Alert(Alert.AlertType.CONFIRMATION);        
+        conf.setTitle("Confirmación");
+        conf.setHeaderText("¿Está seguro/a de realizar esta acción?");
+        conf.setContentText("Presione Aceptar para confirmarlo.");
+        conf.showAndWait();
+        
+        if (conf.getResult().getText().equals("Aceptar")) {
+            cargarObjeto();
+            boolean band = true; // True si Guarda, False si Modifica
+            if (sh.getHabitacion().getId_habitacion() != null) {
+                band = false;
             }
-            limpiar();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("");
-            alert.setContentText("Ha ocurrido un error al guardar.");
-            alert.showAndWait();
+            if (sh.guardar()) {
+                cargarTabla();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Guardado");
+                alert.setHeaderText("");
+                alert.setContentText("Se ha guardado el registro correctamente.");
+                alert.showAndWait();
+                System.out.println(alert.getResult().getText());
+                tbpHabitaciones.getSelectionModel().select(tabListado);
+                if (band) {
+                    Utilidades.guardarHistorial("Nuevo Registro", "Nueva Habitación añadida", Sesiones.getCuenta().getPersona());
+                } else {
+                    Utilidades.guardarHistorial("Registro Modificado", "Se ha modificado una Habitación", Sesiones.getCuenta().getPersona());
+                }
+                limpiar();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("");
+                alert.setContentText("Ha ocurrido un error al guardar.");
+                alert.showAndWait();
+            }
         }
-
     }
 
     @FXML
     private void handleGuardar() {
         if (validar()) {
             guardar();
-            System.out.println("Guardado");
         }
     }
 

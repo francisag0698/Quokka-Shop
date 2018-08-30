@@ -194,7 +194,7 @@ public class PanelNuevaReservacionController {
     @FXML
     private boolean validarPanel2() {
         if (cbxHabitaciones.getValue() != null) {
-            if (listaServicios.getSelectionModel().getSelectedItems().size() > 0) {
+//            if (listaServicios.getSelectionModel().getSelectedItems().size() > 0) {
                 if (Validadores.validarTF(campoNroHabitaciones)) {
                     return true;
                 }else{
@@ -205,14 +205,14 @@ public class PanelNuevaReservacionController {
                     alert.showAndWait();
                     return false;
                 }                
-            }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Sin Selección");
-                alert.setHeaderText("");
-                alert.setContentText("Seleccione algún servicio de la Lista");
-                alert.showAndWait(); 
-                return false;
-            }
+//            }else{
+//                Alert alert = new Alert(Alert.AlertType.WARNING);
+//                alert.setTitle("Sin Selección");
+//                alert.setHeaderText("");
+//                alert.setContentText("Seleccione algún servicio de la Lista");
+//                alert.showAndWait(); 
+//                return false;
+//            }
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Sin Selección");
@@ -239,44 +239,51 @@ public class PanelNuevaReservacionController {
     }
     
     @FXML
-    private void handleReservar(){
+    private void handleReservar(){        
         if (validarPanel1() && validarPanel2()) {
-            sr.getReservacion().setFecha(new Date());
+            Alert conf = new Alert(Alert.AlertType.CONFIRMATION);        
+            conf.setTitle("Confirmación");
+            conf.setHeaderText("¿Está seguro/a de realizar la reserva?");
+            conf.setContentText("Presione Aceptar para completar la acción.");
+            conf.showAndWait();
             
-            sr.getReservacion().setFecha_inicio(Utilidades.extraerFecha(campoFechaEntrada.getValue()));
-            sr.getReservacion().setFecha_fin(Utilidades.extraerFecha(campoFechaSalida.getValue()));
-           
-            sr.getReservacion().setEstado(Boolean.TRUE);
-            sr.getReservacion().setPago_total(calcularTotal());
-            sr.getReservacion().setPersona(sp.getPersona());
-            sr.getReservacion().setHabitacion(cbxHabitaciones.getValue());
-            
-            sd.getDetalle().setAdultos(Integer.parseInt(campoNroAdultos.getText()));
-            sd.getDetalle().setMenores(Integer.parseInt(campoNroNinios.getText()));
-            sd.getDetalle().setObservaciones(campoObservaciones.getText());
-            sd.getDetalle().setPago_subtotal(listaServicios.getSelectionModel().getSelectedItems().stream().mapToDouble((selectedItem) -> selectedItem.getPrecio()).sum());
-            sd.getDetalle().setCant_habitaciones(Integer.parseInt(campoNroHabitaciones.getText()));
-            sd.getDetalle().setServicios(listaServicios.getSelectionModel().getSelectedItems());
-            sd.getDetalle().setReservacion(sr.getReservacion());
-            
-            sr.getReservacion().setDetalle(sd.getDetalle());
-            
-            if (sr.guardar()) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Guardado");
-                alert.setHeaderText("");
-                alert.setContentText("Se ha guardado el registro correctamente.");
-                Utilidades.guardarHistorial("Nueva Reservación", "Una nueva reserva se ha registrado", Sesiones.getCuenta().getPersona());
-                alert.showAndWait();
-                limpiar();
-                principal.fijarCentroPane("PanelReservaciones");
-            }else{
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("");
-                alert.setContentText("Ha ocurrido un error al guardar.");
-                alert.showAndWait();
-            }
+            if (conf.getResult().getText().equals("Aceptar")){
+                sr.getReservacion().setFecha(new Date());            
+                sr.getReservacion().setFecha_inicio(Utilidades.extraerFecha(campoFechaEntrada.getValue()));
+                sr.getReservacion().setFecha_fin(Utilidades.extraerFecha(campoFechaSalida.getValue()));
+
+                sr.getReservacion().setEstado(Boolean.TRUE);
+                sr.getReservacion().setPago_total(calcularTotal());
+                sr.getReservacion().setPersona(sp.getPersona());
+                sr.getReservacion().setHabitacion(cbxHabitaciones.getValue());
+
+                sd.getDetalle().setAdultos(Integer.parseInt(campoNroAdultos.getText()));
+                sd.getDetalle().setMenores(Integer.parseInt(campoNroNinios.getText()));
+                sd.getDetalle().setObservaciones(campoObservaciones.getText());
+                sd.getDetalle().setPago_subtotal(listaServicios.getSelectionModel().getSelectedItems().stream().mapToDouble((selectedItem) -> selectedItem.getPrecio()).sum());
+                sd.getDetalle().setCant_habitaciones(Integer.parseInt(campoNroHabitaciones.getText()));
+                sd.getDetalle().setServicios(listaServicios.getSelectionModel().getSelectedItems());
+                sd.getDetalle().setReservacion(sr.getReservacion());
+
+                sr.getReservacion().setDetalle(sd.getDetalle());
+
+                if (sr.guardar()) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Guardado");
+                    alert.setHeaderText("");
+                    alert.setContentText("Se ha guardado el registro correctamente.");
+                    Utilidades.guardarHistorial("Nueva Reservación", "Una nueva reserva se ha registrado", Sesiones.getCuenta().getPersona());
+                    alert.showAndWait();
+                    limpiar();
+                    principal.fijarCentroPane("PanelReservaciones");
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("");
+                    alert.setContentText("Ha ocurrido un error al guardar.");
+                    alert.showAndWait();
+                }
+            }            
         }
     }
     
