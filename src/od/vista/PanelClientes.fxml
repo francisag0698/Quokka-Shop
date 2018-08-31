@@ -69,7 +69,7 @@
                         <DatePicker fx:id="dpFecha" layoutX="128.0" layoutY="95.0" onAction="#handleFecha" prefHeight="25.0" prefWidth="184.0" />
                         <Label layoutX="337.0" layoutY="99.0" text="Género:" />
                         <ComboBox fx:id="cbxGenero" layoutX="410.0" layoutY="95.0" prefHeight="25.0" prefWidth="232.0" />
-                        <TextField fx:id="txtTelefono" layoutX="128.0" layoutY="135.0" prefHeight="25.0" prefWidth="184.0" />
+                        <TextField fx:id="txtTelefono" layoutX="128.0" layoutY="135.0" onKeyReleased="#validarEnteros" prefHeight="25.0" prefWidth="184.0" />
                         <ComboBox fx:id="txtPais" layoutX="410.0" layoutY="135.0" prefHeight="25.0" prefWidth="232.0" />
                         <Label layoutY="139.0" text="Teléfono/Celular:" />
                         <Label layoutX="337.0" layoutY="139.0" text="País:" />

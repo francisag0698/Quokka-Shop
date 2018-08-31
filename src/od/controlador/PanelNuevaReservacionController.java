@@ -345,4 +345,16 @@ public class PanelNuevaReservacionController {
         principal.fijarCentroPane("PanelClientes");
         
     }
+    @FXML
+    private void validarEnterosAdultos() {
+        if (!Validadores.validarValor(campoNroAdultos , 'i')) {
+            campoNroAdultos.setText("");
+        }
+    }
+    @FXML
+    private void validarEnterosNinios() {
+        if (!Validadores.validarValor(campoNroNinios, 'i')) {
+            campoNroNinios.setText("");
+        }
+    }
 }

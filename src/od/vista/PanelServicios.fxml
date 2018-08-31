@@ -35,7 +35,7 @@
             <TextArea fx:id="areaDesServicio" layoutY="24.0" prefHeight="128.0" prefWidth="294.0" promptText="Ej: Televisón por Cable" />
             <Label text="Descripción del Servicio" />
             <Label layoutX="54.0" layoutY="170.0" text="Costo del Servicio:" />
-            <TextField fx:id="campoCostoS" layoutX="167.0" layoutY="166.0" prefHeight="25.0" prefWidth="126.0" />
+            <TextField fx:id="campoCostoS" layoutX="167.0" layoutY="166.0" onKeyReleased="#validarEnterosCosto" prefHeight="25.0" prefWidth="126.0" />
             <ButtonBar layoutX="93.0" layoutY="200.0" prefHeight="40.0" prefWidth="200.0">
               <buttons>
                   <Button mnemonicParsing="false" onAction="#handleGuardar" text="Guardar" />

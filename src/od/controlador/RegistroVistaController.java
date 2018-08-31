@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.UUID;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -74,7 +75,7 @@ public class RegistroVistaController {
     /**
      * Initializes the controller class.
      */
-    public void initialize() {        
+    public void initialize() {
         //Genero
         comboGenero.getItems().addAll(
                 "Masculino",
@@ -82,7 +83,7 @@ public class RegistroVistaController {
                 "Otros"
         );
         comboGenero.setValue("Masculino");
-        
+
         campoPais.getItems().addAll(
                 "Ecuador",
                 "Perú",
@@ -98,7 +99,7 @@ public class RegistroVistaController {
     public void setPrincipal(Principal principal) {
         this.principal = principal;
     }
-    
+
     private boolean validar() {
         if (Validadores.validarTF(campoNombre)
                 & Validadores.validarTF(campoApellido)
@@ -115,11 +116,11 @@ public class RegistroVistaController {
                 if (Validadores.validarCorreo(campoCorreo)) {
                     lblError.setVisible(false);
                     return true;
-                }else{
+                } else {
                     lblError.setText("El correo ingresado no es válido");
                     lblError.setVisible(true);
                     return false;
-                }                
+                }
             } else {
                 lblError.setText("Las contraseñas ingresadas no coinciden.");
                 lblError.setVisible(true);
@@ -132,12 +133,12 @@ public class RegistroVistaController {
         }
     }
 
-    private void cargarObjeto(){
+    private void cargarObjeto() {
         sp.getPersona().setNombres(campoNombre.getText());
         sp.getPersona().setApellidos(campoApellido.getText());
         sp.getPersona().setDni(campoDNI.getText());
         try {
-            sp.getPersona().setFecha_nacimiento(new SimpleDateFormat("dd/MM/yyyy").parse(campoFechaNacimiento.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));            
+            sp.getPersona().setFecha_nacimiento(new SimpleDateFormat("dd/MM/yyyy").parse(campoFechaNacimiento.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
         } catch (ParseException e) {
             sp.getPersona().setFecha_nacimiento(new Date());
         }
@@ -157,8 +158,8 @@ public class RegistroVistaController {
         sc.getCuenta().setPersona(sp.getPersona());
         sp.getPersona().setCuenta(sc.getCuenta());
     }
-    
-    private void limpiar(){
+
+    private void limpiar() {
         campoApellido.setText("");
         campoCelular.setText("");
         campoCiudad.setText("");
@@ -170,23 +171,23 @@ public class RegistroVistaController {
         campoNuevoUsuario.setText("");
         campoPais.setValue("Ecuador");
         campoRepetirClave.setText("");
-        
+
     }
-    
-    public void guardar() {         
+
+    public void guardar() {
         if (UtilidadesComponentes.validadorDeCedula(campoDNI.getText())) {
             if (sp.ObtenerPersonaCedula(campoDNI.getText()) != null) {
-                lblError.setText("La cedula ingresada ya existe.");               
+                lblError.setText("La cedula ingresada ya existe.");
                 lblError.setVisible(true);
-            }else if(sc.ObtenerCuentaUsuario(campoNuevoUsuario.getText()) != null){
-                lblError.setText("El usuario ingresado ya existe.");               
+            } else if (sc.ObtenerCuentaUsuario(campoNuevoUsuario.getText()) != null) {
+                lblError.setText("El usuario ingresado ya existe.");
                 lblError.setVisible(true);
-            }else if(sc.ObtenerCuentaCorreo(campoCorreo.getText()) != null){
-                lblError.setText("El correo ingresado ya existe.");               
+            } else if (sc.ObtenerCuentaCorreo(campoCorreo.getText()) != null) {
+                lblError.setText("El correo ingresado ya existe.");
                 lblError.setVisible(true);
-            }else {
-                cargarObjeto();                
-                if (sp.guardar()) {                         
+            } else {
+                cargarObjeto();
+                if (sp.guardar()) {
                     limpiar();
                     lblError.setVisible(false);
                     panelHecho.setVisible(true);
@@ -199,8 +200,8 @@ public class RegistroVistaController {
             }
         } else {
             lblError.setText("El número de cédula incorrecto.");
-            lblError.setVisible(true);            
-        }        
+            lblError.setVisible(true);
+        }
     }
 
     @FXML
@@ -210,16 +211,23 @@ public class RegistroVistaController {
     }
 
     @FXML
-    private void handleRegistro() {        
-        if (validar()) {            
+    private void handleRegistro() {
+        if (validar()) {
             guardar();
         }
     }
-    
+
     @FXML
-    private void handleFecha(){
+    private void handleFecha() {
         if (campoFechaNacimiento.getValue().isAfter(LocalDate.now())) {
             campoFechaNacimiento.setValue(LocalDate.now());
+        }
+    }
+
+    @FXML
+    private void validarEnteros() {
+        if (!Validadores.validarValor(campoCelular, 'i')) {
+            campoCelular.setText("");
         }
     }
 }

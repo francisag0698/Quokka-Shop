@@ -384,4 +384,10 @@ public class PanelClientesController {
             dpFecha.setValue(LocalDate.now());
         }
     }
+    @FXML
+    private void validarEnteros() {
+        if (!Validadores.validarValor(txtTelefono, 'i')) {
+            txtTelefono.setText("");
+        }
+    }
 }

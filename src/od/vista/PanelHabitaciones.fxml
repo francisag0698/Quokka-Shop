@@ -62,10 +62,10 @@
                         <TextField fx:id="campoCodigo" disable="true" editable="false" layoutY="21.0" prefHeight="25.0" prefWidth="262.0" promptText="Código" />
                         <ComboBox fx:id="comboTipo" layoutY="69.0" onAction="#generarCodigo" prefHeight="25.0" prefWidth="214.0" promptText="Tipo de Habitación" />
                         <TextField fx:id="campoNombre" layoutX="223.0" layoutY="69.0" prefHeight="25.0" prefWidth="419.0" promptText="Nombre" />
-                        <TextField fx:id="campoCapacidad" layoutY="107.0" prefHeight="25.0" prefWidth="163.0" promptText="Capacidad" />
-                        <TextField fx:id="campoCamas" layoutX="172.0" layoutY="107.0" prefHeight="25.0" prefWidth="148.0" promptText="Nro. de Camas" />
-                        <TextField fx:id="campoPrecio" layoutX="332.0" layoutY="107.0" prefHeight="25.0" prefWidth="172.0" promptText="Precio" />
-                        <TextField fx:id="campoCantidad" layoutX="515.0" layoutY="107.0" prefHeight="25.0" prefWidth="127.0" promptText="Cantidad" />
+                        <TextField fx:id="campoCapacidad" layoutY="107.0" onKeyReleased="#validarEnterosCapacidad" prefHeight="25.0" prefWidth="163.0" promptText="Capacidad" />
+                        <TextField fx:id="campoCamas" layoutX="172.0" layoutY="107.0" onKeyReleased="#validarEnterosCamas" prefHeight="25.0" prefWidth="148.0" promptText="Nro. de Camas" />
+                        <TextField fx:id="campoPrecio" layoutX="332.0" layoutY="107.0" onKeyReleased="#validarEnterosPrecio" prefHeight="25.0" prefWidth="172.0" promptText="Precio" />
+                        <TextField fx:id="campoCantidad" layoutX="515.0" layoutY="107.0" onKeyReleased="#validarEnterosCantidad" prefHeight="25.0" prefWidth="127.0" promptText="Cantidad" />
                         <TextArea fx:id="areaHabitacion" layoutY="145.0" prefHeight="97.0" prefWidth="319.0" promptText="Descripción de la Habitación" />
                         <TextArea fx:id="areaCondiciones" layoutX="331.0" layoutY="145.0" prefHeight="97.0" prefWidth="311.0" promptText="Condiciones" />
                         <ButtonBar layoutX="340.0" layoutY="262.0" prefHeight="40.0" prefWidth="302.0">

@@ -196,4 +196,11 @@ public class PanelServiciosController {
         etiquetaCosto.setText("");
         etiquetaDescripcion.setText("");        
     }
+    
+    @FXML
+    private void validarEnterosCosto() {
+        if (!Validadores.validarValor(campoCostoS, 'd')) {
+            campoCostoS.setText("");
+        }
+    }
 }

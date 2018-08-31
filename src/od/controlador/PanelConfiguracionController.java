@@ -312,4 +312,11 @@ public class PanelConfiguracionController {
             }
         }
     }
+    
+    @FXML
+    private void validarEnteros() {
+        if (!Validadores.validarValor(campoTelefono , 'i')) {
+            campoTelefono.setText("");
+        }
+    }
 }

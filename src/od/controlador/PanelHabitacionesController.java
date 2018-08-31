@@ -379,4 +379,28 @@ public class PanelHabitacionesController {
             campoCodigo.setText(codigo);
         }        
     }
+    @FXML
+    private void validarEnterosCapacidad() {
+        if (!Validadores.validarValor(campoCapacidad, 'i')) {
+            campoCapacidad.setText("");
+        }
+    }
+    @FXML
+    private void validarEnterosCamas() {
+        if (!Validadores.validarValor(campoCamas, 'i')) {
+            campoCamas.setText("");
+        }
+    }
+    @FXML
+    private void validarEnterosCantidad() {
+        if (!Validadores.validarValor(campoCantidad, 'i')) {
+            campoCantidad.setText("");
+        }
+    }
+    @FXML
+    private void validarEnterosPrecio() {
+        if (!Validadores.validarValor(campoPrecio, 'd')) {
+            campoPrecio.setText("");
+        }
+    }
 }

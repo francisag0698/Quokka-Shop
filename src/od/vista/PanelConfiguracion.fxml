@@ -26,7 +26,7 @@
             <TextField fx:id="campoApellidos" layoutX="255.0" layoutY="231.0" prefHeight="25.0" prefWidth="183.0" />
             <DatePicker fx:id="campoFechaNacimiento" layoutX="61.0" layoutY="231.0" prefHeight="25.0" prefWidth="183.0" />
             <ComboBox fx:id="comboGenero" layoutX="61.0" layoutY="283.0" prefHeight="25.0" prefWidth="183.0" />
-            <TextField fx:id="campoTelefono" layoutX="255.0" layoutY="283.0" prefHeight="25.0" prefWidth="183.0" />
+            <TextField fx:id="campoTelefono" layoutX="255.0" layoutY="283.0" onKeyReleased="#validarEnteros" prefHeight="25.0" prefWidth="183.0" />
             <TextField fx:id="campoPais" layoutX="61.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
             <TextField fx:id="campoCiudad" layoutX="255.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
             <TextField fx:id="campoDireccion" layoutX="62.0" layoutY="386.0" prefHeight="25.0" prefWidth="375.0" />

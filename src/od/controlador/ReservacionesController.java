@@ -20,7 +20,6 @@ import od.modelo.Reservacion;
 import od.utilidades.Sesiones;
 import od.utilidades.Utilidades;
 
-
 /**
  * FXML Controller class
  *
@@ -46,7 +45,7 @@ public class ReservacionesController {
     private ComboBox comboEstado;
     @FXML
     private ComboBox comboOrdenar;
-    
+
     @FXML
     private Pane panelDescr;
     @FXML
@@ -89,16 +88,16 @@ public class ReservacionesController {
                 "Fecha",
                 "Apellidos"
         );
-        
+
     }
-    
+
     public void cargarTabla() {
-        
+
         if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) {
             reservasTabla.setItems(FXCollections.observableList(sr.listarPorPersona(Sesiones.getCuenta().getPersona().getId_persona())));
-        }else{
+        } else {
             reservasTabla.setItems(FXCollections.observableList(sr.todos()));
-        }        
+        }
 
         nombresColumna.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getNombres() + " "
@@ -114,14 +113,14 @@ public class ReservacionesController {
                 cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getTelefono())
         );
         estadoColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty((cellData.getValue().getEstado()) ? "Activo":"Inactivo")
+                cellData -> new SimpleStringProperty((cellData.getValue().getEstado()) ? "Activo" : "Inactivo")
         );
-        
+
         reservasTabla.refresh();
     }
-    
+
     @FXML
-    public void limpiar(){
+    public void limpiar() {
         campoBuscar.setText("");
         comboEstado.setValue(null);
         comboOrdenar.setValue(null);
@@ -131,31 +130,34 @@ public class ReservacionesController {
     private void filtrarTipo() {
         if (comboEstado.getValue() == null && campoBuscar.getText().trim().length() == 0) {
             cargarTabla();
-        } else if(comboEstado.getValue() != null){
-            Boolean tipo = comboEstado.getValue().equals("Activo");    
-            if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) 
-                reservasTabla.setItems(FXCollections.observableList(sr.listarTipo(tipo, Sesiones.getCuenta().getPersona().getId_persona())));                
-            else
-                reservasTabla.setItems(FXCollections.observableList(sr.listarTipo(tipo)));                        
-            reservasTabla.refresh();           
+        } else if (comboEstado.getValue() != null) {
+            Boolean tipo = comboEstado.getValue().equals("Activo");
+            if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) {
+                reservasTabla.setItems(FXCollections.observableList(sr.listarTipo(tipo, Sesiones.getCuenta().getPersona().getId_persona())));
+            } else {
+                reservasTabla.setItems(FXCollections.observableList(sr.listarTipo(tipo)));
+            }
+            reservasTabla.refresh();
         }
     }
 
     @FXML
     private void buscarTexto() {
-        
+
         if (campoBuscar.getText().trim().length() >= 3) {
             if (comboEstado.getValue() == null) {
-                if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente"))
+                if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) {
                     reservasTabla.setItems(FXCollections.observableList(sr.listarBusqueda(campoBuscar.getText(), Sesiones.getCuenta().getPersona().getId_persona())));
-                else                    
+                } else {
                     reservasTabla.setItems(FXCollections.observableList(sr.listarBusqueda(campoBuscar.getText())));
+                }
             } else {
                 Boolean tipo = comboEstado.getValue().equals("Activo");
-                if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente"))
+                if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) {
                     reservasTabla.setItems(FXCollections.observableList(sr.listarBusquedaTipo(tipo, campoBuscar.getText(), Sesiones.getCuenta().getPersona().getId_persona())));
-                else
+                } else {
                     reservasTabla.setItems(FXCollections.observableList(sr.listarBusquedaTipo(tipo, campoBuscar.getText())));
+                }
             }
 
             reservasTabla.refresh();
@@ -170,15 +172,17 @@ public class ReservacionesController {
             reservasTabla.setItems(FXCollections.observableList(sr.todos()));
             reservasTabla.refresh();
         } else {
-            String orden = comboOrdenar.getValue().toString();
-            reservasTabla.setItems(FXCollections.observableList(sr.ordenAscendente(orden)));
-            reservasTabla.refresh();
+            if (comboOrdenar.getValue() != null) {
+                String orden = comboOrdenar.getValue().toString();
+                reservasTabla.setItems(FXCollections.observableList(sr.ordenAscendente(orden)));
+                reservasTabla.refresh();
+            }
         }
     }
-    
+
     @FXML
-    private void handleDetalles(){
-        if (reservasTabla.getSelectionModel().getSelectedItem() != null){
+    private void handleDetalles() {
+        if (reservasTabla.getSelectionModel().getSelectedItem() != null) {
             lblNombres.setText(reservasTabla.getSelectionModel().getSelectedItem().getPersona().getNombres() + " " + reservasTabla.getSelectionModel().getSelectedItem().getPersona().getApellidos());
             lblFecha.setText(Utilidades.formatearFechaDos(reservasTabla.getSelectionModel().getSelectedItem().getFecha()));
             lblFechaEntrada.setText(Utilidades.formatearFechaDos(reservasTabla.getSelectionModel().getSelectedItem().getFecha_inicio()));
@@ -190,16 +194,16 @@ public class ReservacionesController {
             String servicios = "";
             for (int i = 0; i < reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getServicios().size(); i++) {
                 if (i != reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getServicios().size() - 1) {
-                   servicios += reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getServicios().get(i).getNombre_servicio() + ", "; 
-                }else{
-                   servicios += reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getServicios().get(i).getNombre_servicio(); 
+                    servicios += reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getServicios().get(i).getNombre_servicio() + ", ";
+                } else {
+                    servicios += reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getServicios().get(i).getNombre_servicio();
                 }
             }
             lblServicios.setText(servicios);
             lblSubtotal.setText("$" + reservasTabla.getSelectionModel().getSelectedItem().getDetalle().getPago_subtotal().toString());
             lblTotal.setText("$" + reservasTabla.getSelectionModel().getSelectedItem().getPago_total().toString());
             panelDescr.setVisible(true);
-        }else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Sin selección");
             alert.setHeaderText("");
@@ -207,9 +211,9 @@ public class ReservacionesController {
             alert.showAndWait();
         }
     }
-    
+
     @FXML
-    private void handleRegresar(){
+    private void handleRegresar() {
         panelDescr.setVisible(false);
         lblNombres.setText("");
         lblFecha.setText("");

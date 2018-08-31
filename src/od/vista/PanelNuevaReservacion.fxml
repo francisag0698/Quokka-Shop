@@ -29,8 +29,8 @@
                   <DatePicker fx:id="campoFechaEntrada" editable="false" onAction="#handlefechaEntrada" prefHeight="30.0" prefWidth="318.0" promptText="Fecha de Entrada" styleClass="d-form-item" />
                   <DatePicker fx:id="campoFechaSalida" editable="false" layoutX="330.0" onAction="#handleFechaSalida" prefHeight="30.0" prefWidth="318.0" promptText="Fecha de Salida" styleClass="d-form-item" />
                   <Label layoutY="53.0" styleClass="d-label" text="Cantidad de Personas:" />
-                  <TextField fx:id="campoNroAdultos" layoutX="152.0" layoutY="45.0" prefHeight="30.0" prefWidth="192.0" promptText="Nro. Adultos" styleClass="d-form-item" />
-                  <TextField fx:id="campoNroNinios" layoutX="355.0" layoutY="45.0" prefHeight="30.0" prefWidth="192.0" promptText="Nro. Niños" styleClass="d-form-item" />
+                  <TextField fx:id="campoNroAdultos" layoutX="152.0" layoutY="45.0" onKeyReleased="#validarEnterosAdultos" prefHeight="30.0" prefWidth="192.0" promptText="Nro. Adultos" styleClass="d-form-item" />
+                  <TextField fx:id="campoNroNinios" layoutX="355.0" layoutY="45.0" onKeyReleased="#validarEnterosNinios" prefHeight="30.0" prefWidth="192.0" promptText="Nro. Niños" styleClass="d-form-item" />
                   <Button layoutX="558.0" layoutY="45.0" mnemonicParsing="false" onAction="#validarPanel1" prefHeight="30.0" styleClass="btn-secondary" text="COMPROBAR" />
                </children>
             </Pane>
