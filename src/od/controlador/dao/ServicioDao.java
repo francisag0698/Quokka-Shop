@@ -24,7 +24,7 @@ public class ServicioDao extends  AdaptadorDao<Servicio>{
     private Servicio servicio;
     
     /**
-     * Constructor para obtener las variables de modelo Servicio
+     * Constructor que encapsula la transferencia de datos desde el modelo Servicio
      */
     public ServicioDao() {
         super(Servicio.class);

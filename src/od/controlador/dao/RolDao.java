@@ -16,7 +16,7 @@ public class RolDao extends AdaptadorDao<Rol>{
     private Rol rol;
     
     /**
-     * Constructor para obtener las variables de modelo Rol
+     * Constructor que encapsula la transferencia de datos desde el modelo Rol
      */
     public RolDao() {
         super(Rol.class);

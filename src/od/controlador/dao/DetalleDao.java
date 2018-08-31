@@ -17,7 +17,7 @@ public class DetalleDao extends AdaptadorDao<Detalle>{
     //inicializacion de una variable privada
     private Detalle detalle;
     /**
-     * Constructor para obtener las variables de modelo detalle
+     * Constructor que encapsula la transferencia de datos desde el modelo detalle
      */
     public DetalleDao() {
         super(Detalle.class);

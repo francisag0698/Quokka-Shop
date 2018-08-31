@@ -4,7 +4,7 @@ package od.controlador.dao;
 import java.util.List;
 
 /**
- * Interfaz que permite crear metodos abstractos
+ * Interfaz que obliga a implementar todos los metodos de CRUD
  * @author Agreda Francisco
  * @author Macas Dennis
  * @author Ortega César

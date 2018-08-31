@@ -21,7 +21,7 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
     //inicializacion de una variable privada
      private Reservacion reservacion;
      /**
-     * Constructor para obtener las variables de modelo Reservacion
+     * Constructor que encapsula la transferencia de datos desde el modelo Reservacion
      */
      public ReservacionDao() {
         super(Reservacion.class);
@@ -216,7 +216,11 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
         }
         return cantidad;
     }
-    
+    /**
+     * Metodo que permite contabilizar las reservas activas de un cliente
+     * @param id acepta un dato texto de tipo Long 
+     * @return devuelve un numero de las reservas que esta activas
+     */
     public Long nroReservasActivas(Long id){
         Long cantidad = new Long(0);
         try {
@@ -228,8 +232,13 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
             System.out.println("ReservacionDao | Nro de Reservas Activas: " + e);
         }
         return cantidad;
-    }
+    }//cierre del metodo nroReservasActivas
     
+    /**
+     * Metodo que permite contabilizar las reservas de un cliente
+     * @param id acepta un dato texto de tipo Long 
+     * @return devuelve un numero de las reservas totales del cliente
+     */
     public Long nroReservasTotalesCliente(Long id){
         Long cantidad = new Long(0);
         try {
@@ -240,5 +249,5 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
             System.out.println("ReservacionDao | Nro de Reservas Activas: " + e);
         }
         return cantidad;
-    }
+    }//cierre del metodo nroReservasTotalesCliente
 }//cierre de la clase ReservacionDao

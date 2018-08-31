@@ -29,8 +29,8 @@ public class Conexion {
     }//cierre del metodo
     
     /**
-     * Metodo para gestionar las entidades
-     * @return devuelve una creacion EntityManager
+     * Metodo para crear la conexion con las entidades
+     * @return devuelve una EntityManager
      */
     public static EntityManager getManager(){
         if (manager == null) 

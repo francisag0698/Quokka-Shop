@@ -20,7 +20,7 @@ public class AdaptadorDao <T> implements InterfazDao<T>{
     
     /**
      * Constructor para la variable clazz
-     * @param clazz define metodos que se van ingresar desde el modelo
+     * @param clazz recibe y asigna el nombre de la clase hija
      */
     public AdaptadorDao(Class clazz){
         this.clazz = clazz;

@@ -20,7 +20,7 @@ public class HistorialDao extends AdaptadorDao<Historial>{
     private Historial historial;
 
     /**
-     * Constructor para obtener las variables de modelo Historial
+     * Constructor que encapsula la transferencia de datos desde el modelo Historial
      */
     public HistorialDao() {
         super(Historial.class);
@@ -72,7 +72,11 @@ public class HistorialDao extends AdaptadorDao<Historial>{
         }
         return verificar;
     }//cierre del metodo guardar
-    
+    /**
+     * Metodo para listar las personas disponibles 
+     * @param id acepta un dato tipo Long
+     * @return devuelve un numero grande
+     */
     public List<Historial> listarPorPersona(Long id){
         List<Historial> lista = new ArrayList<>();
         try {
@@ -83,5 +87,5 @@ public class HistorialDao extends AdaptadorDao<Historial>{
             System.out.println("Historial Dao | Met: listarPorPersona: " + e);
         }
         return lista;
-    }
+    }//cierre del metodo listarPorPersona
 }//cierre de la clase HistorialDao

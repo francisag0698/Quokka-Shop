@@ -17,7 +17,7 @@ public class PersonaDao extends AdaptadorDao<Persona>{
     private Persona persona;
     
     /**
-     * Constructor para obtener las variables de modelo Persona
+     * Constructor que encapsula la transferencia de datos desde el modelo Persona
      */
     public PersonaDao() {
         super(Persona.class);
@@ -65,7 +65,7 @@ public class PersonaDao extends AdaptadorDao<Persona>{
     /**
      * Metodo que permite obtener la cedula de un persona dentro de la base de datos
      * @param cedula acepta un dato cedula de tipo String
-     * @return devuelve la cedula de la persona de la base de datos 
+     * @return devuelve el objeto de la entidad persona de la base de datos 
      */
     public Persona obtenerPersonaCedula(String cedula){
         Persona p = null;
@@ -164,6 +164,10 @@ public class PersonaDao extends AdaptadorDao<Persona>{
         return lista;
     }//Cierre del metodo listarSinAdministradorGeneroBusqueda
     
+    /**
+     * Metodo para contabilizar el numero de usuarios
+     * @return devuelve un numero grande
+     */
     public Long nroUsuarios(){
         Long cantidad = new Long(0);
         try {
@@ -174,8 +178,12 @@ public class PersonaDao extends AdaptadorDao<Persona>{
             System.out.println("PersonaDao | Numero de Usuarios: " + e);
         }
         return cantidad;
-    }
+    }//Cierre del metodo nroUsuarios
     
+    /**
+     * Metodo que permite listar personas que estan sin cuenta
+     * @return devuelve una lista de las personas cque no tiene cuenta de la base de datos
+     */
     public List<Persona> listadoUsuariosSinCuenta(){
         List<Persona> lista = new ArrayList<>();
         try {
@@ -185,5 +193,5 @@ public class PersonaDao extends AdaptadorDao<Persona>{
             System.out.println("PersonaDao Met: listadodeUsuariosSinCuenta - " + e);
         }
         return lista;
-    }
+    }//cierre del metodo listadoUsuariosSinCuenta
 }//Cierre de la clase PersonaDao

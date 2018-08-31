@@ -22,7 +22,7 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
     private Habitacion habitacion;
 
     /**
-     * Constructor para obtener las variables de modelo Detalle
+     * Constructor que encapsula la transferencia de datos desde el modelo habitacion
      */
     public HabitacionDao() {
         super(Habitacion.class);
@@ -191,7 +191,7 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
      * @param inicio acepta un dato tipo Date
      * @param fin acepta un dato tipo Date
      * @param codigo acepta un dato tipo String
-     * @return devuelve una lista
+     * @return devuelve un numero grande
      */
     public Long cantidadDisponibles(Date inicio, Date fin, String codigo){
         Long cantidad = new Long(0);
@@ -211,7 +211,12 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
         }
         return cantidad;
     }//cierre del metodo cantidadDisponibles
-    
+    /**
+     * Metodo para listar las habitaciones disponibles 
+     * @param inicio acepta un dato tipo Date
+     * @param fin acepta un dato tipo Date
+     * @return devuelve un numero grande
+     */
     public Long cantidadDisponibles(Date inicio, Date fin){
         Long cantidad = new Long(0);
         try {
@@ -227,5 +232,5 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
             System.out.println("HabitacionDao | Met: cantidadDisponibles2 - " + e);
         }
         return cantidad;
-    }
+    }//cierre del metodo cantidadDisponibles
 }//cierre del la clase HabitacionDao

@@ -16,7 +16,7 @@ public class CuentaDao extends AdaptadorDao<Cuenta> {
     private Cuenta cuenta;
 
     /**
-     * Constructor para obtener las variables de modelo Cuenta
+     *Constructor que encapsula la transferencia de datos desde el modelo Cuenta
      */
     public CuentaDao() {
         super(Cuenta.class);
