@@ -104,4 +104,8 @@ public class ServicioPersona {
     public Long nroUsuarios(){
         return obj.nroUsuarios();
     }
+    
+    public List<Persona> listadoUsuariosSinCuenta(){
+        return obj.listadoUsuariosSinCuenta();
+    }
 }//Cierre de la clase ServicioPersona

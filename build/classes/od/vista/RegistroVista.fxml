@@ -29,13 +29,13 @@
       <TextField fx:id="campoDNI" layoutX="84.0" layoutY="283.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="84.0" layoutY="263.0" styleClass="signup-labelform" text="NUMERO DE DNI" />
       <Label layoutX="312.0" layoutY="263.0" styleClass="signup-labelform" text="FECHA DE NACIMIENTO" />
-      <DatePicker fx:id="campoFechaNacimiento" layoutX="312.0" layoutY="283.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <DatePicker fx:id="campoFechaNacimiento" layoutX="312.0" layoutY="283.0" onAction="#handleFecha" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="86.0" layoutY="332.0" styleClass="signup-labelform" text="GENERO" />
       <ComboBox fx:id="comboGenero" layoutX="85.0" layoutY="352.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="313.0" layoutY="332.0" styleClass="signup-labelform" text="TELEFONO/CELULAR" />
       <TextField fx:id="campoCelular" layoutX="313.0" layoutY="352.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="85.0" layoutY="400.0" styleClass="signup-labelform" text="PAÍS" />
-      <TextField fx:id="campoPais" layoutX="85.0" layoutY="420.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
+      <ComboBox fx:id="campoPais" layoutX="85.0" layoutY="420.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="313.0" layoutY="400.0" styleClass="signup-labelform" text="CIUDAD" />
       <TextField fx:id="campoCiudad" layoutX="313.0" layoutY="420.0" prefHeight="37.0" prefWidth="210.0" styleClass="signup-textfieldform" />
       <Label layoutX="86.0" layoutY="467.0" styleClass="signup-labelform" text="DIRECCION" />

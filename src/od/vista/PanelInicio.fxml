@@ -15,8 +15,8 @@
       <Label layoutX="54.0" layoutY="43.0" styleClass="title-pane" text="¡Bienvenido/a!" />
       <TableView fx:id="tablaReservas" layoutX="54.0" layoutY="247.0" prefHeight="331.0" prefWidth="457.0">
         <columns>
-          <TableColumn fx:id="nyap" prefWidth="290.0" text="Nombres y Apellidos" />
-          <TableColumn fx:id="habitacion" prefWidth="165.0" text="Habitación" />
+          <TableColumn fx:id="nyap" prefWidth="246.0" text="Nombres y Apellidos" />
+          <TableColumn fx:id="habitacion" prefWidth="209.0" text="Habitación" />
         </columns>
       </TableView>
       <Label layoutX="53.0" layoutY="88.0" styleClass="subtitle-pane" text="Curabitur sit amet sagittis urna. Fusce venenatis turpis et tellus." />
@@ -38,7 +38,7 @@
       </Pane>
       <Pane layoutX="285.0" layoutY="127.0" prefHeight="112.0" prefWidth="225.0" styleClass="card-pane">
          <children>
-            <Label layoutX="19.0" layoutY="74.0" text="CLIENTES REGISTRADOS" />
+            <Label fx:id="lblCliente" layoutX="19.0" layoutY="74.0" text="CLIENTES REGISTRADOS" />
             <Label fx:id="lblCantClientes" layoutX="19.0" layoutY="9.0" text="80">
                <font>
                   <Font size="50.0" />

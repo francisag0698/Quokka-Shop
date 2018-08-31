@@ -273,6 +273,7 @@ public class PanelNuevaReservacionController {
                     alert.setHeaderText("");
                     alert.setContentText("Se ha guardado el registro correctamente.");
                     Utilidades.guardarHistorial("Nueva Reservación", "Una nueva reserva se ha registrado", Sesiones.getCuenta().getPersona());
+                    Utilidades.guardarHistorial("Nueva Reservación", "Una nueva reserva se ha registrado", sp.getPersona());
                     alert.showAndWait();
                     limpiar();
                     principal.fijarCentroPane("PanelReservaciones");

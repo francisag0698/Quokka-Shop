@@ -64,6 +64,10 @@ public class ServicioReservacion {
     public List<Reservacion> listarPorPersona(Long id){
         return obj.listarPorPersona(id);
     }
+    
+    public List<Reservacion> listarPorPersonaActivo(Long id){
+        return obj.listarPorPersonaActivo(id);
+    }
 
     /**
      * Metodo que permite llamar el metodo listar del ServicioReservacion
@@ -116,5 +120,13 @@ public class ServicioReservacion {
     
     public Long nroReservasActivas(){
         return obj.nroReservasActivas();
+    }
+    
+    public Long nroReservasActivas(Long id){
+        return obj.nroReservasActivas(id);
+    }
+    
+    public Long nroReservasTotalesCliente(Long id){
+        return obj.nroReservasTotalesCliente(id);
     }
 }//cierre la clase ServicioReservacion

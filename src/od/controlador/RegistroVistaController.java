@@ -7,6 +7,7 @@ package od.controlador;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.UUID;
@@ -46,7 +47,7 @@ public class RegistroVistaController {
     @FXML
     private TextField campoCelular;
     @FXML
-    private TextField campoPais;
+    private ComboBox campoPais;
     @FXML
     private TextField campoCiudad;
     @FXML
@@ -82,7 +83,12 @@ public class RegistroVistaController {
         );
         comboGenero.setValue("Masculino");
         
-        
+        campoPais.getItems().addAll(
+                "Ecuador",
+                "Perú",
+                "Colombia"
+        );
+        campoPais.setValue("Ecuador");
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -99,7 +105,6 @@ public class RegistroVistaController {
                 & Validadores.validarTF(campoDNI)
                 & Validadores.validarDP(campoFechaNacimiento)
                 & Validadores.validarTF(campoCelular)
-                & Validadores.validarTF(campoPais)
                 & Validadores.validarTF(campoCiudad)
                 & Validadores.validarTF(campoDireccion)
                 & Validadores.validarTF(campoNuevoUsuario)
@@ -107,8 +112,14 @@ public class RegistroVistaController {
                 & Validadores.validarP(campoRepetirClave)
                 & Validadores.validarTF(campoCorreo)) {
             if (Validadores.comprobarClave(campoNuevaClave, campoRepetirClave)) {
-                lblError.setVisible(false);
-                return true;
+                if (Validadores.validarCorreo(campoCorreo)) {
+                    lblError.setVisible(false);
+                    return true;
+                }else{
+                    lblError.setText("El correo ingresado no es válido");
+                    lblError.setVisible(true);
+                    return false;
+                }                
             } else {
                 lblError.setText("Las contraseñas ingresadas no coinciden.");
                 lblError.setVisible(true);
@@ -132,7 +143,7 @@ public class RegistroVistaController {
         }
         sp.getPersona().setTelefono(campoCelular.getText());
         sp.getPersona().setSexo(comboGenero.getValue().toString());
-        sp.getPersona().setPais(campoPais.getText());
+        sp.getPersona().setPais(campoPais.getValue().toString());
         sp.getPersona().setCiudad(campoCiudad.getText());
         sp.getPersona().setDireccion(campoDireccion.getText());
         sp.getPersona().setRol(new ServicioRol().buscarRolNombre("Cliente"));
@@ -157,7 +168,7 @@ public class RegistroVistaController {
         campoNombre.setText("");
         campoNuevaClave.setText("");
         campoNuevoUsuario.setText("");
-        campoPais.setText("");
+        campoPais.setValue("Ecuador");
         campoRepetirClave.setText("");
         
     }
@@ -202,6 +213,13 @@ public class RegistroVistaController {
     private void handleRegistro() {        
         if (validar()) {            
             guardar();
+        }
+    }
+    
+    @FXML
+    private void handleFecha(){
+        if (campoFechaNacimiento.getValue().isAfter(LocalDate.now())) {
+            campoFechaNacimiento.setValue(LocalDate.now());
         }
     }
 }

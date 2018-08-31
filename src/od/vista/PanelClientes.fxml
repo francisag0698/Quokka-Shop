@@ -66,13 +66,13 @@
                         <TextField fx:id="txtApellidos" layoutX="410.0" layoutY="53.0" prefHeight="25.0" prefWidth="232.0" />
                         <Label layoutX="337.0" layoutY="57.0" text="Apellidos:" />
                         <Label layoutX="1.0" layoutY="99.0" text="Fecha de Nacimiento:" />
-                        <DatePicker fx:id="dpFecha" layoutX="128.0" layoutY="95.0" prefHeight="25.0" prefWidth="184.0" />
+                        <DatePicker fx:id="dpFecha" layoutX="128.0" layoutY="95.0" onAction="#handleFecha" prefHeight="25.0" prefWidth="184.0" />
                         <Label layoutX="337.0" layoutY="99.0" text="Género:" />
                         <ComboBox fx:id="cbxGenero" layoutX="410.0" layoutY="95.0" prefHeight="25.0" prefWidth="232.0" />
                         <TextField fx:id="txtTelefono" layoutX="128.0" layoutY="135.0" prefHeight="25.0" prefWidth="184.0" />
+                        <ComboBox fx:id="txtPais" layoutX="410.0" layoutY="135.0" prefHeight="25.0" prefWidth="232.0" />
                         <Label layoutY="139.0" text="Teléfono/Celular:" />
                         <Label layoutX="337.0" layoutY="139.0" text="País:" />
-                        <TextField fx:id="txtPais" layoutX="410.0" layoutY="135.0" prefWidth="156.0" />
                         <Label layoutX="2.0" layoutY="179.0" text="Ciudad:" />
                         <TextField fx:id="txtCiudad" layoutX="81.0" layoutY="175.0" prefHeight="25.0" prefWidth="160.0" />
                         <Label layoutX="258.0" layoutY="179.0" text="Dirección:" />

@@ -137,4 +137,16 @@ public class Validadores {
             default: return false;
         }
     }//Cierre del metodo validarValor
+    
+    public static boolean validarCorreo(TextField obj){
+        if (obj.getText().contains("@")) {
+            if (obj.getStyleClass().contains("error")) 
+                obj.getStyleClass().remove("error");
+            return true; 
+        }else{
+            if (!obj.getStyleClass().contains("error")) 
+                obj.getStyleClass().add("error");                        
+            return false;
+        }
+    }
 }//Cierre de la clase validadores

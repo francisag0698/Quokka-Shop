@@ -73,6 +73,20 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
             q.setParameter("id", id);
             lista = q.getResultList();
         } catch (Exception e) {
+            System.out.println("ReservacionDao | listarPorPersona: " + e);
+        }
+        return lista;
+    }
+    
+    public List<Reservacion> listarPorPersonaActivo(Long id){
+        List<Reservacion> lista = new ArrayList<>();
+        try {
+            Query q = getManager().createQuery("SELECT r FROM Reservacion r WHERE r.persona.id_persona = :id AND r.estado = :estado");
+            q.setParameter("id", id);
+            q.setParameter("estado", true);
+            lista = q.getResultList();
+        } catch (Exception e) {
+            System.out.println("ReservacionDao | listarPorPersonaActivo: " + e);
         }
         return lista;
     }
@@ -196,6 +210,31 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
         try {
             Query q = getManager().createQuery("SELECT COUNT(r) FROM Reservacion r WHERE r.estado = :estado");
             q.setParameter("estado", true);
+            cantidad = (Long) q.getSingleResult();
+        } catch (Exception e) {
+            System.out.println("ReservacionDao | Nro de Reservas Activas: " + e);
+        }
+        return cantidad;
+    }
+    
+    public Long nroReservasActivas(Long id){
+        Long cantidad = new Long(0);
+        try {
+            Query q = getManager().createQuery("SELECT COUNT(r) FROM Reservacion r WHERE r.estado = :estado AND r.persona.id_persona = :id");
+            q.setParameter("estado", true);
+            q.setParameter("id", id);
+            cantidad = (Long) q.getSingleResult();
+        } catch (Exception e) {
+            System.out.println("ReservacionDao | Nro de Reservas Activas: " + e);
+        }
+        return cantidad;
+    }
+    
+    public Long nroReservasTotalesCliente(Long id){
+        Long cantidad = new Long(0);
+        try {
+            Query q = getManager().createQuery("SELECT COUNT(r) FROM Reservacion r WHERE r.persona.id_persona = :id");
+            q.setParameter("id", id);
             cantidad = (Long) q.getSingleResult();
         } catch (Exception e) {
             System.out.println("ReservacionDao | Nro de Reservas Activas: " + e);

@@ -44,6 +44,8 @@ public class PanelInicioController {
     private Label lblCantClientes;
     @FXML
     private Label lblCantHabitaciones;
+    @FXML
+    private Label lblCliente;
     
     private ServicioPersona sp = new ServicioPersona();
     private ServicioReservacion sr = new ServicioReservacion();
@@ -56,9 +58,21 @@ public class PanelInicioController {
     public void initialize() {
         cargarHistorial();
         cargarTabla();
-        lblCantReservas.setText(sr.nroReservasActivas().toString());
-        lblCantClientes.setText(sp.nroUsuarios().toString());
-        lblCantHabitaciones.setText(sha.cantidadDisponibles(new Date(), new Date()).toString());
+        if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) {
+            lblCantReservas.setText(sr.nroReservasActivas(Sesiones.getCuenta().getPersona().getId_persona()).toString());
+            lblCantClientes.setText(sr.nroReservasTotalesCliente(Sesiones.getCuenta().getPersona().getId_persona()).toString());
+            lblCliente.setText("RESERVAS REALIZADAS");
+        }else{
+            lblCantReservas.setText(sr.nroReservasActivas().toString());
+            lblCantClientes.setText(sp.nroUsuarios().toString());
+        }
+        
+        
+        Long n = sha.cantidadDisponibles(new Date(), new Date());
+        if (n != null) 
+            lblCantHabitaciones.setText(n.toString());
+        else
+            lblCantHabitaciones.setText("0");
     }
     
     private void cargarHistorial(){
@@ -97,7 +111,11 @@ public class PanelInicioController {
     }
     
     private void cargarTabla(){
-        tablaReservas.setItems(FXCollections.observableList(sr.todos()));
+        if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) {
+            tablaReservas.setItems(FXCollections.observableList(sr.listarPorPersona(Sesiones.getCuenta().getPersona().getId_persona())));
+        }else
+            tablaReservas.setItems(FXCollections.observableList(sr.todos()));
+                
         nyap.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getNombres() + " " + cellData.getValue().getPersona().getApellidos())
         );

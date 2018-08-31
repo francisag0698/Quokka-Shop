@@ -62,7 +62,7 @@ public class PanelClientesController {
     @FXML
     private TextField txtTelefono;
     @FXML
-    private TextField txtPais;
+    private ComboBox txtPais;
     @FXML
     private TextField txtCiudad;
     @FXML
@@ -116,6 +116,13 @@ public class PanelClientesController {
         );
         cbxGenero.setValue("Masculino");
         
+        txtPais.getItems().addAll(
+                "Ecuador",
+                "Perú",
+                "Colombia"
+        );
+        txtPais.setValue("Ecuador");
+        
         cbxFiltrarPor.getItems().addAll(
                 "Numero de DNI",
                 "Genero"
@@ -126,6 +133,7 @@ public class PanelClientesController {
                 "Femenino",
                 "Otros"
         );
+        
         cargarTabla();
     }
     
@@ -156,7 +164,6 @@ public class PanelClientesController {
                 & Validadores.validarTF(txtApellidos)
                 & Validadores.validarDP(dpFecha)
                 & Validadores.validarTF(txtTelefono)
-                & Validadores.validarTF(txtPais)
                 & Validadores.validarTF(txtCiudad)
                 & Validadores.validarTF(txtDireccion)){
             if (UtilidadesComponentes.validadorDeCedula(txtNroDNI.getText())) {
@@ -199,7 +206,7 @@ public class PanelClientesController {
         }
         sp.getPersona().setSexo(cbxGenero.getValue().toString());
         sp.getPersona().setTelefono(txtTelefono.getText());
-        sp.getPersona().setPais(txtPais.getText());
+        sp.getPersona().setPais(txtPais.getValue().toString());
         sp.getPersona().setCiudad(txtCiudad.getText());
         sp.getPersona().setDireccion(txtDireccion.getText());
         sp.getPersona().setRol(new ServicioRol().buscarRolNombre("Cliente"));
@@ -213,7 +220,7 @@ public class PanelClientesController {
         dpFecha.setValue(null);
         cbxGenero.setValue("Masculino");
         txtTelefono.setText("");
-        txtPais.setText("");
+        txtPais.setValue("Ecuador");
         txtCiudad.setText("");
         txtDireccion.setText("");
         sp.fijarPersona(null);
@@ -295,7 +302,7 @@ public class PanelClientesController {
             dpFecha.setValue(LocalDate.parse(Utilidades.formatearFechaDos(sp.getPersona().getFecha_nacimiento())));
             cbxGenero.setValue(sp.getPersona().getSexo());
             txtTelefono.setText(sp.getPersona().getTelefono());
-            txtPais.setText(sp.getPersona().getPais());
+            txtPais.setValue(sp.getPersona().getPais());
             txtCiudad.setText(sp.getPersona().getCiudad());
             txtDireccion.setText(sp.getPersona().getDireccion());
             
@@ -369,5 +376,12 @@ public class PanelClientesController {
         cbxComboSeleccion.setValue(null);
         cbxComboSeleccion.setDisable(true);
         cargarTabla();
+    }
+    
+    @FXML
+    private void handleFecha(){
+        if (dpFecha.getValue() != null && dpFecha.getValue().isAfter(LocalDate.now())) {
+            dpFecha.setValue(LocalDate.now());
+        }
     }
 }

@@ -175,4 +175,15 @@ public class PersonaDao extends AdaptadorDao<Persona>{
         }
         return cantidad;
     }
+    
+    public List<Persona> listadoUsuariosSinCuenta(){
+        List<Persona> lista = new ArrayList<>();
+        try {
+            Query q = getManager().createQuery("SELECT p FROM Persona p WHERE p.id_persona NOT IN (SELECT c.persona.id_persona FROM Cuenta c)");
+            lista = q.getResultList();
+        } catch (Exception e) {
+            System.out.println("PersonaDao Met: listadodeUsuariosSinCuenta - " + e);
+        }
+        return lista;
+    }
 }//Cierre de la clase PersonaDao

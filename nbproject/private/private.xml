@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Deus%20Vult/Documents/GitHub/OldDeus/src/od/controlador/PanelHabitacionesController.java</file>
-            <file>file:/C:/Users/Deus%20Vult/Documents/GitHub/OldDeus/src/od/controlador/dao/HabitacionDao.java</file>
+            <file>file:/C:/Users/Usuario%201/Documents/GitHub/OldDeus/src/od/controlador/PanelConfiguracionController.java</file>
+            <file>file:/C:/Users/Usuario%201/Documents/GitHub/OldDeus/src/od/controlador/PanelInicioController.java</file>
+            <file>file:/C:/Users/Usuario%201/Documents/GitHub/OldDeus/src/od/utilidades/Validadores.java</file>
+            <file>file:/C:/Users/Usuario%201/Documents/GitHub/OldDeus/src/od/controlador/servicio/ServicioPersona.java</file>
+            <file>file:/C:/Users/Usuario%201/Documents/GitHub/OldDeus/src/od/controlador/dao/PersonaDao.java</file>
         </group>
     </open-files>
 </project-private>
