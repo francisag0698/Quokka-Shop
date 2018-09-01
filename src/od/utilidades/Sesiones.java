@@ -15,7 +15,7 @@ public class Sesiones {
     private static Cuenta cuenta;
     
     /**
-     * Permite extraer la cuenta del servicioCuenta
+     * Permite vizualizar la cuenta 
      * @return devuelve la cuenta
      */
     public static Cuenta getCuenta() {
@@ -23,7 +23,7 @@ public class Sesiones {
     }//Cierre del getCuenta
     
     /**
-     * Permite modificar la cuenta del servicioCuenta
+     * Permite modificar la cuenta 
      * @param cuenta acepta un dato cuenta de tipo Cuenta 
      */
     public static void setCuenta(Cuenta cuenta) {

@@ -50,7 +50,7 @@ public class Utilidades {
     }//Cierre del metodo extraerFecha
     
     /**
-     * Metodo que permite formatear una fecha
+     * Metodo que permite dar formato a la fecha
      * @param fecha acepta un dato de tipo fecha
      * @return devuelve una fecha salida formateada
      */
@@ -66,7 +66,7 @@ public class Utilidades {
     }//Cierre del metodo
     
     /**
-     * Metodo que permite formatear una fecha
+     * Metodo que permite dar formato a una fecha
      * @param fecha acepta un dato de tipo fecha
      * @return devuelve una fecha salida formateada
      */
