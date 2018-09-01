@@ -40,7 +40,12 @@ public class ServicioHistorial {
         return obj.guardar();
     }//Cierre del metodo guardar
     
+    /**
+     * Metodo que permite listar las acciones reguistradas de una persona en el historial
+     * @param id acepta un dato tipo Long
+     * @return devuelve una lista
+     */
     public List<Historial> listarPorPersona(Long id){
         return obj.listarPorPersona(id);
-    }
+    }//cierre del metodo listarPorPersona
 }//cierre de la clase ServicioHistorial

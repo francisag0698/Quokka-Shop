@@ -61,16 +61,26 @@ public class ServicioReservacion {
         obj.setReservacion(reservacion);
     }//cierre del metodo fijarReservacion
     
+    /**
+     * Metodo que permite llamar el metodo listar del listarPorPersona
+     * @param id que acepta un dato tipo Lomg
+     * @return devuelve un objeto tipo lista
+     */
     public List<Reservacion> listarPorPersona(Long id){
         return obj.listarPorPersona(id);
-    }
+    }//cierre del metodo listarPorPersona
     
+    /**
+     * Metodo que permite llamar el metodo listar del listarPorPersonaActivo
+     * @param id que acepta un dato tipo Lomg
+     * @return devuelve un objeto tipo lista
+     */
     public List<Reservacion> listarPorPersonaActivo(Long id){
         return obj.listarPorPersonaActivo(id);
-    }
+    }//cierre del metodo listarPorPersonaActivo
 
     /**
-     * Metodo que permite llamar el metodo listar del ServicioReservacion
+     * Metodo que permite llamar el metodo listar del listarBusqueda
      * @param texto que acepta un dato tipo String
      * @return devuelve un objeto tipo lista
      */
@@ -78,12 +88,18 @@ public class ServicioReservacion {
         return obj.listarBusqueda(texto);
     }//cierre del metodo listarBusqueda
     
+    /**
+     * Metodo que permite llamar el metodo listar del listarBusqueda
+     * @param texto que acepta un dato tipo String
+     * @param id que acepta un dato tipo Long
+     * @return devuelve un objeto tipo lista
+     */
     public List<Reservacion>listarBusqueda(String texto, Long id){
         return obj.listarBusqueda(texto, id);
-    }
+    }//cierre del metodo listarBusqueda
     
     /**
-     * Metodo que permite llamar el metodo listar por tipo de ServicioReservacion
+     * Metodo que permite llamar el metodo listar por tipo de listarTipo
      * @param tipo que acepta un dato tipo String
      * @return devuelve un objeto tipo lista
      */
@@ -91,13 +107,19 @@ public class ServicioReservacion {
         return obj.listarTipo(tipo);
     }//cierre del metodo listarTipo
     
+    /**
+     * Metodo que permite llamar el metodo listar por tipo de listarTipo
+     * @param tipo que acepta un dato tipo String
+     * @param id que acepta un dato tipo Long
+     * @return devuelve un objeto tipo lista
+     */
     public List<Reservacion>listarTipo(Boolean tipo, Long id){
         return obj.listarTipo(tipo, id);
-    }
+    }//cierre del metodo listarTipo
     
     /**
-     * Metodo que permite llamar el metodo listar por busqueda por tipo del ServicioReservacion
-     * @param tipo que acepta un dato tipo String
+     * Metodo que permite llamar el metodo listar por busqueda por tipo del listarBusquedaTipo
+     * @param tipo que acepta un dato tipo Boolean
      * @param texto que acepta un dato tipo String
      * @return devuelve un objeto tipo lista
      */    
@@ -105,9 +127,16 @@ public class ServicioReservacion {
         return obj.listarBusquedaTipo(tipo, texto);
     }//cierro del metodo listarBusquedaTipo
     
+    /**
+     * Metodo que permite llamar el metodo listar por busqueda por tipo del listarBusquedaTipo
+     * @param tipo que acepta un dato tipo String
+     * @param texto que acepta un dato tipo String
+     * @param id que acepta un dato tipo Long
+     * @return devuelve un objeto tipo lista
+     */
     public List<Reservacion> listarBusquedaTipo(Boolean tipo,String texto, Long id){
         return obj.listarBusquedaTipo(tipo, texto, id);
-    }
+    }//cierre del metodo listarBusquedaTipo
     
     /**
      * Metodo que permite llamar el metodo listar por orden ascendente del ServicioReservacion
@@ -118,15 +147,29 @@ public class ServicioReservacion {
         return obj.ordenAscendente(orden);
     }//cierre del metodo ordenAscendente
     
+    /**
+     * Metodo que contabilizar el numero de reservas activas
+     * @return devuelve el numero de reservas activas
+     */
     public Long nroReservasActivas(){
         return obj.nroReservasActivas();
-    }
+    }//cierre del metodo nroReservasActivas
     
+    /**
+     * Metodo que contabilizar el numero de reservas activas del cliente     * 
+     * @param id acepta un valor del tipo Long
+     * @return devuelve el numero de reservas activas del cliente
+     */
     public Long nroReservasActivas(Long id){
         return obj.nroReservasActivas(id);
-    }
+    }//cierre del metodonroReservasActivas
     
+    /**
+     * Metodo que contabilizar el numero de reservas totales del cliente     * 
+     * @param id acepta un valor del tipo Long
+     * @return devuelve el numero de reservas totales del cliente
+     */
     public Long nroReservasTotalesCliente(Long id){
         return obj.nroReservasTotalesCliente(id);
-    }
+    }//cierre del metodo nroReservasTotalesCliente
 }//cierre la clase ServicioReservacion

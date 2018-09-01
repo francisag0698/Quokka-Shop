@@ -99,7 +99,6 @@ public class ServicioHabitacion {
     /**
      * Metodo que permite llamar al metodo para listar las habitaciones por busqueda por estado
      * @param texto acepta un dato tipo String
-     * @param estado acepta un dato tipo Boolean
      * @return devuelve un objeto lista
      */
     public List<Habitacion> listarBusquedaCodigo(String texto){
@@ -126,7 +125,13 @@ public class ServicioHabitacion {
         return obj.cantidadDisponibles(inicio, fin, codigo);
     }//cierre del metodo cantidadDisponibles
     
+    /**
+     * Metodo que obtener las habitaciones que estan disponibles en dentro del rango de fecha
+     * @param inicio acepta un dato tipo Date
+     * @param fin acepta un dato tipo Date
+     * @return objeto el numero de habitaciones disponibles en el rengo de fechas
+     */
     public Long cantidadDisponibles(Date inicio, Date fin){
         return obj.cantidadDisponibles(inicio, fin);
-    }
+    }//cierre del meodo cantidadDisponibles
 }//cierre de la clase ServicioHabitacion

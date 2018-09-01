@@ -13,6 +13,7 @@ import od.modelo.Persona;
  * @version JDK 1.8
  */
 public class ServicioPersona {
+    //inicializacion de una variable privada
     private PersonaDao obj= new PersonaDao();
     
     /**
@@ -101,11 +102,19 @@ public class ServicioPersona {
         return obj.listarSinAdministradorGeneroBusqueda(texto, genero);
     }//Cierre del metodo listarSinAdministradorGeneroBusqueda
     
+    /**
+     * Metodo que contabilizar el numero de usuario reguistrados
+     * @return devuelve el numero de usuarios reguistrados
+     */
     public Long nroUsuarios(){
         return obj.nroUsuarios();
-    }
+    }//cierre del metodo nreUsuario
     
+    /**
+     * Metodo que permite listar los usuarioas sin cuenta
+     * @return devuelve el numero de usuarios reguistrados
+     */
     public List<Persona> listadoUsuariosSinCuenta(){
         return obj.listadoUsuariosSinCuenta();
-    }
+    }//cierre del metodo listadoUsuariosSinCuenta
 }//Cierre de la clase ServicioPersona
