@@ -190,13 +190,13 @@ public class PanelHabitacionesController {
     }
 
     private void cargarObjeto() {
-        sh.getHabitacion().setNombre(campoNombre.getText());
+        sh.getHabitacion().setNombre(campoNombre.getText().trim());
         sh.getHabitacion().setCapacidad(Integer.parseInt(campoCapacidad.getText()));
-        sh.getHabitacion().setCondiciones(areaCondiciones.getText());
+        sh.getHabitacion().setCondiciones(areaCondiciones.getText().trim());
         sh.getHabitacion().setPrecio(Double.parseDouble(campoPrecio.getText()));
         sh.getHabitacion().setNro_camas(Integer.parseInt(campoCamas.getText()));
         sh.getHabitacion().setCantidad(Integer.parseInt(campoCantidad.getText()));
-        sh.getHabitacion().setDescripcion(areaHabitacion.getText());
+        sh.getHabitacion().setDescripcion(areaHabitacion.getText().trim());
         sh.getHabitacion().setEstado(true);
         sh.getHabitacion().setTipo(comboTipo.getValue().toString());
         sh.getHabitacion().setCodigo(campoCodigo.getText());

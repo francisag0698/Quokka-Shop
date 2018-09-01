@@ -1,11 +1,9 @@
 package od.utilidades;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 
 /**
  * Clase que permite realizar validacion de los campos de una vista
@@ -24,8 +22,7 @@ public class Validadores {
      * @return devuelve un boolean
      */
     public static boolean validarTF(TextField obj) {
-        obj.getText().trim();
-        if (obj.getText().isEmpty()) {
+        if (obj.getText().trim().isEmpty()) {
             if (!obj.getStyleClass().contains("error")) {
                 obj.getStyleClass().add("error");
             }
@@ -39,13 +36,13 @@ public class Validadores {
     }//Cierre del metodo validarTF
 
     /**
-     * Metodo para viladar un campo TextArea
+     * Metodo para validar un campo TextArea
      *
      * @param obj acepta un dato de un textArea
      * @return devuelve un boolean
      */
     public static boolean validarTA(TextArea obj) {
-        if (obj.getText().isEmpty()) {
+        if (obj.getText().trim().isEmpty()) {
             if (!obj.getStyleClass().contains("error")) {
                 obj.getStyleClass().add("error");
             }
@@ -59,7 +56,7 @@ public class Validadores {
     }//Cierre del metodo validarTA
 
     /**
-     * Metodo para viladar un campo DatePicker
+     * Metodo para validar un campo DatePicker
      *
      * @param obj acepta un dato de un DatePicker
      * @return devuelve un boolean
@@ -85,7 +82,7 @@ public class Validadores {
      * @return devuelve un boolean
      */
     public static boolean validarP(PasswordField obj) {
-        if (obj.getText().isEmpty()) {
+        if (obj.getText().trim().isEmpty()) {
             if (!obj.getStyleClass().contains("error")) {
                 obj.getStyleClass().add("error");
             }

@@ -108,9 +108,9 @@ public class PanelConfiguracionController {
     }
 
     private void cargarObjetoPersona() {
-        sp.getPersona().setNombres(campoNombres.getText());
-        sp.getPersona().setApellidos(campoApellidos.getText());
-        sp.getPersona().setDni(campoDNI.getText());
+        sp.getPersona().setNombres(campoNombres.getText().trim());
+        sp.getPersona().setApellidos(campoApellidos.getText().trim());
+        sp.getPersona().setDni(campoDNI.getText().trim());
         try {
             sp.getPersona().setFecha_nacimiento(new SimpleDateFormat("dd/MM/yyyy").parse(campoFechaNacimiento.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
         } catch (ParseException e) {
@@ -118,15 +118,15 @@ public class PanelConfiguracionController {
         }
         sp.getPersona().setTelefono(campoTelefono.getText());
         sp.getPersona().setSexo(comboGenero.getValue().toString());
-        sp.getPersona().setPais(campoPais.getText());
-        sp.getPersona().setCiudad(campoCiudad.getText());
-        sp.getPersona().setDireccion(campoDireccion.getText());
+        sp.getPersona().setPais(campoPais.getText().trim());
+        sp.getPersona().setCiudad(campoCiudad.getText().trim());
+        sp.getPersona().setDireccion(campoDireccion.getText().trim());
     }
 
     private void cargarObjetoCuenta() {
         sc.fijarCuenta(Sesiones.getCuenta());
-        sc.getCuenta().setClave(campoClave.getText());
-        sc.getCuenta().setCorreo(campoCorreo.getText());
+        sc.getCuenta().setClave(campoClave.getText().trim());
+        sc.getCuenta().setCorreo(campoCorreo.getText().trim());
         sc.getCuenta().setPersona(sp.getPersona());
         sp.getPersona().setCuenta(sc.getCuenta());
     }
@@ -286,9 +286,9 @@ public class PanelConfiguracionController {
             
             if (conf.getResult().getText().equals("Aceptar")){
                 ServicioCuenta nsc = new ServicioCuenta();
-                nsc.getCuenta().setUsuario(txtUsuario.getText());
-                nsc.getCuenta().setClave(txtClave.getText());
-                nsc.getCuenta().setCorreo(txtCorreo.getText());
+                nsc.getCuenta().setUsuario(txtUsuario.getText().trim());
+                nsc.getCuenta().setClave(txtClave.getText().trim());
+                nsc.getCuenta().setCorreo(txtCorreo.getText().trim());
                 nsc.getCuenta().setCreated_at(new Date());
                 nsc.getCuenta().setUpdate_at(new Date());
                 nsc.getCuenta().setEstado(Boolean.TRUE);

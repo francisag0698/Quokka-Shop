@@ -259,7 +259,7 @@ public class PanelNuevaReservacionController {
 
                 sd.getDetalle().setAdultos(Integer.parseInt(campoNroAdultos.getText()));
                 sd.getDetalle().setMenores(Integer.parseInt(campoNroNinios.getText()));
-                sd.getDetalle().setObservaciones(campoObservaciones.getText());
+                sd.getDetalle().setObservaciones(campoObservaciones.getText().trim());
                 sd.getDetalle().setPago_subtotal(listaServicios.getSelectionModel().getSelectedItems().stream().mapToDouble((selectedItem) -> selectedItem.getPrecio()).sum());
                 sd.getDetalle().setCant_habitaciones(Integer.parseInt(campoNroHabitaciones.getText()));
                 sd.getDetalle().setServicios(listaServicios.getSelectionModel().getSelectedItems());

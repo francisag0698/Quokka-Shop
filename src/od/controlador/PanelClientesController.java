@@ -196,9 +196,9 @@ public class PanelClientesController {
     }
     
     private void cargarObjeto(){
-        sp.getPersona().setDni(txtNroDNI.getText());
-        sp.getPersona().setNombres(txtNombres.getText());
-        sp.getPersona().setApellidos(txtApellidos.getText());
+        sp.getPersona().setDni(txtNroDNI.getText().trim());
+        sp.getPersona().setNombres(txtNombres.getText().trim());
+        sp.getPersona().setApellidos(txtApellidos.getText().trim());
         try {
             sp.getPersona().setFecha_nacimiento(new SimpleDateFormat("dd-MM-yyyy").parse(dpFecha.getValue().toString()));            
         } catch (ParseException e) {
@@ -207,8 +207,8 @@ public class PanelClientesController {
         sp.getPersona().setSexo(cbxGenero.getValue().toString());
         sp.getPersona().setTelefono(txtTelefono.getText());
         sp.getPersona().setPais(txtPais.getValue().toString());
-        sp.getPersona().setCiudad(txtCiudad.getText());
-        sp.getPersona().setDireccion(txtDireccion.getText());
+        sp.getPersona().setCiudad(txtCiudad.getText().trim());
+        sp.getPersona().setDireccion(txtDireccion.getText().trim());
         sp.getPersona().setRol(new ServicioRol().buscarRolNombre("Cliente"));
     }
     

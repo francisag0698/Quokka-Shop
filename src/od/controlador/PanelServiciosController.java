@@ -72,12 +72,12 @@ public class PanelServiciosController {
             return false;
         }
     }
+    
     private void cargarObjeto(){
         ss.getServicio().setNombre_servicio(areaDesServicio.getText().trim());
         ss.getServicio().setPrecio(Double.parseDouble(campoCostoS.getText()));
-        
-        
     }
+    
     private void cargarTabla(){
         tablaServicios.setItems(FXCollections.observableList(ss.todos()));
         columnaDescripcion.setCellValueFactory(

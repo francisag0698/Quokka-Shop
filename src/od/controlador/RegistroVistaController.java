@@ -134,23 +134,23 @@ public class RegistroVistaController {
     }
 
     private void cargarObjeto() {
-        sp.getPersona().setNombres(campoNombre.getText());
-        sp.getPersona().setApellidos(campoApellido.getText());
-        sp.getPersona().setDni(campoDNI.getText());
+        sp.getPersona().setNombres(campoNombre.getText().trim());
+        sp.getPersona().setApellidos(campoApellido.getText().trim());
+        sp.getPersona().setDni(campoDNI.getText().trim());
         try {
             sp.getPersona().setFecha_nacimiento(new SimpleDateFormat("dd/MM/yyyy").parse(campoFechaNacimiento.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
         } catch (ParseException e) {
             sp.getPersona().setFecha_nacimiento(new Date());
         }
-        sp.getPersona().setTelefono(campoCelular.getText());
+        sp.getPersona().setTelefono(campoCelular.getText().trim());
         sp.getPersona().setSexo(comboGenero.getValue().toString());
         sp.getPersona().setPais(campoPais.getValue().toString());
-        sp.getPersona().setCiudad(campoCiudad.getText());
-        sp.getPersona().setDireccion(campoDireccion.getText());
+        sp.getPersona().setCiudad(campoCiudad.getText().trim());
+        sp.getPersona().setDireccion(campoDireccion.getText().trim());
         sp.getPersona().setRol(new ServicioRol().buscarRolNombre("Cliente"));
-        sc.getCuenta().setUsuario(campoNuevoUsuario.getText());
-        sc.getCuenta().setClave(campoNuevaClave.getText());
-        sc.getCuenta().setCorreo(campoCorreo.getText());
+        sc.getCuenta().setUsuario(campoNuevoUsuario.getText().trim());
+        sc.getCuenta().setClave(campoNuevaClave.getText().trim());
+        sc.getCuenta().setCorreo(campoCorreo.getText().trim());
         sc.getCuenta().setExternal_id(UUID.randomUUID().toString());
         sc.getCuenta().setCreated_at(new Date());
         sc.getCuenta().setUpdate_at(new Date());
