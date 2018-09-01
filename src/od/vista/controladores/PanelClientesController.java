@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador;
+package od.vista.controladores;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,75 +36,7 @@ import od.vista.utilidades.UtilidadesComponentes;
  * @author PotatoPower
  */
 public class PanelClientesController {
-    @FXML
-    private TableView<Persona> tblCliente;
-    @FXML
-    private TableColumn<Persona, String> colNyAp;
-    @FXML
-    private TableColumn<Persona, String> colNroDNI;
-    @FXML
-    private TableColumn<Persona, String> colGenero;
-    @FXML
-    private TableColumn<Persona, String> colTelefono;
-    @FXML
-    private TableColumn<Persona, String> colProcedencia;
-    
-    @FXML
-    private TextField txtNroDNI;
-    @FXML
-    private TextField txtNombres;
-    @FXML
-    private TextField txtApellidos;
-    @FXML
-    private DatePicker dpFecha;
-    @FXML
-    private ComboBox cbxGenero;
-    @FXML
-    private TextField txtTelefono;
-    @FXML
-    private ComboBox txtPais;
-    @FXML
-    private TextField txtCiudad;
-    @FXML
-    private TextField txtDireccion;
-    
-    @FXML
-    private TextField txtBuscar;
-    @FXML
-    private ComboBox cbxFiltrarPor;
-    @FXML
-    private ComboBox cbxComboSeleccion;
-    
-    @FXML
-    private TabPane tbpClientes;
-    @FXML
-    private Tab tabListado;
-    @FXML
-    private Tab tabFormulario;
-    
-    @FXML
-    private Pane panelDescr;
-    @FXML
-    private Label lblDNI;
-    @FXML
-    private Label lblNombres;
-    @FXML
-    private Label lblApellidos;
-    @FXML
-    private Label lblNacimiento;
-    @FXML
-    private Label lblGenero;
-    @FXML
-    private Label lblTelefono;
-    @FXML
-    private Label lblPais;
-    @FXML
-    private Label lblCiudad;
-    @FXML
-    private Label lblDireccion;    
-    
-    private ServicioPersona sp = new ServicioPersona();
-    
+        
     /**
      * Initializes the controller class.
      */
@@ -390,4 +322,76 @@ public class PanelClientesController {
             txtTelefono.setText("");
         }
     }
+    
+    /*
+     * Objetos de CLIENTES
+    */    
+    @FXML
+    private TableView<Persona> tblCliente;
+    @FXML
+    private TableColumn<Persona, String> colNyAp;
+    @FXML
+    private TableColumn<Persona, String> colNroDNI;
+    @FXML
+    private TableColumn<Persona, String> colGenero;
+    @FXML
+    private TableColumn<Persona, String> colTelefono;
+    @FXML
+    private TableColumn<Persona, String> colProcedencia;
+    
+    @FXML
+    private TextField txtNroDNI;
+    @FXML
+    private TextField txtNombres;
+    @FXML
+    private TextField txtApellidos;
+    @FXML
+    private DatePicker dpFecha;
+    @FXML
+    private ComboBox cbxGenero;
+    @FXML
+    private TextField txtTelefono;
+    @FXML
+    private ComboBox txtPais;
+    @FXML
+    private TextField txtCiudad;
+    @FXML
+    private TextField txtDireccion;
+    
+    @FXML
+    private TextField txtBuscar;
+    @FXML
+    private ComboBox cbxFiltrarPor;
+    @FXML
+    private ComboBox cbxComboSeleccion;
+    
+    @FXML
+    private TabPane tbpClientes;
+    @FXML
+    private Tab tabListado;
+    @FXML
+    private Tab tabFormulario;
+    
+    @FXML
+    private Pane panelDescr;
+    @FXML
+    private Label lblDNI;
+    @FXML
+    private Label lblNombres;
+    @FXML
+    private Label lblApellidos;
+    @FXML
+    private Label lblNacimiento;
+    @FXML
+    private Label lblGenero;
+    @FXML
+    private Label lblTelefono;
+    @FXML
+    private Label lblPais;
+    @FXML
+    private Label lblCiudad;
+    @FXML
+    private Label lblDireccion;    
+    
+    private ServicioPersona sp = new ServicioPersona();
 }

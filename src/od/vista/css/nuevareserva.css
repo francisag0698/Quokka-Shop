@@ -162,3 +162,11 @@ and open the template in the editor.
     -fx-font-family: 'Ubuntu';
     -fx-text-fill: #ff3636;
 }
+
+.btn-back{
+    -fx-background-color: #f5f6f7;
+    -fx-font-family: 'Roboto Condensed';
+    -fx-font-size: 12px;
+    -fx-text-fill: #8a8f9c;
+    -fx-cursor: hand;
+}

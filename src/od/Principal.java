@@ -18,10 +18,10 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import od.controlador.Conexion;
-import od.controlador.LoginVistaController;
-import od.controlador.PanelNuevaReservacionController;
-import od.controlador.RaizVistaController;
-import od.controlador.RegistroVistaController;
+import od.vista.controladores.LoginVistaController;
+import od.vista.controladores.PanelNuevaReservacionController;
+import od.vista.controladores.RaizVistaController;
+import od.vista.controladores.RegistroVistaController;
 
 /**
  *
@@ -88,9 +88,9 @@ public class Principal extends Application {
             
             primaryStage.setTitle("Sistema de Reservación de Habitaciones | Login");
             primaryStage.setMaxWidth(950);
-            primaryStage.setMaxHeight(660);
+            primaryStage.setMaxHeight(668);
             primaryStage.setMinWidth(950);
-            primaryStage.setMinHeight(660);
+            primaryStage.setMinHeight(668);
             
             Scene escena = new Scene(pagina);
             primaryStage.setScene(escena);

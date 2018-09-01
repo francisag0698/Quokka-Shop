@@ -147,6 +147,10 @@ public class ServicioReservacion {
         return obj.ordenAscendente(orden);
     }//cierre del metodo ordenAscendente
     
+    public List<Reservacion> ordenAscendente(String orden, Long id){
+        return obj.ordenAscendente(orden, id);
+    }
+    
     /**
      * Metodo que contabilizar el numero de reservas activas
      * @return devuelve el numero de reservas activas

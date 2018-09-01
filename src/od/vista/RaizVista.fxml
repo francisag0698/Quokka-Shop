@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<BorderPane prefHeight="638.0" prefWidth="999.0" styleClass="background" stylesheets="@raizvista.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.RaizVistaController">
+<BorderPane prefHeight="638.0" prefWidth="999.0" styleClass="background" stylesheets="@css/raizvista.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.vista.controladores.RaizVistaController">
    <left>
       <Pane prefHeight="638.0" prefWidth="274.0" BorderPane.alignment="CENTER">
          <children>

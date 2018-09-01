@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador;
+package od.vista.controladores;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -30,76 +30,6 @@ import od.utilidades.Validadores;
  * @author PotatoPower
  */
 public class PanelHabitacionesController {
-
-    @FXML
-    private TextField campoBuscar;
-    @FXML
-    private ComboBox comboFiltro;
-    @FXML
-    private ComboBox comboSelecion;
-    @FXML
-    private TextField campoCodigo;
-    @FXML
-    private TextField campoNombre;
-    @FXML
-    private ComboBox comboTipo;
-    @FXML
-    private TextField campoCapacidad;
-    @FXML
-    private TextField campoCamas;
-    @FXML
-    private TextArea areaHabitacion;
-    @FXML
-    private TextArea areaCondiciones;
-    @FXML
-    private TextField campoPrecio;
-    @FXML
-    private TextField campoCantidad;
-
-    @FXML
-    private TableView<Habitacion> tablaHabitacion;
-    @FXML
-    private TableColumn<Habitacion, String> nombresColumna;
-    @FXML
-    private TableColumn<Habitacion, String> tipoColumna;
-    @FXML
-    private TableColumn<Habitacion, String> capacidadColumna;
-    @FXML
-    private TableColumn<Habitacion, String> camasColumna;
-    @FXML
-    private TableColumn<Habitacion, String> precioColumna;
-    @FXML
-    private TableColumn<Habitacion, String> estadoColumna;
-
-    @FXML
-    private TabPane tbpHabitaciones;
-    @FXML
-    private Tab tabListado;
-    @FXML
-    private Tab tabFormulario;
-
-    @FXML
-    private Pane panelDescr;
-    @FXML
-    private Label lblCodigo;
-    @FXML
-    private Label lblNombre;
-    @FXML
-    private Label lblTipo;
-    @FXML
-    private Label lblCamas;
-    @FXML
-    private Label lblCapacidad;
-    @FXML
-    private Label lblCantidad;
-    @FXML
-    private Label lblPrecio;
-    @FXML
-    private Label lblDescripcion;
-    @FXML
-    private Label lblCondiciones;
-
-    private ServicioHabitacion sh = new ServicioHabitacion();
 
     /**
      * Initializes the controller class.
@@ -403,4 +333,78 @@ public class PanelHabitacionesController {
             campoPrecio.setText("");
         }
     }
+    
+    
+    /*
+     * Objetos de HABITACIONES
+    */
+    @FXML
+    private TextField campoBuscar;
+    @FXML
+    private ComboBox comboFiltro;
+    @FXML
+    private ComboBox comboSelecion;
+    @FXML
+    private TextField campoCodigo;
+    @FXML
+    private TextField campoNombre;
+    @FXML
+    private ComboBox comboTipo;
+    @FXML
+    private TextField campoCapacidad;
+    @FXML
+    private TextField campoCamas;
+    @FXML
+    private TextArea areaHabitacion;
+    @FXML
+    private TextArea areaCondiciones;
+    @FXML
+    private TextField campoPrecio;
+    @FXML
+    private TextField campoCantidad;
+
+    @FXML
+    private TableView<Habitacion> tablaHabitacion;
+    @FXML
+    private TableColumn<Habitacion, String> nombresColumna;
+    @FXML
+    private TableColumn<Habitacion, String> tipoColumna;
+    @FXML
+    private TableColumn<Habitacion, String> capacidadColumna;
+    @FXML
+    private TableColumn<Habitacion, String> camasColumna;
+    @FXML
+    private TableColumn<Habitacion, String> precioColumna;
+    @FXML
+    private TableColumn<Habitacion, String> estadoColumna;
+
+    @FXML
+    private TabPane tbpHabitaciones;
+    @FXML
+    private Tab tabListado;
+    @FXML
+    private Tab tabFormulario;
+
+    @FXML
+    private Pane panelDescr;
+    @FXML
+    private Label lblCodigo;
+    @FXML
+    private Label lblNombre;
+    @FXML
+    private Label lblTipo;
+    @FXML
+    private Label lblCamas;
+    @FXML
+    private Label lblCapacidad;
+    @FXML
+    private Label lblCantidad;
+    @FXML
+    private Label lblPrecio;
+    @FXML
+    private Label lblDescripcion;
+    @FXML
+    private Label lblCondiciones;
+
+    private ServicioHabitacion sh = new ServicioHabitacion();
 }

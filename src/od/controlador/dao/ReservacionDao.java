@@ -205,6 +205,19 @@ public class ReservacionDao extends AdaptadorDao<Reservacion>{
         return listado;
     }//cierre del metodo ordenAscendente
      
+    public List<Reservacion> ordenAscendente(String orden, Long id){
+        orden = (orden.equals("Fecha")) ? "r.fecha" : "r.persona.nombres";
+        List<Reservacion> listado= new ArrayList<>();
+        try {
+            Query q = getManager().createQuery("SELECT r FROM Reservacion r WHERE r.persona.id_persona = :id ORDER BY "+ orden +"  ASC");
+            q.setParameter("id", id);
+            listado = q.getResultList();
+        } catch (Exception e) {
+            System.out.println("ReservacionDao | Orden Ascendente: " + e);
+        }
+        return listado;
+    }
+     
     public Long nroReservasActivas(){
         Long cantidad = new Long(0);
         try {

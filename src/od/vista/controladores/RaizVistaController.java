@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador;
+package od.vista.controladores;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,31 +18,7 @@ import od.utilidades.Sesiones;
  * @author PotatoPower
  */
 public class RaizVistaController {
-    @FXML
-    private Button btnNuevaReserva;
-    @FXML
-    private Button btnInicio;
-    @FXML
-    private Button btnReservacion;
-    @FXML
-    private Button btnHabitacion;
-    @FXML
-    private Button btnServicio;
-    @FXML
-    private Button btnCliente;
-    @FXML
-    private Button btnConfiguracion;
-    @FXML
-    private Button btnCerrarSesion;
-    @FXML
-    private Label lblAdmin;
-    @FXML
-    private Label lblRol;
     
-    private Button aux;
-    private Stage ventana;
-    private Principal principal;
-    private BorderPane rootLayout;
     /**
      * Initializes the controller class.
      */
@@ -144,4 +120,35 @@ public class RaizVistaController {
         ventana.close();
         principal.mostrarLoginVista(ventana);
     }
+    
+    
+    
+    /*
+     * Objetos de la RAIZ
+    */
+    @FXML
+    private Button btnNuevaReserva;
+    @FXML
+    private Button btnInicio;
+    @FXML
+    private Button btnReservacion;
+    @FXML
+    private Button btnHabitacion;
+    @FXML
+    private Button btnServicio;
+    @FXML
+    private Button btnCliente;
+    @FXML
+    private Button btnConfiguracion;
+    @FXML
+    private Button btnCerrarSesion;
+    @FXML
+    private Label lblAdmin;
+    @FXML
+    private Label lblRol;
+    
+    private Button aux;
+    private Stage ventana;
+    private Principal principal;
+    private BorderPane rootLayout;
 }

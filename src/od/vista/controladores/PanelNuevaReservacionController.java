@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador;
+package od.vista.controladores;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -16,6 +18,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -40,64 +43,23 @@ import od.vista.utilidades.UtilidadesComponentes;
  */
 public class PanelNuevaReservacionController {
 
-    @FXML
-    private Pane panelReserva;
-    @FXML
-    private Pane panelHabitaciones;
-    @FXML
-    private TextField campoDNI;
-    @FXML
-    private TextField campoCliente;
-    @FXML
-    private DatePicker campoFechaEntrada;
-    @FXML
-    private DatePicker campoFechaSalida;
-    @FXML
-    private TextField campoNroAdultos;
-    @FXML
-    private TextField campoNroNinios;
-    @FXML
-    private TextField campoNroHabitaciones;
-    @FXML
-    private TextArea campoObservaciones;
-    @FXML
-    private Label lblDisponibles;
-    @FXML
-    private Label lblCapacidad;
-    @FXML
-    private Label lblCamas;
-    @FXML
-    private Label lblDescripcion;
-    @FXML
-    private Label lblTotal;
-    @FXML
-    private Button btnReservar;
-    @FXML
-    private ComboBox<Habitacion> cbxHabitaciones;
-    @FXML
-    private ListView<Servicio> listaServicios;
-
-    private ServicioPersona sp = new ServicioPersona();
-    private ServicioHabitacion sh = new ServicioHabitacion();
-    private ServicioReservacion sr = new ServicioReservacion();
-    private ServicioDetalle sd = new ServicioDetalle();
-    private ServicioServicio ss = new ServicioServicio();
-    
-    private Integer disponibles;
-    
-    private Principal principal;
-
-    public void setPrincipal(Principal principal) {
-        this.principal = principal;
-    }    
-
     /**
      * Initializes the controller class.
      */
     public void initialize() {
         listaServicios.setItems(FXCollections.observableList(ss.todos()));
         listaServicios.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-    }
+        
+        if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) {
+            campoDNI.setText(Sesiones.getCuenta().getPersona().getDni());
+            validarID();
+            btnDNIRegreso.setVisible(false);
+        }
+    }   
+    
+    public void setPrincipal(Principal principal) {
+        this.principal = principal;
+    }   
 
     private void limpiar() {
         sp.fijarPersona(null);
@@ -107,19 +69,63 @@ public class PanelNuevaReservacionController {
         ss.fijarServicio(null);
     }
     
+    private void limpiarDNI(){
+        campoCliente.setText("");
+        campoDNI.setText("");
+        campoDNI.setDisable(false);
+    }
+    
+    private void limpiarFechas(){
+        fijarFechaDeHoy();
+        campoNroAdultos.setText("");
+        campoNroNinios.setText("");
+        panelReserva.setDisable(true);
+    }
+    
+    private void limpiarHabitacion(){
+        cbxHabitaciones.setValue(null);
+        lblDisponibles.setText("...");
+        lblCapacidad.setText("...");
+        lblCamas.setText("...");
+        lblCamas.setText("...");
+        listaServicios.getSelectionModel().clearSelection();
+        campoNroHabitaciones.setText("");
+        lblDescripcion.setText("");
+        panelHabitaciones.setDisable(true);
+    }
+    
     private void fijarFechaDeHoy(){
         campoFechaEntrada.setValue(LocalDate.now());
         campoFechaSalida.setValue(LocalDate.now().plus(1, ChronoUnit.DAYS));
     }
     
+    private Double calcularSubtotal(){
+        NumberFormat df = new DecimalFormat("#0.00");
+        double servicios = listaServicios.getSelectionModel().getSelectedItems().stream().mapToDouble((selectedItem) -> selectedItem.getPrecio()).sum();
+        lblValorServicios.setText("$" + df.format(servicios));
+        double habitacion = 0.00;
+        if (cbxHabitaciones.getSelectionModel().getSelectedItem() != null) {
+            habitacion = cbxHabitaciones.getSelectionModel().getSelectedItem().getPrecio() * ((campoNroHabitaciones.getText().trim().isEmpty()) ? 0:Integer.parseInt(campoNroHabitaciones.getText()));
+        }        
+        lblValorHabitacion.setText("$" + df.format(habitacion));
+        long noches = ChronoUnit.DAYS.between(campoFechaEntrada.getValue(), campoFechaSalida.getValue());
+        double subtotal = (habitacion + servicios) * noches;
+        lblSubtotal.setText("$" + df.format(subtotal));
+        
+        return subtotal;
+    }
+    
     @FXML
     private Double calcularTotal(){
-        Double d = listaServicios.getSelectionModel().getSelectedItems().stream().mapToDouble((selectedItem) -> selectedItem.getPrecio()).sum();
-        if (cbxHabitaciones.getSelectionModel().getSelectedItem() != null) {
-            d += cbxHabitaciones.getSelectionModel().getSelectedItem().getPrecio() * ((campoNroHabitaciones.getText().trim().isEmpty()) ? 0:Integer.parseInt(campoNroHabitaciones.getText()));
-        }
-        lblTotal.setText("$" + d);
-        return d;
+        NumberFormat df = new DecimalFormat("#0.00");
+        
+        double subtotal = calcularSubtotal();
+        
+        double iva = subtotal * 0.14;
+        lblValorIVA.setText("$" + df.format(iva));
+        lblTotal.setText("$" + df.format(subtotal + iva));
+        
+        return subtotal + iva;
     }
 
     @FXML
@@ -174,6 +180,7 @@ public class PanelNuevaReservacionController {
                 alert.showAndWait();
                 return false;
             }else{
+                lblNoches.setText("" + ChronoUnit.DAYS.between(campoFechaEntrada.getValue(), campoFechaSalida.getValue()));
                 campoNroHabitaciones.setText("1");
                 panelHabitaciones.setDisable(false);
                 panelReserva.setDisable(true);
@@ -341,20 +348,105 @@ public class PanelNuevaReservacionController {
     }
     
     @FXML
-    private void handleNuevoCliente(){
-        principal.fijarCentroPane("PanelClientes");
-        
-    }
-    @FXML
     private void validarEnterosAdultos() {
         if (!Validadores.validarValor(campoNroAdultos , 'i')) {
             campoNroAdultos.setText("");
         }
     }
+    
     @FXML
     private void validarEnterosNinios() {
         if (!Validadores.validarValor(campoNroNinios, 'i')) {
             campoNroNinios.setText("");
         }
     }
+    
+    @FXML
+    private void handleBorrarTodo(){
+        limpiar();
+        limpiarDNI();
+        limpiarFechas();
+        limpiarHabitacion();
+        scrollPanel.setHvalue(0);
+    }
+    
+    @FXML
+    private void regresarAFechas(){
+        if (!campoCliente.getText().isEmpty()) {
+            limpiarHabitacion();
+            panelReserva.setDisable(false); 
+        }        
+    }
+    
+    @FXML
+    private void regresarADNI(){
+        handleBorrarTodo();
+    }
+    
+    
+    /*
+     * Objetos de NUEVA RESERVACION
+    */
+    @FXML
+    private Pane panelReserva;
+    @FXML
+    private Pane panelHabitaciones;
+    @FXML
+    private TextField campoDNI;
+    @FXML
+    private TextField campoCliente;
+    @FXML
+    private DatePicker campoFechaEntrada;
+    @FXML
+    private DatePicker campoFechaSalida;
+    @FXML
+    private TextField campoNroAdultos;
+    @FXML
+    private TextField campoNroNinios;
+    @FXML
+    private TextField campoNroHabitaciones;
+    @FXML
+    private TextArea campoObservaciones;
+    @FXML
+    private Label lblDisponibles;
+    @FXML
+    private Label lblCapacidad;
+    @FXML
+    private Label lblCamas;
+    @FXML
+    private Label lblDescripcion;
+    @FXML
+    private Button btnReservar;
+    @FXML
+    private ComboBox<Habitacion> cbxHabitaciones;
+    @FXML
+    private ListView<Servicio> listaServicios;
+    
+    @FXML
+    private ScrollPane scrollPanel;
+    @FXML
+    private Button btnDNIRegreso;
+    
+    @FXML
+    private Label lblNoches;
+    @FXML
+    private Label lblValorHabitacion;
+    @FXML
+    private Label lblValorServicios;
+    @FXML
+    private Label lblValorIVA;
+    @FXML
+    private Label lblSubtotal;
+    @FXML
+    private Label lblTotal;
+
+    private ServicioPersona sp = new ServicioPersona();
+    private ServicioHabitacion sh = new ServicioHabitacion();
+    private ServicioReservacion sr = new ServicioReservacion();
+    private ServicioDetalle sd = new ServicioDetalle();
+    private ServicioServicio ss = new ServicioServicio();
+    
+    private Integer disponibles;
+    
+    private Principal principal;
 }

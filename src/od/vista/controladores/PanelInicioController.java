@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador;
+package od.vista.controladores;
 
 import java.util.Date;
 import javafx.beans.property.SimpleStringProperty;
@@ -28,29 +28,6 @@ import od.utilidades.Utilidades;
  * @author Gemelos
  */
 public class PanelInicioController {
-    
-    @FXML
-    private VBox vbNotificaciones;
-    @FXML
-    private TableView<Reservacion> tablaReservas;
-    @FXML
-    private TableColumn<Reservacion, String> nyap;
-    @FXML
-    private TableColumn<Reservacion, String> habitacion;
-    
-    @FXML
-    private Label lblCantReservas;
-    @FXML
-    private Label lblCantClientes;
-    @FXML
-    private Label lblCantHabitaciones;
-    @FXML
-    private Label lblCliente;
-    
-    private ServicioPersona sp = new ServicioPersona();
-    private ServicioReservacion sr = new ServicioReservacion();
-    private ServicioHistorial sh = new ServicioHistorial();
-    private ServicioHabitacion sha = new ServicioHabitacion();
     
     /**
      * Initializes the controller class.
@@ -125,4 +102,30 @@ public class PanelInicioController {
         tablaReservas.refresh();
     }
     
+    
+    /*
+     * Objetos de INICIO
+    */
+    @FXML
+    private VBox vbNotificaciones;
+    @FXML
+    private TableView<Reservacion> tablaReservas;
+    @FXML
+    private TableColumn<Reservacion, String> nyap;
+    @FXML
+    private TableColumn<Reservacion, String> habitacion;
+    
+    @FXML
+    private Label lblCantReservas;
+    @FXML
+    private Label lblCantClientes;
+    @FXML
+    private Label lblCantHabitaciones;
+    @FXML
+    private Label lblCliente;
+    
+    private ServicioPersona sp = new ServicioPersona();
+    private ServicioReservacion sr = new ServicioReservacion();
+    private ServicioHistorial sh = new ServicioHistorial();
+    private ServicioHabitacion sha = new ServicioHabitacion();
 }

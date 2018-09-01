@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="Inicio" prefHeight="638.0" prefWidth="738.0" styleClass="background" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.PanelInicioController">
+<AnchorPane id="Inicio" prefHeight="638.0" prefWidth="738.0" styleClass="background" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.vista.controladores.PanelInicioController">
    <children>
       <Label layoutX="54.0" layoutY="43.0" styleClass="title-pane" text="¡Bienvenido/a!" />
       <TableView fx:id="tablaReservas" layoutX="54.0" layoutY="247.0" prefHeight="331.0" prefWidth="457.0">
@@ -22,7 +22,7 @@
       <Label layoutX="53.0" layoutY="88.0" styleClass="subtitle-pane" text="Curabitur sit amet sagittis urna. Fusce venenatis turpis et tellus." />
       <ScrollPane layoutX="521.0" layoutY="148.0" maxHeight="259.0" prefWidth="187.0" styleClass="s-pane">
          <content>
-            <VBox fx:id="vbNotificaciones" maxWidth="170.0" prefWidth="170.0" stylesheets="@panelinicio.css" />
+            <VBox fx:id="vbNotificaciones" maxWidth="170.0" prefWidth="170.0" stylesheets="@css/panelinicio.css" />
          </content>
       </ScrollPane>
       <Label layoutX="526.0" layoutY="130.0" styleClass="title-section" text="HISTORIAL DE ACCIONES" />
@@ -67,7 +67,7 @@
       </Pane>
    </children>
    <stylesheets>
-      <URL value="@raizvista.css" />
-      <URL value="@panelinicio.css" />
+      <URL value="@css/raizvista.css" />
+      <URL value="@css/panelinicio.css" />
    </stylesheets>
 </AnchorPane>

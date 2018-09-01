@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador;
+package od.vista.controladores;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -26,53 +31,6 @@ import od.utilidades.Utilidades;
  * @author PotatoPower
  */
 public class ReservacionesController {
-
-    @FXML
-    private TableView<Reservacion> reservasTabla;
-    @FXML
-    private TableColumn<Reservacion, String> nombresColumna;
-    @FXML
-    private TableColumn<Reservacion, String> desdeColumna;
-    @FXML
-    private TableColumn<Reservacion, String> hastaColumna;
-    @FXML
-    private TableColumn<Reservacion, String> telefonoColumna;
-    @FXML
-    private TableColumn<Reservacion, String> estadoColumna;
-    @FXML
-    private TextField campoBuscar;
-    @FXML
-    private ComboBox comboEstado;
-    @FXML
-    private ComboBox comboOrdenar;
-
-    @FXML
-    private Pane panelDescr;
-    @FXML
-    private Label lblNombres;
-    @FXML
-    private Label lblFecha;
-    @FXML
-    private Label lblFechaEntrada;
-    @FXML
-    private Label lblFechaSalida;
-    @FXML
-    private Label lblHabitacion;
-    @FXML
-    private Label lblAdultos;
-    @FXML
-    private Label lblMenores;
-    @FXML
-    private Label lblNroHabitaciones;
-    @FXML
-    private Label lblServicios;
-    @FXML
-    private Label lblSubtotal;
-    @FXML
-    private Label lblTotal;
-
-    ServicioReservacion sr = new ServicioReservacion();
-
     /**
      * Initializes the controller class.
      */
@@ -83,12 +41,8 @@ public class ReservacionesController {
                 "Activo",
                 "Inactivo"
         );
-        //ordenar
-        comboOrdenar.getItems().addAll(
-                "Fecha",
-                "Apellidos"
-        );
-
+        
+        if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) btnDarDeAlta.setVisible(false);        
     }
 
     public void cargarTabla() {
@@ -123,7 +77,8 @@ public class ReservacionesController {
     public void limpiar() {
         campoBuscar.setText("");
         comboEstado.setValue(null);
-        comboOrdenar.setValue(null);
+        //comboOrdenar.setValue(null);
+        cargarTabla();
     }
 
     @FXML
@@ -166,19 +121,25 @@ public class ReservacionesController {
         }
     }
 
-    @FXML
-    private void ordenarAscendente() {
-        if (comboOrdenar.getValue() != null && comboOrdenar.getValue().toString().equals("Ordenar por:")) {
-            reservasTabla.setItems(FXCollections.observableList(sr.todos()));
-            reservasTabla.refresh();
-        } else {
-            if (comboOrdenar.getValue() != null) {
-                String orden = comboOrdenar.getValue().toString();
-                reservasTabla.setItems(FXCollections.observableList(sr.ordenAscendente(orden)));
-                reservasTabla.refresh();
-            }
-        }
-    }
+//    @FXML
+//    private void ordenarAscendente() {
+//        if (comboOrdenar.getValue() != null && comboOrdenar.getValue().toString().equals("Ordenar por:")) {
+//            if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente"))
+//                reservasTabla.setItems(FXCollections.observableList(sr.listarPorPersona(Sesiones.getCuenta().getPersona().getId_persona())));
+//            else
+//                reservasTabla.setItems(FXCollections.observableList(sr.todos()));
+//            reservasTabla.refresh();
+//        } else {
+//            if (comboOrdenar.getValue() != null) {
+//                String orden = comboOrdenar.getValue().toString();
+//                if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente"))
+//                    reservasTabla.setItems(FXCollections.observableList(sr.ordenAscendente(orden, Sesiones.getCuenta().getPersona().getId_persona())));
+//                else
+//                    reservasTabla.setItems(FXCollections.observableList(sr.ordenAscendente(orden)));
+//                reservasTabla.refresh();
+//            }
+//        }
+//    }
 
     @FXML
     private void handleDetalles() {
@@ -211,6 +172,66 @@ public class ReservacionesController {
             alert.showAndWait();
         }
     }
+    
+    @FXML
+    private void handleAlta(){
+        if (reservasTabla.getSelectionModel().getSelectedItem() != null) {
+            sr.fijarReservacion(reservasTabla.getSelectionModel().getSelectedItem());
+            NumberFormat df = new DecimalFormat("#0.00");
+            
+            double hab = sr.getReservacion().getHabitacion().getPrecio() * sr.getReservacion().getDetalle().getCant_habitaciones();
+            lblValorHabitaciones.setText("$" + df.format(hab));
+            
+            long noches = ChronoUnit.DAYS.between(LocalDate.parse(Utilidades.formatearFecha(sr.getReservacion().getFecha_inicio())), LocalDate.parse(Utilidades.formatearFecha(sr.getReservacion().getFecha_fin())));
+            lblNroNoches.setText(""+noches);
+            
+            lblValorServicios.setText("$"+ df.format(sr.getReservacion().getDetalle().getPago_subtotal()));
+            
+            double b = (hab + sr.getReservacion().getDetalle().getPago_subtotal()) * noches;
+            lblSubtotalCheck.setText("$" + df.format(b));
+            
+            double iva = b * 0.14;
+            lblIVACheck.setText("$" + df.format(iva));
+            lblTotalCheck.setText("$" + df.format(b + iva));
+            
+            panelAlta.setVisible(true);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Sin selección");
+            alert.setHeaderText("");
+            alert.setContentText("Por favor, seleccione un elemento de la tabla.");
+            alert.showAndWait();
+        }
+    }
+    
+    @FXML
+    private void handleDarAlta(){
+        Alert conf = new Alert(Alert.AlertType.CONFIRMATION);        
+        conf.setTitle("Confirmación");
+        conf.setHeaderText("¿Está seguro/a de realizar esta acción?");
+        conf.setContentText("Presione Aceptar para confirmarlo.");
+        conf.showAndWait();
+        
+        if (conf.getResult().getText().equals("Aceptar")){
+            sr.getReservacion().setEstado(Boolean.FALSE);
+            if (sr.guardar()) {                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Correcto");
+                alert.setHeaderText("");
+                alert.setContentText("El Check Out se ha realizado correctamente.");
+                alert.showAndWait();
+                
+                cerrarCheckOut();
+                cargarTabla();
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("");
+                alert.setContentText("Ha ocurrido un error al guardar.");
+                alert.showAndWait();
+            }
+        }            
+    }
 
     @FXML
     private void handleRegresar() {
@@ -227,5 +248,84 @@ public class ReservacionesController {
         lblSubtotal.setText("");
         lblTotal.setText("");
     }
+    
+    @FXML
+    private void cerrarCheckOut(){
+        lblValorHabitaciones.setText("00.00");
+        lblValorServicios.setText("00.00");
+        lblSubtotalCheck.setText("00.00");
+        lblIVACheck.setText("00.00");
+        lblTotalCheck.setText("00.00");
+        sr.fijarReservacion(null);
+        panelAlta.setVisible(false);
+    }
+    
+    
+    
+    /*
+     * Objetos de RESERVACIONES
+    */
+    @FXML
+    private TableView<Reservacion> reservasTabla;
+    @FXML
+    private TableColumn<Reservacion, String> nombresColumna;
+    @FXML
+    private TableColumn<Reservacion, String> desdeColumna;
+    @FXML
+    private TableColumn<Reservacion, String> hastaColumna;
+    @FXML
+    private TableColumn<Reservacion, String> telefonoColumna;
+    @FXML
+    private TableColumn<Reservacion, String> estadoColumna;
+    @FXML
+    private TextField campoBuscar;
+    @FXML
+    private ComboBox comboEstado;
+//    @FXML
+//    private ComboBox comboOrdenar;
+
+    @FXML
+    private Pane panelDescr;
+    @FXML
+    private Label lblNombres;
+    @FXML
+    private Label lblFecha;
+    @FXML
+    private Label lblFechaEntrada;
+    @FXML
+    private Label lblFechaSalida;
+    @FXML
+    private Label lblHabitacion;
+    @FXML
+    private Label lblAdultos;
+    @FXML
+    private Label lblMenores;
+    @FXML
+    private Label lblNroHabitaciones;
+    @FXML
+    private Label lblServicios;
+    @FXML
+    private Label lblSubtotal;
+    @FXML
+    private Label lblTotal;
+    
+    @FXML
+    private Pane panelAlta;
+    @FXML
+    private Label lblValorHabitaciones;
+    @FXML
+    private Label lblValorServicios;
+    @FXML
+    private Label lblSubtotalCheck;
+    @FXML
+    private Label lblIVACheck;
+    @FXML
+    private Label lblTotalCheck;
+    @FXML
+    private Label lblNroNoches;
+    @FXML
+    private Button btnDarDeAlta;
+    
+    private ServicioReservacion sr = new ServicioReservacion();
 
 }

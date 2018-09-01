@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 
-<AnchorPane id="AnchorPane" prefHeight="638.0" prefWidth="738.0" styleClass="background" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.PanelHabitacionesController">
+<AnchorPane id="AnchorPane" prefHeight="638.0" prefWidth="738.0" styleClass="background" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.vista.controladores.PanelHabitacionesController">
     <stylesheets>
-        <URL value="@paneladministracion.css" />
+        <URL value="@css/paneladministracion.css" />
     </stylesheets>
    <children>
       <Label layoutX="43.0" layoutY="34.0" styleClass="title-pane" text="Habitaciones" />
@@ -80,7 +80,7 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Pane fx:id="panelDescr" layoutX="11.0" layoutY="22.0" prefHeight="670.0" prefWidth="1014.0" styleClass="wrap" stylesheets="@general.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane fx:id="panelDescr" layoutX="11.0" layoutY="22.0" prefHeight="670.0" prefWidth="1014.0" styleClass="wrap" stylesheets="@css/general.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Region layoutX="186.0" layoutY="110.0" prefHeight="419.0" prefWidth="366.0" styleClass="done-box" />
             <Label layoutX="230.0" layoutY="146.0" prefHeight="29.0" prefWidth="272.0" styleClass="done-label" text="Detalles de Habitación" />

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador;
+package od.vista.controladores;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,47 +33,6 @@ import od.utilidades.Validadores;
  */
 public class PanelConfiguracionController {
 
-    @FXML
-    private TextField campoNombres;
-    @FXML
-    private TextField campoApellidos;
-    @FXML
-    private TextField campoDNI;
-    @FXML
-    private DatePicker campoFechaNacimiento;
-    @FXML
-    private TextField campoTelefono;
-    @FXML
-    private TextField campoPais;
-    @FXML
-    private TextField campoCiudad;
-    @FXML
-    private TextField campoDireccion;
-    @FXML
-    private TextField campoUsuario;
-    @FXML
-    private PasswordField campoClave;
-    @FXML
-    private PasswordField campoRepetirClave;
-    @FXML
-    private TextField campoCorreo;
-    @FXML
-    private ComboBox comboGenero;
-    
-    @FXML
-    private TextField txtUsuario;
-    @FXML
-    private PasswordField txtClave;
-    @FXML
-    private TextField txtCorreo;
-    @FXML
-    private ComboBox<Persona> cbxListaUsuarios;
-    @FXML
-    private Pane panelNuevaCuenta;
-
-    private ServicioPersona sp = new ServicioPersona();
-    private ServicioCuenta sc = new ServicioCuenta();
-
     /**
      * Initializes the controller class.
      */
@@ -85,6 +44,14 @@ public class PanelConfiguracionController {
                 "Otros"
         );
         comboGenero.setValue("Masculino");
+        
+        campoPais.getItems().addAll(
+                "Ecuador",
+                "Perú",
+                "Colombia"
+        );
+        campoPais.setValue("Ecuador");
+        
         cargarVista();
     }
 
@@ -97,7 +64,7 @@ public class PanelConfiguracionController {
         campoFechaNacimiento.setValue(LocalDate.parse(Utilidades.formatearFecha(sp.getPersona().getFecha_nacimiento())));
         comboGenero.setValue(sp.getPersona().getSexo());
         campoTelefono.setText(sp.getPersona().getTelefono());
-        campoPais.setText(sp.getPersona().getPais());
+        campoPais.setValue(sp.getPersona().getPais());
         campoCiudad.setText(sp.getPersona().getCiudad());
         campoDireccion.setText(sp.getPersona().getDireccion());
         campoUsuario.setText(sp.getPersona().getCuenta().getUsuario());
@@ -118,7 +85,7 @@ public class PanelConfiguracionController {
         }
         sp.getPersona().setTelefono(campoTelefono.getText());
         sp.getPersona().setSexo(comboGenero.getValue().toString());
-        sp.getPersona().setPais(campoPais.getText().trim());
+        sp.getPersona().setPais(campoPais.getValue().toString());
         sp.getPersona().setCiudad(campoCiudad.getText().trim());
         sp.getPersona().setDireccion(campoDireccion.getText().trim());
     }
@@ -137,7 +104,6 @@ public class PanelConfiguracionController {
                 & Validadores.validarTF(campoDNI)
                 & Validadores.validarDP(campoFechaNacimiento)
                 & Validadores.validarTF(campoTelefono)
-                & Validadores.validarTF(campoPais)
                 & Validadores.validarTF(campoCiudad)
                 & Validadores.validarTF(campoDireccion)) {
             return true;
@@ -319,4 +285,48 @@ public class PanelConfiguracionController {
             campoTelefono.setText("");
         }
     }
+    
+    /*
+     * Objetos de CONFIGURACION
+    */
+    @FXML
+    private TextField campoNombres;
+    @FXML
+    private TextField campoApellidos;
+    @FXML
+    private TextField campoDNI;
+    @FXML
+    private DatePicker campoFechaNacimiento;
+    @FXML
+    private TextField campoTelefono;
+    @FXML
+    private ComboBox campoPais;
+    @FXML
+    private TextField campoCiudad;
+    @FXML
+    private TextField campoDireccion;
+    @FXML
+    private TextField campoUsuario;
+    @FXML
+    private PasswordField campoClave;
+    @FXML
+    private PasswordField campoRepetirClave;
+    @FXML
+    private TextField campoCorreo;
+    @FXML
+    private ComboBox comboGenero;
+    
+    @FXML
+    private TextField txtUsuario;
+    @FXML
+    private PasswordField txtClave;
+    @FXML
+    private TextField txtCorreo;
+    @FXML
+    private ComboBox<Persona> cbxListaUsuarios;
+    @FXML
+    private Pane panelNuevaCuenta;
+
+    private ServicioPersona sp = new ServicioPersona();
+    private ServicioCuenta sc = new ServicioCuenta();
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador;
+package od.vista.controladores;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.UUID;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -34,43 +33,6 @@ import od.vista.utilidades.UtilidadesComponentes;
  * @author PotatoPower
  */
 public class RegistroVistaController {
-
-    @FXML
-    Pane panelHecho;
-    @FXML
-    private TextField campoNombre;
-    @FXML
-    private TextField campoApellido;
-    @FXML
-    private TextField campoDNI;
-    @FXML
-    private DatePicker campoFechaNacimiento;
-    @FXML
-    private TextField campoCelular;
-    @FXML
-    private ComboBox campoPais;
-    @FXML
-    private TextField campoCiudad;
-    @FXML
-    private TextField campoDireccion;
-    @FXML
-    private TextField campoNuevoUsuario;
-    @FXML
-    private PasswordField campoNuevaClave;
-    @FXML
-    private PasswordField campoRepetirClave;
-    @FXML
-    private TextField campoCorreo;
-    @FXML
-    private ComboBox comboGenero;
-    @FXML
-    private Label lblError;
-
-    private Stage ventana;
-    private Principal principal;
-    private ServicioPersona sp = new ServicioPersona();
-    private ServicioCuenta sc = new ServicioCuenta();
-    private UtilidadesComponentes uc = new UtilidadesComponentes();
 
     /**
      * Initializes the controller class.
@@ -151,7 +113,7 @@ public class RegistroVistaController {
         sc.getCuenta().setUsuario(campoNuevoUsuario.getText().trim());
         sc.getCuenta().setClave(campoNuevaClave.getText().trim());
         sc.getCuenta().setCorreo(campoCorreo.getText().trim());
-        sc.getCuenta().setExternal_id(UUID.randomUUID().toString());
+//        sc.getCuenta().setExternal_id(UUID.randomUUID().toString());
         sc.getCuenta().setCreated_at(new Date());
         sc.getCuenta().setUpdate_at(new Date());
         sc.getCuenta().setEstado(true);
@@ -230,4 +192,46 @@ public class RegistroVistaController {
             campoCelular.setText("");
         }
     }
+    
+    
+    
+    /*
+     * Objetos de REGISTRO
+    */
+    @FXML
+    private Pane panelHecho;
+    @FXML
+    private TextField campoNombre;
+    @FXML
+    private TextField campoApellido;
+    @FXML
+    private TextField campoDNI;
+    @FXML
+    private DatePicker campoFechaNacimiento;
+    @FXML
+    private TextField campoCelular;
+    @FXML
+    private ComboBox campoPais;
+    @FXML
+    private TextField campoCiudad;
+    @FXML
+    private TextField campoDireccion;
+    @FXML
+    private TextField campoNuevoUsuario;
+    @FXML
+    private PasswordField campoNuevaClave;
+    @FXML
+    private PasswordField campoRepetirClave;
+    @FXML
+    private TextField campoCorreo;
+    @FXML
+    private ComboBox comboGenero;
+    @FXML
+    private Label lblError;
+
+    private Stage ventana;
+    private Principal principal;
+    private ServicioPersona sp = new ServicioPersona();
+    private ServicioCuenta sc = new ServicioCuenta();
+    private UtilidadesComponentes uc = new UtilidadesComponentes();
 }

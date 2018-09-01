@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador;
+package od.vista.controladores;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,18 +23,6 @@ import od.utilidades.Validadores;
  * @author PotatoPower
  */
 public class LoginVistaController {
-    private Stage ventana;
-    private Principal principal;
-    @FXML
-    private TextField campoUsuario;
-    @FXML
-    private PasswordField campoClave;
-    @FXML
-    private Button botonLogin;
-    @FXML 
-    private Hyperlink linkRegistro;
-    @FXML
-    private Label etiquetaError;
     /**
      * Initializes the controller class.
      */
@@ -81,5 +69,22 @@ public class LoginVistaController {
 
     public void setPrincipal(Principal principal) {
         this.principal = principal;
-    } 
+    }
+    
+    /*
+     * Objetos del LOGIN
+    */
+    @FXML
+    private TextField campoUsuario;
+    @FXML
+    private PasswordField campoClave;
+    @FXML
+    private Button botonLogin;
+    @FXML 
+    private Hyperlink linkRegistro;
+    @FXML
+    private Label etiquetaError;
+    
+    private Stage ventana;
+    private Principal principal;
 }

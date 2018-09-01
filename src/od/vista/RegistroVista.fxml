@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1002.0" styleClass="pane" stylesheets="@registrovista.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.controlador.RegistroVistaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1002.0" styleClass="pane" stylesheets="@css/registrovista.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.vista.controladores.RegistroVistaController">
    <children>
       <ImageView disable="true" fitHeight="636.0" fitWidth="547.0" layoutX="463.0" pickOnBounds="true" preserveRatio="true">
          <image>

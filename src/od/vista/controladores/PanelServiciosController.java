@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package od.controlador;
+package od.vista.controladores;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -28,30 +28,6 @@ import od.utilidades.Validadores;
  */
 public class PanelServiciosController {
 
-    @FXML
-    private TextArea areaDesServicio;
-    @FXML
-    private TextField campoCostoS;
-    @FXML
-    private TextField campoBusqueda;
-    @FXML
-    private TableView<Servicio> tablaServicios;
-    @FXML
-    private Pane panelFormServicio;
-    @FXML
-    private TableColumn<Servicio, String> columnaDescripcion;
-    @FXML
-    private TableColumn<Servicio, String> columnaCosto;
-    
-    @FXML
-    private Pane panelDescr;
-    @FXML
-    private Label etiquetaCosto;
-    @FXML
-    private Label etiquetaDescripcion;
-    
-    private ServicioServicio ss = new ServicioServicio();
-    
     /**
      * Initializes the controller class.
      */
@@ -203,4 +179,33 @@ public class PanelServiciosController {
             campoCostoS.setText("");
         }
     }
+    
+    
+    
+    /*
+     * Objetos de SERVICIOS
+    */
+    @FXML
+    private TextArea areaDesServicio;
+    @FXML
+    private TextField campoCostoS;
+    @FXML
+    private TextField campoBusqueda;
+    @FXML
+    private TableView<Servicio> tablaServicios;
+    @FXML
+    private Pane panelFormServicio;
+    @FXML
+    private TableColumn<Servicio, String> columnaDescripcion;
+    @FXML
+    private TableColumn<Servicio, String> columnaCosto;
+    
+    @FXML
+    private Pane panelDescr;
+    @FXML
+    private Label etiquetaCosto;
+    @FXML
+    private Label etiquetaDescripcion;
+    
+    private ServicioServicio ss = new ServicioServicio();
 }

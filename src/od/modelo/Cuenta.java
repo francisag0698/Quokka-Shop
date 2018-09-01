@@ -47,7 +47,6 @@ public class Cuenta implements Serializable {
     private Date created_at;
     @Temporal(TemporalType.TIMESTAMP)
     private Date update_at;
-    private String external_id;
     
     @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_persona", nullable = false, referencedColumnName = "id_persona")
