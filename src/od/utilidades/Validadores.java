@@ -17,7 +17,6 @@ public class Validadores {
 
     /**
      * Metodo para viladar un campo TextField
-     *
      * @param obj acepta un dato de un textField
      * @return devuelve un boolean
      */
@@ -37,7 +36,6 @@ public class Validadores {
 
     /**
      * Metodo para validar un campo TextArea
-     *
      * @param obj acepta un dato de un textArea
      * @return devuelve un boolean
      */
@@ -57,7 +55,6 @@ public class Validadores {
 
     /**
      * Metodo para validar un campo DatePicker
-     *
      * @param obj acepta un dato de un DatePicker
      * @return devuelve un boolean
      */
@@ -77,7 +74,6 @@ public class Validadores {
 
     /**
      * Metodo para viladar un campo passwordField
-     *
      * @param obj acepta un dato de un passwordFiel
      * @return devuelve un boolean
      */
@@ -124,7 +120,6 @@ public class Validadores {
 
     /**
      * Metodo para comprobar un valor
-     *
      * @param obj acepta un dato de TextField
      * @param opcion acepta un dato de tipo char
      * @return devuelve un boolean
@@ -159,7 +154,12 @@ public class Validadores {
                 return false;
         }
     }//Cierre del metodo validarValor
-
+    
+    /**
+     * Metodo para comprobar el correo 
+     * @param obj acepta un dato de TextField
+     * @return devuelve un boolean
+     */
     public static boolean validarCorreo(TextField obj) {
         if (obj.getText().contains("@")) {
             if (obj.getStyleClass().contains("error")) {
@@ -172,7 +172,5 @@ public class Validadores {
             }
             return false;
         }
-    }
-    
-   
+    }//cierre del metodo validarCorreo
 }//Cierre de la clase validadores
