@@ -19,19 +19,19 @@
                   <Image url="@images/02.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="39.0" fitWidth="181.0" layoutX="47.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="117.0" layoutX="43.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/logo.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="43.0" layoutX="116.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="81.0" fitWidth="43.0" layoutX="116.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/avatar.png" />
                </image>
             </ImageView>
-            <Label fx:id="lblAdmin" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="137.0" maxWidth="153.0" prefHeight="25.0" prefWidth="153.0" styleClass="this-user" text="Nombre de Usuario" />
-            <Label fx:id="lblRol" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="160.0" maxWidth="153.0" prefHeight="19.0" prefWidth="153.0" styleClass="this-role" text="ADMINISTRADOR" />
-            <Rectangle fill="#7c60ff" height="4.0" layoutX="122.0" layoutY="187.0" stroke="TRANSPARENT" strokeMiterLimit="0.0" strokeType="INSIDE" width="31.0" />
+            <Label fx:id="lblAdmin" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="145.0" maxWidth="153.0" prefHeight="25.0" prefWidth="153.0" styleClass="this-user" text="Nombre de Usuario" />
+            <Label fx:id="lblRol" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="168.0" maxWidth="153.0" prefHeight="19.0" prefWidth="153.0" styleClass="this-role" text="ADMINISTRADOR" />
+            <Rectangle fill="#7c60ff" height="4.0" layoutX="122.0" layoutY="195.0" stroke="TRANSPARENT" strokeMiterLimit="0.0" strokeType="INSIDE" width="31.0" />
             <VBox layoutX="43.0" layoutY="304.0">
                <children>
                   <Button fx:id="btnInicio" alignment="TOP_LEFT" layoutX="37.0" layoutY="223.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" text="Inicio">
@@ -82,7 +82,7 @@
             </VBox>
             <Label layoutX="47.0" layoutY="286.0" styleClass="label-div" text="MENU" />
             <Label layoutX="107.0" layoutY="79.0" styleClass="icono" />
-            <Button fx:id="btnNuevaReserva" layoutX="62.0" layoutY="216.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" styleClass="btn-primary" text="NUEVA RESERVA">
+            <Button fx:id="btnNuevaReserva" layoutX="62.0" layoutY="224.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" styleClass="btn-primary" text="NUEVA RESERVA">
                <graphic>
                   <Label prefHeight="25.0" prefWidth="17.0" styleClass="fa-icon" text="" textAlignment="CENTER" />
                </graphic>

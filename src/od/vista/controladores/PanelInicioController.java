@@ -36,20 +36,22 @@ public class PanelInicioController {
         cargarHistorial();
         cargarTabla();
         if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) {
-            lblCantReservas.setText(sr.nroReservasActivas(Sesiones.getCuenta().getPersona().getId_persona()).toString());
-            lblCantClientes.setText(sr.nroReservasTotalesCliente(Sesiones.getCuenta().getPersona().getId_persona()).toString());
+            Long activas = sr.nroReservasActivas(Sesiones.getCuenta().getPersona().getId_persona()),
+                    totales = sr.nroReservasTotalesCliente(Sesiones.getCuenta().getPersona().getId_persona());
+            lblCantReservas.setText((activas < 10) ? "0"+activas:activas.toString());
+            lblCantClientes.setText((totales < 10) ? "0"+totales:totales.toString());
             lblCliente.setText("RESERVAS REALIZADAS");
         }else{
-            lblCantReservas.setText(sr.nroReservasActivas().toString());
-            lblCantClientes.setText(sp.nroUsuarios().toString());
+            lblCantReservas.setText((sr.nroReservasActivas() < 10) ? "0"+sr.nroReservasActivas():sr.nroReservasActivas().toString());
+            lblCantClientes.setText((sp.nroUsuarios() < 10) ? "0"+sp.nroUsuarios():sp.nroUsuarios().toString());
         }
         
         
         Long n = sha.cantidadDisponibles(new Date(), new Date());
         if (n != null) 
-            lblCantHabitaciones.setText(n.toString());
+            lblCantHabitaciones.setText((n < 10) ? "0"+n:n.toString());
         else
-            lblCantHabitaciones.setText("0");
+            lblCantHabitaciones.setText("00");
     }
     
     private void cargarHistorial(){
@@ -61,11 +63,13 @@ public class PanelInicioController {
     //            a.getStyleClass().add("identificador");
                 Label b = new Label(obj.getAccion());
                 b.getStyleClass().add("accion");
+                b.setWrapText(true);
                 Label c = new Label(obj.getPersona().getNombres().toUpperCase() + " • " + Utilidades.formatearFechaDos(obj.getFecha()));
                 c.getStyleClass().add("usuario");
     //            p.getChildren().add(a);
                 p.getChildren().add(b);
                 p.getChildren().add(c);
+                p.setSpacing(2);
                 return p;
             }).forEachOrdered((p) -> {
                 vbNotificaciones.getChildren().add(p);
@@ -76,10 +80,11 @@ public class PanelInicioController {
                 p.getStyleClass().add("v-box");
                 Label b = new Label(obj.getAccion());
                 b.getStyleClass().add("accion");
-                Label c = new Label(Utilidades.formatearFechaDos(obj.getFecha()));
+                Label c = new Label("Tú • " + Utilidades.formatearFechaDos(obj.getFecha()));
                 c.getStyleClass().add("usuario");
                 p.getChildren().add(b);
                 p.getChildren().add(c);
+                p.setSpacing(2);
                 return p; 
             }).forEachOrdered((p) ->{
                 vbNotificaciones.getChildren().add(p);

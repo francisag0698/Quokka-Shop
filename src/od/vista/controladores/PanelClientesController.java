@@ -231,7 +231,7 @@ public class PanelClientesController {
             txtNroDNI.setDisable(true);
             txtNombres.setText(sp.getPersona().getNombres());
             txtApellidos.setText((sp.getPersona().getApellidos()));
-            dpFecha.setValue(LocalDate.parse(Utilidades.formatearFechaDos(sp.getPersona().getFecha_nacimiento())));
+            dpFecha.setValue(LocalDate.parse(Utilidades.formatearFecha(sp.getPersona().getFecha_nacimiento())));
             cbxGenero.setValue(sp.getPersona().getSexo());
             txtTelefono.setText(sp.getPersona().getTelefono());
             txtPais.setValue(sp.getPersona().getPais());

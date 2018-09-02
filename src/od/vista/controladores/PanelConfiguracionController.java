@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -70,8 +71,13 @@ public class PanelConfiguracionController {
         campoUsuario.setText(sp.getPersona().getCuenta().getUsuario());
         campoClave.setText(sp.getPersona().getCuenta().getClave());
         campoRepetirClave.setText(sp.getPersona().getCuenta().getClave());
-        campoCorreo.setText((sp.getPersona().getCuenta().getCorreo() == null) ? "":sp.getPersona().getCuenta().getCorreo());
-        cbxListaUsuarios.setItems(FXCollections.observableList(sp.listadoUsuariosSinCuenta()));
+        campoCorreo.setText((sp.getPersona().getCuenta().getCorreo() == null) ? "":sp.getPersona().getCuenta().getCorreo());       
+        
+        p = FXCollections.observableList(sp.listadoUsuariosSinCuenta());        
+        p.forEach((persona) -> {
+            cbxListaUsuarios.getItems().add(persona.getNombres() + " " + persona.getApellidos());
+        });
+        
     }
 
     private void cargarObjetoPersona() {
@@ -258,8 +264,9 @@ public class PanelConfiguracionController {
                 nsc.getCuenta().setCreated_at(new Date());
                 nsc.getCuenta().setUpdate_at(new Date());
                 nsc.getCuenta().setEstado(Boolean.TRUE);
-                cbxListaUsuarios.getValue().setCuenta(nsc.getCuenta());
-                nsc.getCuenta().setPersona(cbxListaUsuarios.getValue());
+                //cbxListaUsuarios.getValue().setCuenta(nsc.getCuenta());
+                p.get(cbxListaUsuarios.getSelectionModel().getSelectedIndex()).setCuenta(nsc.getCuenta());
+                nsc.getCuenta().setPersona(p.get(cbxListaUsuarios.getSelectionModel().getSelectedIndex()));
                 
                 if (nsc.guardar()) {
                     Utilidades.guardarHistorial("Nueva Cuenta", "Se ha creado una nueva cuenta", Sesiones.getCuenta().getPersona());
@@ -316,6 +323,8 @@ public class PanelConfiguracionController {
     @FXML
     private ComboBox comboGenero;
     
+    private ObservableList<Persona> p;
+    
     @FXML
     private TextField txtUsuario;
     @FXML
@@ -323,10 +332,10 @@ public class PanelConfiguracionController {
     @FXML
     private TextField txtCorreo;
     @FXML
-    private ComboBox<Persona> cbxListaUsuarios;
+    private ComboBox cbxListaUsuarios;
     @FXML
     private Pane panelNuevaCuenta;
-
+    
     private ServicioPersona sp = new ServicioPersona();
     private ServicioCuenta sc = new ServicioCuenta();
 }

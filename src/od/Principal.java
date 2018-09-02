@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -32,7 +33,7 @@ public class Principal extends Application {
     private BorderPane rootLayout;
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) {               
         Font.loadFont(getClass().getResourceAsStream("vista/fuentes/UB.ttf"), 12); //Ubuntu Bold
         Font.loadFont(getClass().getResourceAsStream("vista/fuentes/UR.ttf"), 12); //Ubuntu Regular
         Font.loadFont(getClass().getResourceAsStream("vista/fuentes/UM.ttf"), 12); //Ubuntu Medium
@@ -63,9 +64,11 @@ public class Principal extends Application {
             primaryStage = new Stage();
             
             Scene escena = new Scene(rootLayout);
+            primaryStage.setTitle("Sistema de Reservación de Habitaciones | Principal");
             primaryStage.setScene(escena);
             primaryStage.setMinWidth(1030);
             primaryStage.setMaxWidth(1030);
+            primaryStage.getIcons().add(new Image(Principal.class.getResourceAsStream("icon.png"))); 
             
             RaizVistaController controlador = cargador.getController();
             
@@ -88,9 +91,10 @@ public class Principal extends Application {
             
             primaryStage.setTitle("Sistema de Reservación de Habitaciones | Login");
             primaryStage.setMaxWidth(950);
-            primaryStage.setMaxHeight(668);
+            primaryStage.setMaxHeight(670);
             primaryStage.setMinWidth(950);
-            primaryStage.setMinHeight(668);
+            primaryStage.setMinHeight(670);
+            primaryStage.getIcons().add(new Image(Principal.class.getResourceAsStream("icon.png"))); 
             
             Scene escena = new Scene(pagina);
             primaryStage.setScene(escena);
@@ -116,6 +120,7 @@ public class Principal extends Application {
             primaryStage.setMaxHeight(660);
             primaryStage.setMinWidth(1005);
             primaryStage.setMinHeight(660);
+            primaryStage.getIcons().add(new Image(Principal.class.getResourceAsStream("icon.png"))); 
             
             Scene escena = new Scene(pagina);            
             primaryStage.setScene(escena);

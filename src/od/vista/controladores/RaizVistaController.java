@@ -45,7 +45,7 @@ public class RaizVistaController {
         aux = btnInicio;
         
         btnNuevaReserva.setOnAction((event)->{            
-            if (claseCSS(btnInicio) || !rootLayout.getCenter().getId().equals("RegistrarReserva")){
+            if (claseCSS(btnNuevaReserva) || !rootLayout.getCenter().getId().equals("RegistrarReserva")){
                 principal.fijarCentroNuevaReserva();
             }                
             event.consume();

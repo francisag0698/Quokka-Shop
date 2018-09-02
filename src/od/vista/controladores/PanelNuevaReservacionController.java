@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -105,7 +106,7 @@ public class PanelNuevaReservacionController {
         lblValorServicios.setText("$" + df.format(servicios));
         double habitacion = 0.00;
         if (cbxHabitaciones.getSelectionModel().getSelectedItem() != null) {
-            habitacion = cbxHabitaciones.getSelectionModel().getSelectedItem().getPrecio() * ((campoNroHabitaciones.getText().trim().isEmpty()) ? 0:Integer.parseInt(campoNroHabitaciones.getText()));
+            habitacion = h.get(cbxHabitaciones.getSelectionModel().getSelectedIndex()).getPrecio() * ((campoNroHabitaciones.getText().trim().isEmpty()) ? 0:Integer.parseInt(campoNroHabitaciones.getText()));
         }        
         lblValorHabitacion.setText("$" + df.format(habitacion));
         long noches = ChronoUnit.DAYS.between(campoFechaEntrada.getValue(), campoFechaSalida.getValue());
@@ -171,7 +172,15 @@ public class PanelNuevaReservacionController {
                 && Validadores.validarDP(campoFechaSalida)
                 && Validadores.validarTF(campoNroAdultos)
                 && Validadores.validarTF(campoNroNinios)) {
-            cbxHabitaciones.setItems(FXCollections.observableList(sh.listarDisponibles(Utilidades.extraerFecha(campoFechaEntrada.getValue()), Utilidades.extraerFecha(campoFechaSalida.getValue()))));
+            h = FXCollections.observableList(sh.listarDisponibles(Utilidades.extraerFecha(campoFechaEntrada.getValue()), Utilidades.extraerFecha(campoFechaSalida.getValue())));
+            
+            ObservableList obs = FXCollections.observableArrayList();            
+            h.forEach((habitacion) -> {
+                obs.add(habitacion.getNombre());
+            });
+            
+            cbxHabitaciones.setItems(obs);
+            
             if (cbxHabitaciones.getItems().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Agotado");
@@ -233,11 +242,11 @@ public class PanelNuevaReservacionController {
     @FXML
     private void fijarDescripcion(){
         if (cbxHabitaciones.getValue() != null) {
-            disponibles = sh.cantidadDisponibles(Utilidades.extraerFecha(campoFechaEntrada.getValue()), Utilidades.extraerFecha(campoFechaSalida.getValue()), cbxHabitaciones.getValue().getCodigo()).intValue();
+            disponibles = sh.cantidadDisponibles(Utilidades.extraerFecha(campoFechaEntrada.getValue()), Utilidades.extraerFecha(campoFechaSalida.getValue()), h.get(cbxHabitaciones.getSelectionModel().getSelectedIndex()).getCodigo()).intValue();
             lblDisponibles.setText(disponibles + " Habitacion(es)");
-            lblCapacidad.setText(cbxHabitaciones.getValue().getCapacidad() + " Persona(s)");
-            lblCamas.setText(cbxHabitaciones.getValue().getNro_camas() + " Cama(s)");
-            lblDescripcion.setText(cbxHabitaciones.getValue().getDescripcion());
+            lblCapacidad.setText(h.get(cbxHabitaciones.getSelectionModel().getSelectedIndex()).getCapacidad() + " Persona(s)");
+            lblCamas.setText(h.get(cbxHabitaciones.getSelectionModel().getSelectedIndex()).getNro_camas() + " Cama(s)");
+            lblDescripcion.setText(h.get(cbxHabitaciones.getSelectionModel().getSelectedIndex()).getDescripcion());
             if(campoNroHabitaciones.isDisabled()){
                 campoNroHabitaciones.setDisable(false);
             }
@@ -262,7 +271,7 @@ public class PanelNuevaReservacionController {
                 sr.getReservacion().setEstado(Boolean.TRUE);
                 sr.getReservacion().setPago_total(calcularTotal());
                 sr.getReservacion().setPersona(sp.getPersona());
-                sr.getReservacion().setHabitacion(cbxHabitaciones.getValue());
+                sr.getReservacion().setHabitacion(h.get(cbxHabitaciones.getSelectionModel().getSelectedIndex()));
 
                 sd.getDetalle().setAdultos(Integer.parseInt(campoNroAdultos.getText()));
                 sd.getDetalle().setMenores(Integer.parseInt(campoNroNinios.getText()));
@@ -418,7 +427,8 @@ public class PanelNuevaReservacionController {
     @FXML
     private Button btnReservar;
     @FXML
-    private ComboBox<Habitacion> cbxHabitaciones;
+    private ComboBox cbxHabitaciones;
+    private ObservableList<Habitacion> h;
     @FXML
     private ListView<Servicio> listaServicios;
     

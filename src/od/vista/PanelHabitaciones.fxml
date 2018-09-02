@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
@@ -14,40 +15,42 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.shape.Line?>
 
 <AnchorPane id="AnchorPane" prefHeight="638.0" prefWidth="738.0" styleClass="background" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.vista.controladores.PanelHabitacionesController">
     <stylesheets>
         <URL value="@css/paneladministracion.css" />
+      <URL value="@css/raizvista.css" />
     </stylesheets>
    <children>
       <Label layoutX="43.0" layoutY="34.0" styleClass="title-pane" text="Habitaciones" />
-      <Label layoutX="43.0" layoutY="76.0" styleClass="subtitle-pane" text="Curabitur sit amet sagittis urna. Fusce venenatis turpis et tellus." />
-      <TabPane fx:id="tbpHabitaciones" layoutX="43.0" layoutY="108.0" prefHeight="492.0" prefWidth="642.0" tabClosingPolicy="UNAVAILABLE">
+      <Label layoutX="43.0" layoutY="75.0" lineSpacing="2.0" prefHeight="42.0" prefWidth="459.0" styleClass="subtitle-pane" text="Aquí se visualiza el listado de habitaciones, con acceso a su modificación o a la adición de una nueva en caso de ser necesario." wrapText="true" />
+      <TabPane fx:id="tbpHabitaciones" layoutX="43.0" layoutY="119.0" prefHeight="492.0" prefWidth="642.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="tabListado" text="Listado de Habitaciones">
+          <Tab fx:id="tabListado" text="LISTADO DE HABITACIONES">
                <content>
                   <AnchorPane prefHeight="485.0" prefWidth="642.0">
                      <children>
-                        <TextField fx:id="campoBuscar" layoutY="18.0" onKeyPressed="#buscarTexto" prefHeight="25.0" prefWidth="305.0" />
-                        <ComboBox fx:id="comboFiltro" layoutX="310.0" layoutY="18.0" onAction="#controlCombo" prefHeight="25.0" prefWidth="141.0" promptText="Filtrar por:" />
-                        <ComboBox fx:id="comboSelecion" disable="true" layoutX="458.0" layoutY="18.0" onAction="#buscarTexto" prefHeight="25.0" prefWidth="148.0" promptText="Sin seleccion" />
-                        <TableView fx:id="tablaHabitacion" layoutY="55.0" prefHeight="368.0" prefWidth="642.0">
+                        <TextField fx:id="campoBuscar" layoutY="14.0" onKeyPressed="#buscarTexto" prefHeight="30.0" prefWidth="302.0" promptText="Búsqueda" styleClass="searchform-item" />
+                        <ComboBox fx:id="comboFiltro" layoutX="308.0" layoutY="14.0" onAction="#controlCombo" prefHeight="30.0" prefWidth="141.0" promptText="Filtrar por:" styleClass="searchform-item" />
+                        <ComboBox fx:id="comboSelecion" disable="true" layoutX="455.0" layoutY="14.0" onAction="#buscarTexto" prefHeight="30.0" prefWidth="148.0" promptText="Sin seleccion" styleClass="searchform-item" />
+                        <TableView fx:id="tablaHabitacion" layoutY="56.0" prefHeight="354.0" prefWidth="642.0">
                           <columns>
-                              <TableColumn fx:id="estadoColumna" prefWidth="82.0" text="Código" />
-                            <TableColumn fx:id="nombresColumna" prefWidth="224.0" text="Nombre" />
-                            <TableColumn fx:id="tipoColumna" prefWidth="108.0" text="Tipo" />
-                              <TableColumn fx:id="capacidadColumna" prefWidth="73.0" text="Capacidad" />
-                              <TableColumn fx:id="camasColumna" prefWidth="72.0" text="Cantidad" />
-                              <TableColumn fx:id="precioColumna" prefWidth="82.0" text="Precio" />
+                              <TableColumn fx:id="estadoColumna" prefWidth="82.0" text="CODIGO" />
+                            <TableColumn fx:id="nombresColumna" prefWidth="224.0" text="NOMBRE" />
+                            <TableColumn fx:id="tipoColumna" prefWidth="108.0" text="TIPO" />
+                              <TableColumn fx:id="capacidadColumna" prefWidth="73.0" text="CAPACIDAD" />
+                              <TableColumn fx:id="camasColumna" prefWidth="72.0" text="CANTIDAD" />
+                              <TableColumn fx:id="precioColumna" prefWidth="82.0" text="PRECIO" />
                           </columns>
                         </TableView>
-                        <ButtonBar layoutX="442.0" layoutY="427.0" prefHeight="40.0" prefWidth="200.0">
+                        <ButtonBar layoutX="427.0" layoutY="411.0" prefHeight="40.0" prefWidth="215.0">
                           <buttons>
-                            <Button mnemonicParsing="false" onAction="#handleDetalles" text="Detalles" />
-                              <Button mnemonicParsing="false" onAction="#handleModificar" text="Modificar" />
+                            <Button mnemonicParsing="false" onAction="#handleDetalles" prefHeight="30.0" styleClass="btn-primary" text="DETALLES" />
+                              <Button mnemonicParsing="false" onAction="#handleModificar" prefHeight="30.0" styleClass="btn-secondary" text="MODIFICAR" />
                           </buttons>
                         </ButtonBar>
-                        <Button fx:id="btnLimpiarFiltro" layoutX="612.0" layoutY="18.0" mnemonicParsing="false" onAction="#barrer" prefHeight="25.0" prefWidth="30.0">
+                        <Button fx:id="btnLimpiarFiltro" layoutX="609.0" layoutY="14.0" mnemonicParsing="false" onAction="#barrer" prefHeight="30.0" prefWidth="33.0" styleClass="btn-default">
                            <graphic>
                               <Label styleClass="fa-icon" text="" />
                            </graphic>
@@ -55,26 +58,41 @@
                      </children></AnchorPane>
                </content>
             </Tab>
-          <Tab fx:id="tabFormulario" text="Nueva Habitación">
+          <Tab fx:id="tabFormulario" text="NUEVA HABITACION">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="campoCodigo" disable="true" editable="false" layoutY="21.0" prefHeight="25.0" prefWidth="262.0" promptText="Código" />
-                        <ComboBox fx:id="comboTipo" layoutY="69.0" onAction="#generarCodigo" prefHeight="25.0" prefWidth="214.0" promptText="Tipo de Habitación" />
-                        <TextField fx:id="campoNombre" layoutX="223.0" layoutY="69.0" prefHeight="25.0" prefWidth="419.0" promptText="Nombre" />
-                        <TextField fx:id="campoCapacidad" layoutY="107.0" onKeyReleased="#validarEnterosCapacidad" prefHeight="25.0" prefWidth="163.0" promptText="Capacidad" />
-                        <TextField fx:id="campoCamas" layoutX="172.0" layoutY="107.0" onKeyReleased="#validarEnterosCamas" prefHeight="25.0" prefWidth="148.0" promptText="Nro. de Camas" />
-                        <TextField fx:id="campoPrecio" layoutX="332.0" layoutY="107.0" onKeyReleased="#validarEnterosPrecio" prefHeight="25.0" prefWidth="172.0" promptText="Precio" />
-                        <TextField fx:id="campoCantidad" layoutX="515.0" layoutY="107.0" onKeyReleased="#validarEnterosCantidad" prefHeight="25.0" prefWidth="127.0" promptText="Cantidad" />
-                        <TextArea fx:id="areaHabitacion" layoutY="145.0" prefHeight="97.0" prefWidth="319.0" promptText="Descripción de la Habitación" />
-                        <TextArea fx:id="areaCondiciones" layoutX="331.0" layoutY="145.0" prefHeight="97.0" prefWidth="311.0" promptText="Condiciones" />
-                        <ButtonBar layoutX="340.0" layoutY="262.0" prefHeight="40.0" prefWidth="302.0">
+                        <TextField fx:id="campoCodigo" disable="true" editable="false" layoutX="83.0" layoutY="19.0" prefHeight="30.0" prefWidth="294.0" promptText="Código" styleClass="d-form-item" />
+                        <ComboBox fx:id="comboTipo" layoutX="163.0" layoutY="96.0" onAction="#generarCodigo" prefHeight="30.0" prefWidth="214.0" promptText="Tipo de Habitación" styleClass="d-form-item" />
+                        <TextField fx:id="campoNombre" layoutX="163.0" layoutY="138.0" prefHeight="30.0" prefWidth="479.0" promptText="Nombre" styleClass="d-form-item" />
+                        <TextField fx:id="campoCapacidad" layoutY="200.0" onKeyReleased="#validarEnterosCapacidad" prefHeight="30.0" prefWidth="163.0" promptText="Capacidad" styleClass="d-form-item" />
+                        <TextField fx:id="campoCamas" layoutX="172.0" layoutY="200.0" onKeyReleased="#validarEnterosCamas" prefHeight="30.0" prefWidth="148.0" promptText="Nro. de Camas" styleClass="d-form-item" />
+                        <TextField fx:id="campoPrecio" layoutX="331.0" layoutY="200.0" onKeyReleased="#validarEnterosPrecio" prefHeight="30.0" prefWidth="172.0" promptText="Precio" styleClass="d-form-item" />
+                        <TextField fx:id="campoCantidad" layoutX="515.0" layoutY="200.0" onKeyReleased="#validarEnterosCantidad" prefHeight="30.0" prefWidth="127.0" promptText="Cantidad" styleClass="d-form-item" />
+                        <TextArea fx:id="areaHabitacion" layoutY="261.0" prefHeight="97.0" prefWidth="319.0" promptText="Descripción de la Habitación" styleClass="d-form-item" />
+                        <TextArea fx:id="areaCondiciones" layoutX="331.0" layoutY="261.0" prefHeight="97.0" prefWidth="311.0" promptText="Condiciones" styleClass="d-form-item" />
+                        <ButtonBar layoutX="214.0" layoutY="383.0" prefHeight="40.0" prefWidth="428.0">
                           <buttons>
-                            <Button mnemonicParsing="false" onAction="#handleGuardar" prefHeight="25.0" prefWidth="145.0" text="Guardar Habitación" />
-                              <Button mnemonicParsing="false" onAction="#handleBorrar" prefHeight="25.0" text="Borrar Campos" />
+                            <Button mnemonicParsing="false" onAction="#handleGuardar" prefHeight="30.0" prefWidth="228.0" styleClass="btn-primary" text="GUARDAR HABITACION" />
+                              <Button mnemonicParsing="false" onAction="#handleBorrar" prefHeight="30.0" styleClass="btn-secondary" text="BORRAR CAMPOS" />
                           </buttons>
                         </ButtonBar>
-                        <Label fx:id="lblError" alignment="CENTER_RIGHT" layoutX="339.0" layoutY="23.0" prefHeight="17.0" prefWidth="246.0" text="Rellene los campos vacios" textFill="#dd1d1d" visible="false" />
+                        <Label layoutY="27.0" styleClass="divider-label" text="NRO DE DNI:" />
+                        <Label layoutY="104.0" styleClass="divider-label" text="TIPO DE HABITACION:" />
+                        <Label layoutY="146.0" styleClass="divider-label" text="NOMBRE DE LA HABITACIÓN:" />
+                        <Label layoutY="180.0" styleClass="divider-label" text="CAPACIDAD:" />
+                        <Label layoutX="172.0" layoutY="180.0" styleClass="divider-label" text="NRO DE CAMAS:" />
+                        <Label layoutX="332.0" layoutY="180.0" styleClass="divider-label" text="PRECIO ($):" />
+                        <Label layoutX="515.0" layoutY="180.0" styleClass="divider-label" text="CANTIDAD:" />
+                        <Label layoutX="1.0" layoutY="241.0" styleClass="divider-label" text="DESCRIPCIÓN DE LA HABITACIÓN:" />
+                        <Label layoutX="331.0" layoutY="241.0" styleClass="divider-label" text="CONDICIONES:" />
+                        <Label layoutX="-1.0" layoutY="67.0" text="DATOS DE LA HABITACIÓN">
+                           <styleClass>
+                              <String fx:value="divider-label" />
+                              <String fx:value="small" />
+                           </styleClass>
+                        </Label>
+                        <Line endX="444.0" layoutX="197.0" layoutY="74.0" startX="-67.0" stroke="#8a8f9c" strokeType="OUTSIDE" strokeWidth="0.3" />
                      </children></AnchorPane>
                </content>
             </Tab>

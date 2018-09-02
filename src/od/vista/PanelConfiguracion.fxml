@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -9,62 +11,86 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Line?>
 
-<ScrollPane prefHeight="638.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.vista.controladores.PanelConfiguracionController">
+<ScrollPane prefHeight="638.0" prefWidth="740.0" styleClass="scroll_pane" stylesheets="@css/paneladministracion.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.vista.controladores.PanelConfiguracionController">
    <content>
-      <AnchorPane id="AnchorPane" prefHeight="755.0" prefWidth="725.0" styleClass="background" stylesheets="@css/raizvista.css">
+      <AnchorPane id="AnchorPane" prefHeight="907.0" prefWidth="725.0" styleClass="background">
          <children>
             <Label layoutX="44.0" layoutY="34.0" styleClass="title-pane" text="Configuración" />
-            <Label layoutX="44.0" layoutY="76.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="394.0" styleClass="subtitle-pane" text="Curabitur sit amet sagittis urna. Fusce venenatis turpis et tellus." wrapText="true" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="357.0" layoutX="44.0" layoutY="120.0" stroke="#a8a8a8" strokeType="INSIDE" strokeWidth="0.75" width="411.0" />
-            <Label layoutX="62.0" layoutY="131.0" text="Datos de Usuario" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="307.0" layoutX="473.0" layoutY="120.0" stroke="#a8a8a8" strokeType="INSIDE" strokeWidth="0.75" width="219.0" />
-            <Label layoutX="488.0" layoutY="131.0" text="Datos de Cuenta" />
-            <TextField fx:id="campoDNI" editable="false" layoutX="61.0" layoutY="178.0" prefHeight="25.0" prefWidth="183.0" />
-            <TextField fx:id="campoNombres" layoutX="255.0" layoutY="178.0" prefHeight="25.0" prefWidth="183.0" />
-            <TextField fx:id="campoApellidos" layoutX="255.0" layoutY="231.0" prefHeight="25.0" prefWidth="183.0" />
-            <DatePicker fx:id="campoFechaNacimiento" layoutX="61.0" layoutY="231.0" prefHeight="25.0" prefWidth="183.0" />
-            <ComboBox fx:id="comboGenero" layoutX="61.0" layoutY="283.0" prefHeight="25.0" prefWidth="183.0" />
-            <TextField fx:id="campoTelefono" layoutX="255.0" layoutY="283.0" onKeyReleased="#validarEnteros" prefHeight="25.0" prefWidth="183.0" />
-            <ComboBox fx:id="campoPais" layoutX="61.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
-            <TextField fx:id="campoCiudad" layoutX="255.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
-            <TextField fx:id="campoDireccion" layoutX="62.0" layoutY="386.0" prefHeight="25.0" prefWidth="375.0" />
-            <Button layoutX="329.0" layoutY="428.0" mnemonicParsing="false" onAction="#guardarModificarPersona" text="Guardar Cambios" />
-            <TextField fx:id="campoUsuario" editable="false" layoutX="491.0" layoutY="178.0" prefHeight="25.0" prefWidth="183.0" />
-            <TextField fx:id="campoCorreo" layoutX="491.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
-            <Button layoutX="566.0" layoutY="377.0" mnemonicParsing="false" onAction="#guardarModificarCuenta" text="Guardar Cambios" />
-            <Label layoutX="61.0" layoutY="158.0" text="Nro de DNI:" />
-            <Label layoutX="255.0" layoutY="158.0" text="Nombres:" />
-            <Label layoutX="61.0" layoutY="211.0" text="Fecha de Nacimiento:" />
-            <Label layoutX="255.0" layoutY="211.0" text="Apellidos:" />
-            <Label layoutX="61.0" layoutY="263.0" text="Género:" />
-            <Label layoutX="255.0" layoutY="263.0" text="Teléfono:" />
-            <Label layoutX="61.0" layoutY="315.0" text="Pais:" />
-            <Label layoutX="257.0" layoutY="315.0" text="Ciudad:" />
-            <Label layoutX="61.0" layoutY="367.0" text="Dirección de Domicilio:" />
-            <Label layoutX="492.0" layoutY="158.0" text="Usuario:" />
-            <Label layoutX="492.0" layoutY="211.0" text="Contraseña:" />
-            <Label layoutX="492.0" layoutY="263.0" text="Repetir Contraseña:" />
-            <Label layoutX="492.0" layoutY="315.0" text="Correo:" />
-            <PasswordField fx:id="campoClave" layoutX="491.0" layoutY="231.0" prefHeight="26.0" prefWidth="183.0" />
-            <PasswordField fx:id="campoRepetirClave" layoutX="491.0" layoutY="283.0" prefHeight="26.0" prefWidth="183.0" />
-            <Pane fx:id="panelNuevaCuenta" disable="true" layoutX="51.0" layoutY="555.0" prefHeight="145.0" prefWidth="413.0">
+            <Label layoutX="44.0" layoutY="80.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="394.0" styleClass="subtitle-pane" text="Configuración general de la cuenta y datos personales." wrapText="true" />
+            <Label layoutX="46.0" layoutY="117.0" text="DATOS DE USUARIO">
+               <styleClass>
+                  <String fx:value="divider-label" />
+                  <String fx:value="small" />
+               </styleClass></Label>
+            <TextField fx:id="campoDNI" disable="true" editable="false" layoutX="118.0" layoutY="150.0" prefHeight="30.0" prefWidth="273.0" styleClass="d-form-item" />
+            <TextField fx:id="campoNombres" layoutX="119.0" layoutY="194.0" prefHeight="30.0" prefWidth="231.0" styleClass="d-form-item" />
+            <TextField fx:id="campoApellidos" layoutX="442.0" layoutY="194.0" prefHeight="30.0" prefWidth="229.0" styleClass="d-form-item" />
+            <DatePicker fx:id="campoFechaNacimiento" layoutX="179.0" layoutY="238.0" prefHeight="30.0" prefWidth="183.0" styleClass="d-form-item" />
+            <ComboBox fx:id="comboGenero" layoutX="442.0" layoutY="238.0" prefHeight="30.0" prefWidth="229.0" styleClass="d-form-item" />
+            <TextField fx:id="campoTelefono" layoutX="47.0" layoutY="298.0" onKeyReleased="#validarEnteros" prefHeight="30.0" prefWidth="189.0" styleClass="d-form-item" />
+            <ComboBox fx:id="campoPais" layoutX="248.0" layoutY="298.0" prefHeight="30.0" prefWidth="189.0" styleClass="d-form-item" />
+            <TextField fx:id="campoCiudad" layoutX="449.0" layoutY="298.0" prefHeight="30.0" prefWidth="222.0" styleClass="d-form-item" />
+            <TextField fx:id="campoDireccion" layoutX="205.0" layoutY="342.0" prefHeight="30.0" prefWidth="466.0" styleClass="d-form-item" />
+            <Button layoutX="545.0" layoutY="388.0" mnemonicParsing="false" onAction="#guardarModificarPersona" prefHeight="30.0" styleClass="btn-primary" text="GUARDAR CAMBIOS" />
+            <TextField fx:id="campoUsuario" editable="false" layoutX="114.0" layoutY="479.0" prefHeight="30.0" prefWidth="183.0" styleClass="d-form-item" />
+            <TextField fx:id="campoCorreo" layoutX="452.0" layoutY="479.0" prefHeight="30.0" prefWidth="220.0" styleClass="d-form-item" />
+            <Button layoutX="545.0" layoutY="580.0" mnemonicParsing="false" onAction="#guardarModificarCuenta" prefHeight="30.0" styleClass="btn-primary" text="GUARDAR CAMBIOS" />
+            <Label layoutX="47.0" layoutY="158.0" styleClass="divider-label" text="NRO DE DNI:" />
+            <Label layoutX="46.0" layoutY="202.0" styleClass="divider-label" text="NOMBRES:" />
+            <Label layoutX="47.0" layoutY="246.0" styleClass="divider-label" text="FECHA DE NACIMIENTO:" />
+            <Label layoutX="369.0" layoutY="202.0" styleClass="divider-label" text="APELLIDOS:" />
+            <Label layoutX="382.0" layoutY="246.0" styleClass="divider-label" text="GÉNERO:" />
+            <Label layoutX="48.0" layoutY="278.0" styleClass="divider-label" text="TELÉFONO:" />
+            <Label layoutX="248.0" layoutY="278.0" styleClass="divider-label" text="PAIS:" />
+            <Label layoutX="451.0" layoutY="278.0" styleClass="divider-label" text="CIUDAD:" />
+            <Label layoutX="48.0" layoutY="350.0" styleClass="divider-label" text="DIRECCIÓN DEL DOMICILIO:" />
+            <Label layoutX="51.0" layoutY="487.0" styleClass="divider-label" text="USUARIO:" />
+            <Label layoutX="49.0" layoutY="532.0" styleClass="divider-label" text="CONTRASEÑA:" />
+            <Label layoutX="348.0" layoutY="532.0" styleClass="divider-label" text="REPETIR CONTRASEÑA" />
+            <Label layoutX="316.0" layoutY="487.0" styleClass="divider-label" text="CORREO ELECTRÓNICO:" />
+            <PasswordField fx:id="campoClave" layoutX="133.0" layoutY="524.0" prefHeight="30.0" prefWidth="193.0" styleClass="d-form-item" />
+            <PasswordField fx:id="campoRepetirClave" layoutX="478.0" layoutY="524.0" prefHeight="30.0" prefWidth="193.0" styleClass="d-form-item" />
+            <Pane layoutX="49.0" layoutY="642.0">
                <children>
-                  <TextField fx:id="txtUsuario" layoutX="14.0" layoutY="24.0" />
-                  <Label layoutX="15.0" layoutY="4.0" text="Usuario:" />
-                  <Label layoutX="179.0" layoutY="2.0" text="Contraseña:" />
-                  <PasswordField fx:id="txtClave" layoutX="179.0" layoutY="24.0" />
-                  <TextField fx:id="txtCorreo" layoutX="14.0" layoutY="78.0" prefHeight="25.0" prefWidth="314.0" />
-                  <Label layoutX="15.0" layoutY="58.0" text="Correo Electrónico:" />
-                  <Button layoutX="241.0" layoutY="119.0" mnemonicParsing="false" onAction="#guardarNuevaCuenta" text="Crear Cuenta" />
+                  <Pane fx:id="panelNuevaCuenta" disable="true" layoutX="3.0" layoutY="74.0" prefHeight="145.0" prefWidth="621.0">
+                     <children>
+                        <TextField fx:id="txtUsuario" layoutX="75.0" layoutY="8.0" prefHeight="30.0" prefWidth="268.0" />
+                        <Label layoutY="15.0" styleClass="divider-label" text="USUARIO:" />
+                        <Label layoutX="364.0" layoutY="15.0" styleClass="divider-label" text="CONTRASEÑA:" />
+                        <PasswordField fx:id="txtClave" layoutX="456.0" layoutY="8.0" prefHeight="30.0" prefWidth="165.0" />
+                        <TextField fx:id="txtCorreo" layoutX="152.0" layoutY="53.0" prefHeight="30.0" prefWidth="469.0" />
+                        <Label layoutX="1.0" layoutY="59.0" styleClass="divider-label" text="CORREO ELECTRÓNICO:" />
+                        <Button layoutX="521.0" layoutY="101.0" mnemonicParsing="false" onAction="#guardarNuevaCuenta" prefHeight="30.0" styleClass="btn-primary" text="CREAR CUENTA" />
+                     </children>
+                  </Pane>
+                  <ComboBox fx:id="cbxListaUsuarios" layoutX="78.0" layoutY="28.0" onAction="#activarPanel" prefHeight="30.0" prefWidth="546.0" promptText="Seleccione un usuario" styleClass="d-form-item" />
+                  <Label layoutX="1.0" layoutY="36.0" styleClass="divider-label" text="USUARIOS:" />
+                  <Label text="GENERACIÓN DE CUENTAS">
+                     <styleClass>
+                        <String fx:value="divider-label" />
+                        <String fx:value="small" />
+                     </styleClass>
+                  </Label>
+                  <Line endX="444.0" layoutX="179.0" layoutY="6.0" startX="-47.0" stroke="#8a8f9c" strokeType="OUTSIDE" strokeWidth="0.3" />
                </children>
             </Pane>
             <Label layoutX="508.0" layoutY="557.0" text="DESACTIVAR CUENTA" visible="false" />
             <Button layoutX="532.0" layoutY="583.0" mnemonicParsing="false" text="Desactivar" visible="false" />
-            <ComboBox fx:id="cbxListaUsuarios" layoutX="64.0" layoutY="519.0" onAction="#activarPanel" prefHeight="25.0" prefWidth="314.0" promptText="Seleccione un usuario" />
-            <Label layoutX="63.0" layoutY="500.0" text="Usuarios:" />
+            <Line endX="444.0" layoutX="227.0" layoutY="123.0" startX="-79.0" stroke="#8a8f9c" strokeType="OUTSIDE" strokeWidth="0.3" />
+            <Label layoutX="49.0" layoutY="443.0" text="DATOS DE CUENTA">
+               <styleClass>
+                  <String fx:value="divider-label" />
+                  <String fx:value="small" />
+               </styleClass>
+            </Label>
+            <Line endX="444.0" layoutX="230.0" layoutY="449.0" startX="-79.0" stroke="#8a8f9c" strokeType="OUTSIDE" strokeWidth="0.3" />
          </children>
+         <stylesheets>
+            <URL value="@css/raizvista.css" />
+            <URL value="@css/paneladministracion.css" />
+         </stylesheets>
       </AnchorPane>
    </content>
 </ScrollPane>

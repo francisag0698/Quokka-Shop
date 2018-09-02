@@ -68,12 +68,12 @@ public class ServicioCuenta {
     public void crearCuentaAdmin(){
         if(todos().isEmpty()){
             ServicioPersona sp = new ServicioPersona();
-            sp.getPersona().setApellidos("admin");
+            sp.getPersona().setApellidos("Doe White");
             sp.getPersona().setCiudad("Loja");
-            sp.getPersona().setDireccion("Av. Siempre viva");
+            sp.getPersona().setDireccion("Lorem ipsum dolor sit amet");
             sp.getPersona().setDni("1111111111");
             sp.getPersona().setFecha_nacimiento(new Date());
-            sp.getPersona().setNombres("admin");
+            sp.getPersona().setNombres("Alex Joe");
             sp.getPersona().setPais("Ecuador");
             sp.getPersona().setSexo("Masculino");
             sp.getPersona().setTelefono("123456789");

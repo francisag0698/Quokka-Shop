@@ -7,16 +7,19 @@ and open the template in the editor.
     Created on : 26/08/2018, 17:53:55
     Author     : PotatoPower
 */
+.background{
+    -fx-background-color: #f5f6f7;
+}
 .s-pane{
     -fx-background-color: #f5f6f7;
     -fx-border-width: 0;
 }
 .v-box{
-    -fx-background-color: #f5f6f7;
+    -fx-background-color: #f5f6f7;    
 }
 .accion{
     -fx-font-family: 'Ubuntu';
-    -fx-text-fill: #7c60ff;
+    -fx-text-fill: #515151;
     -fx-padding: 5px 0 0 5px;
 }
 .usuario{
@@ -31,6 +34,94 @@ and open the template in the editor.
     -fx-text-fill: #8a8f9c;
 }
 .card-pane{
-    -fx-background-color: #fff;
+    -fx-border-width: 0 0 3px 0;
+    -fx-border-color: #7c60ff;
+    -fx-background-color: #efefef;
+}
+
+.card-pane .label{
+    -fx-font-family: "Roboto Condensed";
+    -fx-text-fill: #4f4f4f;
+}
+
+.card-pane.w{
+    -fx-background-color: #7c60ff;
+}
+
+.card-pane.w .label{
+    -fx-text-fill: #fff;
+}
+
+.label-div{
+    -fx-background-color: #f5f6f7;
+    -fx-font-size: 15px;
+}
+
+.table-view{    
+    -fx-background-color: transparent;
+}
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: #efefef;
+    -fx-border-width: 1px 0 1px 0;
+    -fx-border-color: #c6ccdb;
+}
+
+.table-view .column-header .label{
+    -fx-font-family: 'Ubuntu';
+    -fx-font-size: 10px;
+    -fx-text-fill: #8a8f9c;
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 5px 5px 5px 5px;
+}
+
+.table-cell {
+    -fx-font-family: 'Roboto Condensed Light';
+    -fx-background-color: #f5f6f7;
+    -fx-font-size: 15px;     
+    -fx-padding: 7px 5px 7px 5px;
+    -fx-border-color: #ededed;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.table-view:row-selection .table-cell,
+.table-view:row-selection .table-cell:hover{
+    -fx-text-fill: #262626;
+}
+
+.table-cell:empty, .table-cell:empty:hover {
+    -fx-background-color: #f5f6f7;
+    -fx-border-width: 0;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-button,
+.table-view *.scroll-bar:horizontal *.decrement-button,
+.table-view *.scroll-bar:vertical *.increment-button,
+.table-view *.scroll-bar:vertical *.decrement-button{
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-arrow, 
+.table-view *.scroll-bar:horizontal *.decrement-arrow,
+.table-view *.scroll-bar:vertical *.increment-arrow,
+.table-view *.scroll-bar:vertical *.decrement-arrow{
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb{
+    -fx-background-color: #efefef;
 }
 

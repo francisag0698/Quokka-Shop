@@ -182,6 +182,7 @@ public class HabitacionDao extends AdaptadorDao<Habitacion>{
             q.setParameter("fin", fin);
             lista = q.getResultList();
         } catch (Exception e) {
+            System.out.println("HabitacionDao | Met: listarDisponiples " + e);
         }
        return lista;
     }//cierre del metodo listarDisponibles

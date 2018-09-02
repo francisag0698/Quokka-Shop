@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
@@ -14,40 +15,42 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.shape.Line?>
 
 <AnchorPane id="AnchorPane" prefHeight="638.0" prefWidth="738.0" styleClass="background" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="od.vista.controladores.PanelClientesController">
     <stylesheets>
         <URL value="@css/paneladministracion.css" />
       <URL value="@css/general.css" />
+      <URL value="@css/raizvista.css" />
     </stylesheets>
    <children>
       <Label layoutX="43.0" layoutY="34.0" styleClass="title-pane" text="Clientes" />
-      <Label layoutX="43.0" layoutY="76.0" styleClass="subtitle-pane" text="Curabitur sit amet sagittis urna. Fusce venenatis turpis et tellus." />
-      <TabPane fx:id="tbpClientes" layoutX="43.0" layoutY="108.0" prefHeight="492.0" prefWidth="642.0" tabClosingPolicy="UNAVAILABLE">
+      <Label layoutX="43.0" layoutY="71.0" lineSpacing="2.0" prefHeight="49.0" prefWidth="509.0" styleClass="subtitle-pane" text="Como administrador, podrás tener el control sobre el listado de clientes, modificándolos o añadiendo uno nuevo cuando se requiera." wrapText="true" />
+      <TabPane fx:id="tbpClientes" layoutX="43.0" layoutY="117.0" prefHeight="492.0" prefWidth="642.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="tabListado" text="Listado de Clientes">
+          <Tab fx:id="tabListado" text="LISTADO DE CLIENTES">
                <content>
                   <AnchorPane prefHeight="485.0" prefWidth="642.0">
                      <children>
-                        <TextField fx:id="txtBuscar" layoutY="18.0" onKeyReleased="#buscarTexto" prefHeight="25.0" prefWidth="302.0" promptText="Busqueda" />
-                        <ComboBox fx:id="cbxFiltrarPor" layoutX="308.0" layoutY="18.0" onAction="#controlCombo" prefHeight="25.0" prefWidth="141.0" promptText="Filtrar por:" />
-                        <ComboBox fx:id="cbxComboSeleccion" disable="true" layoutX="456.0" layoutY="18.0" onAction="#buscarTexto" prefWidth="150.0" promptText="Sin selección" />
-                        <TableView fx:id="tblCliente" layoutY="55.0" prefHeight="368.0" prefWidth="642.0">
+                        <TextField fx:id="txtBuscar" layoutY="14.0" onKeyReleased="#buscarTexto" prefHeight="30.0" prefWidth="297.0" promptText="Busqueda" styleClass="searchform-item" />
+                        <ComboBox fx:id="cbxFiltrarPor" layoutX="305.0" layoutY="14.0" onAction="#controlCombo" prefHeight="30.0" prefWidth="141.0" promptText="Filtrar por:" styleClass="searchform-item" />
+                        <ComboBox fx:id="cbxComboSeleccion" disable="true" layoutX="453.0" layoutY="14.0" onAction="#buscarTexto" prefHeight="30.0" prefWidth="150.0" promptText="Sin selección" styleClass="searchform-item" />
+                        <TableView fx:id="tblCliente" layoutY="56.0" prefHeight="355.0" prefWidth="642.0">
                            <columns>
-                              <TableColumn fx:id="colNyAp" prefWidth="221.0" text="Nombres y Apellidos" />
-                              <TableColumn fx:id="colNroDNI" prefWidth="124.0" text="Nro. de DNI" />
-                              <TableColumn fx:id="colGenero" prefWidth="92.0" text="Género" />
-                              <TableColumn fx:id="colTelefono" prefWidth="99.0" text="Teléfono" />
-                              <TableColumn fx:id="colProcedencia" prefWidth="105.0" text="Procedencia" />
+                              <TableColumn fx:id="colNyAp" prefWidth="221.0" text="NOMBRES Y APELLIDOS" />
+                              <TableColumn fx:id="colNroDNI" prefWidth="124.0" text="NRO. DE DNI" />
+                              <TableColumn fx:id="colGenero" prefWidth="92.0" text="GENERO" />
+                              <TableColumn fx:id="colTelefono" prefWidth="99.0" text="TELEFONO" />
+                              <TableColumn fx:id="colProcedencia" prefWidth="105.0" text="PROCEDENCIA" />
                            </columns>
                         </TableView>
-                        <ButtonBar layoutX="442.0" layoutY="429.0" prefHeight="40.0" prefWidth="200.0">
+                        <ButtonBar layoutX="442.0" layoutY="414.0" prefHeight="40.0" prefWidth="200.0">
                           <buttons>
-                            <Button mnemonicParsing="false" onAction="#handleDetalles" text="Detalles" />
-                              <Button mnemonicParsing="false" onAction="#handleModificar" text="Modificar" />
+                            <Button mnemonicParsing="false" onAction="#handleDetalles" prefHeight="30.0" styleClass="btn-primary" text="DETALLES" />
+                              <Button mnemonicParsing="false" onAction="#handleModificar" prefHeight="30.0" styleClass="btn-secondary" text="MODIFICAR" />
                           </buttons>
                         </ButtonBar>
-                        <Button fx:id="btnLimpiarFiltro" layoutX="612.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleBarrer" prefHeight="25.0" prefWidth="30.0">
+                        <Button fx:id="btnLimpiarFiltro" layoutX="610.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBarrer" prefHeight="30.0" prefWidth="32.0" styleClass="btn-default">
                            <graphic>
                               <Label styleClass="fa-icon" text="" />
                            </graphic>
@@ -55,30 +58,44 @@
                      </children></AnchorPane>
                </content>
             </Tab>
-          <Tab fx:id="tabFormulario" text="Nuevo Cliente">
+          <Tab fx:id="tabFormulario" text="NUEVO CLIENTE">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="1.0" layoutY="18.0" text="Nro. de DNI:" />
-                        <TextField fx:id="txtNroDNI" layoutX="75.0" layoutY="14.0" prefHeight="25.0" prefWidth="271.0" />
-                        <TextField fx:id="txtNombres" layoutX="81.0" layoutY="54.0" prefHeight="25.0" prefWidth="232.0" />
-                        <Label layoutX="1.0" layoutY="58.0" text="Nombres:" />
-                        <TextField fx:id="txtApellidos" layoutX="410.0" layoutY="53.0" prefHeight="25.0" prefWidth="232.0" />
-                        <Label layoutX="337.0" layoutY="57.0" text="Apellidos:" />
-                        <Label layoutX="1.0" layoutY="99.0" text="Fecha de Nacimiento:" />
-                        <DatePicker fx:id="dpFecha" layoutX="128.0" layoutY="95.0" onAction="#handleFecha" prefHeight="25.0" prefWidth="184.0" />
-                        <Label layoutX="337.0" layoutY="99.0" text="Género:" />
-                        <ComboBox fx:id="cbxGenero" layoutX="410.0" layoutY="95.0" prefHeight="25.0" prefWidth="232.0" />
-                        <TextField fx:id="txtTelefono" layoutX="128.0" layoutY="135.0" onKeyReleased="#validarEnteros" prefHeight="25.0" prefWidth="184.0" />
-                        <ComboBox fx:id="txtPais" layoutX="410.0" layoutY="135.0" prefHeight="25.0" prefWidth="232.0" />
-                        <Label layoutY="139.0" text="Teléfono/Celular:" />
-                        <Label layoutX="337.0" layoutY="139.0" text="País:" />
-                        <Label layoutX="2.0" layoutY="179.0" text="Ciudad:" />
-                        <TextField fx:id="txtCiudad" layoutX="81.0" layoutY="175.0" prefHeight="25.0" prefWidth="160.0" />
-                        <Label layoutX="258.0" layoutY="179.0" text="Dirección:" />
-                        <TextField fx:id="txtDireccion" layoutX="326.0" layoutY="175.0" prefHeight="25.0" prefWidth="316.0" />
-                        <Button layoutX="440.0" layoutY="219.0" mnemonicParsing="false" onAction="#guardar" text="Guardar Cliente" />
-                        <Button layoutX="547.0" layoutY="219.0" mnemonicParsing="false" onAction="#borrarCampos" text="Borrar Campos" />
+                        <Label layoutX="5.0" layoutY="62.0" styleClass="divider-label" text="NRO DE DNI:" />
+                        <TextField fx:id="txtNroDNI" layoutX="89.0" layoutY="54.0" prefHeight="30.0" prefWidth="271.0" promptText="Escriba el DNI del Cliente" styleClass="d-form-item" />
+                        <TextField fx:id="txtNombres" layoutX="78.0" layoutY="97.0" prefHeight="30.0" prefWidth="232.0" promptText="Escriba los nombres del Cliente" styleClass="d-form-item" />
+                        <Label layoutX="1.0" layoutY="105.0" styleClass="divider-label" text="NOMBRES:" />
+                        <TextField fx:id="txtApellidos" layoutX="410.0" layoutY="97.0" prefHeight="30.0" prefWidth="232.0" promptText="Escriba los apellidos del Cliente" styleClass="d-form-item" />
+                        <Label layoutX="336.0" layoutY="105.0" styleClass="divider-label" text="APELLIDOS:" />
+                        <Label layoutX="1.0" layoutY="146.0" styleClass="divider-label" text="FECHA DE NACIMIENTO:" />
+                        <DatePicker fx:id="dpFecha" layoutX="137.0" layoutY="139.0" onAction="#handleFecha" prefHeight="30.0" prefWidth="184.0" styleClass="d-form-item" />
+                        <Label layoutX="337.0" layoutY="146.0" styleClass="divider-label" text="GENERO:" />
+                        <ComboBox fx:id="cbxGenero" layoutX="410.0" layoutY="139.0" prefHeight="30.0" prefWidth="232.0" styleClass="d-form-item" />
+                        <TextField fx:id="txtTelefono" layoutX="137.0" layoutY="180.0" onKeyReleased="#validarEnteros" prefHeight="30.0" prefWidth="184.0" promptText="Escriba el numero de contacto" styleClass="d-form-item" />
+                        <ComboBox fx:id="txtPais" layoutX="78.0" layoutY="275.0" prefHeight="30.0" prefWidth="232.0" styleClass="d-form-item" />
+                        <Label layoutX="1.0" layoutY="188.0" styleClass="divider-label" text="TELEFONO/CELULAR:" />
+                        <Label layoutX="1.0" layoutY="282.0" styleClass="divider-label" text="PAIS:" />
+                        <Label layoutX="344.0" layoutY="282.0" styleClass="divider-label" text="CIUDAD:" />
+                        <TextField fx:id="txtCiudad" layoutX="412.0" layoutY="274.0" prefHeight="30.0" prefWidth="230.0" promptText="Escriba la ciudad de procedencia" styleClass="d-form-item" />
+                        <Label layoutX="1.0" layoutY="324.0" styleClass="divider-label" text="DIRECCION:" />
+                        <TextField fx:id="txtDireccion" layoutX="79.0" layoutY="315.0" prefHeight="30.0" prefWidth="563.0" promptText="Escriba la dirección completa del domicilio" styleClass="d-form-item" />
+                        <Button layoutX="388.0" layoutY="385.0" mnemonicParsing="false" onAction="#guardar" prefHeight="30.0" styleClass="btn-primary" text="GUARDAR CLIENTE" />
+                        <Button layoutX="516.0" layoutY="385.0" mnemonicParsing="false" onAction="#borrarCampos" prefHeight="30.0" styleClass="btn-default" text="BORRAR CAMPOS" />
+                        <Label layoutX="-1.0" layoutY="23.0" text="DATOS PERSONALES">
+                           <styleClass>
+                              <String fx:value="divider-label" />
+                              <String fx:value="small" />
+                           </styleClass>
+                        </Label>
+                        <Line endX="444.0" layoutX="197.0" layoutY="30.0" startX="-88.0" stroke="#8a8f9c" strokeType="OUTSIDE" strokeWidth="0.3" />
+                        <Label layoutX="4.0" layoutY="239.0" text="DATOS DE PROCEDENCIA">
+                           <styleClass>
+                              <String fx:value="divider-label" />
+                              <String fx:value="small" />
+                           </styleClass>
+                        </Label>
+                        <Line endX="444.0" layoutX="202.0" layoutY="246.0" startX="-71.0" stroke="#8a8f9c" strokeType="OUTSIDE" strokeWidth="0.3" />
                      </children></AnchorPane>
                </content>
             </Tab>
