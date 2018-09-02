@@ -19,6 +19,8 @@ import javafx.scene.control.DatePicker;
 
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import od.controlador.servicio.ServicioCuenta;
 import od.controlador.servicio.ServicioPersona;
@@ -52,6 +54,11 @@ public class PanelConfiguracionController {
                 "Colombia"
         );
         campoPais.setValue("Ecuador");
+        
+        if (Sesiones.getCuenta().getPersona().getRol().getNombre().equals("Cliente")) {
+            panelCuenta.setVisible(false);
+            imagenRelleno.setVisible(true);
+        }
         
         cargarVista();
     }
@@ -335,6 +342,12 @@ public class PanelConfiguracionController {
     private ComboBox cbxListaUsuarios;
     @FXML
     private Pane panelNuevaCuenta;
+    @FXML
+    private Pane panelCuenta;
+    @FXML
+    private AnchorPane contenedorPrincipal;
+    @FXML
+    private ImageView imagenRelleno;
     
     private ServicioPersona sp = new ServicioPersona();
     private ServicioCuenta sc = new ServicioCuenta();
