@@ -182,7 +182,14 @@ public class ReservacionesController {
             double hab = sr.getReservacion().getHabitacion().getPrecio() * sr.getReservacion().getDetalle().getCant_habitaciones();
             lblValorHabitaciones.setText("$" + df.format(hab));
             
-            long noches = ChronoUnit.DAYS.between(LocalDate.parse(Utilidades.formatearFecha(sr.getReservacion().getFecha_inicio())), LocalDate.parse(Utilidades.formatearFecha(sr.getReservacion().getFecha_fin())));
+            long nochesT = ChronoUnit.DAYS.between(LocalDate.parse(Utilidades.formatearFecha(sr.getReservacion().getFecha_inicio())), LocalDate.parse(Utilidades.formatearFecha(sr.getReservacion().getFecha_fin())));
+            long noches = ChronoUnit.DAYS.between(LocalDate.parse(Utilidades.formatearFecha(sr.getReservacion().getFecha_inicio())), LocalDate.now());
+            
+            if (noches < 0) 
+                noches = 0;
+            else if (noches == 0)
+                noches++;
+            
             lblNroNoches.setText(""+noches);
             
             lblValorServicios.setText("$"+ df.format(sr.getReservacion().getDetalle().getPago_subtotal()));
@@ -326,6 +333,7 @@ public class ReservacionesController {
     @FXML
     private Button btnDarDeAlta;
     
+    private Double totalReserva;
     private ServicioReservacion sr = new ServicioReservacion();
 
 }

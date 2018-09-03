@@ -68,6 +68,7 @@ public class PanelNuevaReservacionController {
         sr.fijarReservacion(null);
         sd.fijarDetalle(null);
         ss.fijarServicio(null);
+        listaServicios.getSelectionModel().clearSelection();
     }
     
     private void limpiarDNI(){
@@ -292,7 +293,7 @@ public class PanelNuevaReservacionController {
                     Utilidades.guardarHistorial("Nueva Reservación", "Una nueva reserva se ha registrado", sp.getPersona());
                     alert.showAndWait();
                     limpiar();
-                    principal.fijarCentroPane("PanelReservaciones");
+                    handleBorrarTodo();
                 }else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
