@@ -71,6 +71,17 @@ public class PanelNuevaReservacionController {
         listaServicios.getSelectionModel().clearSelection();
     }
     
+    private void limpiarLabels(){
+        lblValorHabitacion.setText("00.00");
+        lblValorServicios.setText("00.00");
+        lblNoches.setText("00.00");
+        lblSubtotal.setText("00.00");
+        lblValorIVA.setText("00.00");
+        lblTotal.setText("00.00");
+        disponibles = 0;
+        btnReservar.setDisable(true);
+    }
+    
     private void limpiarDNI(){
         campoCliente.setText("");
         campoDNI.setText("");
@@ -292,8 +303,9 @@ public class PanelNuevaReservacionController {
                     Utilidades.guardarHistorial("Nueva Reservación", "Una nueva reserva se ha registrado", Sesiones.getCuenta().getPersona());
                     Utilidades.guardarHistorial("Nueva Reservación", "Una nueva reserva se ha registrado", sp.getPersona());
                     alert.showAndWait();
-                    limpiar();
+                    
                     handleBorrarTodo();
+                    principal.fijarCentroPane("PanelReservaciones");
                 }else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -377,7 +389,8 @@ public class PanelNuevaReservacionController {
         limpiarDNI();
         limpiarFechas();
         limpiarHabitacion();
-        scrollPanel.setHvalue(0);
+        limpiarLabels();
+        scrollPanel.relocate(0, 0);
     }
     
     @FXML

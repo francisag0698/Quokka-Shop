@@ -62,8 +62,7 @@
                   <Label layoutX="481.0" layoutY="21.0" styleClass="d-label" text="# Habitaciones" />
                </children>
             </Pane>
-            <Button fx:id="btnReservar" disable="true" layoutX="528.0" layoutY="818.0" mnemonicParsing="false" onAction="#handleReservar" prefHeight="30.0" prefWidth="165.0" styleClass="btn-primary" text="REALIZAR RESERVA" />
-            <Button layoutX="440.0" layoutY="819.0" mnemonicParsing="false" prefHeight="30.0" styleClass="btn-default" text="CANCELAR" />
+            <Button fx:id="btnReservar" disable="true" layoutX="472.0" layoutY="818.0" mnemonicParsing="false" onAction="#handleReservar" prefHeight="36.0" prefWidth="221.0" styleClass="btn-primary" text="REALIZAR RESERVA" />
             <Label layoutX="47.0" layoutY="580.0" styleClass="divider-label" text="Para seleccionar varios servicios, mantenga presionada la tecla CTRL y de click sobre los mismos." />
             <Label fx:id="lblTotal" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="536.0" layoutY="752.0" maxWidth="143.0" prefHeight="40.0" prefWidth="143.0" styleClass="price-label" text="\$000.00" textAlignment="RIGHT" />
             <Label layoutX="459.0" layoutY="768.0" styleClass="d-label" text="TOTAL:" />

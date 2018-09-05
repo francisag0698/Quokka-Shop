@@ -67,7 +67,7 @@ public class ReservacionesController {
                 cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getTelefono())
         );
         estadoColumna.setCellValueFactory(
-                cellData -> new SimpleStringProperty((cellData.getValue().getEstado()) ? "Activo" : "Inactivo")
+                cellData -> new SimpleStringProperty((LocalDate.parse(Utilidades.formatearFecha(cellData.getValue().getFecha_fin())).isBefore(LocalDate.now()) && cellData.getValue().getEstado().equals(Boolean.TRUE)) ? "Caducada": ((cellData.getValue().getEstado()) ? "Activo" : "Inactivo"))
         );
 
         reservasTabla.refresh();
@@ -189,6 +189,8 @@ public class ReservacionesController {
                 noches = 0;
             else if (noches == 0)
                 noches++;
+            else if (noches > nochesT)
+                noches = nochesT;
             
             lblNroNoches.setText(""+noches);
             
