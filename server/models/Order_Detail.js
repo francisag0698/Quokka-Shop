@@ -9,7 +9,7 @@ const Order_Detail = db.define('Order_Detail', {
         primaryKey: true,
         autoIncrement: true,
     },
-    quantity: Sequelize.INTEGER
+    quantity: Sequelize.INTEGER(6)
 });
 
 Order_Detail.belongsTo(Order, { foreignKey: 'id_order' });

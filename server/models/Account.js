@@ -9,17 +9,18 @@ const Account = db.define('Account', {
         primaryKey: true,
         autoIncrement: true,
     },
-    user_name: Sequelize.STRING,
-    email: Sequelize.STRING,
+    user_name: Sequelize.STRING(100),
+    email: Sequelize.STRING(100),
     password: Sequelize.STRING,
     secure_token: Sequelize.STRING,
-    phone_number: Sequelize.STRING,
+    phone_number: Sequelize.STRING(20),
     state: Sequelize.BOOLEAN,
     external_id: { type: Sequelize.STRING, defaultValue: Sequelize.UUIDV4 }
 });
 
-//Relacion 1 a 1 con Persona
+Person.hasOne(Account, { foreignKey: 'id_person' });
 Account.belongsTo(Person, { foreignKey: 'id_person' });
+
 Account.sync();
 
 module.exports = Account;

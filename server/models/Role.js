@@ -7,7 +7,7 @@ const Role = db.define('Role', {
         primaryKey: true,
         autoIncrement: true,
     },
-    name: Sequelize.STRING        
+    name: Sequelize.STRING(20)        
 }, {
     timestamps: false
 });

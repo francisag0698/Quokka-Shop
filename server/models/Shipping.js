@@ -9,7 +9,7 @@ const Shipping = db.define('Shipping', {
         primaryKey: true,
         autoIncrement: true,
     },
-    type: Sequelize.STRING,
+    type: Sequelize.STRING(60),
     description: Sequelize.STRING
 });
 
