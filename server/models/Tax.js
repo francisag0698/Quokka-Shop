@@ -2,17 +2,14 @@
 const Sequelize = require('sequelize');
 const  db = require('../database');
 
-const Tax = db.define('Category',{
-    idCategory:{
+const Tax = db.define('Tax',{
+    id_category:{
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    percentage: Sequelize.DECIMAL,
+    percentage: Sequelize.DECIMAL(10,2),
     description: Sequelize.STRING
 });
-
-Tax.belongsTo(Tax, { foreignKey: 'idTax' });
-Tax.sync();
 
 module.exports = Tax;

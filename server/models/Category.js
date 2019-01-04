@@ -3,15 +3,13 @@ const Sequelize = require('sequelize');
 const  db = require('../database');
 
 const Category = db.define('Category',{
-    idCategory:{
+    id_category:{
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    name: Sequelize.STRING
+    name: Sequelize.STRING(80)
 });
 
-Category.belongsTo(Category, { foreignKey: 'idProduct' });
-Category.sync();
 
 module.exports = Category;

@@ -4,12 +4,12 @@ const db = require ('../database');
 const Product = require('./Product');
 
 const Image = db.define('Image', {
-    idImage:{
+    id_image:{
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    idProduct:{
+    id_product:{
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -18,8 +18,11 @@ const Image = db.define('Image', {
     
 });
 
-Image.belongsTo(Product, { foreignKey: 'idProduct' });
+Product.hasMany(Image, {foreignKey: 'id_product'});
+Image.belongsTo(Product,{foreignKey:'id_product'});
+
 Image.sync();
+
 
 module.exports = Image;
 
