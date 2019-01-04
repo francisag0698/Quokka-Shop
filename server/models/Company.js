@@ -14,5 +14,6 @@ const Company = db.define('Company', {
     address: Sequelize.STRING
 });
 
+Company.sync();
 
 module.exports = Company;

@@ -11,5 +11,6 @@ const Category = db.define('Category',{
     name: Sequelize.STRING(80)
 });
 
+Category.sync();
 
 module.exports = Category;

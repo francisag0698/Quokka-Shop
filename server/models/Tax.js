@@ -12,4 +12,6 @@ const Tax = db.define('Tax',{
     description: Sequelize.STRING
 });
 
+Tax.sync();
+
 module.exports = Tax;

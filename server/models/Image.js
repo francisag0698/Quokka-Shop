@@ -9,11 +9,6 @@ const Image = db.define('Image', {
         primaryKey: true,
         autoIncrement: true
     },
-    id_product:{
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
     path: Sequelize.STRING
     
 });

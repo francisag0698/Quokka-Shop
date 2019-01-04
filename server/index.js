@@ -5,6 +5,7 @@ const app = express();
 
 //Settings
 const { db } = require('./database');
+const models = require('./models/models');
 
 //Middlewares
 app.use(morgan('dev'));
@@ -12,9 +13,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //Routes
-app.use('/api/role', require('./routes/role.routes'));
-app.use('/api/person', require('./routes/person.routes'));
-app.use('/api/account', require('./routes/account.routes'));
 
 //Server Settings
 app.use(function(req, res, next) {

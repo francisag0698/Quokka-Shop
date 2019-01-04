@@ -18,12 +18,7 @@ const Product = db.define('Product', {
     code: Sequelize.STRING(100),
     price: Sequelize.DECIMAL(10,2),
     brand: Sequelize.STRING(70),
-    state: Sequelize.STRING,
-    id_tax:{
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    } 
+    state: Sequelize.BOOLEAN
 },{
     timestamps: false   
 });
