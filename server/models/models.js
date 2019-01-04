@@ -7,7 +7,6 @@ const models = fs
     })
     .forEach(file => {
         var model = require('./'+file);
-        console.log(model);
     });
 
 module.exports = models;
