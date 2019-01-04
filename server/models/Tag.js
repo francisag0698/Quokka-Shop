@@ -9,9 +9,11 @@ const Tag = db.define('Tag', {
         primaryKey: true,
         autoIncrement: true,
     },
-    name: Sequelize.STRING
+    name: Sequelize.STRING(100)
 });
 
+Product.hasMany(Tag, { foreignKey: 'id_product' });
+Tag.belongsTo(Product, { foreignKey: 'id_product' });
 
 Tag.sync();
 

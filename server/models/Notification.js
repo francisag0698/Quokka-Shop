@@ -16,6 +16,8 @@ const Notification = db.define('Notification', {
     timestamps: false
 });
 
+Person.hasMany(Notification, { foreignKey: 'id_person' });
+Notification.belongsTo(Person, { foreignKey: 'id_person' });
 
 Notification.sync();
 

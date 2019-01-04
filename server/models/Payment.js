@@ -9,11 +9,13 @@ const Payment = db.define('Payment', {
         primaryKey: true,
         autoIncrement: true,
     },
-    type: Sequelize.STRING,
+    type: Sequelize.STRING(60),
     description: Sequelize.STRING
 });
 
+Order.hasMany(Payment, { foreignKey: 'id_order' });
 Payment.belongsTo(Order, { foreignKey: 'id_order' });
+
 Payment.sync();
 
 module.exports = Payment;

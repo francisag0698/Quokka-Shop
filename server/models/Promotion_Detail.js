@@ -10,9 +10,10 @@ const Promotion_Detail = db.define('Promotion_Detail', {
         primaryKey: true,
         autoIncrement: true,
     },
-    quantity: Sequelize.INTEGER
+    quantity: Sequelize.INTEGER(6)
 });
-
+Promotion.hasMany(Promotion_Detail, { foreignKey: 'id_promotion' });
+Promotion_Detail.belongsTo(Promotion, { foreignKey: 'id_promotion' });
 
 Promotion_Detail.sync();
 
