@@ -12,6 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //Routes
+app.use('/api/role', require('./routes/role.routes'));
+app.use('/api/person', require('./routes/person.routes'));
+app.use('/api/account', require('./routes/person.routes'));
 
 //Server Settings
 app.use(function(req, res, next) {
