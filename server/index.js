@@ -5,7 +5,6 @@ const app = express();
 
 //Settings
 const { db } = require('./database');
-const models = require('./models/models');
 
 //Middlewares
 app.use(morgan('dev'));
