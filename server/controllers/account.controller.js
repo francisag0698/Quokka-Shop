@@ -1,8 +1,7 @@
 'use strict';
 const Sequelize = require('sequelize');
 const Account = require('../models/Account');
-
-const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 
 const AccountController = {};
 
@@ -16,7 +15,7 @@ AccountController.getAccountList = (req, res) => {
 };
 
 AccountController.saveAccount = (req, res) => {
-    req.body.password = crypto.createHmac('sha512',req.body.password).update(req.body.password).digest("base64");
+    req.body.password = bcrypt.hashSync(req.body.password, 8);
     Account.create(req.body)
     .then(() =>{
         res.status(201).send(); })
