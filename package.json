@@ -16,13 +16,13 @@
     "express-session": "^1.15.6",
     "http-errors": "^1.7.1",
     "morgan": "^1.9.1",
-    "npm": "^6.5.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg": "^7.6.1",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.41.2",
-    "uuid": "^3.3.2"
+    "vue": "^2.5.22",
+    "vue-server-renderer": "^2.5.22"
   },
   "devDependencies": {
     "nodemon": "^1.18.7"
