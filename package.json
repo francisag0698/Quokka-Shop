@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server/bin/www"
+    "start": "nodemon server/bin/www",
+    "webpack": "webpack --mode development --watch"
   },
   "keywords": [],
   "author": "",
@@ -22,9 +23,17 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.41.2",
     "vue": "^2.5.22",
+    "vue-router": "^3.0.2",
     "vue-server-renderer": "^2.5.22"
   },
   "devDependencies": {
-    "nodemon": "^1.18.7"
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-loader": "^8.0.5",
+    "nodemon": "^1.18.7",
+    "vue-loader": "^15.5.1",
+    "vue-template-compiler": "^2.5.22",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
   }
 }

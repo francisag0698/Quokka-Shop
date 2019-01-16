@@ -5,12 +5,18 @@ const cookie = require('cookie-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
+const fs = require('fs');
+const path = require('path');
 
 const Vue = require('vue');
-const renderer = require('vue-server-renderer').createRenderer();
-//const path = require('path');
-
 const app = express();
+
+const createApp =  require('../ui/public/js/server.bundle.js');
+const renderer = require('vue-server-renderer').createRenderer({
+  template: fs.readFileSync('./index.html', 'utf-8')
+});
+
+app.use(express.static(path.join(__dirname, '../ui/public')));
 
 //Middlewares
 app.use(logger('dev'));
@@ -46,29 +52,24 @@ const AuthController = require('./controllers/auth.controller');
 passport.use(new LocalStrategy(AuthController.getSession));
 
 //Routes
-/*app.use('/api/role', require('./routes/role.routes'));
+app.use('/api/role', require('./routes/role.routes'));
 app.use('/api/person', require('./routes/person.routes'));
-app.use('/api/account', require('./routes/account.routes'));*/
+app.use('/api/account', require('./routes/account.routes'));
 app.get('*', (req, res) => {
-  const app = new Vue({
-    data: {
-      url: req.url
-    },
-    template: `<div>The visited URL is: {{ url }}</div>`
-  })
+  const context = { url: req.url }
 
-  renderer.renderToString(app, (err, html) => {
-    if (err) {
-      res.status(500).end('Internal Server Error')
-      return
-    }
-    res.end(`
-      <!DOCTYPE html>
-      <html lang="en">
-        <head><title>Hello</title></head>
-        <body>${html}</body>
-      </html>
-    `)
+  createApp(context).then(app => {
+    renderer.renderToString(app, (err, html) => {
+      if (err) {
+        if (err.code === 404) {
+          res.status(404).end('Page not found')
+        } else {
+          res.status(500).end('Internal Server Error')
+        }
+      } else {
+        res.end(html)
+      }
+    })
   })
 });
 
