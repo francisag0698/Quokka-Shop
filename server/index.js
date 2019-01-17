@@ -8,12 +8,11 @@ const session = require('express-session');
 const fs = require('fs');
 const path = require('path');
 
-const Vue = require('vue');
 const app = express();
 
 const createApp =  require('../ui/public/js/server.bundle.js');
 const renderer = require('vue-server-renderer').createRenderer({
-  template: fs.readFileSync('./index.html', 'utf-8')
+  template: fs.readFileSync(path.join(__dirname, '../ui/public/index.html'))
 });
 
 app.use(express.static(path.join(__dirname, '../ui/public')));
