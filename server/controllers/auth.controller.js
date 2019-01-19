@@ -17,4 +17,14 @@ AuthController.getSession = (username, password, done) => {
     })
 }
 
+AuthController.verifySession = (req, res, next) => {
+    if(req.user) next();
+    else res.redirect('/login'); 
+}
+
+AuthController.verifyLogin = (req, res, next) => {
+    if(!req.user) next();
+    else res.redirect('/dashboard'); 
+}
+
 module.exports = AuthController;

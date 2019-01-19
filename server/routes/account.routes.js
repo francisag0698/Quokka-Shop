@@ -12,6 +12,5 @@ router.get('/:id', accountController.getAccount)
 router.post('/session/login', passport.authenticate('local', { successRedirect: '/api/account',
                                 failureRedirect: '/api/person',
                                 failureFlash: false }));
-router.get('/session/login', accountController.getAccountList);
 
 module.exports = router;
