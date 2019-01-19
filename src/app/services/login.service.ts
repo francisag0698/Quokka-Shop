@@ -1,10 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class LoginService {
+import { LoginAccount } from '../models/login-account';
 
-  constructor(private http: HttpClient) {}
+@Injectable({ providedIn: 'root' })
+export class LoginService {
+  Account: LoginAccount;
+  
+  constructor(private http: HttpClient) {
+    this.Account = new LoginAccount();
+  }
+
+  login(Account: LoginAccount) {
+    return this.http.post('/api/account/session/login', Account);
+  }
 }

@@ -9,8 +9,8 @@ router.get('/', accountController.getAccountList)
 router.get('/:id', accountController.getAccount)
         .put('/:id', accountController.editAccount);
 
-router.post('/session/login', passport.authenticate('local', { successRedirect: '/api/account',
-                                failureRedirect: '/api/person',
+router.post('/session/login', passport.authenticate('local', { successRedirect: '/dashboard',
+                                failureRedirect: '/login',
                                 failureFlash: false }));
 
 module.exports = router;
