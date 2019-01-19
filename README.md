@@ -1,6 +1,14 @@
-# Quokka
+# Quokka - Tienda Online
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.2.
+Aplicación Web para tienda Online Quokka /w PEAN Stack (PostgreSQL, Express, Angular 7, Nodejs)
+[Angular CLI](https://github.com/angular/angular-cli) version 7.2.2.
+
+## Commandos de Inicio
++ Para compilar todos los archivos e iniciar el servidor `npm run start:all`.
++ Para solo compilar los archivos de servidor y frontend  `npm run build:ssr`.
++ Para solo compilar los archivos del servidor `npm run compile:server`.
++ Para solo compilar los archivos del frontend `npm run build:client-and-server-bundles`.
++ Para iniciar el servidor `npm run serve:ssr` (usarlo después de haber compilado todos los archivos).
 
 ## Development server
 
