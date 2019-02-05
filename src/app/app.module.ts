@@ -6,14 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
+
+import { DashboardModule } from '../dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     LoginComponent,
     AlertComponent
   ],
@@ -21,7 +21,8 @@ import { AlertComponent } from './components/alert/alert.component';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DashboardModule
   ],
   bootstrap: [AppComponent]
 })
