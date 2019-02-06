@@ -4,6 +4,7 @@ import { MainComponent } from '../dashboard/main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { CompanyComponent } from './company/company.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
           { path: 'preferences', 
             component: PreferencesComponent,
             children: [
-              { path: '', component: CompanyComponent }
+              { path: '', component: CompanyComponent },
+              { path: 'category', component: CategoryComponent }
             ] 
           }
         ]
