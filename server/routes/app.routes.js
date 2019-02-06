@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const AuthController = require('../controllers/auth.controller');
 
-router.get('/dashboard', AuthController.verifySession, (req, res) => {
+router.get('/dashboard', (req, res) => {
     res.render('index', { req });
 });
 
-router.get('/login', AuthController.verifyLogin, (req, res) => {
+router.get('/login', (req, res) => {
     res.render('index', { req });
 });
 
