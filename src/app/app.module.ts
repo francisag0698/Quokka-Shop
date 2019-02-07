@@ -11,6 +11,7 @@ import { AlertComponent } from './components/alert/alert.component';
 
 import { DashboardModule } from '../dashboard/dashboard.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,

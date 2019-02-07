@@ -68,6 +68,7 @@ app.use('/api/role', require('./server/routes/role.routes'));
 app.use('/api/person', require('./server/routes/person.routes'));
 app.use('/api/account', require('./server/routes/account.routes'));
 app.use('/auth', require('./server/routes/auth.routes'));
+app.use('/api/company', require('./server/routes/company.routes'));
 
 // Server static files from /browser
 app.get('*.*', express.static(DIST_FOLDER, {
