@@ -11,9 +11,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { CompanyComponent } from './company/company.component';
 import { CategoryComponent } from './category/category.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
-  declarations: [MainComponent, MenuComponent, DashboardComponent, PreferencesComponent, CompanyComponent, CategoryComponent],
+  declarations: [MainComponent, MenuComponent, DashboardComponent, PreferencesComponent, CompanyComponent, CategoryComponent, InventoryComponent, ProductComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

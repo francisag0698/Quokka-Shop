@@ -5,6 +5,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { CompanyComponent } from './company/company.component';
 import { CategoryComponent } from './category/category.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,13 @@ const routes: Routes = [
         path: '',
         children: [
           { path: '', component: DashboardComponent },
+          {
+            path: 'inventory',
+            component: InventoryComponent,
+            children: [
+              { path: '', component: ProductComponent }
+            ]
+          },
           { path: 'preferences', 
             component: PreferencesComponent,
             children: [
