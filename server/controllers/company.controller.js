@@ -5,7 +5,11 @@ const Company = require('../models/Company');
 const CompanyController = {};
 
 CompanyController.getCompanyList = (req, res) => {
-    Company.findAll()
+    Company.findAll({
+        order: [
+            [Sequelize.col('id_company'), 'DESC']
+        ]
+    })
     .then((companys) => {
         res.status(200).json(companys);    
     })
@@ -15,7 +19,12 @@ CompanyController.getCompanyList = (req, res) => {
 };
 
 CompanyController.saveCompany = (req, res) => {
-    Company.create(req.body)
+    Company.create({
+        name: req.body.name,
+        country: req.body.country,
+        city: req.body.city,
+        address: req.body.address
+    })
     .then(() =>{
         res.status(201).json(); 
     })

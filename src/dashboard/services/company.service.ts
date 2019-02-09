@@ -9,6 +9,7 @@ import { Company } from '../models/company';
 export class CompanyService {
 
   selectedCompany: Company;
+  companys: Company[];
 
   readonly URL_API = '/api/company';
 
@@ -23,9 +24,10 @@ export class CompanyService {
   getCompany(){
     return this.http.get(this.URL_API);
   }
+  
 
   putCompany(company: Company) {
-    return this.http.put(this.URL_API+`/${company.id}`, company);
+    return this.http.put(this.URL_API+`/${company.id_company}`, company);
   }
 
 }

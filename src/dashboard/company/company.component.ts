@@ -16,20 +16,28 @@ export class CompanyComponent implements OnInit {
   constructor(public companyService: CompanyService) { }
 
   ngOnInit() {
+    this.getCompanys();
   }
 
-  addCompany(form?: NgForm){
-    if(form.value.id) {
-      this.companyService.putCompany(form.value)
+  addCompany(form: NgForm){
+    if(this.companyService.selectedCompany.id_company) {
+      this.companyService.putCompany(this.companyService.selectedCompany)
         .subscribe(res => {
           this.resetForm(form);
+          this.getCompanys();
         });
     } else {
       this.companyService.postCompany(form.value)
         .subscribe(res => {
+          this.getCompanys();
           this.resetForm(form);
         });
     }
+  }
+
+  editCompany(company: Company) {
+    this.companyService.selectedCompany = company;
+    console.log(this.companyService.selectedCompany);
   }
 
   resetForm(form?: NgForm) {
@@ -37,6 +45,13 @@ export class CompanyComponent implements OnInit {
       form.reset();
       this.companyService.selectedCompany = new Company();
     }
+  }
+
+  getCompanys() {
+    this.companyService.getCompany()
+      .subscribe(res => {
+        this.companyService.companys = res as Company[];
+      });
   }
 
 }

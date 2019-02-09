@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const AuthController = require('../controllers/auth.controller');
 
+router.get('/dashboard/preferences', (req, res) => {
+    res.render('index', { req });
+});
+
 router.get('/dashboard', (req, res) => {
     res.render('index', { req });
 });
