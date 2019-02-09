@@ -7,6 +7,7 @@ import { CompanyComponent } from './company/company.component';
 import { CategoryComponent } from './category/category.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { ProductComponent } from './product/product.component';
+import { TaxComponent } from './tax/tax.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
             path: 'inventory',
             component: InventoryComponent,
             children: [
-              { path: '', component: ProductComponent }
+              { path: '', component: ProductComponent },
+              { path: 'tax', component: TaxComponent }
             ]
           },
           { path: 'preferences', 

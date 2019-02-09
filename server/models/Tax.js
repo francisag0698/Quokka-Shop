@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const  db = require('../database');
 
 const Tax = db.define('Tax',{
-    id_category:{
+    id_tax:{
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,

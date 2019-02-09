@@ -70,6 +70,7 @@ app.use('/api/account', require('./server/routes/account.routes'));
 app.use('/auth', require('./server/routes/auth.routes'));
 app.use('/api/company', require('./server/routes/company.routes'));
 app.use('/api/category', require('./server/routes/category.routes'));
+app.use('/api/tax', require('./server/routes/tax.routes'));
 
 // Server static files from /browser
 app.get('*.*', express.static(DIST_FOLDER, {

@@ -13,9 +13,10 @@ import { CompanyComponent } from './company/company.component';
 import { CategoryComponent } from './category/category.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { ProductComponent } from './product/product.component';
+import { TaxComponent } from './tax/tax.component';
 
 @NgModule({
-  declarations: [MainComponent, MenuComponent, DashboardComponent, PreferencesComponent, CompanyComponent, CategoryComponent, InventoryComponent, ProductComponent],
+  declarations: [MainComponent, MenuComponent, DashboardComponent, PreferencesComponent, CompanyComponent, CategoryComponent, InventoryComponent, ProductComponent, TaxComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
