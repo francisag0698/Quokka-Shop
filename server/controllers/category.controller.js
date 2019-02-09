@@ -8,7 +8,7 @@ const CategoryController ={};
 CategoryController.getCategoryList = (req, res) => {
     Category.findAll({
         order: [
-            [Sequelize.col(id_category), 'DESC']
+            [Sequelize.col('id_category'), 'DESC']
         ]
     })
     .then((categorys) => {

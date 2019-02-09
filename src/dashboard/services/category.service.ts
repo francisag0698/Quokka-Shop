@@ -7,8 +7,10 @@ import {Category} from '../models/category';
   providedIn: 'root'
 })
 export class CategoryService {
+  
   selectedCategory: Category;
-  category: Category[];
+  categorys: Category[];
+
   readonly URL_API = '/api/category';
 
   constructor( private http: HttpClient) {

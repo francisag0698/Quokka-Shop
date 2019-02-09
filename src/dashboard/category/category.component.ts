@@ -4,7 +4,7 @@ import { NgForm } from "@angular/forms";
 
 import { CategoryService } from "../services/category.service";
 import { Category } from "../models/category";
-import { Subscriber } from 'rxjs';
+
 
 @Component({
   selector: 'app-category',
@@ -37,9 +37,7 @@ export class CategoryComponent implements OnInit {
   getCategorys(){
     this.categoryService.getCategory()
     .subscribe(res =>{
-      this.categoryService.category = res as Category[];
-      console.log(res);
-
+      this.categoryService.categorys = res as Category[];
     });
   }
 

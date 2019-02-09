@@ -4,12 +4,12 @@
     <table class="table table-dark">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Nombre</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let category of categoryService.category">
+            <tr *ngFor="let category of categoryService.categorys">
                 <td>{{category.name}}</td>
                 <td>
                     <a (click)="editCategory(category)">
@@ -34,17 +34,16 @@
           </button>
         </div>
         <div class="modal-body">
-            <form #CategoryForm="ngForm" (ngSubmit)="addCategory(CategoryForm)">
+            <form #categoryForm="ngForm" (ngSubmit)="addCategory(categoryForm)">
                 <div class="form-group">
                     <label >Añadir</label>
                     <input type="hidden" class="form-control" id="id" name="id"  #id="ngModel"
                     [(ngModel)]="categoryService.selectedCategory.id_category">
                     <input type="text" class="form-control" id="name" name="name"  #name="ngModel"
                         [(ngModel)]="categoryService.selectedCategory.name"> 
-                    <button type="submit" class="btn btn-primary" (click)="resetForm(CategoryForm)" >guardar</button>
-                    <button type="clear" class="btn btn-primary" (click)="resetForm(CategoryForm)">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" >guardar</button>
+                    <button type="clear" class="btn btn-primary" >Cancelar</button>
                 </div>
-    
             </form>
         </div>
       </div>
