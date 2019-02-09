@@ -12,8 +12,7 @@
             <tr *ngFor="let category of categoryService.categorys">
                 <td>{{category.name}}</td>
                 <td>
-                    <a (click)="editCategory(category)">
-                       editar
+                    <a (click)="editCategory(category)" data-toggle="modal" data-target="#exampleModal">editar
                     </a>
                 </td>
             </tr>
@@ -42,7 +41,7 @@
                     <input type="text" class="form-control" id="name" name="name"  #name="ngModel"
                         [(ngModel)]="categoryService.selectedCategory.name"> 
                     <button type="submit" class="btn btn-primary" >guardar</button>
-                    <button type="clear" class="btn btn-primary" >Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                 </div>
             </form>
         </div>
