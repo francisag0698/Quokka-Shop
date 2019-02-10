@@ -12,7 +12,6 @@ const Product = db.define('Product', {
         primaryKey: true,
         autoIncrement: true
     },
-    code: Sequelize.STRING,
     name: Sequelize.STRING,
     description: Sequelize.STRING(100),
     code: Sequelize.STRING(100),
