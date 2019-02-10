@@ -1,6 +1,9 @@
 'use strict';
 const Sequelize = require('sequelize');
 const Product = require('../models/Product');
+const Company = require('../models/Company');
+const Category = require('../models/Category');
+const Tax = require('../models/Tax');
 
 const ProductController = {};
 
@@ -8,7 +11,7 @@ ProductController.getProductList = (req, res) => {
     Product.findAll({ 
         order: [ 
             [Sequelize.col('id_product'), 'DESC']
-        ]
+        ], include: { model: Company }
     })
     .then((products) => {
         res.status(200).json(products);

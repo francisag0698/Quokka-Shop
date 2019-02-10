@@ -17,7 +17,10 @@ const Product = db.define('Product', {
     code: Sequelize.STRING(100),
     price: Sequelize.DECIMAL(10,2),
     brand: Sequelize.STRING(70),
-    state: Sequelize.BOOLEAN
+    state: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+    }
 },{
     timestamps: false   
 });

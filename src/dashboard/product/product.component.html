@@ -65,17 +65,17 @@
           <th>acciones</th>
         </thead>
         <tbody>
-          <tr  >
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr *ngFor = " let product of productService.products"  >
+            <td>{{ product.name }}</td>
+            <td>{{ product.description}}</td>
+            <td>{{ product.code }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.brand }}</td>
+            <td>{{ product.id_company }}</td>
+            <td>{{ product.id_category }}</td>
+            <td>{{ product.id_tax }}</td>
             <td>
-              <a href="#" >Editar</a>
+              <a (click)="editProduct(product)"  >Editar</a>
             </td>
           </tr>
         </tbody>

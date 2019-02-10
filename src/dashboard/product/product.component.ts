@@ -24,6 +24,7 @@ export class ProductComponent implements OnInit {
   constructor( public productService: ProductService, public companyService: CompanyService, public categoryService: CategoryService, public taxService: TaxService) { }
 
   ngOnInit() {
+    this.getProducts();
     this.getCompanys();
     this.getCategorys();
     this.getTaxs();
@@ -31,10 +32,15 @@ export class ProductComponent implements OnInit {
 
   addProduct(form: NgForm){
     if(this.productService.selectedProduct.id_product) {
-
+      this.productService.putProduct(this.productService.selectedProduct)
+        .subscribe(res => {
+          this.resetForm(form);
+          this.getProducts();
+        });
     } else {
       this.productService.postProduct(form.value)
         .subscribe(res => {
+          this.getProducts();
           this.resetForm(form);
         });
     }
