@@ -1,42 +1,44 @@
-<div class="row">
-  <div class="col-sm-5">
-    <div class="card">
-      <div class="card-content">
-        <form #taxForm="ngForm" (ngSubmit)="addTax(taxForm)">
-            <h2 class="text-center">Registro de Impuestos</h2>
-            <input type="hidden" name="id" id="id" #id="ngModel" [(ngModel)]="taxService.selectedTax.id_tax">
-            <div class="form-group">
-                <label for="name">Porcentaje </label>  
-                <input type="text" name="percentage" id="percentage" class="form-control" #percentage="ngModel" [(ngModel)]="taxService.selectedTax.percentage"  placeholder="Ingrese un porcentaje ">                
-            </div>
-            <div class="form-group">
-                <label  for="country">Descripcion</label> 
-                <textarea  name="description" id="description" class="form-control" #description="ngModel" [(ngModel)]="taxService.selectedTax.description"></textarea>        
-            </div>
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-            </div>        
-        </form>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="card">
+        <div class="card-content">
+          <form #taxForm="ngForm" (ngSubmit)="addTax(taxForm)">
+              <h2 class="text-center">Registro de Impuestos</h2>
+              <input type="hidden" name="id" id="id" #id="ngModel" [(ngModel)]="taxService.selectedTax.id_tax">
+              <div class="form-group">
+                  <label for="name">Porcentaje </label>  
+                  <input type="text" name="percentage" id="percentage" class="form-control" #percentage="ngModel" [(ngModel)]="taxService.selectedTax.percentage"  placeholder="Ingrese un porcentaje ">                
+              </div>
+              <div class="form-group">
+                  <label  for="country">Descripcion</label> 
+                  <textarea  name="description" id="description" class="form-control" #description="ngModel" [(ngModel)]="taxService.selectedTax.description"></textarea>        
+              </div>
+              <div class="form-group text-center">
+                  <button type="submit" class="btn btn-primary">Guardar</button>
+              </div>        
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-sm-7">
-    <table>
-      <thead>
-        <th>Porcentaje</th>
-        <th>Descripcion</th>
-        <th>Acciones</th>
-      </thead>
-      <tbody>
-        <tr *ngFor = " let tax of taxService.taxs" >
-          <td>{{ tax.percentage }}</td>
-          <td>{{ tax.description }}</td>
-          <td>
-            <a (click)="editTax(tax)" >Editar</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="col-sm-7">
+      <table>
+        <thead>
+          <th>Porcentaje</th>
+          <th>Descripcion</th>
+          <th>Acciones</th>
+        </thead>
+        <tbody>
+          <tr *ngFor = " let tax of taxService.taxs" >
+            <td>{{ tax.percentage }}</td>
+            <td>{{ tax.description }}</td>
+            <td>
+              <a (click)="editTax(tax)" >Editar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 

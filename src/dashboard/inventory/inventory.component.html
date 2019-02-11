@@ -1,8 +1,9 @@
-<ul class="list-inline">
-  <li class="list-inline-item"><a routerLink="./">Productos</a></li>
-  <li class="list-inline-item"><a routerLink="./category">Categorias</a></li>
-  <li class="list-inline-item"><a routerLink="./tax">Impuestos</a></li>
-  <li class="list-inline-item"><a routerLink="./promotion">Promociones</a></li>
+<h4 class="mb-4">Inventario</h4>
+<ul class="list-inline submenu">
+  <li class="list-inline-item"><a routerLink="./product" [routerLinkActive]="['active']">Productos</a></li>
+  <li class="list-inline-item"><a routerLink="./category" [routerLinkActive]="['active']">Categorias</a></li>
+  <li class="list-inline-item"><a routerLink="./tax" [routerLinkActive]="['active']">Impuestos</a></li>
+  <li class="list-inline-item"><a routerLink="./promotion" [routerLinkActive]="['active']">Promociones</a></li>
 </ul>
 
 <router-outlet></router-outlet>

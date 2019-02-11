@@ -23,16 +23,17 @@ const routes: Routes = [
             path: 'inventory',
             component: InventoryComponent,
             children: [
-              { path: '', component: ProductComponent },
+              { path: '', redirectTo: 'product', pathMatch: 'full' },
+              { path: 'product', component: ProductComponent },
               { path: 'tax', component: TaxComponent },
-              { path: 'promotion', component: PromotionComponent }
+              { path: 'promotion', component: PromotionComponent },
+              { path: 'category', component: CategoryComponent }
             ]
           },
           { path: 'preferences', 
             component: PreferencesComponent,
             children: [
-              { path: '', component: CompanyComponent },
-              { path: 'category', component: CategoryComponent }
+              { path: '', component: CompanyComponent }
             ] 
           }
         ]

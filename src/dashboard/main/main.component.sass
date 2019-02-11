@@ -1,24 +1,56 @@
 html, body
     height: 100%
+    background-image: url('../../assets/images/bck-dashboard.png')
+    background-repeat: no-repeat 
+    background-size: 100% auto
 
 app-menu
-    position: fixed
+    position: absolute
     height: 100%
     left: 0
     bottom: 0
     top: 0
     display: block
     width: 240px
-    -webkit-box-shadow: inset -27px 0px 45px -15px rgba(0,0,0,0.10)
-    -moz-box-shadow: inset -27px 0px 45px -15px rgba(0,0,0,0.10)
-    box-shadow: inset -27px 0px 45px -15px rgba(0,0,0,0.10)
-    background-color: #F2F2F5
     padding: 10px 20px 10px 40px
-    background-image: url('../../assets/images/bck-menu.png')
     background-repeat: no-repeat
     background-position-y: 120px
 
 #content
     margin-left: 240px
     height: 100%
-    background-color: #F6F6F9
+.header-content
+    padding: 15px 0
+.user-box
+    position: relative
+    text-align: right
+    color: #fff
+    padding: 15px 70px 15px 15px
+    border-radius: 5px
+    cursor: pointer
+    &:hover
+        background-color: #E04149
+    span
+        display: block
+        line-height: 1
+    .role
+        font-size: 12px
+    .name
+        font-weight: 700
+    img
+        position: absolute
+        right: 3px
+        top: 7px
+
+.notifications
+    position: relative
+    top: -5px
+    color: #fff
+    padding: 8px
+    width: 40px
+    display: block
+    text-align: center
+    border-radius: 100%
+    &:hover
+        background-color: #E04149
+        color: #fff
