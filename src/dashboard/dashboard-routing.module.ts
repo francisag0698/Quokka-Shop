@@ -8,6 +8,7 @@ import { CategoryComponent } from './category/category.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { ProductComponent } from './product/product.component';
 import { TaxComponent } from './tax/tax.component';
+import { PromotionComponent } from './promotion/promotion.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
             component: InventoryComponent,
             children: [
               { path: '', component: ProductComponent },
-              { path: 'tax', component: TaxComponent }
+              { path: 'tax', component: TaxComponent },
+              { path: 'promotion', component: PromotionComponent }
             ]
           },
           { path: 'preferences', 
