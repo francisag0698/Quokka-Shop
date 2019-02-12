@@ -19,7 +19,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   providers: [ ProductService , CompanyService, CategoryService, TaxService]
 })
 export class ProductComponent implements OnInit {  
-  isEmpty = true;
+  isEmpty = false;
   modal_title = '';
 
   constructor(public modalService: NgbModal, public productService: ProductService, public companyService: CompanyService, public categoryService: CategoryService, public taxService: TaxService) { }
@@ -33,6 +33,7 @@ export class ProductComponent implements OnInit {
 
   openModal(content){
     this.modal_title = 'Añadir Producto';
+    this.productService.selectedProduct = new Product();
     this.modalService.open(content, { centered: true, size: 'lg' });
   }
 
@@ -70,7 +71,7 @@ export class ProductComponent implements OnInit {
     this.productService.getProduct()
       .subscribe(res => {
         this.productService.products = res as Product[];
-        this.isEmpty = !this.productService.products;
+        this.isEmpty = !(this.productService.products.length > 0);
       });
     
   }

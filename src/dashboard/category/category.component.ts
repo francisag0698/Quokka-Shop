@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { NgForm } from "@angular/forms";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { CategoryService } from "../services/category.service";
 import { Category } from "../models/category";
@@ -13,23 +14,34 @@ import { Category } from "../models/category";
   providers: [CategoryService]
 })
 export class CategoryComponent implements OnInit {
+  modal_title = '';
 
-  constructor( public categoryService: CategoryService ) { }
+  constructor(public modalService: NgbModal, public categoryService: CategoryService ) { }
 
   ngOnInit() {
     this.getCategorys();
   }
+
+  openModal(content){
+    this.modal_title = 'Añadir Producto';
+    this.modalService.open(content, { centered: true, size: 'lg' }).result.then((res)=>{
+      this.resetForm(res);
+    });
+  }
+
   addCategory(form?: NgForm){
     if(this.categoryService.selectedCategory.id_category){
       this.categoryService.putCategory(this.categoryService.selectedCategory)
         .subscribe(res =>{
           this.resetForm(form);
+          this.modalService.dismissAll();
           this.getCategorys();
       });
     }else{
       this.categoryService.postCategory(form.value)
       .subscribe(res => {
         this.getCategorys();
+        this.modalService.dismissAll();
         this.resetForm(form);
       })
     }

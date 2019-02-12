@@ -56,15 +56,16 @@ ProductController.getProduct = (req, res) =>{
 };
 
 ProductController.editProduct = (req, res) => {
+    console.log(req.body);
     Product.update({
         name: req.body.name,
         description: req.body.description,
         code: req.body.code,
         price: req.body.price,
         brand: req.body.brand,
-        id_company: req.body.company,
-        id_category: req.body.category,
-        id_tax: req.body.tax
+        id_company: req.body.id_company,
+        id_category: req.body.id_category,
+        id_tax: req.body.id_tax
     },{
         where: { id_product: req.params.id }
     })
@@ -72,6 +73,7 @@ ProductController.editProduct = (req, res) => {
         res.status(200).json();
     })
     .catch((err) => {
+        console.log(err);
         res.status(500).json(err);
     });
 };

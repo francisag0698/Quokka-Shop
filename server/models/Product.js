@@ -13,7 +13,7 @@ const Product = db.define('Product', {
         autoIncrement: true
     },
     name: Sequelize.STRING,
-    description: Sequelize.STRING(100),
+    description: Sequelize.TEXT,
     code: Sequelize.STRING(100),
     price: Sequelize.DECIMAL(10,2),
     brand: Sequelize.STRING(70),
