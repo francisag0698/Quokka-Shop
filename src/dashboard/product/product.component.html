@@ -1,43 +1,57 @@
 <div class="container-fluid">
   <div class="row">
-      <div class="col-12">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            Launch demo modal
-          </button>
-        <table class="table">
-          <thead>
-            <th>Nombre</th>
-            <th>descripcion</th>
-            <th>codigo</th>
-            <th>precio</th>
-            <th>marca</th>
-            <th>Empresa</th>
-            <th>categoria</th>
-            <th>impuesto</th>
-            <th>acciones</th>
-          </thead>
-          <tbody>
-            <tr *ngFor = " let product of productService.products"  >
-              <td>{{ product.name }}</td>
-              <td>{{ product.description}}</td>
-              <td>{{ product.code }}</td>
-              <td>{{ product.price }}</td>
-              <td>{{ product.brand }}</td>
-              <td>{{ product.id_company }}</td>
-              <td>{{ product.id_category }}</td>
-              <td>{{ product.id_tax }}</td>
-              <td>
-                <a (click)="editProduct(product)"  >Editar</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="col-12">
+      <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#product_modal">
+        Añadir Producto
+      </button>
+    </div>
   </div>
+  <div class="row">
+    <div *ngFor = " let product of productService.products" class="col-4">
+      <div class="q-card">
+        <span class="code block">#{{ product.code }}</span>
+        <span class="name block">{{ product.name }}</span>
+        <span class="price">{{ product.price }}</span>
+        <span class="description block">{{ product.description }}</span>     
+      </div>
+    </div>
+  </div>
+  <!--<div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <th>Nombre</th>
+          <th>descripcion</th>
+          <th>codigo</th>
+          <th>precio</th>
+          <th>marca</th>
+          <th>Empresa</th>
+          <th>categoria</th>
+          <th>impuesto</th>
+          <th>acciones</th>
+        </thead>
+        <tbody>
+          <tr *ngFor = " let product of productService.products"  >
+            <td>{{ product.name }}</td>
+            <td>{{ product.description}}</td>
+            <td>{{ product.code }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.brand }}</td>
+            <td>{{ product.id_company }}</td>
+            <td>{{ product.id_category }}</td>
+            <td>{{ product.id_tax }}</td>
+            <td>
+              <a (click)="editProduct(product)"  >Editar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>-->
 </div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+
+<div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-labelledby="product_modal_title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Registro de Productos</h5>

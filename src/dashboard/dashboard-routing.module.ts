@@ -18,7 +18,8 @@ const routes: Routes = [
       {
         path: '',
         children: [
-          { path: '', component: DashboardComponent },
+          { path: '', redirectTo: 'main', pathMatch: 'full' },
+          { path: 'main', component: DashboardComponent },
           {
             path: 'inventory',
             component: InventoryComponent,

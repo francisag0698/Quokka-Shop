@@ -1,16 +1,21 @@
-<img src="../../assets/images/wordmark-sm.png" alt="Quokka Shop" class="wordmark-sm">
+<img src="../../assets/images/wordmark.png" alt="Quokka Shop" class="wordmark-sm">
+<div class="user-box">
+  <img src="../../assets/images/user-img.png" alt="User Image">
+  <span class="name">Ashley Doe</span>
+  <span class="role">Administrador</span>
+</div>
 <nav>
-  <div class="divider white-color">Menu</div>
-  <ul class="list-unstyled margin-bottom white-color">
-    <li><a routerLink="./"><i class="fas fa-columns"></i>Tablero</a></li>
-    <li><a routerLink="./orders"><i class="fas fa-box"></i>Ordenes</a></li>
-    <li><a routerLink="./customers"><i class="fas fa-user-friends"></i>Clientes</a></li>
-    <li><a routerLink="./inventory"><i class="fas fa-boxes"></i>Inventario</a></li>
-    <li><a routerLink="./shipping"><i class="fas fa-truck"></i>Envíos</a></li> 
+  <div class="divider">Menu</div>
+  <ul class="list-unstyled">
+    <li><a routerLink="./main" [routerLinkActive]="['active']"><i class="fas fa-columns"></i>Tablero</a></li>
+    <li><a routerLink="./orders" [routerLinkActive]="['active']"><i class="fas fa-box"></i>Ordenes</a></li>
+    <li><a routerLink="./customers" [routerLinkActive]="['active']"><i class="fas fa-user-friends"></i>Clientes</a></li>
+    <li><a routerLink="./inventory" [routerLinkActive]="['active']"><i class="fas fa-boxes"></i>Inventario</a></li>
+    <li><a routerLink="./shipping" [routerLinkActive]="['active']"><i class="fas fa-truck"></i>Envíos</a></li> 
   </ul>
   <div class="divider">Preferencias</div>
   <ul class="list-unstyled">
-    <li><a routerLink="./preferences"><i class="fas fa-cogs"></i>Configuración</a></li>
-    <li><a routerLink="./reports"><i class="fas fa-archive"></i>Informes</a></li>
+    <li><a routerLink="./preferences" [routerLinkActive]="['active']"><i class="fas fa-cogs"></i>Configuración</a></li>
+    <li><a routerLink="./reports" [routerLinkActive]="['active']"><i class="fas fa-archive"></i>Informes</a></li>
   </ul>
 </nav>
