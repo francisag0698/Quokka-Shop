@@ -10,6 +10,7 @@ import { Company } from '../models/company';
 import { Category } from '../models/category';
 import { Tax } from '../models/tax';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-product',
@@ -17,17 +18,22 @@ import { Tax } from '../models/tax';
   styleUrls: ['./product.component.sass'],
   providers: [ ProductService , CompanyService, CategoryService, TaxService]
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit {  
+  isEmpty = true;
+  modal_title = '';
 
-  
-
-  constructor( public productService: ProductService, public companyService: CompanyService, public categoryService: CategoryService, public taxService: TaxService) { }
+  constructor(public modalService: NgbModal, public productService: ProductService, public companyService: CompanyService, public categoryService: CategoryService, public taxService: TaxService) { }
 
   ngOnInit() {
     this.getProducts();
     this.getCompanys();
     this.getCategorys();
     this.getTaxs();
+  }
+
+  openModal(content){
+    this.modal_title = 'Añadir Producto';
+    this.modalService.open(content, { centered: true, size: 'lg' });
   }
 
   addProduct(form: NgForm){
@@ -44,10 +50,13 @@ export class ProductComponent implements OnInit {
           this.resetForm(form);
         });
     }
+    this.modalService.dismissAll();
   }
 
-  editProduct(product: Product) {
+  editProduct(product: Product, content) {
+    this.modal_title = 'Editar Producto';
     this.productService.selectedProduct = product;
+    this.modalService.open(content, { centered: true, size: 'lg' });
   }
 
   resetForm(form?: NgForm) {
@@ -61,7 +70,9 @@ export class ProductComponent implements OnInit {
     this.productService.getProduct()
       .subscribe(res => {
         this.productService.products = res as Product[];
+        this.isEmpty = !this.productService.products;
       });
+    
   }
 
   getCompanys(){

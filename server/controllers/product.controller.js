@@ -36,6 +36,7 @@ ProductController.saveProduct = (req, res) => {
         res.status(201).json();
     })
     .catch((err) => {
+        console.log(err)
         res.status(500).json(err);
     });
 };
