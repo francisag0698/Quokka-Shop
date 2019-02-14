@@ -17,6 +17,7 @@ const Product = db.define('Product', {
     code: Sequelize.STRING(100),
     price: Sequelize.DECIMAL(10,2),
     brand: Sequelize.STRING(70),
+    external_id: { type: Sequelize.STRING, defaultValue: Sequelize.UUIDV4 },
     state: {
         type: Sequelize.BOOLEAN,
         defaultValue: true

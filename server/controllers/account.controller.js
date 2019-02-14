@@ -40,9 +40,9 @@ AccountController.getAccount = (req, res) => {
 };
 
 AccountController.editAccount = (req, res) => {
-    let hash = crypto.createHmac('sha512',req.body.password).update(req.body.password).digest("base64");
+    req.body.password = bcrypt.hashSync(req.body.password, 8);
     Account.update({
-        password: hash,
+        password: req.body.password,
         email: req.body.email,
         secure_token: req.body.secure_token,
         phone_number: req.body.phone_number,

@@ -7,12 +7,21 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-4">
+      <div class="q-card">
+        <span class="code block">#65498</span>
+        <span class="name block">Laptop Gamming Asus - Negra</span>
+        <span class="description block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eleife......</span>  
+        <span class="price">$2500.26</span>
+        <button class="btn btn-secondary" (click)="editProduct(product, product_modal)"><i class="fas fa-pencil-alt"></i>Editar</button>   
+      </div>
+    </div>
     <div *ngFor = " let product of productService.products" class="col-4">
       <div class="q-card">
         <span class="code block">#{{ product.code }}</span>
         <span class="name block">{{ product.name }}</span>
-        <span class="price">${{ product.price }}</span>
         <span class="description block">{{ product.description | slice: 0:75 }}...</span>  
+        <span class="price">${{ product.price }}</span>
         <button class="btn btn-secondary" (click)="editProduct(product, product_modal)"><i class="fas fa-pencil-alt"></i>Editar</button>   
       </div>
     </div>
@@ -57,52 +66,55 @@
 <ng-template #product_modal let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">{{ modal_title }}</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
-        <span aria-hidden="true">&times;</span>
-      </button>
     </div>
     <div class="modal-body">
         <div class="card">
           <div class="card-body">
             <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
-              <input type="hidden" name="id" id="id" #id="ngModel" [(ngModel)]="productService.selectedProduct.id_product" autocomplete="off">
+              <input type="hidden" name="id" id="id" #id="ngModel" [(ngModel)]="product.id_product" autocomplete="off">
               <div class="form-group">
                   <label for="name">Nombre </label>  
-                  <input ngbAutofocus type="text" name="name" id="name" class="form-control" #name="ngModel" [(ngModel)]="productService.selectedProduct.name"  placeholder="Nombre " autocomplete="off">                
+                  <input ngbAutofocus type="text" name="name" id="name" class="form-control" #name="ngModel" [(ngModel)]="product.name"  placeholder="Nombre " autocomplete="off">                
               </div>
               <div class="form-group">
                 <label for="code">Codigo</label>  
-                <input type="text" name="code" id="code" class="form-control" #code="ngModel" [(ngModel)]="productService.selectedProduct.code"  placeholder="Codigo" autocomplete="off">                  
+                <input type="text" name="code" id="code" class="form-control" #code="ngModel" [(ngModel)]="product.code"  placeholder="Codigo" autocomplete="off">                  
               </div>
               <div class="form-group">
                 <label for="price">Precio</label> 
-                <input type="text" name="price" id="price" class="form-control" #price="ngModel" [(ngModel)]="productService.selectedProduct.price"  placeholder="Precio" autocomplete="off">                  
+                <input type="text" name="price" id="price" class="form-control" #price="ngModel" [(ngModel)]="product.price"  placeholder="Precio" autocomplete="off">                  
               </div>
               <div class="form-group">
                 <label for="brand">Marca</label> 
-                <input type="text" name="brand" id="brand" class="form-control" #brand="ngModel" [(ngModel)]="productService.selectedProduct.brand"  placeholder="Marca" autocomplete="off">                  
+                <input type="text" name="brand" id="brand" class="form-control" #brand="ngModel" [(ngModel)]="product.brand"  placeholder="Marca" autocomplete="off">                  
               </div>
               <div class="form-group">
                 <label for="company">Empresa</label> 
-                <select name="company" id="company" #company="ngModel" [(ngModel)]="productService.selectedProduct.id_company" class="form-control">
+                <select name="company" id="company" #company="ngModel" [(ngModel)]="product.id_company" class="form-control">
                   <option *ngFor="let company of companyService.companys " value="{{company.id_company}}">{{company.name}}</option>
                 </select>                 
               </div>
               <div class="form-group">
                 <label for="category">Categoria</label> 
-                <select name="category" id="category" #category="ngModel" [(ngModel)]="productService.selectedProduct.id_category" class="form-control">
+                <select name="category" id="category" #category="ngModel" [(ngModel)]="product.id_category" class="form-control">
                   <option *ngFor="let category of categoryService.categorys " value="{{category.id_category}}">{{category.name}}</option>
                 </select>            
               </div>
               <div class="form-group">
                 <label for="tax">Impuesto</label> 
-                <select name="tax" id="tax" #tax="ngModel" [(ngModel)]="productService.selectedProduct.id_tax" class="form-control">
+                <select name="tax" id="tax" #tax="ngModel" [(ngModel)]="product.id_tax" class="form-control">
                   <option *ngFor="let tax of taxService.taxs " value="{{ tax.id_tax }}">{{tax.percentage}}</option>
                 </select>                  
               </div>
               <div class="form-group">
                   <label  for="description">Descripcion</label> 
                   <textarea  name="description" id="description" class="form-control" #description="ngModel" [(ngModel)]="productService.selectedProduct.description" ></textarea>        
+              </div>
+              <div class="form-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="customFileLang" lang="es" #imageInput accept="image/*" multiple (change)="onFilesAdded(imageInput)">
+                  <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+                </div>
               </div>
               <div class="form-group text-right">
                   <button type="submit" class="btn btn-primary">Guardar</button>

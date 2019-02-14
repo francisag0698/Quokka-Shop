@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { ProductService } from '../services/product.service';
@@ -18,11 +18,16 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./product.component.sass'],
   providers: [ ProductService , CompanyService, CategoryService, TaxService]
 })
-export class ProductComponent implements OnInit {  
+export class ProductComponent implements OnInit { 
+  files: Set<File> = new Set();
+
+  product : Product;
   isEmpty = false;
   modal_title = '';
 
-  constructor(public modalService: NgbModal, public productService: ProductService, public companyService: CompanyService, public categoryService: CategoryService, public taxService: TaxService) { }
+  constructor(public modalService: NgbModal, public productService: ProductService, public companyService: CompanyService, public categoryService: CategoryService, public taxService: TaxService) {
+    this.product = new Product();
+  }
 
   ngOnInit() {
     this.getProducts();
@@ -33,22 +38,44 @@ export class ProductComponent implements OnInit {
 
   openModal(content){
     this.modal_title = 'Añadir Producto';
-    this.productService.selectedProduct = new Product();
+    this.product = new Product();
     this.modalService.open(content, { centered: true, size: 'lg' });
   }
 
-  addProduct(form: NgForm){
-    if(this.productService.selectedProduct.id_product) {
-      this.productService.putProduct(this.productService.selectedProduct)
+  addImage(event){
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+
+    reader.onload = (event: any) =>{
+      console.log(event.target.result);
+      this.product.images.push(event.target.result);
+    }
+  }
+
+  onFilesAdded(input: any){
+    const files: { [key: string]: File } = input.files;
+    for(let key in files){
+      if(!isNaN(parseInt(key))){
+        if(!this.files.has(files[key])){
+          this.files.add(files[key]);
+        }        
+      }
+    }
+    console.log(this.files.size);
+  }
+
+  addProduct(){
+    if(this.product.id_product) {
+      this.productService.putProduct(this.product)
         .subscribe(res => {
-          this.resetForm(form);
+          this.product = new Product;
           this.getProducts();
         });
     } else {
-      this.productService.postProduct(form.value)
+      this.productService.postProduct(this.product)
         .subscribe(res => {
+          this.product = new Product;
           this.getProducts();
-          this.resetForm(form);
         });
     }
     this.modalService.dismissAll();
@@ -61,10 +88,7 @@ export class ProductComponent implements OnInit {
   }
 
   resetForm(form?: NgForm) {
-    if(form) {
-      form.reset();
-      this.productService.selectedProduct = new Product();
-    }
+    this.product = new Product;
   }
 
   getProducts() {
