@@ -1,6 +1,6 @@
 'use strict';
 const Sequelize = require('sequelize');
-const sf = require('save-file');
+const fs = require('fs');
 
 const Product = require('../models/Product');
 const Company = require('../models/Company');
@@ -24,7 +24,7 @@ ProductController.getProductList = (req, res) => {
 };
 
 ProductController.saveProduct = (req, res, next) => {
-    /*Product.create({
+    Product.create({
         name: req.body.name,
         description: req.body.description,
         code: req.body.code,
@@ -36,26 +36,18 @@ ProductController.saveProduct = (req, res, next) => {
     })
     .then(product => {
         var i = 1;
-        req.body.images.forEach(element => {
-            var b64string = element.split(",").pop();
-            var buf = Buffer.from(b64string, 'base64');
-            await sf(buf, 'public/uploads/test.jpg');
+        req.files.forEach(element => {
+            var extension = element.originalname.split(".").pop();
+            var name = product.external_id + "["+ i +"]." + extension;
+            fs.renameSync(element.destination + "/" + element.filename, "public/uploads/" + name);
+            i++;
         });
         res.status(201).json();
     })
     .catch((err) => {
         console.log(err)
         res.status(500).json(err);
-    });*/
-    var i = 1;
-    req.body.images.forEach(async (element) => {
-        var b64string = element.split(",").pop();
-        console.log(element.split(",")[0]);
-        var buf = Buffer.from(b64string, 'base64');
-        await sf(buf, 'public/uploads/test['+i+'].jpg');
-        i++;
     });
-    res.status(201).json();
 };
 
 ProductController.getProduct = (req, res) =>{

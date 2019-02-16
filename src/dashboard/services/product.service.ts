@@ -17,8 +17,21 @@ export class ProductService {
     this.selectedProduct = new Product();
   }
 
-  postProduct(product: Product) {
-    return this.http.post(this.URL_API, product);
+  postProduct(product: Product, files: Set<File>) {
+    const formData: FormData = new FormData();
+    formData.append('name', product.name);
+    formData.append('description', product.description);
+    formData.append('code', product.code);
+    formData.append('price', product.price);
+    formData.append('brand', product.brand);
+    formData.append('id_company', product.id_company);
+    formData.append('id_category', product.id_category);
+    formData.append('id_tax', product.id_tax);
+    files.forEach(element => {
+      formData.append('image', element, element.name);
+    });
+
+    return this.http.post(this.URL_API, formData);
   }
 
   getProduct(){

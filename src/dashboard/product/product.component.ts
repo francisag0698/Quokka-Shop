@@ -20,7 +20,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProductComponent implements OnInit { 
   files: Set<File> = new Set();
-
+  imageList = [];
   product : Product;
   isEmpty = false;
   modal_title = '';
@@ -39,29 +39,24 @@ export class ProductComponent implements OnInit {
   openModal(content){
     this.modal_title = 'Añadir Producto';
     this.product = new Product();
+    this.files.clear();
+    this.imageList = [];
     this.modalService.open(content, { centered: true, size: 'lg' });
-  }
-
-  addImage(event){
-    var reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-
-    reader.onload = (event: any) =>{
-      console.log(event.target.result);
-      this.product.images.push(event.target.result);
-    }
   }
 
   onFilesAdded(input: any){
     const files: { [key: string]: File } = input.files;
     for(let key in files){
       if(!isNaN(parseInt(key))){
-        if(!this.files.has(files[key])){
-          this.files.add(files[key]);
-        }        
+        this.files.add(files[key]);       
       }
     }
-    console.log(this.files.size);
+    console.log(input.files[0]);
+    var reader = new FileReader();
+    reader.readAsDataURL(input.files[0]);
+    reader.onload = (event: any) => {
+      this.imageList.push(event.target.result);
+    }
   }
 
   addProduct(){
@@ -70,20 +65,21 @@ export class ProductComponent implements OnInit {
         .subscribe(res => {
           this.product = new Product;
           this.getProducts();
+          this.modalService.dismissAll();
         });
     } else {
-      this.productService.postProduct(this.product)
+      this.productService.postProduct(this.product, this.files)
         .subscribe(res => {
           this.product = new Product;
           this.getProducts();
+          this.modalService.dismissAll();
         });
-    }
-    this.modalService.dismissAll();
+    }    
   }
 
   editProduct(product: Product, content) {
     this.modal_title = 'Editar Producto';
-    this.productService.selectedProduct = product;
+    this.product = product;
     this.modalService.open(content, { centered: true, size: 'lg' });
   }
 

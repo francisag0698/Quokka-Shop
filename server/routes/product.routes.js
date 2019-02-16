@@ -7,7 +7,7 @@ var multer = require('multer') ({
 const productController = require('../controllers/product.controller');
 
 router.get('/', productController.getProductList)
-        .post('/', productController.saveProduct);
+        .post('/', multer.any(), productController.saveProduct);
 router.get('/:id', productController.getProduct)
         .put('/:id', productController.editProduct);
 
