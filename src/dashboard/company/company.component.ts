@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { CompanyService } from '../services/company.service';
 import { Company } from '../models/company';
-
+import { Countrys } from '../models/countrys';
 
 @Component({
   selector: 'app-company',
@@ -17,6 +17,7 @@ export class CompanyComponent implements OnInit {
 
   ngOnInit() {
     this.getCompanys();
+    this.getCountrys();
   }
 
   addCompany(form: NgForm){
@@ -51,6 +52,13 @@ export class CompanyComponent implements OnInit {
     this.companyService.getCompany()
       .subscribe(res => {
         this.companyService.companys = res as Company[];
+      });
+  }
+
+  getCountrys() {
+    this.companyService.getCountry()
+      .subscribe(res => {
+        this.companyService.countrys = res as Countrys[];
       });
   }
 
