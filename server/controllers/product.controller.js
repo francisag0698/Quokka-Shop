@@ -1,9 +1,11 @@
 'use strict';
 const Sequelize = require('sequelize');
 const fs = require('fs');
+const uuidv4 = require('uuid/v4');
 
 const Product = require('../models/Product');
 const Company = require('../models/Company');
+const Image = require('../models/Image');
 const Category = require('../models/Category');
 const Tax = require('../models/Tax');
 
@@ -13,9 +15,12 @@ ProductController.getProductList = (req, res) => {
     Product.findAll({ 
         order: [ 
             [Sequelize.col('id_product'), 'DESC']
-        ], include: { model: Company }
+        ], include: [
+            { model: Company }, { model: Image }
+        ]
     })
     .then((products) => {
+        console.log(products);
         res.status(200).json(products);
     })
     .catch((err) => {
@@ -30,25 +35,59 @@ ProductController.saveProduct = (req, res, next) => {
         code: req.body.code,
         price: req.body.price,
         brand: req.body.brand,
-        id_company: req.body.company,
-        id_category: req.body.category,
-        id_tax: req.body.tax
+        id_company: req.body.id_company,
+        id_category: req.body.id_category,
+        id_tax: req.body.id_tax
     })
     .then(product => {
-        var i = 1;
+        var data = [];
         req.files.forEach(element => {
             var extension = element.originalname.split(".").pop();
-            var name = product.external_id + "["+ i +"]." + extension;
+            var name = uuidv4() + "." + extension;
             fs.renameSync(element.destination + "/" + element.filename, "public/uploads/" + name);
-            i++;
+            data.push({ path: name, id_product: product.id_product });
         });
-        res.status(201).json();
+        if(data.length > 0){
+            Image.bulkCreate(data).then(() => {
+                res.status(201).send();
+            }).catch(err =>{
+                console.log(err);
+                res.status(500).json(err);
+            });
+        }
+        
+        res.status(201).send();
     })
     .catch((err) => {
         console.log(err)
         res.status(500).json(err);
     });
 };
+
+ProductController.addImage = (req, res) => {
+    Product.findOne({
+        where: { id_product: req.id_product }
+    }).then(product => {
+        if(product){
+            var extension = req.file.originalname.split(".").pop();
+            var name = uuidv4() +"."+ extension;
+            fs.renameSync(element.destination + "/" + element.filename, "public/uploads/" + name);
+
+            Image.create({
+                path: name,
+                id_product: req.id_product
+            }).then(image =>{
+                res.status(200).json(image);
+            }).catch(err =>{
+                console.log(err);
+                res.status(500).send();
+            });
+        }
+    }).catch(err =>{
+        console.log(err);
+        res.status(500).send();
+    })
+}
 
 ProductController.getProduct = (req, res) =>{
     Product.findOne({

@@ -11,6 +11,8 @@ import { Category } from '../models/category';
 import { Tax } from '../models/tax';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { first } from 'rxjs/operators';
+import { Image } from '../models/image';
 
 @Component({
   selector: 'app-product',
@@ -20,7 +22,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProductComponent implements OnInit { 
   files: Set<File> = new Set();
-  imageList = [];
+  imageList: Set<any> = new Set();
   product : Product;
   isEmpty = false;
   modal_title = '';
@@ -40,7 +42,7 @@ export class ProductComponent implements OnInit {
     this.modal_title = 'Añadir Producto';
     this.product = new Product();
     this.files.clear();
-    this.imageList = [];
+    this.imageList.clear();
     this.modalService.open(content, { centered: true, size: 'lg' });
   }
 
@@ -48,15 +50,30 @@ export class ProductComponent implements OnInit {
     const files: { [key: string]: File } = input.files;
     for(let key in files){
       if(!isNaN(parseInt(key))){
-        this.files.add(files[key]);       
+        if(!this.product.id_product){
+          this.files.add(files[key]);
+        
+          var reader = new FileReader();
+          reader.readAsDataURL(input.files[0]);
+          reader.onload = (event: any) => {
+            var item = [event.target.result, files[key]];
+            this.imageList.add(item);
+          }
+        }else{
+          this.productService.postImage(this.product, files[key]).pipe(first())
+            .subscribe(
+              data =>{
+                this.product.Images.push(data as Image);
+              }, error => { }
+            );
+        }
       }
     }
-    console.log(input.files[0]);
-    var reader = new FileReader();
-    reader.readAsDataURL(input.files[0]);
-    reader.onload = (event: any) => {
-      this.imageList.push(event.target.result);
-    }
+  }
+
+  deleteFile(file: any){
+    this.imageList.delete(file);
+    this.files.delete(file[1]);
   }
 
   addProduct(){

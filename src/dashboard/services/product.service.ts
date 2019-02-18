@@ -17,6 +17,13 @@ export class ProductService {
     this.selectedProduct = new Product();
   }
 
+  postImage(product: Product, file: File){
+    const formData: FormData = new FormData();
+    formData.append('id_product', product.id_product);
+    formData.append('image', file, file.name);
+    return this.http.post(this.URL_API+'/image', formData);
+  }
+
   postProduct(product: Product, files: Set<File>) {
     const formData: FormData = new FormData();
     formData.append('name', product.name);

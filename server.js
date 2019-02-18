@@ -63,6 +63,8 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+app.use(express.static(join(__dirname, '../public')));
+
 // ROUTES ***********************
 app.use('/api/role', require('./server/routes/role.routes'));
 app.use('/api/person', require('./server/routes/person.routes'));
