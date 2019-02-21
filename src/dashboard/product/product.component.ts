@@ -10,7 +10,7 @@ import { Company } from '../models/company';
 import { Category } from '../models/category';
 import { Tax } from '../models/tax';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs/operators';
 import { Image } from '../models/image';
 
@@ -64,7 +64,9 @@ export class ProductComponent implements OnInit {
             .subscribe(
               data =>{
                 this.product.Images.push(data as Image);
-              }, error => { }
+              }, error => {
+                console.log(error);
+              }
             );
         }
       }
@@ -72,8 +74,20 @@ export class ProductComponent implements OnInit {
   }
 
   deleteFile(file: any){
-    this.imageList.delete(file);
-    this.files.delete(file[1]);
+    if(!this.product.id_product){
+      this.imageList.delete(file);
+      this.files.delete(file[1]);
+    }else{
+      this.productService.deleteImage(file.id_image).pipe(first())
+        .subscribe(
+          data => {
+            var index = this.product.Images.indexOf(file);
+            this.product.Images.splice(index, 1);
+          }, error =>{
+            console.log(error);
+          }
+        )
+    }
   }
 
   addProduct(){

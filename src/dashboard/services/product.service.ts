@@ -24,6 +24,10 @@ export class ProductService {
     return this.http.post(this.URL_API+'/image', formData);
   }
 
+  deleteImage(image: string){    
+    return this.http.delete(this.URL_API+`/image/${image}`);
+  }
+
   postProduct(product: Product, files: Set<File>) {
     const formData: FormData = new FormData();
     formData.append('name', product.name);

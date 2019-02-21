@@ -11,6 +11,8 @@ router.get('/', productController.getProductList)
 
 router.post('/image', multer.single('image'), productController.addImage);
 
+router.delete('/image/:id', productController.deleteImage);
+
 router.get('/:id', productController.getProduct)
         .put('/:id', productController.editProduct);
 

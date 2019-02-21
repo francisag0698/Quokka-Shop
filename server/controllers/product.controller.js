@@ -20,7 +20,6 @@ ProductController.getProductList = (req, res) => {
         ]
     })
     .then((products) => {
-        console.log(products);
         res.status(200).json(products);
     })
     .catch((err) => {
@@ -66,16 +65,16 @@ ProductController.saveProduct = (req, res, next) => {
 
 ProductController.addImage = (req, res) => {
     Product.findOne({
-        where: { id_product: req.id_product }
+        where: { id_product: req.body.id_product }
     }).then(product => {
         if(product){
             var extension = req.file.originalname.split(".").pop();
             var name = uuidv4() +"."+ extension;
-            fs.renameSync(element.destination + "/" + element.filename, "public/uploads/" + name);
+            fs.renameSync(req.file.destination + "/" + req.file.filename, "public/uploads/" + name);
 
             Image.create({
                 path: name,
-                id_product: req.id_product
+                id_product: req.body.id_product
             }).then(image =>{
                 res.status(200).json(image);
             }).catch(err =>{
@@ -85,6 +84,7 @@ ProductController.addImage = (req, res) => {
         }
     }).catch(err =>{
         console.log(err);
+        fs.unlinkSync(req.file.destination + "/" + req.file.filename);
         res.status(500).send();
     })
 }
@@ -122,8 +122,26 @@ ProductController.editProduct = (req, res) => {
     })
     .catch((err) => {
         console.log(err);
-        res.status(500).json(err);
+        res.status(500).send();
     });
 };
+
+ProductController.deleteImage = (req, res) => {
+    Image.find({
+        where: { id_image: req.params.id }
+    }).then(image => {
+        if(image){
+            image.destroy().then(() => {
+                fs.unlinkSync("public/uploads/" + image.path);
+                res.status(200).send();
+            });
+        }else{
+            res.status(404).send();
+        }
+    }).catch(err => {
+        console.log(err);
+        res.status(500).send();
+    })
+}
 
 module.exports = ProductController;
