@@ -47,9 +47,9 @@
             <div *ngIf="!product.id_product" class="img-container new">
               <div class="form-row">
                 <span *ngIf="imageList.size == 0" (click)="imageInput.click()">Añade imágenes a este producto.</span>
-                <div *ngFor="let image of imageList" class="col-2">
+                <div *ngFor="let image of imageList" class="col-2 relative-col">
                   <div class="img-item" [ngStyle]="{'background-image':'url('+image[0]+')'}"></div>
-                  <button (click)="deleteFile(image)">Eliminar</button>
+                  <button type="button" (click)="deleteFile(image)"><i class="fas fa-times"></i></button>
                 </div>
                 <div *ngIf="imageList.size > 0" class="col-2">
                   <div class="img-item plus" (click)="imageInput.click()">
@@ -62,9 +62,9 @@
             <div *ngIf="product.id_product" class="img-container">
               <div class="form-row">
                 <span *ngIf="product.Images.length == 0" (click)="imageInput.click()">Añade imágenes a este producto.</span>
-                <div *ngFor="let image of product.Images" class="col-2">
+                <div *ngFor="let image of product.Images" class="col-2 relative-col">
                   <div class="img-item" [ngStyle]="{'background-image':'url(uploads/'+image.path+')'}"></div>
-                  <button type="button" (click)="deleteFile(image)">Eliminar</button>
+                  <button type="button" (click)="deleteFile(image)"><i class="fas fa-times"></i></button>
                 </div>
                 <div *ngIf="product.Images.length > 0" class="col-2">
                   <div class="img-item plus" (click)="imageInput.click()">
