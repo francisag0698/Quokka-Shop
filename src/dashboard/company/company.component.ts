@@ -5,6 +5,8 @@ import { CompanyService } from '../services/company.service';
 import { Company } from '../models/company';
 import { Countrys } from '../models/countrys';
 
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
@@ -12,8 +14,16 @@ import { Countrys } from '../models/countrys';
   providers: [ CompanyService ]
 })
 export class CompanyComponent implements OnInit {
+  myForm: FormGroup;
 
-  constructor(public companyService: CompanyService) { }
+  constructor(public companyService: CompanyService,  public fb: FormBuilder) { 
+    this.myForm = this.fb.group({
+      'name': ['', [Validators.required]],
+      'country': ['',[Validators.required]],
+      'city': ['',[Validators.required]],
+      'address': ['',[Validators.required]]
+    });
+  }
 
   ngOnInit() {
     this.getCompanys();
@@ -21,18 +31,20 @@ export class CompanyComponent implements OnInit {
   }
 
   addCompany(form: NgForm){
-    if(this.companyService.selectedCompany.id_company) {
-      this.companyService.putCompany(this.companyService.selectedCompany)
-        .subscribe(res => {
-          this.resetForm(form);
-          this.getCompanys();
-        });
-    } else {
-      this.companyService.postCompany(form.value)
-        .subscribe(res => {
-          this.getCompanys();
-          this.resetForm(form);
-        });
+    if(form.valid){
+      if(this.companyService.selectedCompany.id_company) {
+        this.companyService.putCompany(this.companyService.selectedCompany)
+          .subscribe(res => {
+            this.resetForm(form);
+            this.getCompanys();
+          });
+      } else {
+        this.companyService.postCompany(form.value)
+          .subscribe(res => {
+            this.getCompanys();
+            this.resetForm(form);
+          });
+      }
     }
   }
 

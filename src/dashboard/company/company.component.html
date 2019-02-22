@@ -9,21 +9,25 @@
               <input type="hidden" name="id" id="id" #id="ngModel" [(ngModel)]="companyService.selectedCompany.id_company">
               <div class="form-group">
                   <label for="name">Nombre </label>  
-                  <input type="text" name="name" id="name" class="form-control" #name="ngModel" [(ngModel)]="companyService.selectedCompany.name"  placeholder="Nombre ">                
+                  <control-messages [control]="companyForm.controls.name"></control-messages>
+                  <input type="text" name="name" id="name" class="form-control" #name="ngModel" [(ngModel)]="companyService.selectedCompany.name"  placeholder="Nombre " required>                
               </div>
               <div class="form-group">
                   <label  for="country">País</label> 
-                  <select name="country" id="country" #country="ngModel" [(ngModel)]="companyService.selectedCompany.country" class="form-control">
+                  <control-messages [control]="companyForm.controls.country"></control-messages>
+                  <select name="country" id="country" #country="ngModel" [(ngModel)]="companyService.selectedCompany.country" class="form-control" required>
                     <option *ngFor="let country of companyService.countrys " value="{{country.name}}">{{country.name}}</option>
                   </select>
               </div>
               <div class="form-group">
                 <label for="city">Ciudad</label>  
-                <input type="text" name="city" id="city" class="form-control" #city="ngModel" [(ngModel)]="companyService.selectedCompany.city"  placeholder="Ciudad">                  
+                <control-messages [control]="companyForm.controls.city"></control-messages>
+                <input type="text" name="city" id="city" class="form-control" #city="ngModel" [(ngModel)]="companyService.selectedCompany.city"  placeholder="Ciudad" required>                  
               </div>
               <div class="form-group">
                 <label for="address">Dirección</label> 
-                <input type="text" name="address" id="address" class="form-control" #address="ngModel" [(ngModel)]="companyService.selectedCompany.address"  placeholder="Direccion">                  
+                <control-messages [control]="companyForm.controls.address"></control-messages>
+                <input type="text" name="address" id="address" class="form-control" #address="ngModel" [(ngModel)]="companyService.selectedCompany.address"  placeholder="Direccion" required>                  
               </div>
               <div class="form-group text-center">
                   <button type="submit" class="btn btn-primary">Guardar</button>

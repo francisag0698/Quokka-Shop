@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { PromotionService } from '../services/promotion.service';
 import { Promotion } from '../models/promotion';
 import { subscribeOn } from 'rxjs/operators';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { ValidationService } from '../services/validation.service';
 
 @Component({
   selector: 'app-promotion',
@@ -12,14 +14,24 @@ import { subscribeOn } from 'rxjs/operators';
   providers: [ PromotionService ]
 })
 export class PromotionComponent implements OnInit {
+  ngForm: any;
 
-  constructor(public promotionService: PromotionService) { }
+  constructor(public promotionService: PromotionService, public fb: FormBuilder ) {
+    this.ngForm = this.fb.group({
+      'name': ['', [ Validators.minLength(3)]],
+      'description': ['', [Validators.required]],
+      'percentage': ['', [Validators.required]],
+      'start_date': ['', [Validators.required]],
+      'end_date': ['', [Validators.required]]
+    });
+   }
 
   ngOnInit() {
     this.getPromotions();
   }
 
   addPromotion(form: NgForm){
+   if(form.valid){
     if(this.promotionService.selectedPromotion.id_promotion) {
       this.promotionService.putPromotion(this.promotionService.selectedPromotion)
         .subscribe(res => {
@@ -33,6 +45,7 @@ export class PromotionComponent implements OnInit {
           this.resetForm(form);
         });
     }
+   }
   }
 
   editPromotion(promotion: Promotion){

@@ -13,6 +13,7 @@ import { Tax } from '../models/tax';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs/operators';
 import { Image } from '../models/image';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-product',
@@ -26,9 +27,20 @@ export class ProductComponent implements OnInit {
   product : Product;
   isEmpty = false;
   modal_title = '';
+  ngForm: any;
 
-  constructor(public modalService: NgbModal, public productService: ProductService, public companyService: CompanyService, public categoryService: CategoryService, public taxService: TaxService) {
+  constructor(public modalService: NgbModal, public productService: ProductService, public companyService: CompanyService, public categoryService: CategoryService, public taxService: TaxService,public fb: FormBuilder) {
     this.product = new Product();
+    this.ngForm = this.fb.group({
+      'name': ['', [Validators.required]],
+      'code':['', [Validators.required]],
+      'price':['', [Validators.required]],
+      'brand':['', [Validators.required]],
+      'company':['', [Validators.required]],
+      'category':['', [Validators.required]],
+      'tax':['', [Validators.required]],
+      'description':['', [Validators.required]]
+    });
   }
 
   ngOnInit() {
@@ -91,21 +103,23 @@ export class ProductComponent implements OnInit {
   }
 
   addProduct(){
-    if(this.product.id_product) {
-      this.productService.putProduct(this.product)
-        .subscribe(res => {
-          this.product = new Product;
-          this.getProducts();
-          this.modalService.dismissAll();
-        });
-    } else {
-      this.productService.postProduct(this.product, this.files)
-        .subscribe(res => {
-          this.product = new Product;
-          this.getProducts();
-          this.modalService.dismissAll();
-        });
-    }    
+    if(this.ngForm.valid){
+      if(this.product.id_product) {
+        this.productService.putProduct(this.product)
+          .subscribe(res => {
+            this.product = new Product;
+            this.getProducts();
+            this.modalService.dismissAll();
+          });
+      } else {
+        this.productService.postProduct(this.product, this.files)
+          .subscribe(res => {
+            this.product = new Product;
+            this.getProducts();
+            this.modalService.dismissAll();
+          });
+      }   
+    } 
   }
 
   editProduct(product: Product, content) {

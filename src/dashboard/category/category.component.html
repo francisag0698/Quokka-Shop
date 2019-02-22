@@ -37,7 +37,8 @@
                 <input type="hidden" class="form-control" id="id" name="id"  #id="ngModel"
                 [(ngModel)]="categoryService.selectedCategory.id_category">
                 <input type="text" class="form-control" id="name" name="name"  #name="ngModel"
-                    [(ngModel)]="categoryService.selectedCategory.name"> 
+                    [(ngModel)]="categoryService.selectedCategory.name" required>
+                 <control-messages [control]="categoryForm.controls.name"></control-messages>
                 <button type="submit" class="btn btn-primary" >Guardar</button>
                 <button type="button" class="btn btn-primary" (click)="modal.close(categoryForm)">Cancelar</button>
             </div>

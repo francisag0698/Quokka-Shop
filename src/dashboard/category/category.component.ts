@@ -5,6 +5,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { CategoryService } from "../services/category.service";
 import { Category } from "../models/category";
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+
 
 
 @Component({
@@ -15,8 +17,12 @@ import { Category } from "../models/category";
 })
 export class CategoryComponent implements OnInit {
   modal_title = '';
-
-  constructor(public modalService: NgbModal, public categoryService: CategoryService ) { }
+  ngForm: any;
+  constructor(public modalService: NgbModal, public categoryService: CategoryService, public fb: FormBuilder ) { 
+    this.ngForm = this.fb.group({
+      'name': ['', [Validators.required]]
+    });
+  }
 
   ngOnInit() {
     this.getCategorys();
@@ -30,21 +36,25 @@ export class CategoryComponent implements OnInit {
   }
 
   addCategory(form?: NgForm){
-    if(this.categoryService.selectedCategory.id_category){
-      this.categoryService.putCategory(this.categoryService.selectedCategory)
-        .subscribe(res =>{
-          this.resetForm(form);
-          this.modalService.dismissAll();
+    if (form.valid) {
+      if(this.categoryService.selectedCategory.id_category){
+        this.categoryService.putCategory(this.categoryService.selectedCategory)
+          .subscribe(res =>{
+            this.resetForm(form);
+            this.modalService.dismissAll();
+            this.getCategorys();
+        });
+      }else{
+        this.categoryService.postCategory(form.value)
+        .subscribe(res => {
           this.getCategorys();
-      });
-    }else{
-      this.categoryService.postCategory(form.value)
-      .subscribe(res => {
-        this.getCategorys();
-        this.modalService.dismissAll();
-        this.resetForm(form);
-      })
+          this.modalService.dismissAll();
+          this.resetForm(form);
+        })
+      }
     }
+    
+    
   }
   getCategorys(){
     this.categoryService.getCategory()

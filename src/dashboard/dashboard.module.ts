@@ -15,15 +15,18 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { ProductComponent } from './product/product.component';
 import { TaxComponent } from './tax/tax.component';
 import { PromotionComponent } from './promotion/promotion.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ControlMenssageComponent } from './control-menssage/control-menssage.component';
 
 @NgModule({
-  declarations: [MainComponent, MenuComponent, DashboardComponent, PreferencesComponent, CompanyComponent, CategoryComponent, InventoryComponent, ProductComponent, TaxComponent, PromotionComponent],
+  declarations: [MainComponent, MenuComponent, DashboardComponent, PreferencesComponent, CompanyComponent, CategoryComponent, InventoryComponent, ProductComponent, TaxComponent, PromotionComponent, ControlMenssageComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }
