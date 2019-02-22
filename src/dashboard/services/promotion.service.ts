@@ -11,7 +11,7 @@ export class PromotionService {
   selectedPromotion: Promotion;
   promotions: Promotion[];
 
-  readonly URL_API = '/api/promotion';
+  readonly URL_API = 'http://localhost:4000/api/promotion';
   
   constructor(private http: HttpClient) { 
     this.selectedPromotion = new Promotion();

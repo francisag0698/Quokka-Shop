@@ -11,7 +11,7 @@ export class ProductService {
   selectedProduct: Product;
   products: Product[];
 
-  readonly URL_API = '/api/product';
+  readonly URL_API = 'http://localhost:4000/api/product';
 
   constructor(private http: HttpClient) {
     this.selectedProduct = new Product();

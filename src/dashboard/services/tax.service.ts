@@ -11,7 +11,7 @@ export class TaxService {
   selectedTax: Tax;
   taxs: Tax[];
 
-  readonly URL_API = '/api/tax';
+  readonly URL_API = 'http://localhost:4000/api/tax';
 
   constructor(private http: HttpClient) {
     this.selectedTax = new Tax();

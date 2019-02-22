@@ -1,8 +1,8 @@
-import 'zone.js/dist/zone-node';
-import 'reflect-metadata';
-const { enableProdMode } = require('@angular/core');
+//import 'zone.js/dist/zone-node';
+//import 'reflect-metadata';
+/*const { enableProdMode } = require('@angular/core');
 const { ngExpressEngine } = require('@nguniversal/express-engine');
-const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
+const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');*/
 
 const express = require('express');
 const logger = require('morgan');
@@ -12,27 +12,28 @@ const { join } = require('path');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
-const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('./dist/server/main');
+const cors = require('cors');
+//const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('./dist/server/main');
 
 // SETTINGS ***********************
 const app = express();
-const { db } = require('./server/database');
+const { db } = require('./database');
 
-enableProdMode();
-const DIST_FOLDER = join(process.cwd(), 'dist/browser');
+//enableProdMode();
+//const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 
 // (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
-app.engine('html', ngExpressEngine({
+/*app.engine('html', ngExpressEngine({
   bootstrap: AppServerModuleNgFactory,
   providers: [
     provideModuleMap(LAZY_MODULE_MAP)
   ]
-}));
+}));*/
 
-app.set('view engine', 'html');
-app.set('views', DIST_FOLDER);
+/*app.set('view engine', 'html');
+app.set('views', DIST_FOLDER);*/
 
-const AuthController = require('./server/controllers/auth.controller');
+const AuthController = require('./controllers/auth.controller');
 passport.use(new LocalStrategy(AuthController.getSession));
 
 // MIDDLEWARES ***********************
@@ -64,24 +65,25 @@ passport.deserializeUser(function(user, done) {
 });
 
 app.use(express.static(join(process.cwd(), 'public')));
+app.use(cors())
 
 // ROUTES ***********************
-app.use('/api/role', require('./server/routes/role.routes'));
-app.use('/api/person', require('./server/routes/person.routes'));
-app.use('/api/account', require('./server/routes/account.routes'));
-app.use('/auth', require('./server/routes/auth.routes'));
-app.use('/api/company', require('./server/routes/company.routes'));
-app.use('/api/category', require('./server/routes/category.routes'));
-app.use('/api/tax', require('./server/routes/tax.routes'));
-app.use('/api/product', require('./server/routes/product.routes'));
-app.use('/api/promotion', require('./server/routes/promotion.routes'));
+app.use('/api/role', require('./routes/role.routes'));
+app.use('/api/person', require('./routes/person.routes'));
+app.use('/api/account', require('./routes/account.routes'));
+app.use('/auth', require('./routes/auth.routes'));
+app.use('/api/company', require('./routes/company.routes'));
+app.use('/api/category', require('./routes/category.routes'));
+app.use('/api/tax', require('./routes/tax.routes'));
+app.use('/api/product', require('./routes/product.routes'));
+app.use('/api/promotion', require('./routes/promotion.routes'));
 
 // Server static files from /browser
-app.get('*.*', express.static(DIST_FOLDER, {
+/*app.get('*.*', express.static(DIST_FOLDER, {
   maxAge: '1y'
-}));
+}));*/
 
-app.use('/', require('./server/routes/app.routes'));
+//app.use('/', require('./server/routes/app.routes'));
 
 // SERVER SETTINGS 
 app.use(function(req, res, next) {
@@ -95,7 +97,9 @@ app.use(function(err, req, res, next) {
 });
 
 // START UP THE NODE SERVER ***********************
-const PORT = process.env.PORT || 4000;
+/*const PORT = process.env.PORT || 4000;
 app.listen(PORT || 4000, () => {
   console.log(`Node Express server listening on http://localhost:${PORT}`);
-});
+});*/
+
+module.exports = app;

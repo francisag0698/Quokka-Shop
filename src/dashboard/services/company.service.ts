@@ -13,7 +13,7 @@ export class CompanyService {
   companys: Company[];
   countrys: Countrys[];
 
-  readonly URL_API = '/api/company';
+  readonly URL_API = 'http://localhost:4000/api/company';
   readonly URL_COUNTRY = 'https://restcountries.eu/rest/v2/all';
 
   constructor(private http: HttpClient) {
