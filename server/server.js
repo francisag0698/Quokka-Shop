@@ -1,9 +1,3 @@
-//import 'zone.js/dist/zone-node';
-//import 'reflect-metadata';
-/*const { enableProdMode } = require('@angular/core');
-const { ngExpressEngine } = require('@nguniversal/express-engine');
-const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');*/
-
 const express = require('express');
 const logger = require('morgan');
 const errors = require('http-errors');
@@ -13,25 +7,18 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const cors = require('cors');
-//const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('./dist/server/main');
 
 // SETTINGS ***********************
 const app = express();
-const { db } = require('./database');
+const  db  = require('./database');
 
-//enableProdMode();
-//const DIST_FOLDER = join(process.cwd(), 'dist/browser');
-
-// (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
-/*app.engine('html', ngExpressEngine({
-  bootstrap: AppServerModuleNgFactory,
-  providers: [
-    provideModuleMap(LAZY_MODULE_MAP)
-  ]
-}));*/
-
-/*app.set('view engine', 'html');
-app.set('views', DIST_FOLDER);*/
+/*app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept");
+next();
+});*/
 
 const AuthController = require('./controllers/auth.controller');
 passport.use(new LocalStrategy(AuthController.getSession));
@@ -45,12 +32,10 @@ app.use(session({
   name: 'example',
   secret: 'shuush',
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
-    path: '/',
-    httpOnly: true,
     secure: false,
-    expires: new Date('Monday, 18 January 2028')
+    expires: 86400000
   }
 }));
 app.use(passport.initialize());
@@ -65,7 +50,9 @@ passport.deserializeUser(function(user, done) {
 });
 
 app.use(express.static(join(process.cwd(), 'public')));
-app.use(cors())
+app.use(cors({origin: [
+  "http://localhost:4200"
+], credentials: true}))
 
 // ROUTES ***********************
 app.use('/api/role', require('./routes/role.routes'));
@@ -78,13 +65,6 @@ app.use('/api/tax', require('./routes/tax.routes'));
 app.use('/api/product', require('./routes/product.routes'));
 app.use('/api/promotion', require('./routes/promotion.routes'));
 
-// Server static files from /browser
-/*app.get('*.*', express.static(DIST_FOLDER, {
-  maxAge: '1y'
-}));*/
-
-//app.use('/', require('./server/routes/app.routes'));
-
 // SERVER SETTINGS 
 app.use(function(req, res, next) {
   next(errors(404));
@@ -95,11 +75,5 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   res.status(err.status || 500).send(err.message);
 });
-
-// START UP THE NODE SERVER ***********************
-/*const PORT = process.env.PORT || 4000;
-app.listen(PORT || 4000, () => {
-  console.log(`Node Express server listening on http://localhost:${PORT}`);
-});*/
 
 module.exports = app;

@@ -29,8 +29,14 @@ export class ProductComponent implements OnInit {
   modal_title = '';
   ngForm: any;
 
-  constructor(public modalService: NgbModal, public productService: ProductService, public companyService: CompanyService, public categoryService: CategoryService, public taxService: TaxService,public fb: FormBuilder) {
+  constructor(public modalService: NgbModal, 
+    public productService: ProductService, 
+    public companyService: CompanyService, 
+    public categoryService: CategoryService, 
+    public taxService: TaxService,
+    public fb: FormBuilder) {
     this.product = new Product();
+
     this.ngForm = this.fb.group({
       'name': ['', [Validators.required]],
       'code':['', [Validators.required]],
@@ -103,22 +109,20 @@ export class ProductComponent implements OnInit {
   }
 
   addProduct(){
-    if(this.ngForm.valid){
-      if(this.product.id_product) {
-        this.productService.putProduct(this.product)
-          .subscribe(res => {
-            this.product = new Product;
-            this.getProducts();
-            this.modalService.dismissAll();
-          });
-      } else {
-        this.productService.postProduct(this.product, this.files)
-          .subscribe(res => {
-            this.product = new Product;
-            this.getProducts();
-            this.modalService.dismissAll();
-          });
-      }   
+    if(this.product.id_product) {
+      this.productService.putProduct(this.product)
+        .subscribe(res => {
+          this.product = new Product;
+          this.getProducts();
+          this.modalService.dismissAll();
+        });
+    } else {
+      this.productService.postProduct(this.product, this.files)
+        .subscribe(res => {
+          this.product = new Product;
+          this.getProducts();
+          this.modalService.dismissAll();
+        });
     } 
   }
 

@@ -11,6 +11,7 @@ import { AlertComponent } from './components/alert/alert.component';
 
 import { DashboardModule } from '../dashboard/dashboard.module';
 
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { DashboardModule } from '../dashboard/dashboard.module';
     AlertComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

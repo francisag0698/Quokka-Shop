@@ -5,6 +5,7 @@ import { catchError, map, tap, first } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 import { AlertService } from '../../services/alert.service';
 import { LoginAccount } from '../../models/login-account';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   account: LoginAccount
   constructor(
     private auth: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
   ) {
     this.account = new LoginAccount();
   }
@@ -27,11 +29,11 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.account).pipe(first())
       .subscribe(
         data => {
-          console.log("DATA: " + (data as LoginAccount));
-          location.reload();
+          console.log("DATA: " + data);
+          this.router.navigate(['/dashboard']);
         }, error => {
           this.alertService.error("Usuario o contraseña incorrectos.");
-          console.log("ERROR: " + error.status);
+          console.log("ERROR: " + error);
         }
       )
   }

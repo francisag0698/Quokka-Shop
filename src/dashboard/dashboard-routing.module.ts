@@ -10,10 +10,13 @@ import { ProductComponent } from './product/product.component';
 import { TaxComponent } from './tax/tax.component';
 import { PromotionComponent } from './promotion/promotion.component';
 
+import { AuthGuard } from '../app/guards/auth/auth.guard';
+
 const routes: Routes = [
   {
     path: 'dashboard',
     component: MainComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',

@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyA0iZ1Gvrm8BjTOfB1gBw8_isefYC9z4z4",
+    authDomain: "quokka-shop.firebaseapp.com",
+    databaseURL: "https://quokka-shop.firebaseio.com",
+    projectId: "quokka-shop",
+    storageBucket: "quokka-shop.appspot.com",
+    messagingSenderId: "809095537091"
+  }
 };
 
 /*

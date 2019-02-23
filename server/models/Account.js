@@ -14,7 +14,8 @@ const Account = db.define('Account', {
     password: Sequelize.STRING,
     secure_token: Sequelize.STRING,
     phone_number: Sequelize.STRING(20),
-    state: Sequelize.BOOLEAN,
+    state: { type: Sequelize.BOOLEAN, defaultValue: true },
+    image_path: { type: Sequelize.STRING, defaultValue: 'userdefault.jpg' },
     external_id: { type: Sequelize.STRING, defaultValue: Sequelize.UUIDV4 }
 });
 

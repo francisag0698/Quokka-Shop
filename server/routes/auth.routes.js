@@ -13,9 +13,18 @@ router.post('/session/login', function(req, res, next) {
     })(req, res, next);
   });
 
-router.get('/session/logout', (req, res) => {
+router.post('/session/logout', (req, res) => {
   req.logout();
   res.status(200).send();
+});
+
+router.get('/session', (req, res) => {
+  console.log(req.user);
+  if(req.user){
+    res.status(200).json({ res: true, role: req.user.Person.id_role });
+  }else{
+    res.status(200).json({ res: false });
+  }
 });
 
 module.exports = router;
