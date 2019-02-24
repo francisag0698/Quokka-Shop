@@ -14,7 +14,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs/operators';
 import { Image } from '../models/image';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-
+import { ValidationService} from '../services/validation.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -38,7 +38,7 @@ export class ProductComponent implements OnInit {
     this.product = new Product();
 
     this.ngForm = this.fb.group({
-      'name': ['', [Validators.required]],
+      'name': ['', [Validators.required, ValidationService.nombre]],
       'code':['', [Validators.required]],
       'price':['', [Validators.required]],
       'brand':['', [Validators.required]],
@@ -108,22 +108,24 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  addProduct(){
-    if(this.product.id_product) {
-      this.productService.putProduct(this.product)
-        .subscribe(res => {
-          this.product = new Product;
-          this.getProducts();
-          this.modalService.dismissAll();
-        });
-    } else {
-      this.productService.postProduct(this.product, this.files)
-        .subscribe(res => {
-          this.product = new Product;
-          this.getProducts();
-          this.modalService.dismissAll();
-        });
-    } 
+  addProduct(form: NgForm){
+    if(form.valid){
+      if(this.product.id_product) {
+        this.productService.putProduct(this.product)
+          .subscribe(res => {
+            this.product = new Product;
+            this.getProducts();
+            this.modalService.dismissAll();
+          });
+      } else {
+        this.productService.postProduct(this.product, this.files)
+          .subscribe(res => {
+            this.product = new Product;
+            this.getProducts();
+            this.modalService.dismissAll();
+          });
+      } 
+    }
   }
 
   editProduct(product: Product, content) {

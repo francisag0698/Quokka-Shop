@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NgForm } from "@angular/forms";
+import { NgForm, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { CategoryService } from "../services/category.service";
 import { Category } from "../models/category";
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-
 
 
 @Component({
@@ -17,15 +15,14 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class CategoryComponent implements OnInit {
   modal_title = '';
-  ngForm: any;
-  constructor(public modalService: NgbModal, public categoryService: CategoryService, public fb: FormBuilder ) { 
-    this.ngForm = this.fb.group({
-      'name': ['', [Validators.required]]
-    });
+  public form: any;
+  constructor(public modalService: NgbModal,
+     public categoryService: CategoryService) {
   }
 
   ngOnInit() {
     this.getCategorys();
+    
   }
 
   openModal(content){
@@ -36,7 +33,9 @@ export class CategoryComponent implements OnInit {
   }
 
   addCategory(form?: NgForm){
-    if (form.valid) {
+    if(form.invalid){
+      return false;
+    }else{
       if(this.categoryService.selectedCategory.id_category){
         this.categoryService.putCategory(this.categoryService.selectedCategory)
           .subscribe(res =>{
@@ -51,10 +50,8 @@ export class CategoryComponent implements OnInit {
           this.modalService.dismissAll();
           this.resetForm(form);
         })
-      }
     }
-    
-    
+    }
   }
   getCategorys(){
     this.categoryService.getCategory()
