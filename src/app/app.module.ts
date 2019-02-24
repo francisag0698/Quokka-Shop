@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { RegisterPersonComponent  } from './components/register-person/register-person.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 import { DashboardModule } from '../dashboard/dashboard.module';
 
@@ -19,7 +20,8 @@ import { environment } from '../environments/environment';
     AppComponent,
     LoginComponent,
     AlertComponent,
-    RegisterPersonComponent
+    RegisterPersonComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
