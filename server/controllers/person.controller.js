@@ -1,6 +1,7 @@
 'use strict';
 const Person = require('../models/Person');
 const Role = require('../models/Role');
+const Account = require('../models/Account');
 
 const PersonController = {};
 
@@ -9,11 +10,37 @@ PersonController.getPersonList = async (req, res) => {
     res.json(personList);
 };
 
-PersonController.savePerson = async (req, res) => {
-    await Person.create(req.body);
-    res.json({
-        msg: 'Person Saved!'
-    });
+PersonController.savePerson = (req, res) => {
+    Account.findOne({ where: { user_name: req.body.user_name }}).then(function (account) {
+        if(account){
+            res.json({
+                msg: 'Repeated User Name!'
+            });
+        } else {
+            Person.create(req.body)
+            .then( function(newPerson, created) {
+                if(newPerson) {
+                    Account.create({
+                        user_name: req.body.user_name,
+                        email: req.body.email,
+                        password: req.body.password,
+                        secure_token: req.body.secure_token,
+                        phone_number: req.body.phone_number,
+                        id_person: newPerson.id_person
+                    })
+                    .then(() => {
+                        res.status(201).json();
+                    })
+                    .catch((err) => {
+                        res.status(500).json(err);
+                    });
+                };
+            });
+            res.json({
+                msg: 'Person Saved!'
+            });
+        }
+    });    
 };
 
 PersonController.getPerson = async (req, res) => {

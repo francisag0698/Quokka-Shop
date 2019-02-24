@@ -21,6 +21,9 @@ router.get('/dashboard/*', (req, res) => {
 router.get('/login', (req, res) => {
     res.render('index', { req });
 });
+router.get('/register-person', (req, res) => {
+    res.render('index', { req });
+});
 
 router.get('/', (req, res) => {
     res.render('index', { req });

@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="card">
+        <div class="card-content">
+          <form #personForm="ngForm" (ngSubmit)="addRegisterPerson(personForm)" >
+            <h2 class="text-center">Registro</h2>
+            <h4 class="text-left">Datos Personales</h4>
+            <input type="hidden" name="id_person" id="id_person" #id_person="ngModel" [(ngModel)]="registerPersonService.selectedRegisterPerson.id_person">
+            <input type="hidden" name="id_role" id="id_role" #id_role="ngModel"  [(ngModel)]="registerPersonService.selectedRegisterPerson.id_role">
+            <div class="form-group">
+              <label for="dni_type">Tipo de Identificacion </label>
+              <select name="dni_type" id="dni_type" #dni_type="ngModel" [(ngModel)]="registerPersonService.selectedRegisterPerson.dni_type" class="form-control">
+                <option value="cedula">Cedula</option>
+                <option value="ruc">RUC</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="dni">Identificacion</label>
+              <input type="number" name="dni" id="dni" class="form-control" #dni="ngModel" [(ngModel)]="registerPersonService.selectedRegisterPerson.dni" placeholder="Ingrese su identifiacion" required>
+            </div>
+            <div class="form-group">
+              <label for="first_name">Nombres</label>
+              <input type="text" name="first_name" id="first_name" #first_name="ngModel" [(ngModel)]="registerPersonService.selectedRegisterPerson.first_name" class="form-control" placeholder="Ingrese sus nombres" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Apellidos</label>
+                <input type="text" name="last_name" id="last_name" #last_name="ngModel" [(ngModel)]="registerPersonService.selectedRegisterPerson.last_name" class="form-control" placeholder="Ingrese sus apellidos" required>
+            </div>
+            <div class="form-group">
+                <label for="birthdate">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" name="birthdate" id="birthdate" #birthdate="ngModel" [(ngModel)]="registerPersonService.selectedRegisterPerson.birthdate" aria-describedby="fechaHelp" placeholder="Ingrese su fecha de Nacimiento" required>
+            </div>
+            <div class="form-group">
+              <label for="postal_code">Codigo postal</label>
+              <input type="text" name="postal_code" id="postal_code" #postal_code="ngModel" [(ngModel)]="registerPersonService.selectedRegisterPerson.postal_code" class="form-control" placeholder="Ingrese el codigo postal" required>
+            </div>
+            <br>
+            <h4 class="text-left">Datos de la Cuenta</h4>
+            <input type="hidden" name="id_account" id="id_account" #id_account="ngModel" [(ngModel)]="registerPersonService.selectedAccount.id_account">
+            <div class="form-group">
+              <label for="user_name">Nombre de Usuario</label>
+              <input type="text" name="user_name" id="user_name" #user_name="ngModel" [(ngModel)]="registerPersonService.selectedAccount.user_name" class="form-control" placeholder="Ingrese el nombre de usuario" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" #email="ngModel" [(ngModel)]="registerPersonService.selectedAccount.email" class="form-control" placeholder="Ingrese su email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña</label>
+              <input type="password" name="password" id="password" #password="ngModel" [(ngModel)]="registerPersonService.selectedAccount.password" class="form-control" placeholder="Ingrese su contraseña" required>
+            </div>
+            <div class="form-group">
+              <label for="secure_token">Token seguro</label>
+              <input type="text" name="secure_token" id="secure_token" #secure_token="ngModel" [(ngModel)]="registerPersonService.selectedAccount.secure_token" class="form-control" placeholder="Ingrese el Token seguro" required>
+            </div>
+            <div class="form-group">
+              <label for="phone_number">Numero Tel/Cel</label>
+              <input type="number" name="phone_number" id="phone_number" #phone_number="ngModel" [(ngModel)]="registerPersonService.selectedAccount.phone_number" class="form-control" placeholder="Ingrese su numero de telefono/celular" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </form>
+
+        </div>  
+      </div>    
+    </div>
+  </div>
+</div>

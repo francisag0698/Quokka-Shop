@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { RegisterPersonComponent  } from './components/register-person/register-person.component';
 
 import { DashboardModule } from '../dashboard/dashboard.module';
 
@@ -17,7 +18,8 @@ import { environment } from '../environments/environment';
   declarations: [
     AppComponent,
     LoginComponent,
-    AlertComponent
+    AlertComponent,
+    RegisterPersonComponent
   ],
   imports: [
     BrowserModule,
