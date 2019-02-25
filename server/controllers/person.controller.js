@@ -79,4 +79,13 @@ PersonController.editPerson = async (req, res) => {
     });
 };
 
+PersonController.savePersonAdmin = (req, res) => {
+    Person.create(req.body)
+    .then(() => {
+    });
+    res.json({
+        msg: 'Person Saved!'
+    });    
+};
+
 module.exports = PersonController;
