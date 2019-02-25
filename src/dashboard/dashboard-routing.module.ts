@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from '../dashboard/main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -9,6 +9,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { ProductComponent } from './product/product.component';
 import { TaxComponent } from './tax/tax.component';
 import { PromotionComponent } from './promotion/promotion.component';
+import { CustomersComponent } from './customers/customers.component';
 
 import { AuthGuard } from '../app/guards/auth/auth.guard';
 
@@ -23,6 +24,7 @@ const routes: Routes = [
         children: [
           { path: '', redirectTo: 'main', pathMatch: 'full' },
           { path: 'main', component: DashboardComponent },
+          { path: 'customers', component: CustomersComponent },
           {
             path: 'inventory',
             component: InventoryComponent,

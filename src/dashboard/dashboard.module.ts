@@ -17,9 +17,10 @@ import { TaxComponent } from './tax/tax.component';
 import { PromotionComponent } from './promotion/promotion.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ControlMenssageComponent } from './control-menssage/control-menssage.component';
+import { CustomersComponent } from './customers/customers.component';
 
 @NgModule({
-  declarations: [MainComponent, MenuComponent, DashboardComponent, PreferencesComponent, CompanyComponent, CategoryComponent, InventoryComponent, ProductComponent, TaxComponent, PromotionComponent, ControlMenssageComponent],
+  declarations: [MainComponent, MenuComponent, DashboardComponent, PreferencesComponent, CompanyComponent, CategoryComponent, InventoryComponent, ProductComponent, TaxComponent, PromotionComponent, ControlMenssageComponent, CustomersComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
