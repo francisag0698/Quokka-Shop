@@ -7,9 +7,12 @@ const bcrypt = require('bcryptjs');
 const PersonController = {};
 
 PersonController.getPersonList = async (req, res) => {
-    const personList = await Person.findAll({ include: [{model: Account}] });
+    const personList = await Person.findAll({where: {id_role: 1}},{order: [ 
+        [Sequelize.col('id_product'), 'DESC']
+    ], include: [{model: Account}] });
     res.json(personList);
 };
+
 
 PersonController.savePerson = (req, res) => {
     Account.findOne({ where: { user_name: req.body.user_name }}).then(function (account) {

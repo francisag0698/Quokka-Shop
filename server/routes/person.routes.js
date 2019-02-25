@@ -10,5 +10,6 @@ router.get('/:dni', personController.getPerson)
 
 router.get('/account/:dni', personController.getPersonAccount);
 router.get('/role/:dni', personController.getPersonRole);
+router.post('/admin', personController.savePersonAdmin );
 
 module.exports = router;
