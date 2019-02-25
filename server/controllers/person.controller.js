@@ -6,7 +6,7 @@ const Account = require('../models/Account');
 const PersonController = {};
 
 PersonController.getPersonList = async (req, res) => {
-    const personList = await Person.findAll();
+    const personList = await Person.findAll({ include: [{model: Account}] });
     res.json(personList);
 };
 

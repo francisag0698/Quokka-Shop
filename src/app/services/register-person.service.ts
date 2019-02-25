@@ -14,6 +14,7 @@ export class RegisterPersonService {
   selectedRegisterPerson: RegisterPerson;
   selectedAccount: Account;
   persons: RegisterPerson[];
+  accounts: Account[];
 
   readonly URL_API = 'http://localhost:4000/api/person';
   readonly URL_API_ACCOUNT = 'http://localhost:4000/api/account';

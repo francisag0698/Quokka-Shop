@@ -13,6 +13,7 @@ export class CustomersComponent implements OnInit {
   constructor(public registerPersonService: RegisterPersonService) { }
 
   ngOnInit() {
+    this.getCustomers();
   }
 
   getCustomers(){
