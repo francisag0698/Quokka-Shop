@@ -17,4 +17,5 @@ export class Account {
     secure_token: string;
     phone_number: string;
     id_person: string;
+    state: boolean;
 }

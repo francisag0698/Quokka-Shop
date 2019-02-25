@@ -1,5 +1,7 @@
 <div class="container">
+
   <div class="row">
+    <input type="text" class="form-control" #s="ngModel" [(ngModel)]="search" placeholder="Buscar">
     <table class="table">
       <thead>
         <th>Tipo DNI</th>
@@ -12,7 +14,7 @@
         <th>Acciones</th>
       </thead>
       <tbody>
-        <tr *ngFor = " let customer of registerPersonService.persons" >
+        <tr *ngFor = "let customer of registerPersonService.persons " >
           <td>{{ customer.dni_type }}</td>
           <td>{{ customer.dni }}</td>
           <td>{{ customer.first_name }}</td>
@@ -21,7 +23,7 @@
           <td>{{ customer.postal_code }}</td>
           <td>{{ customer.Account.state }}</td>
           <td>
-            <a >Estado</a>
+            <a (click)="editState(customer.Account)">Estado</a>
           </td>
         </tr>
       </tbody>
