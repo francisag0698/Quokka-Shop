@@ -3,7 +3,9 @@
     ul
         margin-bottom: 0
         li
-            a
+            > a, .d-inline-block > a
+                background: transparent
+                border: none
                 padding: 10px 20px
                 color: #5E5E5E
                 border-radius: 15px
@@ -11,6 +13,8 @@
                     background-color: #EAEAEA
                 i
                     margin-right: 10px
+            a:after
+                display: none
 
 .big-box
     position: relative
@@ -212,3 +216,4 @@ footer
         font-weight: 900
     .copy
         font-size: 12px
+    

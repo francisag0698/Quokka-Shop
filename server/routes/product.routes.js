@@ -7,6 +7,7 @@ var multer = require('multer') ({
 const productController = require('../controllers/product.controller');
 
 router.get('/', productController.getProductList)
+        .get('/featured', productController.getFeaturedProducts)
         .post('/', multer.any(), productController.saveProduct);
 
 router.post('/image', multer.single('image'), productController.addImage);

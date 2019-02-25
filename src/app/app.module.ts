@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlertsModule } from 'angular-alert-module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,7 +30,9 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    DashboardModule
+    DashboardModule,
+    NgbModule,
+    AlertsModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })

@@ -64,6 +64,7 @@ app.use('/api/category', require('./routes/category.routes'));
 app.use('/api/tax', require('./routes/tax.routes'));
 app.use('/api/product', require('./routes/product.routes'));
 app.use('/api/promotion', require('./routes/promotion.routes'));
+app.use('/api/cart', require('./routes/cart.routes'));
 
 // SERVER SETTINGS 
 app.use(function(req, res, next) {

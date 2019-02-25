@@ -8,6 +8,7 @@ router.post('/session/login', function(req, res, next) {
       if (!user) { return res.status(404).send(); }
       req.logIn(user, function(err) {
         if (err) { return res.status(500).send(); }
+        req.session.cart = [];
         return res.status(200).send(user);
       });
     })(req, res, next);
@@ -15,6 +16,7 @@ router.post('/session/login', function(req, res, next) {
 
 router.post('/session/logout', (req, res) => {
   req.logout();
+  req.session.cart = null;
   res.status(200).send();
 });
 

@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   logout(){
-    // To implement
+    return this.http.post('http://localhost:4000/auth/session/logout', null, { withCredentials: true });
   }
 
 }

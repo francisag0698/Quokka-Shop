@@ -10,6 +10,7 @@ const Order = db.define('Order', {
         autoIncrement: true,
     },
     num_order: Sequelize.INTEGER,
+    tax: Sequelize.DECIMAL(10,2),
     total: Sequelize.DECIMAL(10,2),
     state: Sequelize.BOOLEAN,
     external_id: { type: Sequelize.STRING, defaultValue: Sequelize.UUIDV4 }

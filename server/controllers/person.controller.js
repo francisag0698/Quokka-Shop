@@ -2,6 +2,7 @@
 const Person = require('../models/Person');
 const Role = require('../models/Role');
 const Account = require('../models/Account');
+const bcrypt = require('bcryptjs');
 
 const PersonController = {};
 
@@ -20,6 +21,7 @@ PersonController.savePerson = (req, res) => {
             Person.create(req.body)
             .then( function(newPerson, created) {
                 if(newPerson) {
+                    req.body.password = bcrypt.hashSync(req.body.password, 8);
                     Account.create({
                         user_name: req.body.user_name,
                         email: req.body.email,

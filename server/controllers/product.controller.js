@@ -27,6 +27,22 @@ ProductController.getProductList = (req, res) => {
     });
 };
 
+ProductController.getFeaturedProducts = (req, res) =>{
+    Product.findAll({
+        order:[
+            [Sequelize.col('sold'), 'DESC']
+        ],
+        include: [
+            { model: Image }
+        ],
+        limit: 4
+    }).then(products =>{
+        res.status(200).json(products);
+    }).catch((err) => {
+        res.status(500).json(err);
+    });
+};
+
 ProductController.saveProduct = (req, res, next) => {
     Product.create({
         name: req.body.name,

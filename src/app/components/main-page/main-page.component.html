@@ -7,27 +7,23 @@
       <div class="col-8 text-right">
         <ul class="list-inline">
           <li class="list-inline-item">
-            <a href="#"><i class="fas fa-shopping-bag"></i>Carrito</a>
+            <a href="#" (click)="openCart(cart_modal, $event)"><i class="fas fa-shopping-bag"></i>Carrito {{ (isAuth) ? '(' + cartLength + ')' : '' }}</a>
           </li>
-          <li class="list-inline-item">
-            <a href="#"><i class="fas fa-user"></i>Mi cuenta</a>
+          <li class="list-inline-item">            
+            <div ngbDropdown placement="bottom-right" class="d-inline-block">
+              <a href id="btn_account" ngbDropdownToggle (click)="initSession($event)"><i class="fas fa-user"></i>{{ (isAuth) ? 'Mi cuenta':'Iniciar sesión' }}</a>
+              <div *ngIf="isAuth" ngbDropdownMenu aria-labelledby="btn_account">
+                <button class="dropdown-item">Pedidos</button>
+                <button class="dropdown-item">Configuración</button>
+                <button class="dropdown-item" (click)="logout()">Cerrar Sesión</button>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </div>
 </div>
-<!--<div class="slideshow">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-7 text-center">
-        <h1>Etiam lacinia a dolor sed placera</h1>
-        <h3 class="mb-4">Fusce mattis vel metus ac posuere. Suspendisse vitae eros sit amet risus scelerisque placerat.</h3>
-        <a href="#" class="btn btn-primary">Explorar</a>
-      </div>
-    </div>
-  </div>
-</div>-->
 <div class="thumbs mb-4">
   <div class="container">
     <div class="row">
@@ -65,60 +61,18 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-3">
+      <div *ngFor="let product of productService.featured" class="col-3">
         <div class="featured-item">
-          <div class="img-item" [ngStyle]="{'background-image':'url(http://localhost:4000/uploads/result.jpg)'}">
-            <span class="price">$1456.25</span>
+          <div class="img-item" [ngStyle]="{'background-image':'url(http://localhost:4000/uploads/'+ product.Images[0].path +')'}">
+            <span class="price">${{ product.price }}</span>
             <div class="button-item">
-                <button type="button" class="btn btn-primary">Añadir al carrito</button>    
+                <button type="button" class="btn btn-primary" (click)="addToCart(product.external_id)">Añadir al carrito</button>    
             </div>  
           </div>
           <div class="content-item text-center">
-            <h6>Laptop Gamming Azul</h6>
-            <p>In velit sem, aliquam vestibulum dui et, condimentum ornare turpis...</p>
+            <h6>{{ product.name }}</h6>
+            <p>{{ product.description | slice: 0:55 }}...</p>
           </div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="featured-item">
-          <div class="img-item" [ngStyle]="{'background-image':'url(http://localhost:4000/uploads/result.jpg)'}">
-            <span class="price">$1456.25</span>
-            <div class="button-item">
-                <button type="button" class="btn btn-primary">Añadir al carrito</button>    
-            </div>  
-          </div>
-          <div class="content-item text-center">
-              <h6>Laptop Gamming Azul</h6>
-              <p>In velit sem, aliquam vestibulum dui et, condimentum ornare turpis...</p>
-            </div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="featured-item">
-          <div class="img-item" [ngStyle]="{'background-image':'url(http://localhost:4000/uploads/result.jpg)'}">
-            <span class="price">$1456.25</span>
-            <div class="button-item">
-                <button type="button" class="btn btn-primary">Añadir al carrito</button>    
-            </div>  
-          </div>
-          <div class="content-item text-center">
-              <h6>Laptop Gamming Azul</h6>
-              <p>In velit sem, aliquam vestibulum dui et, condimentum ornare turpis...</p>
-            </div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="featured-item">
-          <div class="img-item" [ngStyle]="{'background-image':'url(http://localhost:4000/uploads/result.jpg)'}">
-            <span class="price">$1456.25</span>
-            <div class="button-item">
-                <button type="button" class="btn btn-primary">Añadir al carrito</button>    
-            </div>  
-          </div>
-          <div class="content-item text-center">
-              <h6>Laptop Gamming Azul</h6>
-              <p>In velit sem, aliquam vestibulum dui et, condimentum ornare turpis...</p>        
-            </div>
         </div>
       </div>
     </div>
@@ -137,83 +91,20 @@
           <div class="misc-box">
             <h6>Todas las Categorías</h6>
             <ul class="list-unstyled">
-              <li><button class="btn btn-link"><i class="fas fa-asterisk"></i>Tecnología</button></li>
-              <li><button class="btn btn-link"><i class="fas fa-asterisk"></i>Ropa</button></li>
-              <li><button class="btn btn-link"><i class="fas fa-asterisk"></i>Bisutería</button></li>
-              <li><button class="btn btn-link"><i class="fas fa-asterisk"></i>Tecnología</button></li>
-              <li><button class="btn btn-link"><i class="fas fa-asterisk"></i>Ropa</button></li>
-              <li><button class="btn btn-link"><i class="fas fa-asterisk"></i>Bisutería</button></li>
-              <li><button class="btn btn-link"><i class="fas fa-asterisk"></i>Tecnología</button></li>
-              <li><button class="btn btn-link"><i class="fas fa-asterisk"></i>Ropa</button></li>
-              <li><button class="btn btn-link"><i class="fas fa-asterisk"></i>Bisutería</button></li>
+              <li *ngFor="let category of categoryService.categorys"><button class="btn btn-link"><i class="fas fa-asterisk"></i>{{ category.name }}</button></li>
             </ul>
           </div>
         </div>
         <div class="col-9">
           <div class="row">
-            <div class="col-6">
+            <div *ngFor="let product of productService.products" class="col-6">
               <div class="product-item">
-                  <div class="img-item" [ngStyle]="{'background-image':'url(http://localhost:4000/uploads/result_2.jpg)'}"></div>
+                  <div class="img-item" [ngStyle]="{'background-image':'url(http://localhost:4000/uploads/'+ product.Images[0].path +')'}"></div>
                 <div class="content-item">                  
-                  <span class="price">$1234.32</span>
-                  <h6>Laptop Gamming Azul</h6>
-                  <p>In velit sem, aliquam vestibulum dui et, condimentum ornare turpis...</p>
-                  <button type="button" class="btn btn-primary">Añadir al carrito</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="product-item">
-                <div class="img-item" [ngStyle]="{'background-image':'url(http://localhost:4000/uploads/result_2.jpg)'}"></div>
-                <div class="content-item">    
-                  <span class="price">$1234.32</span>              
-                  <h6>Laptop Gamming Azul</h6>
-                  <p>In velit sem, aliquam vestibulum dui et, condimentum ornare turpis...</p>   
-                  <button type="button" class="btn btn-primary">Añadir al carrito</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="product-item">
-                <div class="img-item" [ngStyle]="{'background-image':'url(http://localhost:4000/uploads/result_2.jpg)'}"></div>
-                <div class="content-item">    
-                  <span class="price">$1234.32</span>              
-                  <h6>Laptop Gamming Azul</h6>
-                  <p>In velit sem, aliquam vestibulum dui et, condimentum ornare turpis...</p>   
-                  <button type="button" class="btn btn-primary">Añadir al carrito</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="product-item">
-                <div class="img-item" [ngStyle]="{'background-image':'url(http://localhost:4000/uploads/result_2.jpg)'}"></div>
-                <div class="content-item">    
-                  <span class="price">$1234.32</span>              
-                  <h6>Laptop Gamming Azul</h6>
-                  <p>In velit sem, aliquam vestibulum dui et, condimentum ornare turpis...</p>   
-                  <button type="button" class="btn btn-primary">Añadir al carrito</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="product-item">
-                <div class="img-item" [ngStyle]="{'background-image':'url(http://localhost:4000/uploads/result_2.jpg)'}"></div>
-                <div class="content-item">    
-                  <span class="price">$1234.32</span>              
-                  <h6>Laptop Gamming Azul</h6>
-                  <p>In velit sem, aliquam vestibulum dui et, condimentum ornare turpis...</p>   
-                  <button type="button" class="btn btn-primary">Añadir al carrito</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="product-item">
-                <div class="img-item" [ngStyle]="{'background-image':'url(http://localhost:4000/uploads/result_2.jpg)'}"></div>
-                <div class="content-item">    
-                  <span class="price">$1234.32</span>              
-                  <h6>Laptop Gamming Azul</h6>
-                  <p>In velit sem, aliquam vestibulum dui et, condimentum ornare turpis...</p>   
-                  <button type="button" class="btn btn-primary">Añadir al carrito</button>
+                  <span class="price">${{ product.price }}</span>
+                  <h6>{{ product.name }}</h6>
+                  <p>{{ product.description | slice: 0:55 }}...</p>
+                  <button type="button" class="btn btn-primary" (click)="addToCart(product.external_id)">Añadir al carrito</button>
                 </div>
               </div>
             </div>
@@ -235,12 +126,45 @@
                   </li>
                 </ul>
               </nav>
-          </div>
+            </div>
           </div>
         </div>
       </div>
   </div>
 </div>
+<ng-template #cart_modal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Carrito</h4>
+  </div>
+  <div class="modal-body">
+    <div class="content-cart">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Categoría</th>
+            <th>Cantidad</th>
+            <th>P. Unitario</th>
+            <th>P. Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of this.cartService.cart">
+            <td>{{ item.name }}</td>
+            <td>{{ item.category }}</td>
+            <td><a href class="btn btn-danger" (click)="minusItem(item.external, $event)"><i class="fas fa-minus"></i></a> {{ item.cant }} <a href class="btn btn-success" (click)="plusItem(item.external, $event)"><i class="fas fa-plus"></i></a></td>
+            <td>${{ item.pu | number: '1.2' }}</td>
+            <td>${{ item.pt | number: '1.2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-right">
+      <button type="button" class="btn btn-warning mr-2" (click)="modal.close()">Cerrar</button>
+      <button type="button" class="btn btn-primary">Completar Compra</button>
+    </div>
+  </div>
+</ng-template>
 <footer>
   <div class="container">
     <div class="row"> 
@@ -254,3 +178,4 @@
     </div>
   </div>
 </footer>
+<app-alerts></app-alerts>

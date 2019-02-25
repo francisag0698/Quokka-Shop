@@ -1,10 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-5">
-      <div class="card">
-        <div class="card-content">
-          <form #personForm="ngForm" (ngSubmit)="addRegisterPerson(personForm)" >
-            <h2 class="text-center">Registro</h2>
+    <div class="col">
+      <form #personForm="ngForm" (ngSubmit)="addRegisterPerson(personForm)" >
+        <div class="row">
+          <div class="col-6">
             <h4 class="text-left">Datos Personales</h4>
             <input type="hidden" name="id_person" id="id_person" #id_person="ngModel" [(ngModel)]="registerPersonService.selectedRegisterPerson.id_person">
             <input type="hidden" name="id_role" id="id_role" #id_role="ngModel"  [(ngModel)]="registerPersonService.selectedRegisterPerson.id_role">
@@ -35,7 +34,8 @@
               <label for="postal_code">Codigo postal</label>
               <input type="text" name="postal_code" id="postal_code" #postal_code="ngModel" [(ngModel)]="registerPersonService.selectedRegisterPerson.postal_code" class="form-control" placeholder="Ingrese el codigo postal" required>
             </div>
-            <br>
+          </div>
+          <div class="col-6">
             <h4 class="text-left">Datos de la Cuenta</h4>
             <input type="hidden" name="id_account" id="id_account" #id_account="ngModel" [(ngModel)]="registerPersonService.selectedAccount.id_account">
             <div class="form-group">
@@ -58,11 +58,10 @@
               <label for="phone_number">Numero Tel/Cel</label>
               <input type="number" name="phone_number" id="phone_number" #phone_number="ngModel" [(ngModel)]="registerPersonService.selectedAccount.phone_number" class="form-control" placeholder="Ingrese su numero de telefono/celular" required>
             </div>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-          </form>
-
-        </div>  
-      </div>    
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </form> 
     </div>
   </div>
 </div>
