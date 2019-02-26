@@ -6,7 +6,15 @@ const Role = require('../models/Role');
 const bcrypt = require('bcryptjs');
 
 const AuthController = {};
-
+/**
+ * @api {get} / Permite obtener una sesion
+ * @apiName getSession
+ * @apiGroup AuthController 
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {account} Devuelve una sesion
+ */
 AuthController.getSession = (username, password, done) => {
     Account.findOne({
         where: { user_name: username }, include: [

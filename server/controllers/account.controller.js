@@ -1,10 +1,20 @@
+
 'use strict';
 const Sequelize = require('sequelize');
 const Account = require('../models/Account');
 const bcrypt = require('bcryptjs');
 
 const AccountController = {};
-
+/**
+ * @api {get} / Permite listar Cuentas
+ * @apiName getAccountList
+ * @apiGroup AccountController 
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {accounts} Devuelve una lista de cuentas.
+ * 
+ */
 AccountController.getAccountList = (req, res) => {
     Account.findAll()
     .then((accounts) =>{
@@ -13,7 +23,16 @@ AccountController.getAccountList = (req, res) => {
         res.status(500).send(err);
     });
 };
-
+/**
+ * @api {post} / Permite Guardar Cuentas
+ * @apiName saveAccount
+ * @apiGroup AccountController 
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ * 
+ */
 AccountController.saveAccount = (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, 8);
     Account.create(req.body)
@@ -23,7 +42,16 @@ AccountController.saveAccount = (req, res) => {
         res.status(500).send(err);
     });
 };
-
+/**
+ * @api {get} / Permite listar obtener cuenta por por el id
+ * @apiName getAccount
+ * @apiGroup AccountController 
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {account} Devuelve una cuenta
+ * 
+ */
 AccountController.getAccount = (req, res) => {
     Account.findOne({
         where: { id_account: req.params.id }
@@ -38,7 +66,15 @@ AccountController.getAccount = (req, res) => {
         res.status(500).send();
     });
 };
-
+/**
+ * @api {put} / Permite editar una cuenta
+ * @apiName editAccount
+ * @apiGroup AccountController 
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 AccountController.editAccount = (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, 8);
     Account.update({

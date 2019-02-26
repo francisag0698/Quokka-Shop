@@ -3,11 +3,20 @@ const Category = require('../models/Category');
 const Order = require('../models/Order');
 const Order_Detail = require('../models/Order_Detail');
 const Shipping = require('../models/Shipping');
+const Person = require('../models/Person');
 
 const stripe = require('stripe')("sk_test_jEhCrdJOmNYIuF4LDmq0v2ga");
 
 const CartController = {};
-
+/**
+ * @api {get} / Permite obtener una ordem
+ * @apiName getOrder
+ * @apiGroup CartController 
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {orders} Devuelve una orden
+ */
 CartController.getOrder = (req, res) => {
     Order.findAll({})
     .then((orders) => {
@@ -17,11 +26,28 @@ CartController.getOrder = (req, res) => {
         res.status(500).json(err);
     });
 }
+/**
+ * @api {get} / Permite obtener una ordem
+ * @apiName getOrder
+ * @apiGroup CartController 
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {orders} Devuelve una orden
+ */
 
 CartController.getCart = (req, res) => {
     res.status(200).json(req.session.cart);
 }
-
+/**
+ * @api {post} / Permite agregar un item
+ * @apiName addItem
+ * @apiGroup CartController 
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 CartController.addItem = (req, res) => {
     const ext = req.params.ext;
     Product.findOne({ where: { external_id: ext }, include: { model: Category } })
@@ -43,7 +69,15 @@ CartController.addItem = (req, res) => {
             res.status(500).json();
         });
 };
-
+/**
+ * @api {get} / Permite verificar un minusitem
+ * @apiName minusItem
+ * @apiGroup CartController 
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {minusItem} un minusItem
+ */
 CartController.minusItem = (req, res) => {
     const ext = req.params.ext;
     var pos = verificar(req.session.cart, ext);
@@ -57,7 +91,15 @@ CartController.minusItem = (req, res) => {
     }
     res.status(200).json(req.session.cart);
 };
-
+/**
+ * @api {get} / Permite verfificar un plusitem
+ * @apiName plusItem
+ * @apiGroup CartController 
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 CartController.plusItem = (req, res) =>{
     const ext = req.params.ext;
     var pos = verificar(req.session.cart, ext);
@@ -70,6 +112,8 @@ CartController.plusItem = (req, res) =>{
 /*stripe.charges.list(function(err, charges){
     console.log(charges);
 })*/
+
+
 CartController.processing = async (req, res) =>{
     console.log(req.body);  
     if(req.body.isCard){  
