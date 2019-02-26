@@ -8,17 +8,14 @@
         <th>Impuesto</th>
         <th>Total</th>
         <th>Estado</th>
-        <th>Acciones</th>
+       
       </thead>
       <tbody>
-        <tr *ngFor = "let order of ordersService.orders " >
-          <td>{{ order.num_order }}</td>
+        <tr *ngFor = "let order of ordersService.orders | let i = index" >
+          <td>{{ i+1 }}</td>
           <td>{{ order.tax }}</td>
           <td>{{ order.total }}</td>
           <td>{{ order.state }}</td>
-          <td>
-            
-          </td>
         </tr>
       </tbody>
     </table>
