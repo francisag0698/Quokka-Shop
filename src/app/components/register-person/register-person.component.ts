@@ -5,6 +5,7 @@ import { RegisterPersonService } from '../../services/register-person.service';
 import { RegisterPerson } from '../../models/register-person';
 import { Account } from '../../models/account';
 import { AlertService } from '../../services/alert.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { AlertService } from '../../services/alert.service';
 })
 export class RegisterPersonComponent implements OnInit {
 
-  constructor(public registerPersonService: RegisterPersonService, private alertService: AlertService) { }
+  constructor(public registerPersonService: RegisterPersonService, private alertService: AlertService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -26,6 +27,7 @@ export class RegisterPersonComponent implements OnInit {
     this.registerPersonService.postRegisterPerson(form.value)
       .subscribe(data => {
         this.resetForm(form);
+        this.router.navigate(['/login']);
       }, error => {
         this.alertService.error("Este Usuario ya existe.");
       });

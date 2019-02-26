@@ -179,7 +179,7 @@
     </div>
     <div class="text-right">
       <button type="button" class="btn btn-warning mr-2" (click)="modal.close()">Cerrar</button>
-      <a href="/payment" class="btn btn-primary">Completar Compra</a>
+      <a (click)="redirect($event)" href="/payment" class="btn btn-primary">Completar Compra</a>
     </div>
   </div>
 </ng-template>

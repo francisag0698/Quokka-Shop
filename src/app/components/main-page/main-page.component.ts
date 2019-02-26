@@ -109,6 +109,13 @@ export class MainPageComponent implements OnInit {
     event.preventDefault();
   }
 
+  redirect(event: any){
+    if(this.cartService.cart.length > 0){
+      location.assign('/payment');
+    }
+    event.preventDefault();
+  }
+
   getProducts(){
     this.productService.getProducts()
       .subscribe(res => {
