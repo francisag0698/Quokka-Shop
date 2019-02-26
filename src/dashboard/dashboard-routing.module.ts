@@ -10,6 +10,7 @@ import { ProductComponent } from './product/product.component';
 import { TaxComponent } from './tax/tax.component';
 import { PromotionComponent } from './promotion/promotion.component';
 import { CustomersComponent } from './customers/customers.component';
+import { OrdersComponent } from './orders/orders.component';
 
 import { AuthGuard } from '../app/guards/auth/auth.guard';
 
@@ -25,6 +26,7 @@ const routes: Routes = [
           { path: '', redirectTo: 'main', pathMatch: 'full' },
           { path: 'main', component: DashboardComponent },
           { path: 'customers', component: CustomersComponent },
+          { path: 'orders', component: OrdersComponent },
           {
             path: 'inventory',
             component: InventoryComponent,

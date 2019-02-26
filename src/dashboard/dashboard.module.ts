@@ -18,9 +18,10 @@ import { PromotionComponent } from './promotion/promotion.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ControlMenssageComponent } from './control-menssage/control-menssage.component';
 import { CustomersComponent } from './customers/customers.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
-  declarations: [MainComponent, MenuComponent, DashboardComponent, PreferencesComponent, CompanyComponent, CategoryComponent, InventoryComponent, ProductComponent, TaxComponent, PromotionComponent, ControlMenssageComponent, CustomersComponent],
+  declarations: [MainComponent, MenuComponent, DashboardComponent, PreferencesComponent, CompanyComponent, CategoryComponent, InventoryComponent, ProductComponent, TaxComponent, PromotionComponent, ControlMenssageComponent, CustomersComponent, OrdersComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

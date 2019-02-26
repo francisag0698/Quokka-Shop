@@ -10,5 +10,6 @@ router.post('/plus/:ext', cartController.plusItem);
 router.post('/minus/:ext', cartController.minusItem);
 
 router.post('/process', cartController.processing);
+router.get('/order', cartController.getOrder );
 
 module.exports = router;

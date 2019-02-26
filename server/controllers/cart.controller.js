@@ -8,6 +8,16 @@ const stripe = require('stripe')("sk_test_jEhCrdJOmNYIuF4LDmq0v2ga");
 
 const CartController = {};
 
+CartController.getOrder = (req, res) => {
+    Order.findAll({})
+    .then((orders) => {
+        res.status(200).json(orders);
+    })
+    .catch((err) => {
+        res.status(500).json(err);
+    });
+}
+
 CartController.getCart = (req, res) => {
     res.status(200).json(req.session.cart);
 }
