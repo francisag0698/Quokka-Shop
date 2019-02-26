@@ -16,5 +16,6 @@
   <ul class="list-unstyled">
     <li><a routerLink="./preferences" [routerLinkActive]="['active']"><i class="fas fa-cogs"></i>Configuración</a></li>
     <li><a routerLink="./reports" [routerLinkActive]="['active']"><i class="fas fa-archive"></i>Informes</a></li>
+    <li><a href (click)="logout($event)"><i class="fas fa-power-off"></i>Cerrar Sesión</a></li>
   </ul>
 </nav>

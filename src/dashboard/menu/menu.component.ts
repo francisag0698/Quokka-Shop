@@ -26,4 +26,12 @@ export class MenuComponent implements OnInit {
       });
   }
 
+  logout(event:any){
+    this.authService.logout()
+      .subscribe(res => {
+        location.reload();
+      });
+    event.preventDefault();
+  }
+
 }

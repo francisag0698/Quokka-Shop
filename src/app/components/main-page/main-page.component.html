@@ -13,7 +13,7 @@
             <div ngbDropdown placement="bottom-right" class="d-inline-block">
               <a href id="btn_account" ngbDropdownToggle (click)="initSession($event)"><i class="fas fa-user"></i>{{ (isAuth) ? 'Mi cuenta':'Iniciar sesión' }}</a>
               <div *ngIf="isAuth" ngbDropdownMenu aria-labelledby="btn_account">
-                <button class="dropdown-item">Pedidos</button>
+                <!--<button class="dropdown-item">Pedidos</button>-->
                 <!--<button class="dropdown-item">Configuración</button>-->
                 <button class="dropdown-item" (click)="logout()">Cerrar Sesión</button>
               </div>
