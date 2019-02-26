@@ -10,7 +10,15 @@ const Category = require('../models/Category');
 const Tax = require('../models/Tax');
 
 const ProductController = {};
-
+/**
+ * @api {get} / Permite obtener una lista de productos
+ * @apiName getProductList
+ * @apiGroup ProductController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {products} devuelve un objeto con productos
+ */
 ProductController.getProductList = (req, res) => {
     Product.findAll({ 
         order: [ 
@@ -26,7 +34,15 @@ ProductController.getProductList = (req, res) => {
         res.status(500).json(err);
     });
 };
-
+/**
+ * @api {get} /featured Permite obtener los productos destacados
+ * @apiName getFeaturedProducts
+ * @apiGroup ProductController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {products} devuelve un objeto con productos
+ */
 ProductController.getFeaturedProducts = (req, res) =>{
     Product.findAll({
         order:[
@@ -42,7 +58,15 @@ ProductController.getFeaturedProducts = (req, res) =>{
         res.status(500).json(err);
     });
 };
-
+/**
+ * @api {post} / Permite guadar productos
+ * @apiName saveProduct
+ * @apiGroup ProductController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 ProductController.saveProduct = (req, res, next) => {
     Product.create({
         name: req.body.name,
@@ -78,7 +102,15 @@ ProductController.saveProduct = (req, res, next) => {
         res.status(500).json(err);
     });
 };
-
+/**
+ * @api {post} /iamge Permite guadar imagenes en un producto
+ * @apiName addImage
+ * @apiGroup ProductController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 ProductController.addImage = (req, res) => {
     Product.findOne({
         where: { id_product: req.body.id_product }
@@ -104,7 +136,15 @@ ProductController.addImage = (req, res) => {
         res.status(500).send();
     })
 }
-
+/**
+ * @api {get} /:id Permite obtener el producto por el id
+ * @apiName getProduct
+ * @apiGroup ProductController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {product} devuelve un objeto de categoria
+ */
 ProductController.getProduct = (req, res) =>{
     Product.findOne({
         where: { id_product: req.params.id }
@@ -118,7 +158,15 @@ ProductController.getProduct = (req, res) =>{
         res.status(500).json();            
     });
 };
-
+/**
+ * @api {put} /:id Permite modificar el producto por el id
+ * @apiName editProduct
+ * @apiGroup ProductController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 ProductController.editProduct = (req, res) => {
     console.log(req.body);
     Product.update({
@@ -141,6 +189,15 @@ ProductController.editProduct = (req, res) => {
         res.status(500).send();
     });
 };
+/**
+ * @api {put} /stock/:id Permite modificar el stock por el id
+ * @apiName editStock 
+ * @apiGroup ProductController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 ProductController.editStock = (req, res) => {
     Product.find({
         where: { id_product: req.params.id }
@@ -162,7 +219,15 @@ ProductController.editStock = (req, res) => {
         res.status(500).send();
     });   
 };
-
+/**
+ * @api {delet} /image/:id Permite eliminar una imagen
+ * @apiName deleteImage 
+ * @apiGroup ProductController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 ProductController.deleteImage = (req, res) => {
     Image.find({
         where: { id_image: req.params.id }

@@ -6,6 +6,15 @@ const bcrypt = require('bcryptjs');
 const Sequelize = require('sequelize');
 
 const PersonController = {};
+/**
+ * @api {get} / Permite obtener una lista de personas
+ * @apiName getPersonList
+ * @apiGroup PersonController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {personList} devuelve un objeto con personas
+ */
 
 PersonController.getPersonList = async (req, res) => {
     const personList = await Person.findAll({where: {id_role: 4}, include: [{model: Account}], order: [
@@ -25,7 +34,15 @@ PersonController.search = async (req, res) => {
     });
     res.json(personSearch);
 };
-
+/**
+ * @api {post} / Permite guadar personas
+ * @apiName savePerson
+ * @apiGroup PersonController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 PersonController.savePerson = (req, res) => {
     Account.findOne({ where: { user_name: req.body.user_name }}).then(function (account) {
         if(account){
@@ -59,28 +76,60 @@ PersonController.savePerson = (req, res) => {
         }
     });    
 };
-
+/**
+ * @api {get} /:id Permite obtener la persona por el id
+ * @apiName getPerson
+ * @apiGroup PersonController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {person} devuelve un objeto de categoria
+ */
 PersonController.getPerson = async (req, res) => {
     const person = await Person.findOne({
         where: { dni: req.params.dni }
     });
     res.json(person);
 };
-
+/**
+ * @api {get} /account/:dni Permite obtener la persona por el dni cuenta
+ * @apiName getPersonAccount
+ * @apiGroup PersonController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 PersonController.getPersonAccount = async (req, res) => {
     const person = await Person.findOne({
         where: { dni: req.params.dni }
     });
     res.json(await person.getAccount());
 };
-
+/**
+ * @api {get} /role/:dni Permite obtener la persona por el dni rol
+ * @apiName getPersonAccount
+ * @apiGroup PersonController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 PersonController.getPersonRole = async (req, res) => {
     const person = await Person.findOne({
         where: { dni: req.params.dni }
     });
     res.json(await person.getRole());
 };
-
+/**
+ * @api {put} /:id Permite modificar la persona por el id
+ * @apiName editPerson
+ * @apiGroup PersonController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 PersonController.editPerson = async (req, res) => {
     await Person.update({
         dni_type: req.body.dni_type,
@@ -95,7 +144,15 @@ PersonController.editPerson = async (req, res) => {
         msg: 'Person Updated!'
     });
 };
-
+/**
+ * @api {post} /admin Permite guadar personas
+ * @apiName savePersonAdmin 
+ * @apiGroup PersonController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 PersonController.savePersonAdmin = (req, res) => {
     Person.create(req.body)
     .then(() => {

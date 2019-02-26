@@ -4,7 +4,15 @@ const Sequelize = require('sequelize');
 const Category = require('../models/Category');
 
 const CategoryController ={};
-
+/**
+ * @api {get} / Permite obtener una lista de categorias
+ * @apiName getCategoryList
+ * @apiGroup CategoryController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {categorys} devuelve un objeto con categorias
+ */
 CategoryController.getCategoryList = (req, res) => {
     Category.findAll({
         order: [
@@ -19,7 +27,15 @@ CategoryController.getCategoryList = (req, res) => {
     });
 };
 
-
+/**
+ * @api {post} / Permite guadar categorias
+ * @apiName saveCategory
+ * @apiGroup CategoryController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 CategoryController.saveCategory = (req, res) =>{
     Category.create({
         name: req.body.name
@@ -31,7 +47,15 @@ CategoryController.saveCategory = (req, res) =>{
         res.status(500).json(err);
     });
 };
-
+/**
+ * @api {get} /:id Permite obtener la categoria por el id
+ * @apiName getCategory
+ * @apiGroup CategoryController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {category} devuelve un objeto de categoria
+ */
 CategoryController.getCategory = (req, res) =>{
     Category.findOne({
         where:{ id_category: req.params.id}
@@ -44,7 +68,15 @@ CategoryController.getCategory = (req, res) =>{
         res.status(500).json();
     });
 };
-
+/**
+ * @api {put} /:id Permite modificar la categoria por el id
+ * @apiName editCategory
+ * @apiGroup CategoryController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 CategoryController.editCategory = (req, res)=>{
     Category.update({
         name: req.body.name
