@@ -42,7 +42,7 @@ export class PaymentComponent implements OnInit {
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSize: '18px',
         '::placeholder': {
-          color: '#CFD7E0'
+          color: '#aaadb1'
         }
       }
     }
@@ -76,6 +76,7 @@ export class PaymentComponent implements OnInit {
   }
 
   toggleShip(input: any){
+    input.value
     this.hasShip = !this.hasShip;
   }
 
@@ -180,6 +181,20 @@ export class PaymentComponent implements OnInit {
     this.authService.getUserInfo()
       .subscribe(res => {
         this.account = res as Account;
+      });
+  }
+
+  initSession(event:any){
+    if(!this.isAuth){
+      this.router.navigate(['/login']);
+    }
+    event.preventDefault();
+  }
+
+  logout(){
+    this.authService.logout()
+      .subscribe(res => {
+        this.router.navigate(['/']);
       });
   }
 }
