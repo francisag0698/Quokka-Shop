@@ -72,6 +72,7 @@ export class MainPageComponent implements OnInit {
     this.cartService.plusItem(external)
       .subscribe(res =>{
         this.cartService.cart = res as Cart[];
+        this.cartLength = this.cartService.cart.length;
         this.setTotalValues(this.cartService.cart);
       });
     event.preventDefault();
@@ -81,6 +82,7 @@ export class MainPageComponent implements OnInit {
     this.cartService.minusItem(external)
       .subscribe(res =>{
         this.cartService.cart = res as Cart[];
+        this.cartLength = this.cartService.cart.length;
         this.setTotalValues(this.cartService.cart);
       });
     event.preventDefault();

@@ -14,10 +14,12 @@ router.post('/image', multer.single('image'), productController.addImage);
 
 router.delete('/image/:id', productController.deleteImage);
 
+router.put('/stock/:id', productController.editStock);
+
 router.get('/:id', productController.getProduct)
         .put('/:id', productController.editProduct);
 
-router.put('/stock/:id', productController.editStock);
+
 
 
 

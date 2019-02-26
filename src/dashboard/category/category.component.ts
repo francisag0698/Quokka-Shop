@@ -27,7 +27,7 @@ export class CategoryComponent implements OnInit {
 
   openModal(content){
     this.modal_title = 'Añadir Producto';
-    this.modalService.open(content, { centered: true, size: 'lg' }).result.then((res)=>{
+    this.modalService.open(content, { centered: true }).result.then((res)=>{
       this.resetForm(res);
     });
   }

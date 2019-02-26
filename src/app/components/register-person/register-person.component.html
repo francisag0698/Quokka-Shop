@@ -11,8 +11,8 @@
             <div class="form-group">
               <label for="dni_type">Tipo de Identificacion </label>
               <select name="dni_type" id="dni_type" #dni_type="ngModel" [(ngModel)]="registerPersonService.selectedRegisterPerson.dni_type" class="form-control" required>
-                <option value="cedula">Cedula</option>
-                <option value="ruc">RUC</option>
+                <option value="Cédula de Identidad">Cédula de Identidad</option>
+                <option value="RUC">RUC</option>
               </select>
               <div *ngIf="dni_type.invalid && (dni_type.dirty || dni_type.touched )"
                    class="alert alert-danger">

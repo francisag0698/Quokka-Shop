@@ -18,7 +18,11 @@ const CartController = {};
  * @apiSuccess {orders} Devuelve una orden
  */
 CartController.getOrder = (req, res) => {
-    Order.findAll({})
+    Order.findAll({
+        include: [
+            { model: Person }
+        ]
+    })
     .then((orders) => {
         res.status(200).json(orders);
     })
@@ -109,10 +113,6 @@ CartController.plusItem = (req, res) =>{
     req.session.cart[pos] = data;
     res.status(200).json(req.session.cart);
 };
-/*stripe.charges.list(function(err, charges){
-    console.log(charges);
-})*/
-
 
 CartController.processing = async (req, res) =>{
     console.log(req.body);  
@@ -126,7 +126,8 @@ CartController.processing = async (req, res) =>{
                 if(result.paid){
                     Order.create({
                         tax: req.body.tax,
-                        total: req.body.total
+                        total: req.body.total,
+                        id_person: req.user.Person.id_person
                     }).then(order => {
                         var data = [];
                         req.session.cart.forEach(element => {
@@ -166,7 +167,8 @@ CartController.processing = async (req, res) =>{
     }else{
         Order.create({
             tax: req.body.tax,
-            total: req.body.total
+            total: req.body.total,
+            id_person: req.user.Person.id_person
         }).then(order => {
             var data = [];
             req.session.cart.forEach(element => {

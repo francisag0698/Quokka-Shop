@@ -56,18 +56,21 @@ export class ProductComponent implements OnInit {
     this.getTaxs();
   }
 
-  addStock(input: any){
-    input.value
-    this.product.id_product;
-    this.productService.putStock(this.product)
+  addStock(input: any, id:any){
+    var data = { stock: parseInt(input.value) }
+    this.productService.putStock(id.value, data)
       .subscribe(res => {
-       console.log(res);
+        console.log(res);
+        this.getProducts();
+        this.modalService.dismissAll();
       });
   }
+
   openModalStock(content){
     this.modal_title = 'Añadir Existencia';
-    this.modalService.open(content, { centered: true, size: 'lg' });
+    this.modalService.open(content, { centered: true });
   }
+
   openModal(content){
     this.modal_title = 'Añadir Producto';
     this.product = new Product();

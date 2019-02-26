@@ -53,7 +53,7 @@ export class ProductService {
     return this.http.put(this.URL_API+`/${product.id_product}`, product);
   }
 
-  putStock(product: Product){
-    return this.http.put(this.URL_API+`/stock/${product.id_product}`, product);
+  putStock(id: any, data: any){
+    return this.http.put(this.URL_API+`/stock/${id}`, data);
   }
 }

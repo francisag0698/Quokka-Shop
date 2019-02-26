@@ -1,3 +1,13 @@
+<div id="content-header" class="container-fluid">
+  <div class="row align-items-center">
+    <div class="col-4">
+      <h4 class="mb-0">Listado de Clientes</h4>
+    </div>
+    <div class="col-8 text-right">
+      
+    </div>
+  </div>
+</div>
 <div class="container">
 
   <div class="row">
@@ -21,9 +31,9 @@
           <td>{{ customer.last_name }}</td>
           <td>{{ customer.birthdate }}</td>
           <td>{{ customer.postal_code }}</td>
-          <td>{{ customer.Account.state }}</td>
+          <td>{{ (customer.Account.state) ? 'Activa':'Inactiva' }}</td>
           <td>
-            <a (click)="editState(customer.Account)">Estado</a>
+            <a (click)="editState(customer.Account)" class="btn btn-warning">Estado</a>
           </td>
         </tr>
       </tbody>

@@ -23,7 +23,7 @@ const routes: Routes = [
       {
         path: '',
         children: [
-          { path: '', redirectTo: 'main', pathMatch: 'full' },
+          { path: '', redirectTo: 'inventory/product', pathMatch: 'full' },
           { path: 'main', component: DashboardComponent },
           { path: 'customers', component: CustomersComponent },
           { path: 'orders', component: OrdersComponent },
