@@ -9,7 +9,7 @@ const stripe = require('stripe')("sk_test_jEhCrdJOmNYIuF4LDmq0v2ga");
 
 const CartController = {};
 /**
- * @api {get} / Permite obtener una ordem
+ * @api {get} /order Permite obtener una ordem
  * @apiName getOrder
  * @apiGroup CartController 
  *
@@ -31,7 +31,7 @@ CartController.getOrder = (req, res) => {
     });
 }
 /**
- * @api {get} / Permite obtener una ordem
+ * @api {get} /all Permite obtener una orden
  * @apiName getOrder
  * @apiGroup CartController 
  *
@@ -44,7 +44,7 @@ CartController.getCart = (req, res) => {
     res.status(200).json(req.session.cart);
 }
 /**
- * @api {post} / Permite agregar un item
+ * @api {post} /add/:ext Permite agregar un item
  * @apiName addItem
  * @apiGroup CartController 
  *
@@ -74,13 +74,13 @@ CartController.addItem = (req, res) => {
         });
 };
 /**
- * @api {get} / Permite verificar un minusitem
+ * @api {post} /minus/:ext Permite disminuir un item del pedido
  * @apiName minusItem
  * @apiGroup CartController 
  *
  * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
  *
- * @apiSuccess {minusItem} un minusItem
+ * @apiSuccess {req.session.cart} devuelve el pedido disminuido
  */
 CartController.minusItem = (req, res) => {
     const ext = req.params.ext;
@@ -96,13 +96,13 @@ CartController.minusItem = (req, res) => {
     res.status(200).json(req.session.cart);
 };
 /**
- * @api {get} / Permite verfificar un plusitem
+ * @api {post} /plus/:ext Permite disminuir un item del pedido
  * @apiName plusItem
  * @apiGroup CartController 
  *
  * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
  *
- * 
+ * @apiSuccess {req.session.cart} devuelve el pedido aumentado
  */
 CartController.plusItem = (req, res) =>{
     const ext = req.params.ext;
@@ -113,7 +113,15 @@ CartController.plusItem = (req, res) =>{
     req.session.cart[pos] = data;
     res.status(200).json(req.session.cart);
 };
-
+/**
+ * @api {post} /process Permite aumentar un item del pedido
+ * @apiName processing
+ * @apiGroup CartController 
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 CartController.processing = async (req, res) =>{
     console.log(req.body);  
     if(req.body.isCard){  

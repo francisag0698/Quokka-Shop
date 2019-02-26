@@ -3,7 +3,15 @@ const Sequelize = require('sequelize');
 const Promotion = require('../models/Promotion');
 
 const PromotionController = {};
-
+/**
+ * @api {get} / Permite obtener una lista de promociones
+ * @apiName getPromotionList
+ * @apiGroup PromotionController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {promotions} devuelve un objeto con promociones
+ */
 PromotionController.getPromotionList = (req, res) => {
     Promotion.findAll({
         order: [
@@ -17,7 +25,15 @@ PromotionController.getPromotionList = (req, res) => {
         res.status(500).json(err);
     });
 };
-
+/**
+ * @api {post} / Permite guadar promociones
+ * @apiName savePromotion
+ * @apiGroup PromotionController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 PromotionController.savePromotion = (req, res) => {
     Promotion.create({
         name: req.body.name,
@@ -33,7 +49,15 @@ PromotionController.savePromotion = (req, res) => {
         res.status(500).json(err);
     });
 };
-
+/**
+ * @api {get} /:id Permite obtener la promocion por el id
+ * @apiName getPromotion
+ * @apiGroup PromotionController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * @apiSuccess {promotion} devuelve un objeto de promocion
+ */
 PromotionController.getPromotion = (req, res) => {
     Promotion.findOne({
         where: { id_promotion: req.params.id }
@@ -46,7 +70,15 @@ PromotionController.getPromotion = (req, res) => {
         res.status(500).json(err);
     });
 };
-
+/**
+ * @api {put} /:id Permite modificar la promocion por el id
+ * @apiName editPromotion
+ * @apiGroup PromotionController
+ *
+ * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ *
+ * 
+ */
 PromotionController.editPromotion = (req, res) => {
     Promotion.update({
         name: req.body.name,
