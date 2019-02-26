@@ -27,8 +27,8 @@ export class AuthService {
     return this.http.get('http://localhost:4000/auth/session', { withCredentials: true });
   }
 
-  loginGoogleUser() {
-    // To implement
+  getUserInfo(){
+    return this.http.get('http://localhost:4000/auth/session/user', { withCredentials: true });
   }
 
   logout(){

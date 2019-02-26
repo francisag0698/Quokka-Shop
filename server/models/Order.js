@@ -12,10 +12,11 @@ const Order = db.define('Order', {
     num_order: Sequelize.INTEGER,
     tax: Sequelize.DECIMAL(10,2),
     total: Sequelize.DECIMAL(10,2),
-    state: Sequelize.BOOLEAN,
+    state: { type: Sequelize.BOOLEAN, defaultValue: true },
     external_id: { type: Sequelize.STRING, defaultValue: Sequelize.UUIDV4 }
 });
 
+Person.hasMany(Order, { foreignKey: 'id_person' });
 Order.belongsTo(Person, { foreignKey: 'id_person' });
 Order.sync();
 

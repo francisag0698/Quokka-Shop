@@ -21,11 +21,15 @@ export class AuthGuard implements CanActivate {
       this.authService.redirectURL = url;
       var re = res as any;
       if(re.res){
-        if(re.role == 1){
-          return true;
+        if(url.includes('dashboard')){
+          if(re.role == 1){
+            return true;
+          }else{
+            this.router.navigate(['/']);
+          }
         }else{
-          this.router.navigate(['/']);
-        }
+          return true;
+        }        
       }else{
         this.router.navigate(['/login']);
       }          

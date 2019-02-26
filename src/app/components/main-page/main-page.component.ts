@@ -25,7 +25,10 @@ export class MainPageComponent implements OnInit {
   isEmptyFeat = false;
   isEmptyCate = false;
   isAuth = false;
+
   cartLength = 0;
+  taxCart: number = 0;
+  totalCart: number = 0;
 
   constructor(public modalService: NgbModal, 
     private productService: ProductService,
@@ -57,6 +60,7 @@ export class MainPageComponent implements OnInit {
       .subscribe(res => {
         this.cartService.cart = res as Cart[];
         this.cartLength = this.cartService.cart.length;
+        this.setTotalValues(this.cartService.cart);
         this.alerts.setMessage('¡Producto Añadido al carrito!','success');
       });
     }else{
@@ -68,6 +72,7 @@ export class MainPageComponent implements OnInit {
     this.cartService.plusItem(external)
       .subscribe(res =>{
         this.cartService.cart = res as Cart[];
+        this.setTotalValues(this.cartService.cart);
       });
     event.preventDefault();
   }
@@ -76,6 +81,7 @@ export class MainPageComponent implements OnInit {
     this.cartService.minusItem(external)
       .subscribe(res =>{
         this.cartService.cart = res as Cart[];
+        this.setTotalValues(this.cartService.cart);
       });
     event.preventDefault();
   }
@@ -87,6 +93,7 @@ export class MainPageComponent implements OnInit {
           this.cartService.cart = res as Cart[];
           console.log(res)
           this.cartLength = this.cartService.cart.length;
+          this.setTotalValues(this.cartService.cart);
         });
     }
   }
@@ -131,6 +138,14 @@ export class MainPageComponent implements OnInit {
         this.isAuth = re.res;
         this.getCart();
       });
+  }
+
+  setTotalValues(array: Cart[]){
+    this.totalCart = 0;
+    array.forEach(element => {
+      this.totalCart += parseFloat(element.pt as any);
+    });
+    this.taxCart = this.totalCart * 0.12;
   }
 
   logout(){

@@ -27,4 +27,8 @@ export class CartService {
   getCart(){
     return this.http.get(this.URL_API + `/all`, { withCredentials: true });
   }
+
+  processPurchase(data: any){
+    return this.http.post(this.URL_API + `/process`, data, { withCredentials: true });
+  }
 }

@@ -33,7 +33,8 @@ export class CustomersComponent implements OnInit {
       secure_token: customer.secure_token,
       phone_number: customer.phone_number,
       id_person: customer.id_person,
-      state: !customer.state
+      state: !customer.state,
+      Person: customer.Person
     };
     this.registerPersonService.putAccount(newCustomer)
     .subscribe(res => {

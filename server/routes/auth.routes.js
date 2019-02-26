@@ -20,8 +20,15 @@ router.post('/session/logout', (req, res) => {
   res.status(200).send();
 });
 
+router.get('/session/user', (req,res) => {
+  if(req.user){
+    res.status(200).json(req.user);
+  }else{
+    res.status(401).send();
+  }
+});
+
 router.get('/session', (req, res) => {
-  console.log(req.user);
   if(req.user){
     res.status(200).json({ res: true, role: req.user.Person.id_role });
   }else{

@@ -1,6 +1,10 @@
 const Product = require('../models/Product');
 const Category = require('../models/Category');
+const Order = require('../models/Order');
+const Order_Detail = require('../models/Order_Detail');
+const Shipping = require('../models/Shipping');
 
+const stripe = require('stripe')("sk_test_jEhCrdJOmNYIuF4LDmq0v2ga");
 
 const CartController = {};
 
@@ -53,6 +57,95 @@ CartController.plusItem = (req, res) =>{
     req.session.cart[pos] = data;
     res.status(200).json(req.session.cart);
 };
+/*stripe.charges.list(function(err, charges){
+    console.log(charges);
+})*/
+CartController.processing = async (req, res) =>{
+    console.log(req.body);  
+    if(req.body.isCard){  
+        stripe.charges.create({
+                amount: 999,
+                currency: 'usd',
+                description: 'Pago de productos en QuokkaShop.com',
+                source: req.body.token,
+            }).then(result => {
+                if(result.paid){
+                    Order.create({
+                        tax: req.body.tax,
+                        total: req.body.total
+                    }).then(order => {
+                        var data = [];
+                        req.session.cart.forEach(element => {
+                            data.push({ id_order: order.id_order, quantity: element.cant, id_product: element.id });
+                        });
+                        Order_Detail.bulkCreate(data)
+                            .then(() => {
+                                if(!req.body.hasShip){
+                                    req.session.cart = [];
+                                    res.status(200).json({ res: result.paid });
+                                }else{
+                                    Shipping.create({
+                                        id_order: order.id_order,
+                                        address: req.body.ship.address,
+                                        city: req.body.ship.city
+                                    }).then(ship => {
+                                        req.session.cart = [];
+                                        res.status(200).json({ res: result.paid });
+                                    }).catch(err => {
+                                        console.log('ERR -> ', err);
+                                        res.status(500).send();
+                                    });
+                                }                                
+                            }).catch(err => {
+                                console.log('ERR -> ', err);
+                                res.status(500).send();
+                            });
+                    }).catch(err => {
+                        console.log('ERR -> ', err);
+                        res.status(500).send();
+                    });
+                }            
+            }).catch(err => {
+                console.log('ERR -> ', err);
+                res.status(500).send();
+            });
+    }else{
+        Order.create({
+            tax: req.body.tax,
+            total: req.body.total
+        }).then(order => {
+            var data = [];
+            req.session.cart.forEach(element => {
+                data.push({ id_order: order.id_order, quantity: element.cant, id_product: element.id });
+            });
+            Order_Detail.bulkCreate(data)
+                .then(() => {
+                    if(!req.body.hasShip){
+                        req.session.cart = [];
+                        res.status(200).json({ res: true });
+                    }else{
+                        Shipping.create({
+                            id_order: order.id_order,
+                            address: req.body.ship.address,
+                            city: req.body.ship.city
+                        }).then(ship => {
+                            req.session.cart = [];
+                            res.status(200).json({ res: true });
+                        }).catch(err => {
+                            console.log('ERR -> ', err);
+                            res.status(500).send();
+                        });
+                    }  
+                }).catch(err => {
+                    console.log('ERR -> ', err);
+                    res.status(500).send();
+                });
+        }).catch(err => {
+            console.log('ERR -> ', err);
+            res.status(500).send();
+        });
+    }
+}
 
 function verificar(list, ext){
     var pos = -1;
