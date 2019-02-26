@@ -141,6 +141,21 @@ ProductController.editProduct = (req, res) => {
         res.status(500).send();
     });
 };
+ProductController.editStock = (req, res) => {
+    console.log(req.body.stock);
+    Product.update({
+        stock: stock + req.body.stock
+    }, { 
+        where: { id_product: req.params.id }
+    })
+    .then(() => {
+        res.status(200).json();
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).send();
+    });
+};
 
 ProductController.deleteImage = (req, res) => {
     Image.find({

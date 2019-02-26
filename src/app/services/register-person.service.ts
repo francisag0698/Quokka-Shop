@@ -28,6 +28,10 @@ export class RegisterPersonService {
     return this.http.post(this.URL_API, registerPerson);
   }
 
+  personSearch(search: any){
+    return this.http.post(this.URL_API+`/search`, search);
+  }
+
   getRegisterPerson(){
     return this.http.get(this.URL_API);
   }

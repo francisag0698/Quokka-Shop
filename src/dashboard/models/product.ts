@@ -2,7 +2,7 @@ import { Image } from './image';
 
 export class Product {
 
-    constructor(id='', name='', description='', code='', price='', brand='', company='', id_category='', tax='', images = [], external = ''){
+    constructor(id='', name='', description='', code='', price='', brand='', company='', id_category='', tax='', images = [], external = '',){
         this.id_product = id;
         this.name = name;
         this.description = description;
@@ -14,6 +14,7 @@ export class Product {
         this.id_tax = tax;
         this.Images = images;
         this.external_id = external;
+        
     }
 
     id_product: string;

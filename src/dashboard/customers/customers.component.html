@@ -1,7 +1,10 @@
 <div class="container">
 
   <div class="row">
-    <input type="text" class="form-control" #s="ngModel" [(ngModel)]="search" placeholder="Buscar">
+    <form #searchForm="ngForm" (ngSubmit)="searchCustomers(search)">
+        <input type="text" class="form-control" #search  name="search" id="search" placeholder="Buscar">
+        <button type="submit" class="btn btn-primary" >Buscar</button>
+    </form>
     <table class="table">
       <thead>
         <th>Tipo DNI</th>

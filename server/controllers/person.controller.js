@@ -3,16 +3,28 @@ const Person = require('../models/Person');
 const Role = require('../models/Role');
 const Account = require('../models/Account');
 const bcrypt = require('bcryptjs');
+const Sequelize = require('sequelize');
 
 const PersonController = {};
 
 PersonController.getPersonList = async (req, res) => {
-    const personList = await Person.findAll({where: {id_role: 1}},{order: [ 
-        [Sequelize.col('id_product'), 'DESC']
-    ], include: [{model: Account}] });
+    const personList = await Person.findAll({where: {id_role: 4}, include: [{model: Account}], order: [
+        [Sequelize.col('id_person'), 'DESC']
+    ] });
     res.json(personList);
 };
 
+PersonController.search = async (req, res) => {
+    const personSearch = await Person.findAll(
+        { where: { 
+            id_role: 4, 
+            first_name: req.body.search, 
+            last_name: req.body.search, 
+            dni: req.body.search 
+        }
+    });
+    res.json(personSearch);
+};
 
 PersonController.savePerson = (req, res) => {
     Account.findOne({ where: { user_name: req.body.user_name }}).then(function (account) {

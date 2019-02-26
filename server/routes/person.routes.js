@@ -11,5 +11,7 @@ router.get('/:dni', personController.getPerson)
 router.get('/account/:dni', personController.getPersonAccount);
 router.get('/role/:dni', personController.getPersonRole);
 router.post('/admin', personController.savePersonAdmin );
+router.post('/search', personController.search);
+
 
 module.exports = router;

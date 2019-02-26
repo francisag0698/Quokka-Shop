@@ -38,4 +38,5 @@ export class RegisterPersonComponent implements OnInit {
     }
   }
 
+
 }

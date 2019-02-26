@@ -42,7 +42,7 @@ export class CompanyComponent implements OnInit {
         this.companyService.postCompany(form.value)
           .subscribe(res => {
             this.getCompanys();
-            this.resetForm(form);
+            
           });
       }
     }

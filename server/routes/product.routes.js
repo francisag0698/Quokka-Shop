@@ -17,6 +17,8 @@ router.delete('/image/:id', productController.deleteImage);
 router.get('/:id', productController.getProduct)
         .put('/:id', productController.editProduct);
 
+router.put('/stock/:id', productController.editStock);
+
 
 
 module.exports = router;
