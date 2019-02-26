@@ -8,10 +8,11 @@ const CompanyController = {};
  * @apiName getCompanyList
  * @apiGroup CompanyController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {companys} devuelve un objeto con companias
  */
+
 CompanyController.getCompanyList = (req, res) => {
     Company.findAll({
         order: [
@@ -30,8 +31,8 @@ CompanyController.getCompanyList = (req, res) => {
  * @apiName saveCompany
  * @apiGroup CompanyController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 CompanyController.saveCompany = (req, res) => {
@@ -53,8 +54,8 @@ CompanyController.saveCompany = (req, res) => {
  * @apiName getCompany
  * @apiGroup CompanyController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {company} devuelve un objeto de compania
  */
 CompanyController.getCompany = (req, res) => {
@@ -74,8 +75,8 @@ CompanyController.getCompany = (req, res) => {
  * @apiName editCompany
  * @apiGroup CompanyController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 CompanyController.editCompany = (req, res) => {

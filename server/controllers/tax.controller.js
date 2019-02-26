@@ -8,8 +8,8 @@ const TaxController = {};
  * @apiName getTaxList 
  * @apiGroup TaxController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {taxs} devuelve un objeto con impuestos
  */
 TaxController.getTaxList = (req, res) => {
@@ -30,8 +30,8 @@ TaxController.getTaxList = (req, res) => {
  * @apiName saveTax 
  * @apiGroup TaxController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 TaxController.saveTax = (req, res) => {
@@ -51,8 +51,8 @@ TaxController.saveTax = (req, res) => {
  * @apiName getTax
  * @apiGroup TaxController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {tax} devuelve un objeto de impuesto
  */
 TaxController.getTax = (req, res) => {
@@ -73,8 +73,8 @@ TaxController.getTax = (req, res) => {
  * @apiName editTax
  * @apiGroup axController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 TaxController.editTax = (req, res) => {

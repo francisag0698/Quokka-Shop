@@ -15,8 +15,8 @@ const ProductController = {};
  * @apiName getProductList
  * @apiGroup ProductController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {products} devuelve un objeto con productos
  */
 ProductController.getProductList = (req, res) => {
@@ -39,8 +39,8 @@ ProductController.getProductList = (req, res) => {
  * @apiName getFeaturedProducts
  * @apiGroup ProductController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {products} devuelve un objeto con productos
  */
 ProductController.getFeaturedProducts = (req, res) =>{
@@ -63,8 +63,8 @@ ProductController.getFeaturedProducts = (req, res) =>{
  * @apiName saveProduct
  * @apiGroup ProductController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 ProductController.saveProduct = (req, res, next) => {
@@ -107,8 +107,8 @@ ProductController.saveProduct = (req, res, next) => {
  * @apiName addImage
  * @apiGroup ProductController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 ProductController.addImage = (req, res) => {
@@ -141,8 +141,8 @@ ProductController.addImage = (req, res) => {
  * @apiName getProduct
  * @apiGroup ProductController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {product} devuelve un objeto de categoria
  */
 ProductController.getProduct = (req, res) =>{
@@ -163,8 +163,8 @@ ProductController.getProduct = (req, res) =>{
  * @apiName editProduct
  * @apiGroup ProductController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 ProductController.editProduct = (req, res) => {
@@ -194,8 +194,8 @@ ProductController.editProduct = (req, res) => {
  * @apiName editStock 
  * @apiGroup ProductController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 ProductController.editStock = (req, res) => {
@@ -224,8 +224,8 @@ ProductController.editStock = (req, res) => {
  * @apiName deleteImage 
  * @apiGroup ProductController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 ProductController.deleteImage = (req, res) => {

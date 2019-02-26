@@ -7,8 +7,8 @@ const RoleController = {};
  * @apiName getRoleList 
  * @apiGroup RoleController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {roleList} devuelve un objeto con roles
  */
 RoleController.getRoleList = async (req, res) => {
@@ -20,8 +20,8 @@ RoleController.getRoleList = async (req, res) => {
  * @apiName saveRole
  * @apiGroup RoleController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 RoleController.saveRole = async (req, res) => {
@@ -35,8 +35,8 @@ RoleController.saveRole = async (req, res) => {
  * @apiName getRole
  * @apiGroup RoleController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {role} devuelve un objeto de rol
  */
 RoleController.getRole = async (req, res) => {
@@ -50,8 +50,8 @@ RoleController.getRole = async (req, res) => {
  * @apiName editRole
  * @apiGroup RoleController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 RoleController.editRole = async (req, res) => {

@@ -10,8 +10,8 @@ const AccountController = {};
  * @apiName getAccountList
  * @apiGroup AccountController 
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {accounts} Devuelve una lista de cuentas.
  * 
  */
@@ -28,8 +28,8 @@ AccountController.getAccountList = (req, res) => {
  * @apiName saveAccount
  * @apiGroup AccountController 
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  * 
  */
@@ -47,8 +47,8 @@ AccountController.saveAccount = (req, res) => {
  * @apiName getAccount
  * @apiGroup AccountController 
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {account} Devuelve una cuenta
  * 
  */
@@ -71,8 +71,8 @@ AccountController.getAccount = (req, res) => {
  * @apiName editAccount
  * @apiGroup AccountController 
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 AccountController.editAccount = (req, res) => {

@@ -11,8 +11,9 @@ const PersonController = {};
  * @apiName getPersonList
  * @apiGroup PersonController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
+ * 
  * @apiSuccess {personList} devuelve un objeto con personas
  */
 
@@ -39,8 +40,8 @@ PersonController.search = async (req, res) => {
  * @apiName savePerson
  * @apiGroup PersonController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 PersonController.savePerson = (req, res) => {
@@ -81,8 +82,8 @@ PersonController.savePerson = (req, res) => {
  * @apiName getPerson
  * @apiGroup PersonController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {person} devuelve un objeto de categoria
  */
 PersonController.getPerson = async (req, res) => {
@@ -96,8 +97,8 @@ PersonController.getPerson = async (req, res) => {
  * @apiName getPersonAccount
  * @apiGroup PersonController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 PersonController.getPersonAccount = async (req, res) => {
@@ -111,8 +112,8 @@ PersonController.getPersonAccount = async (req, res) => {
  * @apiName getPersonAccount
  * @apiGroup PersonController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 PersonController.getPersonRole = async (req, res) => {
@@ -126,8 +127,8 @@ PersonController.getPersonRole = async (req, res) => {
  * @apiName editPerson
  * @apiGroup PersonController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 PersonController.editPerson = async (req, res) => {
@@ -149,8 +150,8 @@ PersonController.editPerson = async (req, res) => {
  * @apiName savePersonAdmin 
  * @apiGroup PersonController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 PersonController.savePersonAdmin = (req, res) => {

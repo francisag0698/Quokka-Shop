@@ -9,8 +9,9 @@ const CategoryController ={};
  * @apiName getCategoryList
  * @apiGroup CategoryController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
+ * 
  * @apiSuccess {categorys} devuelve un objeto con categorias
  */
 CategoryController.getCategoryList = (req, res) => {
@@ -32,8 +33,8 @@ CategoryController.getCategoryList = (req, res) => {
  * @apiName saveCategory
  * @apiGroup CategoryController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+  * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 CategoryController.saveCategory = (req, res) =>{
@@ -52,7 +53,8 @@ CategoryController.saveCategory = (req, res) =>{
  * @apiName getCategory
  * @apiGroup CategoryController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  *
  * @apiSuccess {category} devuelve un objeto de categoria
  */
@@ -73,10 +75,10 @@ CategoryController.getCategory = (req, res) =>{
  * @apiName editCategory
  * @apiGroup CategoryController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
- */
+ */ 
 CategoryController.editCategory = (req, res)=>{
     Category.update({
         name: req.body.name

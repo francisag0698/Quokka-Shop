@@ -13,8 +13,8 @@ const CartController = {};
  * @apiName getOrder
  * @apiGroup CartController 
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {orders} Devuelve una orden
  */
 CartController.getOrder = (req, res) => {
@@ -35,8 +35,8 @@ CartController.getOrder = (req, res) => {
  * @apiName getOrder
  * @apiGroup CartController 
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {orders} Devuelve una orden
  */
 
@@ -48,8 +48,8 @@ CartController.getCart = (req, res) => {
  * @apiName addItem
  * @apiGroup CartController 
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 CartController.addItem = (req, res) => {
@@ -78,8 +78,8 @@ CartController.addItem = (req, res) => {
  * @apiName minusItem
  * @apiGroup CartController 
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {req.session.cart} devuelve el pedido disminuido
  */
 CartController.minusItem = (req, res) => {
@@ -100,8 +100,8 @@ CartController.minusItem = (req, res) => {
  * @apiName plusItem
  * @apiGroup CartController 
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {req.session.cart} devuelve el pedido aumentado
  */
 CartController.plusItem = (req, res) =>{
@@ -118,8 +118,8 @@ CartController.plusItem = (req, res) =>{
  * @apiName processing
  * @apiGroup CartController 
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 CartController.processing = async (req, res) =>{

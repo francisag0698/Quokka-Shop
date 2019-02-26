@@ -8,8 +8,8 @@ const PromotionController = {};
  * @apiName getPromotionList
  * @apiGroup PromotionController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {promotions} devuelve un objeto con promociones
  */
 PromotionController.getPromotionList = (req, res) => {
@@ -30,8 +30,8 @@ PromotionController.getPromotionList = (req, res) => {
  * @apiName savePromotion
  * @apiGroup PromotionController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 PromotionController.savePromotion = (req, res) => {
@@ -54,8 +54,8 @@ PromotionController.savePromotion = (req, res) => {
  * @apiName getPromotion
  * @apiGroup PromotionController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {promotion} devuelve un objeto de promocion
  */
 PromotionController.getPromotion = (req, res) => {
@@ -75,8 +75,8 @@ PromotionController.getPromotion = (req, res) => {
  * @apiName editPromotion
  * @apiGroup PromotionController
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * 
  */
 PromotionController.editPromotion = (req, res) => {

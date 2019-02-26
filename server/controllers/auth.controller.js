@@ -11,8 +11,8 @@ const AuthController = {};
  * @apiName getSession
  * @apiGroup AuthController 
  *
- * @apiParam {req, res} permiten realizar la peticiones y devoluciones de repuesta 
- *
+ * @apiParam {req} es el objeto de peticion
+ * @apiParam {res} es el objeto de respuetas
  * @apiSuccess {account} Devuelve una sesion
  */
 AuthController.getSession = (username, password, done) => {
